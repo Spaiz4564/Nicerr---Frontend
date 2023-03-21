@@ -1,7 +1,7 @@
 <template>
   <header>
     <nav>
-      <span class="logo">Nicerr .</span>
+      <h1 class="logo">Nicerr<span>.</span></h1>
       <RouterLink to="/gig">Explore</RouterLink>
     </nav>
   </header>
