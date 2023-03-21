@@ -15,7 +15,8 @@ export const gigService = {
 window.cs = gigService
 
 async function query(filterBy = { title: '', price: 0 }) {
-  var gigs = _createGigs()
+  let gigs = await storageService.query(STORAGE_KEY)
+  if (!gigs.length) gigs = _createGigs()
   if (filterBy.title) {
     const regex = new RegExp(filterBy.title, 'i')
     gigs = gigs.filter(
