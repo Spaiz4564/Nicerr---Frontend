@@ -1,12 +1,14 @@
 <template>
   <section class="gig-index" v-if="gigs">
     <h1>Gigs</h1>
+    <GigFilter @filtered="setFilter" />
     <GigList :gigs="gigs" />
   </section>
 </template>
 
 <script>
 import GigList from '../cmps/GigList.vue'
+import GigFilter from '../cmps/GigFilter.vue'
 import { showErrorMsg, showSuccessMsg } from '../services/event-bus.service'
 import { gigService } from '../services/gig.service.local'
 import {
@@ -18,10 +20,15 @@ export default {
   name: 'GigIndex',
   components: {
     GigList,
+    GigFilter,
   },
   data() {
     return {
       gigToAdd: gigService.getEmptyGig(),
+      filterBy: {
+        title: '',
+        price: null,
+      },
     }
   },
   computed: {
@@ -33,7 +40,7 @@ export default {
     },
   },
   created() {
-    this.$store.dispatch({ type: 'loadGigs' })
+    this.loadGigs()
   },
   methods: {
     async addGig() {
@@ -77,6 +84,22 @@ export default {
     },
     printGigToConsole(gig) {
       console.log('Gig msgs:', gig.msgs)
+    },
+    setFilter(filterBy) {
+      console.log('filterBy:', filterBy)
+      this.filterBy = filterBy
+      this.loadGigs()
+    },
+    async loadGigs() {
+      try {
+        await this.$store.dispatch({
+          type: 'loadGigs',
+          filterBy: this.filterBy,
+        })
+      } catch (err) {
+        console.log(err)
+        showErrorMsg('Cannot load gigs')
+      }
     },
   },
 }
