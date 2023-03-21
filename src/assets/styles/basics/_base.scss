@@ -14,9 +14,15 @@ html {
 }
 
 body {
-  font-family: Domain-medium;
+  font-family: 'Macan-bold';
   font-size: rem(18px);
   margin: 0;
+}
+
+img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
 }
 
 h1,
@@ -26,14 +32,13 @@ h4,
 h5,
 h6 {
   // font-family: caveat;
-  margin: 0 0 0.6em;
+  margin: 0;
   line-height: 1;
 }
 
 section,
 main,
 footer {
-  padding: 5px;
 }
 
 // img {
@@ -46,6 +51,7 @@ p {
 }
 
 a {
+  color: white;
   text-decoration: none;
 }
 a:hover {

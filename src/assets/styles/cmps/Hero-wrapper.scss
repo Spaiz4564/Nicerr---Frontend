@@ -1,4 +1,19 @@
 .hero-wrapper {
+  position: relative;
   height: 680px;
-  background-image: url('.././images/Hero-section/Andrea.png');
+  background-image: url('.././images/Hero-section/Valentina.png');
+  background-size: cover;
+}
+
+.hero-container {
+  .hero {
+    max-width: 650px;
+  }
+  h1 {
+    color: white;
+    font-size: 48px;
+  }
+  position: absolute;
+  top: 50%;
+  left: 10%;
 }
