@@ -15,7 +15,7 @@ export const gigService = {
 window.cs = gigService
 
 async function query(filterBy = { title: '', price: 0 }) {
-  var gigs = await storageService.query(STORAGE_KEY)
+  var gigs = _createGigs()
   if (filterBy.title) {
     const regex = new RegExp(filterBy.title, 'i')
     gigs = gigs.filter(
@@ -71,8 +71,22 @@ function getEmptyGig() {
   }
 }
 
-// TEST DATA
-// ;(async () => {
-//   await storageService.post(STORAGE_KEY, { title: 'Gig 1', price: 180 })
-//   await storageService.post(STORAGE_KEY, { title: 'Gig2', price: 240 })
-// })()
+function _createGig(title) {
+  return {
+    title,
+    price: utilService.getRandomIntInclusive(5, 200),
+    imgUrl: '../assets/images/DemoGigs/gig1.png',
+  }
+}
+
+function _createGigs() {
+  const gigs = [
+    _createGig('Gig 1'),
+    _createGig('Gig 2'),
+    _createGig('Gig 3'),
+    _createGig('Gig 4'),
+    _createGig('Gig 5'),
+  ]
+  storageService.postMany(STORAGE_KEY, gigs)
+  return gigs
+}

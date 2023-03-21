@@ -1,28 +1,20 @@
 <template>
-  <section class="container home text-center">
-    <h1>Home Page</h1>
-    <h5 class="text-center">
-      Powered up Frontend 
+  <section class="container-home">
+    <h5 class="hero-container">
+      <h2>Find the Perfect freelance services for your business</h2>
+      <input type="text" placeholder="Try building mobile app" />
     </h5>
-    <img alt="Vue logo" src="../assets/logo.png">
   </section>
-
-  
 </template>
 
 <script>
 export default {
   name: 'home',
   data() {
-    return {
-    }
+    return {}
   },
-  computed: {
-  },
-  created() {
-  },
-  methods: {
-  }
-  
+  computed: {},
+  created() {},
+  methods: {},
 }
 </script>

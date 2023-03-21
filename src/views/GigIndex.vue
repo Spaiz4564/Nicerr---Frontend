@@ -1,28 +1,12 @@
 <template>
-  <div class="container home">
-    <ul class="gig-list">
-      <li v-for="gig in gigs" :key="gig._id">
-        <p>
-          {{ gig.title }}
-        </p>
-        <p>${{ gig.price?.toLocaleString() }}</p>
-        <button @click="removeGig(gig._id)">x</button>
-        <button @click="updateGig(gig)">Update</button>
-        <hr />
-        <button @click="addGigMsg(gig._id)">Add gig msg</button>
-        <button @click="printGigToConsole(gig)">Print msgs to console</button>
-      </li>
-    </ul>
-    <hr />
-    <form @submit.prevent="addGig()">
-      <h2>Add gig</h2>
-      <input type="text" v-model="gigToAdd.title" />
-      <button>Save</button>
-    </form>
-  </div>
+  <section class="gig-index" v-if="gigs">
+    <h1>Gigs</h1>
+    <GigList :gigs="gigs" />
+  </section>
 </template>
 
 <script>
+import GigList from '../cmps/GigList.vue'
 import { showErrorMsg, showSuccessMsg } from '../services/event-bus.service'
 import { gigService } from '../services/gig.service.local'
 import {
@@ -31,6 +15,10 @@ import {
   getActionAddGigMsg,
 } from '../store/gig.store'
 export default {
+  name: 'GigIndex',
+  components: {
+    GigList,
+  },
   data() {
     return {
       gigToAdd: gigService.getEmptyGig(),
