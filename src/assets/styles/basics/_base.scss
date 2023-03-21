@@ -31,8 +31,11 @@ h3,
 h4,
 h5,
 h6 {
+<<<<<<< HEAD
+  font-family: caveat;
+=======
   // font-family: caveat;
-  margin: 0;
+  margin: 0 0 0.6em;
   line-height: 1;
 }
 
@@ -46,7 +49,10 @@ footer {
 // }
 
 p {
+<<<<<<< HEAD
+=======
   margin: 0 0 1em;
+>>>>>>> 233c87ae828bf148ce7e481be2b7cdfc3827e4b7
   max-width: 40ch;
 }
 
@@ -57,3 +63,10 @@ a {
 a:hover {
   text-decoration: underline;
 }
+<<<<<<< HEAD
+
+img {
+  width: 100%;
+}
+=======
+>>>>>>> 233c87ae828bf148ce7e481be2b7cdfc3827e4b7

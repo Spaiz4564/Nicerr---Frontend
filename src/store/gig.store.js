@@ -30,6 +30,10 @@ export function getActionAddGigMsg(gigId) {
 export const gigStore = {
   state: {
     gigs: [],
+    filterBy: {
+      title: '',
+      price: 0,
+    },
   },
   getters: {
     gigs({ gigs }) {
@@ -77,15 +81,16 @@ export const gigStore = {
         throw err
       }
     },
-    async loadGigs(context) {
+    async loadGigs(context, { filterBy }) {
       try {
-        const gigs = await gigService.query()
+        const gigs = await gigService.query(filterBy)
         context.commit({ type: 'setGigs', gigs })
       } catch (err) {
         console.log('gigStore: Error in loadGigs', err)
         throw err
       }
     },
+
     async removeGig(context, { gigId }) {
       try {
         await gigService.remove(gigId)

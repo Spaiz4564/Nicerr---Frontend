@@ -76,11 +76,12 @@ function _createGig(title) {
   return {
     title,
     price: utilService.getRandomIntInclusive(5, 200),
-    imgUrl: 'https://picsum.photos/200/300',
+    imgUrl: '../../src/assets/images/gigs/gig1.png',
+    rate: 4.5,
     owner: {
       _id: 'u101',
       fullname: 'Shuki Cohen',
-      imgUrl: 'https://randomuser.me/api/portraits/men/1.jpg',
+      imgUrl: '/src/assets/images/avatar.png',
       level: 'basic/intermediate/',
       rate: 4,
     },
@@ -88,7 +89,11 @@ function _createGig(title) {
 }
 
 function _createGigs() {
-  const gigs = [_createGig('Gig 1'), _createGig('Gig 2'), _createGig('Gig 3')]
+  const gigs = [
+    _createGig('Gig For the Animals'),
+    _createGig('Gig For the Humans'),
+    _createGig('Gig For the World'),
+  ]
   storageService.postMany(STORAGE_KEY, gigs)
   return gigs
 }

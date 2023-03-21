@@ -5,19 +5,24 @@
         <img :src="gig.imgUrl" alt="" />
       </div>
     </div>
-    <div class="seller-seller-info">
-      <h4>{{ gig.owner.fullname }}</h4>
-      <p class="gig-seller-rate">{{ gig.owner.rate }}</p>
-    </div>
-    <div class="seller-seller-img">
-      <img :src="gig.owner.imgUrl" alt="" />
-    </div>
+    <section class="seller-container">
+      <div class="seller-img">
+        <img :src="gig.owner.imgUrl" alt="" />
+      </div>
+      <div class="seller-info">
+        <h4 class="seller-name">{{ gig.owner.fullname }}</h4>
+        <p class="gig-seller-rate">{{ ownerLevel }}</p>
+      </div>
+    </section>
     <div class="gig-preview-info">
-      <h3>{{ gig.title }}</h3>
-      <p class="gig-preview-rate">{{ gig.rate }}{{ totalRates }}</p>
+      <p class="gig-preview-title">{{ gig.title }}</p>
+      <div class="gig-rating">
+        <span>★</span>
+        <p class="gig-preview-rate">{{ gig.rate }}{{ totalRates }}</p>
+      </div>
     </div>
     <div class="gig-preview-price">
-      <p>starting at</p>
+      <p class="txt-capitalized">starting at</p>
       <span> US${{ gig.price }}</span>
     </div>
   </section>
@@ -31,7 +36,10 @@ export default {
   },
   computed: {
     totalRates() {
-      return '(10)'
+      return '(355)'
+    },
+    ownerLevel() {
+      return 'Level 2 Seller'
     },
   },
 }
