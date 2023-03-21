@@ -1,10 +1,37 @@
 header {
-  max-width: 1400px;
-  margin: auto;
+  @include for-wide-layout {
+    grid-template-columns: 32px 1fr 32px;
+  }
+  height: 80px;
+  display: grid;
+  align-items: center;
+  // margin: auto;
+  grid-template-columns: 1fr 1400px 1fr;
+  width: 100%;
+  position: fixed;
+  z-index: 99;
+  nav {
+    display: flex;
+    justify-content: space-between;
+  }
+}
+
+nav {
+  width: 100%;
+}
+
+.goTo {
+  color: white;
+  display: flex;
+  gap: 20px;
+  align-items: center;
 }
 
 .logo {
-  color: black;
+  span {
+    color: green;
+  }
+  color: #fff;
   font-size: 2rem;
   display: inline;
   text-decoration: none;
