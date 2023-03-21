@@ -1,25 +1,29 @@
 @font-face {
-  font-family: Macan-regular;
-  src: url(../../fonts/macan/macan-regular.woff2);
-}
-@font-face {
-  font-family: Macan-light;
-  src: url(../../fonts/macan/macan-light.ttf);
-}
-@font-face {
   font-family: Macan-bold;
-  src: url(../../fonts/macan/macan-bold.ttf);
-}
-@font-face {
-  font-family: Macan-semibold;
-  src: url(../../fonts/macan/macan-semibold.woff2);
+  src: url('/src/assets/fonts/macan/macan-bold.ttf');
 }
 
 @font-face {
-  font-family: Domain-medium;
-  src: url(../../fonts/domain/domain-display-medium-italic.otf);
+  font-family: Macan-semi-bold;
+  src: url('/src/assets/fonts/macan/macan-semibold.woff2');
 }
+
 @font-face {
-  font-family: Domain-regular;
-  src: url(../../fonts/domain/domaine-display-regular-italic.otf);
+  font-family: Macan-Regular;
+  src: url('/src/assets/fonts/macan/macan-regular.woff2');
+}
+
+@font-face {
+  font-family: Macan-Light;
+  src: url('/src/assets/fonts/macan/macan-light.ttf');
+}
+
+@font-face {
+  font-family: Domain-Regular;
+  src: url('/src/assets/fonts/domain/domaine-display-regular-italic.otf');
+}
+
+@font-face {
+  font-family: Domain-Medium;
+  src: url('/src/assets/fonts/domain/domaine-display-medium-italic.otf');
 }

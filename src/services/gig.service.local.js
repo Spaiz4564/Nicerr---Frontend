@@ -20,11 +20,11 @@ async function query(filterBy = { title: '', price: 0 }) {
   if (filterBy.title) {
     const regex = new RegExp(filterBy.title, 'i')
     gigs = gigs.filter(
-      (gig) => regex.test(gig.title) || regex.test(gig.description)
+      gig => regex.test(gig.title) || regex.test(gig.description)
     )
   }
   if (filterBy.price) {
-    gigs = gigs.filter((gig) => gig.price <= filterBy.price)
+    gigs = gigs.filter(gig => gig.price <= filterBy.price)
   }
   return gigs
 }
@@ -76,18 +76,19 @@ function _createGig(title) {
   return {
     title,
     price: utilService.getRandomIntInclusive(5, 200),
-    imgUrl: '../assets/images/DemoGigs/gig1.png',
+    imgUrl: 'https://picsum.photos/200/300',
+    owner: {
+      _id: 'u101',
+      fullname: 'Shuki Cohen',
+      imgUrl: 'https://randomuser.me/api/portraits/men/1.jpg',
+      level: 'basic/intermediate/',
+      rate: 4,
+    },
   }
 }
 
 function _createGigs() {
-  const gigs = [
-    _createGig('Gig 1'),
-    _createGig('Gig 2'),
-    _createGig('Gig 3'),
-    _createGig('Gig 4'),
-    _createGig('Gig 5'),
-  ]
+  const gigs = [_createGig('Gig 1'), _createGig('Gig 2'), _createGig('Gig 3')]
   storageService.postMany(STORAGE_KEY, gigs)
   return gigs
 }

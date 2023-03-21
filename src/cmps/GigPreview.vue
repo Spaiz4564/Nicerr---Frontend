@@ -1,11 +1,16 @@
 <template>
   <section class="gig-preview">
     <div class="gig-preview-img">
-      <img :src="gig.imgUrl" alt="" />
+      <div class="gig-preview-img-container">
+        <img :src="gig.imgUrl" alt="" />
+      </div>
     </div>
     <div class="seller-seller-info">
-      <!-- <h4>{{ gig.owner.username }}</h4> -->
-      <!-- <p class="gig-seller-rate">{{ gig.owner.rate }}</p> -->
+      <h4>{{ gig.owner.fullname }}</h4>
+      <p class="gig-seller-rate">{{ gig.owner.rate }}</p>
+    </div>
+    <div class="seller-seller-img">
+      <img :src="gig.owner.imgUrl" alt="" />
     </div>
     <div class="gig-preview-info">
       <h3>{{ gig.title }}</h3>
