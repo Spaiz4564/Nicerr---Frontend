@@ -1,5 +1,6 @@
 <template>
   <section class="container-home">
+    <div class="hero-wrapper"></div>
     <h5 class="hero-container">
       <h2>Find the Perfect freelance services for your business</h2>
       <input type="text" placeholder="Try building mobile app" />
