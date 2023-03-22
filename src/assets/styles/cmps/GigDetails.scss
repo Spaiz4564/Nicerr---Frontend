@@ -1,21 +1,171 @@
+.gig-details-main {
+    // display: grid;
+    // grid-template-columns: 1fr 1000px 1fr;
+
+    // position: relative;
+
+    *> {
+        grid-column: 2;
+    }
+}
+
 .gig-details {
-    height: 150vh;
+
+    font-family: 'Macan-Regular';
+    text-align: center;
+    font-size: 14px;
+    line-height: 140%;
+    word-break: break-word;
+
+    color: $clr1;
+}
+
+.header-purchase {
+    line-height: 21px;
+    padding-bottom: 10px;
+    margin-bottom: 8px;
+
+    .gig-title {
+        font-size: 20px;
+        margin: 0 0 25px;
+    }
+}
+
+.gig-user-info {
+    height: 200px;
+    width: 640px;
+    margin: 0 32px;
+
+    background-color: black;
+}
+
+
+.gig-purchase {
+    display: flex;
+    flex-direction: column;
+    position: sticky;
+    width: 457px;
+    height: 545px;
+    top: 120px;
+    right: 20px;
+    padding: $padding;
+    margin-bottom: 8px;
+
+    border: 1px solid black;
+}
+
+p {
+    display: block;
+    margin-block-start: 1em;
+    margin-block-end: 1em;
+    margin-inline-start: 0px;
+    margin-inline-end: 0px;
+    max-width: fit-content;
+
+    padding: 0 20px;
+
+    &.gig-purchase-txt {
+        text-align: left;
+        color: $clr02;
+    }
+}
+
+
+.gig-purchase-options {
+    height: auto;
+
+    margin-bottom: 8px;
+
+    color: $clr02;
+}
+
+b.delivery,
+.revisions {
+    padding: 0 5px;
+}
+
+.revisions-wrapper {
+    margin-left: 8px;
+}
+
+.features {
+    margin: 0;
+    padding: 0;
+    margin-bottom: 15px;
+
+    line-height: 0%;
+
+    list-style: none;
+    list-style-image: none;
+
+    color: $clr01;
+}
+
+.contact-seller {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 100%;
+    height: 80px;
+
+    background-color: #fafafa;
+
+    .contact-seller-wrapper {
+        width: 90%;
+        height: 50%;
+
+        border: 1px grey solid;
+        border-radius: 5px;
+
+        &:hover {
+            background-color: #74767e;
+            color: #fafafa;
+        }
+
+        button:hover {
+            color: #fafafa;
+        }
+    }
+
+    button {
+        margin: auto;
+
+        color: #62646a;
+        background-color: inherit;
+
+        font-size: 20px;
+        font-weight: bold;
+    }
+}
+
+.footer-purchase {
+    display: flex;
+    justify-content: center;
+    height: 42px;
+    width: 100%;
+    margin-bottom: 50px;
+
+    border-radius: 5px;
+
+    background-color: #1dbf73;
+
+    .btn-purchase {
+        font-size: 16px;
+        font-weight: bold;
+
+        color: $clr6;
+        background-color: inherit;
+    }
 }
 
 .btn-contact-seller {
     top: 0px;
 }
 
-.gig-purchase {
-    padding: $padding;
-    position: fixed;
-    top: 120px;
-    width: 457px;
-    height: 600px;
-    border: 1px solid black;
-    right: 20px;
+.check {
+    fill: gainsboro;
 }
 
-.gig-purchase-options {
-    padding: 0;
+.fill {
+    fill: #1dbf73;
 }
