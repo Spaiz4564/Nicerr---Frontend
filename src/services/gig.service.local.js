@@ -20,11 +20,11 @@ async function query(filterBy = { title: '', price: 0 }) {
   if (filterBy.title) {
     const regex = new RegExp(filterBy.title, 'i')
     gigs = gigs.filter(
-      gig => regex.test(gig.title) || regex.test(gig.description)
+      (gig) => regex.test(gig.title) || regex.test(gig.description)
     )
   }
   if (filterBy.price) {
-    gigs = gigs.filter(gig => gig.price <= filterBy.price)
+    gigs = gigs.filter((gig) => gig.price <= filterBy.price)
   }
   return gigs
 }
