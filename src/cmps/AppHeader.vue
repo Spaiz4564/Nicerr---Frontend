@@ -1,7 +1,10 @@
 <template>
   <header ref="header">
     <div></div>
-    <nav ref="nav" v-bind:style="{ position: stickyNav ? 'absolute' : 'fixed' }">
+    <nav
+      ref="nav"
+      v-bind:style="{ position: stickyNav ? 'absolute' : 'fixed' }"
+    >
       <h1 class="logo">Nicerr<span>.</span></h1>
       <div class="goTo">
         <RouterLink to="/gig">Explore</RouterLink>
@@ -17,7 +20,7 @@
 export default {
   data() {
     return {
-      stickyNav: false
+      stickyNav: false,
     }
   },
   computed: {},
@@ -25,18 +28,17 @@ export default {
     onHeaderObserved(entries) {
       entries.forEach(entry => {
         this.stickyNav = entry.isIntersecting ? true : false
-        console.log(entry);
-        console.log('hello');
-
-      });
-    }
+        console.log(entry)
+        console.log('hello')
+      })
+    },
   },
   mounted() {
     this.headerObserver = new IntersectionObserver(this.onHeaderObserved, {
-      rootMargin: "100px 0px 0px"
+      rootMargin: '100px 0px 0px',
     })
     this.headerObserver.observe(this.$refs.header)
-    console.log('hello -mounted');
-  }
+    console.log('hello -mounted')
+  },
 }
 </script>
