@@ -1,6 +1,6 @@
 <template>
   <ul class="gig-list">
-    <li v-for="gig in gigs" :key="gig._id" @click="goToGigDetails(gig._id)">
+    <li v-for="gig in gigs" :key="gig._id">
       <GigPreview :gig="gig" />
     </li>
   </ul>

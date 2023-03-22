@@ -1,8 +1,9 @@
 <template>
   <section class="gig-index" v-if="gigs">
-    <h1>Gigs</h1>
-    <GigFilter @filtered="setFilter" />
     <GigList :gigs="gigs" />
+    <section class="filtering">
+      <GigFilter @filtered="setFilter" />
+    </section>
   </section>
 </template>
 
@@ -41,6 +42,8 @@ export default {
   },
   created() {
     this.loadGigs()
+    const filterBy = this.$store.getters.filterBy
+    if (filterBy) this.filterBy = filterBy
   },
   methods: {
     async addGig() {
@@ -86,7 +89,6 @@ export default {
       console.log('Gig msgs:', gig.msgs)
     },
     setFilter(filterBy) {
-      console.log('filterBy:', filterBy)
       this.filterBy = filterBy
       this.loadGigs()
     },

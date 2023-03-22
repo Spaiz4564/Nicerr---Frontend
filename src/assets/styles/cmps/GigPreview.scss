@@ -7,6 +7,12 @@
       font-size: 0.8rem;
       color: $clr1;
     }
+    .gig-preview-title {
+      padding: 0 0.75em;
+      line-height: 22px;
+      font-weight: 400;
+      font-size: 0.9rem;
+    }
   }
   .gig-preview-img-container {
     height: 200px;
@@ -61,10 +67,8 @@
 
 .gig-rating {
   display: flex;
-  align-items: center;
-  gap: 0.2rem;
   font-size: 1.5em;
   span {
-    color: gold;
+    fill: $clr4;
   }
 }

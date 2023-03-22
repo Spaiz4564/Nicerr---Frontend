@@ -75,3 +75,12 @@
 .portrait-ratio {
   @include aspect-ratio(9, 16);
 }
+
+//svg helpers
+.check {
+  fill: gainsboro;
+}
+
+.fill {
+  fill: #1dbf73;
+}
