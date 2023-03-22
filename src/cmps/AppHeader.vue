@@ -1,7 +1,7 @@
 <template>
   <header ref="header">
     <div></div>
-    <nav ref="nav" v-bind:style="{ position: stickyNav ? 'static' : 'absolute' }">
+    <nav ref="nav" v-bind:style="{ position: stickyNav ? 'absolute' : 'fixed' }">
       <h1 class="logo">Nicerr<span>.</span></h1>
       <div class="goTo">
         <RouterLink to="/gig">Explore</RouterLink>
@@ -37,7 +37,6 @@ export default {
     })
     this.headerObserver.observe(this.$refs.header)
     console.log('hello -mounted');
-
   }
 }
 </script>
