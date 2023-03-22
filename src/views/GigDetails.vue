@@ -7,17 +7,18 @@
         <p>{{ gig._id }}</p>
       </div>
       <div class="gig-purchase">
-        <div class="gig-purchase-price flex space-between ">
+        <div class="gig-purchase-price flex space-between">
           <p>silver</p>
           <p>price: {{ gig.price }}</p>
         </div>
-        <p> Lorem ipsum dolor sit amet consectetur adipisicing elit. Ratione facilis magni omnis rerum saepe? Dicta
-          itaque
-          molestiae, enim suscipit rem eos aliquid sed, blanditiis ad repellendus distinctio, provident natus tenetur!
+        <p>
+          Lorem ipsum dolor sit amet consectetur adipisicing elit. Ratione
+          facilis magni omnis rerum saepe? Dicta itaque molestiae, enim suscipit
+          rem eos aliquid sed, blanditiis ad repellendus distinctio, provident
+          natus tenetur!
         </p>
         <div class="gig-purchase-options flex column">
-
-          <p class="flex align-center ">
+          <p class="flex align-center">
             <span className="icon" v-html="getSvg('clock')"></span>
             5 Days Delivery
             <span className="icon" v-html="getSvg('recycle')"></span>
@@ -37,33 +38,30 @@
 </template>
 
 <script>
-
 import { gigService } from '../services/gig.service.local'
-import svgService from '../services/svg.service'
+import { svgService } from '../services/svg.service'
 
 export default {
   name: 'Gig-Details',
   data() {
     return {
-      gig: null
+      gig: null,
     }
   },
   methods: {
     getSvg(iconName) {
       return svgService.getSvg(iconName)
-    }
+    },
   },
-  computed: {
-
-  },
+  computed: {},
   created() {
     const { id } = this.$route.params
-    gigService.getById(id).then((gig) => {
+    gigService.getById(id).then(gig => {
       this.gig = gig
     })
   },
   components: {
-    svgService
+    svgService,
   },
 }
 </script>

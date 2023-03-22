@@ -1,8 +1,8 @@
-function getSvgIcon(iconName) {
+function getSvg(iconName) {
   return svgIcon[iconName]
 }
 
-export const svgService = { getSvgIcon }
+export const svgService = { getSvg }
 
 // in template
 // <div className="icon" v-html="getSvg('bars')"></div>
