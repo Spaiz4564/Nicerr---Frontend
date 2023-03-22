@@ -1,34 +1,24 @@
 <template>
-  <section class="container-home">
-    <div class="hero-wrapper">
-      <h5 class="hero-container">
-        <div class="hero">
-          <h1>
-            Find the perfect <span>freelance</span> services for your business
-          </h1>
-          <form class="home-search" action="">
-            <div v-html="getSvg('search')"></div>
-            <input type="text" placeholder='Try "Building mobile app"' />
-          </form>
-        </div>
-      </h5>
-    </div>
-  </section>
+  <HeroSection />
+  <TrustedBy />
+  <PopularServices />
 </template>
 
 <script>
-import { svgService } from '../services/svg.service'
+import HeroSection from '../cmps/HeroSection.vue'
+import TrustedBy from '../cmps/TrustedBy.vue'
+import PopularServices from '../cmps/PopularServices.vue'
+
 export default {
   name: 'home',
   data() {
     return {}
   },
-  computed: {},
-  created() {},
-  methods: {
-    getSvg(iconName) {
-      return svgService.getSvg(iconName)
-    },
+  methods: {},
+  components: {
+    HeroSection,
+    TrustedBy,
+    PopularServices,
   },
 }
 </script>

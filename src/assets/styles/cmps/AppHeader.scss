@@ -22,15 +22,33 @@ nav {
 }
 
 .goTo {
+  a {
+    transition: all 0.3s;
+    &:last-child {
+      border-radius: 4px;
+      padding: 6px 16.5px;
+      border: 1px solid white;
+      &:hover {
+        background-color: $clr-hover;
+        border: 1px solid transparent;
+      }
+    }
+
+    font-weight: 600;
+    text-decoration: none;
+    white-space: nowrap;
+    cursor: pointer;
+    font-size: 14px;
+  }
   color: white;
   display: flex;
-  gap: 20px;
+  gap: 23px;
   align-items: center;
 }
 
 .logo {
   span {
-    color: green;
+    color: $clr-hover;
   }
   color: #fff;
   font-size: 2rem;
@@ -44,11 +62,95 @@ nav {
   grid-column: 1 / -1;
 }
 
-.home-search {
-  display: flex;
+.home-search-container {
+  margin: 24px 0px;
   flex-direction: column;
-  input {
-    height: 48px;
+  .home-search {
+    border-radius: 4px;
+    justify-content: space-between;
     width: 100%;
+    background-color: white;
+    display: flex;
+
+    button {
+      padding: 5px 25px;
+      margin: 0;
+      background-color: #1dbf73;
+      border: 1px solid #1dbf73;
+      border-radius: 0 4px 4px 0;
+      color: #fff;
+      font-weight: 600;
+      font-size: 1rem;
+      height: 3rem;
+    }
+  }
+
+  .search {
+    .icon {
+      padding: 0px 13px;
+    }
+    display: flex;
+    width: 100%;
+  }
+
+  svg {
+    fill: rgb(98, 100, 106);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background-color: #fff;
+    border-radius: 4px 0 0 4px;
+    width: 24px;
+    padding-top: 3px;
+  }
+
+  input {
+    &::placeholder {
+      color: #9f9a9d;
+    }
+
+    font-family: 'Macan-Regular';
+    font-size: 16px;
+    border: 0;
+    width: 100%;
+    outline: 0;
+    height: 48px;
+  }
+}
+
+.header-suggestions {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  color: white;
+  span {
+    font-size: 14px;
+  }
+  ul {
+    li {
+      cursor: pointer;
+      font-size: 13px;
+      border-radius: 20px;
+      border: 1px solid #fff;
+      border-radius: 40px;
+      color: #fff;
+      font-weight: 600;
+      line-height: 24px;
+      padding: 1px 14px 0;
+      -webkit-transition: all 0.2s ease-in-out;
+      -o-transition: all 0.2s ease-in-out;
+      transition: all 0.2s ease-in-out;
+      z-index: 4;
+      &:hover {
+        background-color: #fff;
+        color: #404145;
+        text-decoration: none;
+      }
+    }
+    margin: 0;
+    display: flex;
+    padding: 0;
+    gap: 15px;
+    list-style-type: none;
   }
 }
