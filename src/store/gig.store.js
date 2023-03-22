@@ -31,8 +31,8 @@ export const gigStore = {
   state: {
     gigs: [],
     filterBy: {
-      title: '',
-      price: 0,
+      minPrice: 0,
+      maxPrice: 1000,
     },
   },
   getters: {
