@@ -6,9 +6,14 @@
           <h1>
             Find the perfect <span>freelance</span> services for your business
           </h1>
-          <form class="home-search" action="">
-            <div v-html="getSvg('search')"></div>
-            <input type="text" placeholder='Try "Building mobile app"' />
+          <form class="home-search-container" action="">
+            <div class="home-search">
+              <div class="search">
+                <div class="icon" v-html="getSvg('search')"></div>
+                <input type="text" placeholder='Try "Building mobile app"' />
+              </div>
+              <button>Search</button>
+            </div>
           </form>
         </div>
       </h5>
