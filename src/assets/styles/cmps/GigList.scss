@@ -1,17 +1,16 @@
 .gig-index {
   display: grid;
   grid-column: 2;
+
   margin-top: 100px;
 }
 
 .gig-list {
-  list-style: none;
-  display: flex;
-  flex-wrap: wrap;
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
   li {
-    background-color: $clr2;
-    color: $clr6;
-    margin: 5px;
+    list-style: none;
+    width: 80%;
   }
   a {
     color: $clr1;
@@ -24,10 +23,6 @@
     padding: 0.2em;
     margin: 0.2em;
   }
-}
-.icon {
-  width: 50px;
-  height: 50px;
 }
 
 .gig-seller-rate {

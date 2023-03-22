@@ -96,9 +96,9 @@ function _createGig(title) {
 
 function _createGigs() {
   const gigs = [
-    _createGig('I will create modern unique and creative logo design'),
-    _createGig('I will create modern unique and creative logo design'),
-    _createGig('I will create modern unique and creative logo design'),
+    _createGig('I will create soccer pitch for you'),
+    _createGig('I will create modern uniquedesign'),
+    _createGig('creative logo design'),
   ]
   storageService.postMany(STORAGE_KEY, gigs)
   return gigs

@@ -33,6 +33,7 @@ export const gigStore = {
     filterBy: {
       minPrice: 0,
       maxPrice: 1000,
+      title: '',
     },
   },
   getters: {
@@ -58,6 +59,12 @@ export const gigStore = {
       const gig = state.gigs.find((gig) => gig._id === gigId)
       if (!gig.msgs) gig.msgs = []
       gig.msgs.push(msg)
+    },
+
+    setFilter(state, { filterBy }) {
+      state.filterBy = filterBy
+      this.dispatch({ type: 'loadGigs', filterBy })
+      console.log('setFilter', state.filterBy)
     },
   },
   actions: {
