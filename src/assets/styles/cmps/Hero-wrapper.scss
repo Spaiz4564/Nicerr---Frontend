@@ -3,17 +3,21 @@
   height: 680px;
   background-image: url('.././images/Hero-section/Valentina.png');
   background-size: cover;
+  display: grid;
+  grid-template-columns: 1fr 1400px 1fr;
+  place-content: center;
 }
 
 .hero-container {
+  grid-column: 2 / 3;
   .hero {
     max-width: 650px;
+    h1 {
+      color: white;
+      font-size: 48px;
+      span {
+        font-family: 'Domain-Regular';
+      }
+    }
   }
-  h1 {
-    color: white;
-    font-size: 48px;
-  }
-  position: absolute;
-  top: 50%;
-  left: 10%;
 }

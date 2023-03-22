@@ -1,8 +1,8 @@
-function getSvgIcon(iconName) {
-  return svgIcon[iconName];
+function getSvg(iconName) {
+  return svgIcon[iconName]
 }
 
-export const svgService = { getSvgIcon };
+export const svgService = { getSvg }
 
 // in template
 // <div className="icon" v-html="getSvg('bars')"></div>
@@ -45,4 +45,4 @@ const svgIcon = {
   letters:
     '<svg width="20" height="18" viewBox="0 0 20 18" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M.833 9.834v5A1.667 1.667 0 002.5 16.5h15a1.666 1.666 0 001.667-1.666v-5" stroke="#74767e" stroke-width="2" stroke-miterlimit="10" stroke-linecap="square"/><path d="M19.167 5.667v-2.5A1.667 1.667 0 0017.5 1.5h-15A1.667 1.667 0 00.833 3.167v2.5l9.167 5 9.167-5z" stroke="#74767e" stroke-width="2" stroke-miterlimit="10" stroke-linecap="square"/></svg>',
   edit: '<svg xmlns="http://www.w3.org/2000/svg" height="48" viewBox="0 96 960 960" width="48"><path d="M180 876h44l443-443-44-44-443 443v44Zm614-486L666 262l42-42q17-17 42-17t42 17l44 44q17 17 17 42t-17 42l-42 42Zm-42 42L248 936H120V808l504-504 128 128Zm-107-21-22-22 44 44-22-22Z"/></svg>',
-};
+}
