@@ -1,8 +1,10 @@
 .hero-wrapper {
+  grid-column: 1 / -1;
   position: relative;
   height: 680px;
   background-image: url('.././images/Hero-section/Valentina.png');
-  background-size: cover;
+  background-position: bottom;
+  background-size: auto 100%;
   display: grid;
   grid-template-columns: 1fr 1400px 1fr;
   place-content: center;
@@ -11,12 +13,13 @@
 .hero-container {
   grid-column: 2 / 3;
   .hero {
-    max-width: 650px;
+    max-width: 645px;
     h1 {
       line-height: 58px;
       color: white;
       font-size: 48px;
       span {
+        font-weight: 500;
         font-family: 'Domain-Regular';
       }
     }
