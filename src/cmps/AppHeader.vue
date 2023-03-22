@@ -5,9 +5,9 @@
       <h1 class="logo">Nicerr<span>.</span></h1>
       <div class="goTo">
         <RouterLink to="/gig">Explore</RouterLink>
-        <h4>Become a seller</h4>
-        <h4>Sign In</h4>
-        <h4>Join</h4>
+        <a>Become a seller</a>
+        <a>Sign In</a>
+        <a>Join</a>
       </div>
     </nav>
 
@@ -15,5 +15,7 @@
   </header>
 </template>
 <script>
-export default {}
+export default {
+  computed: {},
+}
 </script>
