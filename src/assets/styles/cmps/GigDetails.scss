@@ -7,11 +7,15 @@
 }
 
 .gig-purchase {
+    padding: $padding;
     position: fixed;
     top: 120px;
     width: 457px;
     height: 600px;
     border: 1px solid black;
     right: 20px;
+}
 
+.gig-purchase-options {
+    padding: 0;
 }
