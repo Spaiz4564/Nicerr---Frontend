@@ -14,7 +14,7 @@ export const gigService = {
 }
 window.cs = gigService
 
-async function query(filterBy = { title: '', price: 0 }) {
+async function query(filterBy = { title: '', minPrice: 0, maxPrice: 2000 }) {
   let gigs = await storageService.query(STORAGE_KEY)
   if (!gigs.length) gigs = _createGigs()
   if (filterBy.title) {
@@ -23,9 +23,12 @@ async function query(filterBy = { title: '', price: 0 }) {
       (gig) => regex.test(gig.title) || regex.test(gig.description)
     )
   }
-  if (filterBy.price) {
-    gigs = gigs.filter((gig) => gig.price <= filterBy.price)
+  if (filterBy.minPrice || filterBy.maxPrice) {
+    gigs = gigs.filter((gig) => {
+      return gig.price >= filterBy.minPrice && gig.price <= filterBy.maxPrice
+    })
   }
+
   return gigs
 }
 
@@ -76,7 +79,10 @@ function _createGig(title) {
   return {
     title,
     price: utilService.getRandomIntInclusive(5, 200),
-    imgUrl: '../../src/assets/images/gigs/gig1.png',
+    images: [
+      '../assets/images/gigs/gig1.png',
+      '../assets/images/gigs/gig2.png',
+    ],
     rate: 4.5,
     owner: {
       _id: 'u101',
@@ -90,9 +96,9 @@ function _createGig(title) {
 
 function _createGigs() {
   const gigs = [
-    _createGig('Gig For the Animals'),
-    _createGig('Gig For the Humans'),
-    _createGig('Gig For the World'),
+    _createGig('I will create modern unique and creative logo design'),
+    _createGig('I will create modern unique and creative logo design'),
+    _createGig('I will create modern unique and creative logo design'),
   ]
   storageService.postMany(STORAGE_KEY, gigs)
   return gigs

@@ -2,7 +2,12 @@
   <section class="gig-preview">
     <div class="gig-preview-img">
       <div class="gig-preview-img-container">
-        <img :src="gig.imgUrl" alt="" />
+        <vueper-slides fade :touchable="false">
+          <vueper-slide
+            v-for="(img, i) in gig.images"
+            :key="i"
+            :image="imgUrl(img)" />
+        </vueper-slides>
       </div>
     </div>
     <section class="seller-container">
@@ -17,7 +22,7 @@
     <div class="gig-preview-info">
       <p class="gig-preview-title">{{ gig.title }}</p>
       <div class="gig-rating">
-        <span>★</span>
+        <span class="icon" v-html="getSvg('star')"></span>
         <p class="gig-preview-rate">{{ gig.rate }}{{ totalRates }}</p>
       </div>
     </div>
@@ -29,6 +34,9 @@
 </template>
 
 <script>
+import { svgService } from '../services/svg.service'
+import { VueperSlides, VueperSlide } from 'vueperslides'
+import 'vueperslides/dist/vueperslides.css'
 export default {
   name: 'GigPreview',
   props: {
@@ -41,6 +49,18 @@ export default {
     ownerLevel() {
       return 'Level 2 Seller'
     },
+  },
+  methods: {
+    getSvg(iconName) {
+      return svgService.getSvg(iconName)
+    },
+    imgUrl(img) {
+      return new URL(img, import.meta.url).href
+    },
+  },
+  components: {
+    VueperSlides,
+    VueperSlide,
   },
 }
 </script>
