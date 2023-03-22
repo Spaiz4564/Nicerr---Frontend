@@ -1,10 +1,7 @@
 <template>
   <header ref="header">
     <div></div>
-    <nav
-      ref="nav"
-      v-bind:style="{ position: stickyNav ? 'absolute' : 'fixed' }"
-    >
+    <nav ref="nav" v-bind:style="{ position: stickyNav ? 'absolute' : 'fixed' }">
       <h1 class="logo">Nicerr<span>.</span></h1>
       <div class="goTo">
         <RouterLink to="/gig">Explore</RouterLink>
