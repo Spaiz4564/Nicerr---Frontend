@@ -1,7 +1,7 @@
 header {
-  @include for-wide-layout {
-    grid-template-columns: 32px 1fr 32px;
-  }
+  // @include for-wide-layout {
+  //   grid-template-columns: 32px 1fr 32px;
+  // }
   height: 80px;
   display: grid;
   align-items: center;
@@ -26,7 +26,7 @@ nav {
     transition: all 0.3s;
     &:last-child {
       border-radius: 4px;
-      padding: 6px 16.5px;
+      padding: 5px 15px;
       border: 1px solid white;
       &:hover {
         background-color: $clr-hover;
@@ -38,7 +38,7 @@ nav {
     text-decoration: none;
     white-space: nowrap;
     cursor: pointer;
-    font-size: 14px;
+    font-size: 15px;
   }
   color: white;
   display: flex;

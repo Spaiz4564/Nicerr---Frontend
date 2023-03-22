@@ -1,0 +1,59 @@
+.about-section {
+  gap: 28px;
+  padding: 65px 96px;
+  .info {
+    ul {
+      margin: 0;
+      padding: 0;
+    }
+    li {
+      padding-bottom: 30px;
+      p {
+        line-height: 26px;
+        margin: 0;
+      }
+      .title {
+        padding-bottom: 8px;
+        .icon {
+          height: 24px;
+          width: 24px;
+        }
+        gap: 8px;
+        display: flex;
+        align-items: center;
+        svg {
+          fill: $clr2;
+          height: 100%;
+          width: 100%;
+        }
+        svg path {
+          stroke-width: 3px;
+        }
+      }
+      list-style: none;
+      h6 {
+        color: $clr4;
+        font-size: 18px;
+      }
+    }
+    h2 {
+      padding-bottom: 24px;
+      font-size: 32px;
+      line-height: 120%;
+      color: $clr4;
+    }
+    max-width: 39.8%;
+    padding-right: 11%;
+  }
+  grid-column: 1 / -1;
+  background-color: $clr8;
+  display: flex;
+  justify-content: center;
+
+  .teaser-img {
+    align-self: center;
+    img {
+      height: 80%;
+    }
+  }
+}
