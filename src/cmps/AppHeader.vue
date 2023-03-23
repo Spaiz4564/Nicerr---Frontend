@@ -3,7 +3,7 @@
     <div></div>
     <nav
       ref="nav"
-      v-bind:style="{ position: stickyNav ? 'absolute' : 'fixed' }">
+      >
       <h1 class="logo">Nicerr<span>.</span></h1>
       <div class="search-bar">
         <input
@@ -38,7 +38,11 @@ export default {
       },
     }
   },
-  computed: {},
+  computed: {
+    isWhite() {
+      return this.stickyNav ? true : false
+    },
+  },
   methods: {
     onHeaderObserved(entries) {
       entries.forEach((entry) => {
@@ -68,10 +72,13 @@ export default {
   },
   mounted() {
     this.headerObserver = new IntersectionObserver(this.onHeaderObserved, {
-      rootMargin: '100px 0px 0px',
+      rootMargin: '0px 0px 100px',
     })
     this.headerObserver.observe(this.$refs.header)
     console.log('hello -mounted')
   },
 }
 </script>
+
+
+<!-- v-bind:style="{ position: stickyNav ? 'absolute' : 'fixed' }" -->
