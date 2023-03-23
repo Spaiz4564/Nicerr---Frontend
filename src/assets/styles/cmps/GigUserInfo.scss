@@ -1,0 +1,157 @@
+.gig-user-info {
+    height: auto;
+    width: 640px;
+    margin: 0 32px;
+
+    .title {
+        font-size: 1.75rem;
+        padding-block-end: 0.5714285714em;
+        overflow-wrap: break-word;
+        color: var(--yro524);
+        font-weight: 700;
+        line-height: 130%;
+    }
+
+    .info-img {
+        display: flex;
+        gap: 2em;
+        margin-bottom: 8px;
+
+        .name {
+            align-items: start;
+        }
+
+        .logo {
+            width: 1em;
+        }
+    }
+
+    .img {
+        height: 450px;
+        width: auto;
+
+    }
+
+    .gig-review {
+        margin-bottom: 12px;
+
+        .header {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+        }
+
+        .review-container {
+            border: 1px solid #d0d0d063;
+            border-radius: 0.25em;
+            padding: 1em 1.5em;
+            height: 130px;
+
+            .grid {
+                display: grid;
+                grid-template-columns: auto 1fr;
+                grid-template-rows: auto 1fr;
+                grid-template-areas: "img details"
+                    ". review";
+
+                .img {
+                    margin-inline-end: 16px;
+                    width: 48px;
+                    height: 48px;
+                    border-radius: 50%;
+                    grid-area: img;
+                }
+
+                .user-details {
+                    display: flex;
+                    grid-area: details;
+
+
+                    .img {
+                        height: 20px;
+                        width: 20px;
+                    }
+
+                    .ul-rate {
+                        display: flex;
+                        flex-direction: row;
+                    }
+
+                }
+
+                .preview-content {
+                    grid-area: review;
+                    margin-block-start: 0;
+                    font-size: .875rem;
+                    line-height: 1.7142857143e;
+
+                    .content {
+                        margin: 0;
+                        color: #62646a;
+                        -webkit-line-clamp: 2;
+                        -webkit-box-orient: vertical;
+                        display: -webkit-box;
+                        overflow: hidden;
+                        text-overflow: ellipsis;
+                    }
+                }
+            }
+
+        }
+
+    }
+
+    .gig-desc {
+        padding-block-end: 25px;
+
+        h3 {
+            font-size: 1.25rem;
+            line-height: 1.4em;
+            font-weight: 700;
+        }
+
+        p {
+            color: #62646a;
+            word-break: break-word;
+            word-wrap: break-word;
+            font-size: 1rem;
+            font-weight: 400;
+            line-height: 24px;
+            white-space: pre-wrap;
+        }
+    }
+
+    .about-seller {
+
+        margin-bottom: 8px;
+
+        h2 {
+            font-size: 2em;
+            margin-bottom: 8px;
+        }
+
+        .seller-review {
+            margin-block-end: 24px;
+            font-size: 1rem;
+        }
+
+        .img-container {
+            height: 110px;
+            width: 110px;
+        }
+
+        .info-details {
+            color: #62646a;
+            cursor: pointer;
+            font-weight: 700;
+            line-height: 1.25em;
+            padding-block-end: 0.3125em;
+            margin: 0;
+
+            p {
+                padding-block-end: 0;
+                padding-block-start: 0;
+            }
+        }
+    }
+}
