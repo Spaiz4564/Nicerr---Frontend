@@ -1,9 +1,9 @@
 <template>
-  <header ref="header" :style="{ position: stickyNav ? 'fixed' : 'static'}">
+  <header ref="header">
     <div></div>
     <nav
       ref="nav"
-      v-bind:style="{ position: stickyNav ? 'absolute' : 'fixed' }">
+      >
       <h1 class="logo">Nicerr<span>.</span></h1>
       <div class="search-bar">
         <input
@@ -81,3 +81,4 @@ export default {
 </script>
 
 
+<!-- v-bind:style="{ position: stickyNav ? 'absolute' : 'fixed' }" -->
