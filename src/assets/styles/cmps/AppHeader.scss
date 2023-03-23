@@ -2,13 +2,16 @@ header {
   // @include for-wide-layout {
   //   grid-template-columns: 32px 1fr 32px;
   // }
+  border-bottom: 1px solid rgba(128, 128, 128, 0.617);
+  grid-column: 1 / -1;
   height: 80px;
   display: grid;
   align-items: center;
   margin: auto;
   grid-template-columns: 1fr 1400px 1fr;
   width: 100%;
-  position: fixed;
+  position: static;
+  
   z-index: 99;
   nav {
     align-items: center;
@@ -23,6 +26,7 @@ nav {
 
 .goTo {
   a {
+    color: black;
     transition: all 0.3s;
     &:last-child {
       border-radius: 4px;
@@ -50,7 +54,7 @@ nav {
   span {
     color: $clr-hover;
   }
-  color: #fff;
+  color: black;
   font-size: 2rem;
   display: inline;
   text-decoration: none;
