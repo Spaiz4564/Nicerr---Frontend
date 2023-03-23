@@ -3,6 +3,7 @@ import { utilService } from './util.service.js'
 import { userService } from './user.service.js'
 
 const STORAGE_KEY = 'gig'
+const STORAGE_SELLER_KEY = 'seller'
 
 export const gigService = {
   query,
@@ -11,30 +12,40 @@ export const gigService = {
   remove,
   getEmptyGig,
   addGigMsg,
-  getMarketCategories
+  getMarketCategories,
+  addNewSeller,
+  loadSeller,
 }
 window.cs = gigService
 
 async function query(filterBy = { title: '', minPrice: 0, maxPrice: 2000 }) {
   let gigs = await storageService.query(STORAGE_KEY)
   if (!gigs.length) gigs = _createGigs()
+
   if (filterBy.title) {
     const regex = new RegExp(filterBy.title, 'i')
     gigs = gigs.filter(
-      gig => regex.test(gig.title) || regex.test(gig.description)
+      (gig) => regex.test(gig.title) || regex.test(gig.description)
     )
   }
   if (filterBy.minPrice || filterBy.maxPrice) {
-    gigs = gigs.filter(gig => {
+    gigs = gigs.filter((gig) => {
       return gig.price >= filterBy.minPrice && gig.price <= filterBy.maxPrice
     })
   }
+
+  //sort price
 
   return gigs
 }
 
 function getById(gigId) {
   return storageService.get(STORAGE_KEY, gigId)
+}
+
+function loadSeller(sellerId) {
+  console.log('sellerId', sellerId)
+  return storageService.get(STORAGE_SELLER_KEY, sellerId)
 }
 
 async function remove(gigId) {
@@ -69,6 +80,11 @@ async function addGigMsg(gigId, txt) {
   return msg
 }
 
+function addNewSeller(seller) {
+  if (seller._id) return storageService.put(STORAGE_SELLER_KEY, seller)
+  else return storageService.post(STORAGE_SELLER_KEY, seller)
+}
+
 function getEmptyGig() {
   return {
     title: 'Gig' + (Date.now() % 1000),
@@ -76,7 +92,7 @@ function getEmptyGig() {
   }
 }
 
-function _createGig(title, images) {
+function _createGig(title, images, tags) {
   return {
     title,
     price: utilService.getRandomIntInclusive(5, 200),
@@ -89,6 +105,7 @@ function _createGig(title, images) {
       level: 'basic/intermediate/',
       rate: 4,
     },
+    tags,
   }
 }
 
@@ -191,7 +208,4 @@ function getMarketCategories() {
     { title: 'Photography', svg: 'photography' },
   ]
   return categories
-  }
-
-
-  
+}

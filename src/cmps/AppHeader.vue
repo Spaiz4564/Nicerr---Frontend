@@ -18,7 +18,7 @@
       </div>
       <div class="goTo">
         <RouterLink to="/gig">Explore</RouterLink>
-        <a>Become a seller</a>
+        <a @click="goToSellerSignup">Become a Seller</a>
         <a>Sign In</a>
         <a>Join</a>
       </div>
@@ -72,6 +72,9 @@ export default {
           filterBy: { ...filterBy, title: '' },
         })
       }
+    },
+    goToSellerSignup() {
+      this.$router.push('/seller-signup')
     },
   },
   mounted() {

@@ -35,6 +35,10 @@ export const gigStore = {
       maxPrice: 1000,
       title: '',
     },
+
+    sortBy: {
+      sortBy: 'price',
+    },
   },
   getters: {
     gigs({ gigs }) {
@@ -43,6 +47,7 @@ export const gigStore = {
   },
   mutations: {
     setGigs(state, { gigs }) {
+      console.log('setGigs', gigs)
       state.gigs = gigs
     },
     addGig(state, { gig }) {
@@ -88,9 +93,9 @@ export const gigStore = {
         throw err
       }
     },
-    async loadGigs(context, { filterBy }) {
+    async loadGigs(context, { filterBy, sortBy }) {
       try {
-        const gigs = await gigService.query(filterBy)
+        const gigs = await gigService.query(filterBy, sortBy)
         context.commit({ type: 'setGigs', gigs })
       } catch (err) {
         console.log('gigStore: Error in loadGigs', err)
@@ -113,6 +118,27 @@ export const gigStore = {
         context.commit({ type: 'addGigMsg', gigId, msg })
       } catch (err) {
         console.log('gigStore: Error in addGigMsg', err)
+        throw err
+      }
+    },
+
+    async addNewSeller(context, { seller }) {
+      try {
+        seller = await gigService.addNewSeller(seller)
+        console.log('addNewSeller', seller)
+        return seller
+      } catch (err) {
+        console.log('gigStore: Error in addNewSeller', err)
+        throw err
+      }
+    },
+
+    async loadSeller(context, { sellerId }) {
+      try {
+        const seller = await gigService.loadSeller(sellerId)
+        return seller
+      } catch (err) {
+        console.log('gigStore: Error in loadSeller', err)
         throw err
       }
     },
