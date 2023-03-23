@@ -23,7 +23,7 @@
     <div class="gig-preview-info">
       <p class="gig-preview-title">{{ gig.title }}</p>
       <div class="gig-rating">
-        <span class="icon-star" v-html="getSvg('star')"></span>
+        <span class="icon-star gold" v-html="getSvg('starGold')"></span>
         <p class="gig-preview-rate">
           {{ gig.rate }}<span class="total-rates">{{ totalRates }} </span>
         </p>

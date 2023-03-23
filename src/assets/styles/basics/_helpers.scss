@@ -41,7 +41,7 @@
 .flex {
   display: flex;
 
-  >*.full {
+  > *.full {
     flex: 1;
   }
 
@@ -58,7 +58,7 @@
   }
 
   &.space-between {
-    justify-content: space-between
+    justify-content: space-between;
   }
 }
 
@@ -83,4 +83,7 @@
 
 .fill {
   fill: #1dbf73;
+}
+.gold {
+  fill: gold;
 }

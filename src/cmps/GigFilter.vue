@@ -1,39 +1,40 @@
 <template>
-  <section class="gig-filter"></section>
-  <div @click="toggleBudget" class="budget-input">
-    <p class="txt-budget">Budget</p>
-    <div class="arrow-down">
-      <span
-        v-if="!isBudgetOpen"
-        class="icon-arrow"
-        v-html="getSvg('arrowDown')"></span>
-    </div>
-    <div class="arrow-up">
-      <span v-if="isBudgetOpen">⬆</span>
-    </div>
+  <section class="gig-filter">
+    <div @click="toggleBudget" class="budget-input">
+      <p class="txt-budget">Budget</p>
+      <div class="arrow-down">
+        <span
+          v-if="!isBudgetOpen"
+          class="icon-arrow"
+          v-html="getSvg('arrowDown')"></span>
+      </div>
+      <div class="arrow-up">
+        <span v-if="isBudgetOpen">⬆</span>
+      </div>
 
-    <form
-      @submit.prevent="filterBudget"
-      v-if="budgetDrop"
-      class="budget-dropdown">
-      <div @click.stop class="inputs">
-        <div>
-          <p class="bold">MIN.</p>
-          <input v-model.number="filterBy.minPrice" />
-          <i>$</i>
+      <form
+        @submit.prevent="filterBudget"
+        v-if="budgetDrop"
+        class="budget-dropdown">
+        <div @click.stop class="inputs">
+          <div>
+            <p class="bold">MIN.</p>
+            <input v-model.number="filterBy.minPrice" />
+            <i>$</i>
+          </div>
+          <div>
+            <p class="bold">MAX.</p>
+            <input v-model.number="filterBy.maxPrice" />
+            <i>$</i>
+          </div>
         </div>
-        <div>
-          <p class="bold">MAX.</p>
-          <input v-model.number="filterBy.maxPrice" />
-          <i>$</i>
+        <div @click.stop class="buttons-budget">
+          <div class="clear" @click.stop="clearBudget()">Clear All</div>
+          <button>Apply</button>
         </div>
-      </div>
-      <div @click.stop class="buttons-budget">
-        <div class="clear" @click.stop="clearBudget()">Clear All</div>
-        <button>Apply</button>
-      </div>
-    </form>
-  </div>
+      </form>
+    </div>
+  </section>
 </template>
 <script>
 import { svgService } from '../services/svg.service'
