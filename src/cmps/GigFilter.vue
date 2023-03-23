@@ -1,5 +1,5 @@
 <template>
-  <section class="gig-filter" :class="{ shadow: isBoxShadow }">
+  <section class="gig-filter main-layout full" :class="{ shadow: isBoxShadow }">
     <div @click="toggleBudget" class="budget-input">
       <p class="txt-budget">Budget</p>
       <div class="arrow-down">
@@ -70,7 +70,7 @@ export default {
     },
     handleScroll() {
       const scrollY = window.scrollY
-      if (scrollY > 200) {
+      if (scrollY > 180) {
         this.isBoxShadow = true
         console.log('scrolling')
         console.log(scrollY)

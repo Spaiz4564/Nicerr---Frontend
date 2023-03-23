@@ -1,6 +1,8 @@
 .gig-filter {
   position: sticky;
-  top: 1px;
+  display: grid;
+  grid-column: 1 / -1;
+  top: 0;
   z-index: 100;
   background-color: #fff;
 }
@@ -131,6 +133,5 @@
 }
 
 .shadow {
-  background-color: red;
-  box-shadow: 0 12px 18px #00000024;
+  box-shadow: 0 9px 20px -13px #74767ed9;
 }
