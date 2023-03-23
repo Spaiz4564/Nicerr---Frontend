@@ -10,6 +10,12 @@
   place-content: center;
 }
 
+.testing{
+  width: 100%;
+  height: 100%;
+  position: absolute;
+}
+
 .hero-container {
   grid-column: 2 / 3;
   .hero {

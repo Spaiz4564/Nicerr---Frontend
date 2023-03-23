@@ -8,7 +8,11 @@
     grid-column: 2 / 3;
     justify-content: space-between;
     .social-media{
+        .icon{
+            padding-top: 7px;
+        }
         svg{
+    
             path{
                 fill: $clr2;
             }

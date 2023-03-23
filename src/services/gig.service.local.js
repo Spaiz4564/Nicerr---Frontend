@@ -11,7 +11,8 @@ export const gigService = {
   remove,
   getEmptyGig,
   addGigMsg,
-  getMarketCategories
+  getMarketCategories,
+  getHeroBackgrounds
 }
 window.cs = gigService
 
@@ -192,6 +193,31 @@ function getMarketCategories() {
   ]
   return categories
   }
+
+  function getHeroBackgrounds() {
+    const backgrounds = [
+      {
+        img: '.././assets/images/Hero-section/Andrea.png',
+      },
+      {
+        img: '.././assets/images/Hero-section/Gabriella.png',
+      },
+      {
+        img: '.././assets/images/Hero-section/Moon.png',
+      },
+      {
+        img: '.././assets/images/Hero-section/Ritika.png',
+      },
+      {
+        img: '.././assets/images/Hero-section/Valentina.png',
+      },
+      {
+        img: '.././assets/images/Hero-section/Zach.png',
+      }
+    ]
+    return backgrounds
+  }
+
 
 
   

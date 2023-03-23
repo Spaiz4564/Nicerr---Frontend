@@ -1,5 +1,8 @@
 <template>
   <div class="hero-wrapper">
+    <!-- <div class="testing" v-for="background in backgrounds">
+      <img :src="imgUrl(background.img)" alt="" />
+    </div> @@@ LO LAGAAT @@@ -->
     <h5 class="hero-container">
       <div class="hero">
         <h1>
@@ -29,12 +32,26 @@
 </template>
 <script>
 import { svgService } from '../services/svg.service'
+import { gigService } from '../services/gig.service.local'
 export default {
   name: 'Hero Section',
-  computed: {},
+  data() {
+    return {
+      backgrounds: gigService.getHeroBackgrounds(),
+    }
+  },
+
+  computed: {
+    mashu() {
+      return this.backgrounds[1].img
+    },
+  },
   methods: {
     getSvg(iconName) {
       return svgService.getSvg(iconName)
+    },
+    imgUrl(img) {
+      return new URL(img, import.meta.url).href
     },
   },
 }
