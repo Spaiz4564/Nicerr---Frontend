@@ -13,23 +13,25 @@
         </vueper-slides>
       </div>
     </div>
-    <section class="seller-container" @click.stop="goToDetails(gig._id)">
-      <div class="seller-img">
-        <img :src="gig.owner.imgUrl" alt="" />
-      </div>
-      <section>
-        <div class="seller-info">
-          <h4 class="seller-name">{{ gig.owner.fullname }}</h4>
+    <div class="card-info">
+      <section class="seller-container" @click.stop="goToDetails(gig._id)">
+        <div class="seller-img">
+          <img :src="gig.owner.imgUrl" alt="" />
         </div>
+        <section>
+          <div class="seller-info">
+            <h4 class="seller-name">{{ gig.owner.fullname }}</h4>
+          </div>
+        </section>
       </section>
-    </section>
-    <div class="gig-preview-info">
-      <p class="gig-preview-title">{{ gig.title }}</p>
-      <div class="gig-rating">
-        <span class="icon-star gold" v-html="getSvg('starGold')"></span>
-        <p class="gig-preview-rate">
-          {{ gig.rate }}<span class="total-rates">{{ totalRates }} </span>
-        </p>
+      <div class="gig-preview-info">
+        <p class="gig-preview-title">{{ gig.title }}</p>
+        <div class="gig-rating">
+          <span class="icon-star gold" v-html="getSvg('starGold')"></span>
+          <p class="gig-preview-rate">
+            {{ gig.rate }}<span class="total-rates">{{ totalRates }} </span>
+          </p>
+        </div>
       </div>
     </div>
     <div class="gig-preview-price">
