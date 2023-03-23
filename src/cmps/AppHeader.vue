@@ -1,24 +1,20 @@
 <template>
   <header ref="header">
     <div></div>
-    <<<<<<< HEAD <nav ref="nav" v-bind:style="{ position: stickyNav ? 'absolute' : 'fixed' }">
-      =======
-      <nav ref="nav">
-        >>>>>>> 93a59f94e4583021e1eca4f3323cd56e9682f14f
-        <h1 class="logo">Nicerr<span>.</span></h1>
-        <div class="search-bar">
-          <input class="search-input" type="text" placeholder="What are you looking for today?"
-            v-model="filterBy.title" />
-          <span @click="emitFilered" class="icon-search" v-html="getSvg('search')"></span>
-        </div>
-        <div class="goTo">
-          <RouterLink to="/gig">Explore</RouterLink>
-          <a>Become a seller</a>
-          <a>Sign In</a>
-          <a>Join</a>
-        </div>
-      </nav>
-      <div></div>
+    <nav ref="nav" v-bind:style="{ position: stickyNav ? 'absolute' : 'fixed' }">
+      <h1 class="logo">Nicerr<span>.</span></h1>
+      <div class="search-bar">
+        <input class="search-input" type="text" placeholder="What are you looking for today?" v-model="filterBy.title" />
+        <span @click="emitFilered" class="icon-search" v-html="getSvg('search')"></span>
+      </div>
+      <div class="goTo">
+        <RouterLink to="/gig">Explore</RouterLink>
+        <a>Become a seller</a>
+        <a>Sign In</a>
+        <a>Join</a>
+      </div>
+    </nav>
+    <div></div>
   </header>
 </template>
 <script>
