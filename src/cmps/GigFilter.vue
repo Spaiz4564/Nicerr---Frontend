@@ -1,5 +1,5 @@
 <template>
-  <section class="gig-filter">
+  <section class="gig-filter" :class="{ shadow: isBoxShadow }">
     <div @click="toggleBudget" class="budget-input">
       <p class="txt-budget">Budget</p>
       <div class="arrow-down">
@@ -14,7 +14,7 @@
 
       <form
         @submit.prevent="filterBudget"
-        v-if="budgetDrop"
+        v-if="budgetOpen"
         class="budget-dropdown">
         <div @click.stop class="inputs">
           <div>
@@ -48,6 +48,7 @@ export default {
         maxPrice: null,
       },
       isBudgetOpen: false,
+      isBoxShadow: false,
     }
   },
   methods: {
@@ -67,12 +68,34 @@ export default {
     getSvg(iconName) {
       return svgService.getSvg(iconName)
     },
+    handleScroll() {
+      const scrollY = window.scrollY
+      if (scrollY > 200) {
+        this.isBoxShadow = true
+        console.log('scrolling')
+        console.log(scrollY)
+      } else {
+        this.isBoxShadow = false
+      }
+    },
   },
   computed: {
-    budgetDrop() {
+    budgetOpen() {
       return this.isBudgetOpen
     },
   },
+
+  created() {
+    window.addEventListener('scroll', this.handleScroll)
+    //we need to update the scroll position when the component is created
+    this.handleScroll()
+  },
+  mounted() {
+    window.addEventListener('scroll', this.handleScroll)
+  },
+
+  beforeDestroy() {
+    window.removeEventListener('scroll', this.handleScroll)
+  },
 }
 </script>
-<!-- // <div className="icon" v-html="getSvg('bars')"></div> -->

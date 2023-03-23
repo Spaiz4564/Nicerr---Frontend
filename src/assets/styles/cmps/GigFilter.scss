@@ -1,3 +1,9 @@
+.gig-filter {
+  position: sticky;
+  top: 1px;
+  z-index: 100;
+  background-color: #fff;
+}
 .budget-input {
   display: flex;
   justify-content: space-evenly;
@@ -122,4 +128,9 @@
       position: inherit;
     }
   }
+}
+
+.shadow {
+  background-color: red;
+  box-shadow: 0 12px 18px #00000024;
 }

@@ -35,8 +35,8 @@
       </div>
     </div>
     <div class="gig-preview-price">
-      <p class="txt-capitalized">From</p>
-      <span class="gig-span-price">${{ gig.price }}</span>
+      <p class="txt-capitalized">starting at</p>
+      <span class="gig-span-price">US${{ gig.price }}</span>
     </div>
   </section>
 </template>
