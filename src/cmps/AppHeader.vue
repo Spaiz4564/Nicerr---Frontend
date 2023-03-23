@@ -38,26 +38,13 @@ export default {
     }
   },
 
+  computed: {},
   watch: {
-    $route(to,from) {
-      if(to.path !== '/') {
-        this.isHome = false
-        console.log(this.isHome)
-        
-      } else if(from.path !== '/') {
-       this.isHome = true
-       console.log(this.isHome)
-      }
-
+    $route(to) {
+      this.isHome = to.path !== '/' ? false : true
     }
     },
  
-  computed: {
-
-    isWhite() {
-      return this.stickyNav ? true : false
-    },
-  },
   methods: {
     onHeaderObserved(entries) {
       entries.forEach((entry) => {
@@ -95,4 +82,3 @@ export default {
 </script>
 
 
-<!-- v-bind:style="{ position: stickyNav ? 'absolute' : 'fixed' }" -->
