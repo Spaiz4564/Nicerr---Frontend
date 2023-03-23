@@ -1,0 +1,42 @@
+.app-footer {
+  grid-column: 1 / -1;
+  border-top: 1px solid #e4e5e7;
+  height: 87px;
+  .footer-container {
+    display: flex;
+    align-items: center;
+    grid-column: 2 / 3;
+    justify-content: space-between;
+    .social-media{
+        svg{
+            path{
+                fill: $clr2;
+            }
+         
+        }
+    
+        display: flex;
+        gap: 28.3px;
+    }
+    h1 {
+      font-family: 'Macan-Bold';
+    }
+    .title {
+      small {
+        color: $clr7;
+        font-weight: 100;
+        font-size: 14px;
+      }
+      display: flex;
+      align-items: baseline;
+    }
+    h1 {
+      margin-right: 30px;
+      &:after {
+        content: '\ae';
+        font-size: 0.6rem;
+        color: $clr7;
+      }
+    }
+  }
+}

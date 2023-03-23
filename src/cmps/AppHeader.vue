@@ -1,20 +1,23 @@
 <template>
-  <header :class="[isHome ? 'headerHome' : '', isWhite ? 'homeScroll' : '']" ref="header">
+  <header
+    :class="[isHome ? 'headerHome' : '', isWhite ? 'homeScroll' : '']"
+    ref="header"
+  >
     <div></div>
     <nav>
-      <RouterLink to="/"
-        ><h1 to="/gig" class="logo">Nicerr<span>.</span></h1></RouterLink
-      >
+      <RouterLink to="/"><h1 class="logo">Nicerr<span>.</span></h1></RouterLink>
       <div v-if="!isHome" class="search-bar">
         <input
           class="search-input"
           type="text"
           placeholder="What are you looking for today?"
-          v-model="filterBy.title" />
+          v-model="filterBy.title"
+        />
         <span
           @click="emitFiltered"
           class="icon-search"
-          v-html="getSvg('search')"></span>
+          v-html="getSvg('search')"
+        ></span>
       </div>
       <div class="goTo">
         <RouterLink to="/gig">Explore</RouterLink>
@@ -37,12 +40,9 @@ export default {
         title: '',
       },
       isHome: true,
-      isWhite: false
+      isWhite: false,
     }
   },
-
-
-
 
   methods: {
     getSvg(iconName) {
@@ -67,16 +67,9 @@ export default {
     },
     handleScroll() {
       const scrollY = window.scrollY
-      if (scrollY > 20) {
-        this.isWhite = true
-        console.log('scrolling')
-        console.log(scrollY)
-      } else {
-        this.isWhite = false
-      }
+      this.isWhite = scrollY > 20 ? true : false
     },
   },
-
 
   watch: {
     $route(to) {

@@ -2,6 +2,7 @@
   <div class="main-layout">
     <AppHeader />
     <RouterView />
+    <Footer/>
     <UserMsg />
   </div>
 </template>
@@ -12,6 +13,7 @@ import { store } from './store/store'
 
 import AppHeader from './cmps/AppHeader.vue'
 import UserMsg from './cmps/UserMsg.vue'
+import Footer from './cmps/Footer.vue'
 
 export default {
   created() {
@@ -22,6 +24,7 @@ export default {
   components: {
     AppHeader,
     UserMsg,
+    Footer
   },
 }
 </script>

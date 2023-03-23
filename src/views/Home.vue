@@ -3,7 +3,7 @@
   <TrustedBy />
   <PopularServices />
   <About />
-  <ExploreMarket/>
+  <ExploreMarket />
 </template>
 
 <script>
@@ -24,7 +24,7 @@ export default {
     TrustedBy,
     PopularServices,
     About,
-    ExploreMarket
+    ExploreMarket,
   },
 }
 </script>
