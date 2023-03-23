@@ -76,14 +76,11 @@ function getEmptyGig() {
   }
 }
 
-function _createGig(title) {
+function _createGig(title, images) {
   return {
     title,
     price: utilService.getRandomIntInclusive(5, 200),
-    images: [
-      '../assets/images/gigs/gig1.png',
-      '../assets/images/gigs/gig2.png',
-    ],
+    images,
     rate: 4.5,
     owner: {
       _id: 'u101',
@@ -97,9 +94,84 @@ function _createGig(title) {
 
 function _createGigs() {
   const gigs = [
-    _createGig('I will create soccer pitch for you'),
-    _createGig('I will create modern uniquedesign'),
-    _createGig('creative logo design'),
+    _createGig('I will create soccer pitch for you', [
+      '../assets/images/gigs/gig2.png',
+      '../assets/images/gigs/gig1.png',
+      '../assets/images/gigs/gig4.jpg',
+      '../assets/images/gigs/gig5.jpg',
+    ]),
+    _createGig('I will create logo', [
+      '../assets/images/gigs/gig1.png',
+      '../assets/images/gigs/gig2.png',
+      '../assets/images/gigs/gig4.jpg',
+      '../assets/images/gigs/gig5.jpg',
+    ]),
+    _createGig('I will create website', [
+      '../assets/images/gigs/gig5.jpg',
+      '../assets/images/gigs/gig2.png',
+      '../assets/images/gigs/gig3.png',
+      '../assets/images/gigs/gig4.jpg',
+    ]),
+    _createGig('I will create animals', [
+      '../assets/images/gigs/gig6.jpg',
+      '../assets/images/gigs/gig5.jpg',
+      '../assets/images/gigs/gig1.png',
+      '../assets/images/gigs/gig2.png',
+    ]),
+    _createGig('I will create code', [
+      '../assets/images/gigs/gig2.png',
+      '../assets/images/gigs/gig3.png',
+      '../assets/images/gigs/gig4.jpg',
+      '../assets/images/gigs/gig7.jpg',
+    ]),
+    _createGig('I will create food', [
+      '../assets/images/gigs/gig7.jpg',
+      '../assets/images/gigs/gig2.png',
+      '../assets/images/gigs/gig4.jpg',
+      '../assets/images/gigs/gig5.jpg',
+    ]),
+    _createGig('I will create love', [
+      '../assets/images/gigs/gig7.jpg',
+      '../assets/images/gigs/gig2.png',
+      '../assets/images/gigs/gig4.jpg',
+      '../assets/images/gigs/gig5.jpg',
+    ]),
+    _createGig('I will create pool', [
+      '../assets/images/gigs/gig5.jpg',
+      '../assets/images/gigs/gig2.png',
+      '../assets/images/gigs/gig4.jpg',
+      '../assets/images/gigs/gig5.jpg',
+    ]),
+    _createGig('I will create ball', [
+      '../assets/images/gigs/gig4.jpg',
+      '../assets/images/gigs/gig2.png',
+      '../assets/images/gigs/gig4.jpg',
+      '../assets/images/gigs/gig5.jpg',
+    ]),
+    _createGig('I will create zoo', [
+      '../assets/images/gigs/gig7.jpg',
+      '../assets/images/gigs/gig2.png',
+      '../assets/images/gigs/gig4.jpg',
+      '../assets/images/gigs/gig5.jpg',
+    ]),
+    _createGig('I will create games', [
+      '../assets/images/gigs/gig6.jpg',
+      '../assets/images/gigs/gig2.png',
+      '../assets/images/gigs/gig4.jpg',
+      '../assets/images/gigs/gig5.jpg',
+    ]),
+    _createGig('I will create store', [
+      '../assets/images/gigs/gig5.jpg',
+      '../assets/images/gigs/gig2.png',
+      '../assets/images/gigs/gig4.jpg',
+      '../assets/images/gigs/gig5.jpg',
+    ]),
+    _createGig('I will create database', [
+      '../assets/images/gigs/gig7.jpg',
+      '../assets/images/gigs/gig2.png',
+      '../assets/images/gigs/gig4.jpg',
+      '../assets/images/gigs/gig5.jpg',
+    ]),
   ]
   storageService.postMany(STORAGE_KEY, gigs)
   return gigs
