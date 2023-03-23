@@ -1,10 +1,19 @@
 <template>
   <section class="gig-details-main" v-if="gig">
     <main class="gig-details flex">
-      <div class="gig-user-info">
-        <!-- <img :src="gig.imgUrl" /> here come the image -->
+      <div class="gig-user-info flex column">
         <p>{{ gig.title }}</p>
+        <div class="gig-user-info-img">
+          <img :src="gig.owner.imgUrl" alt="" />
+        </div>
         <p>{{ gig.owner.fullname }}</p>
+        <div class="gig-user-img">
+          <div class="gig-preview-img-container">
+            <vueper-slides fade :touchable="false">
+              <vueper-slide v-for="(img, i) in gig.images" :key="i" :image="imgUrl(img)" />
+            </vueper-slides>
+          </div>
+        </div>
       </div>
       <div class="gig-purchase">
         <div class="gig-purchase-info">
@@ -51,7 +60,7 @@
                 <p>Printable file</p>
               </li>
               <li class="flex align-center">
-                <span className="check fill" v-html="getSvg('emptyCheckSign')"></span>
+                <span className="check fill" v-html="getSvg('checkSign')"></span>
 
                 <p>Include source file</p>
               </li>
@@ -74,6 +83,8 @@
 <script>
 import { gigService } from '../services/gig.service.local'
 import { svgService } from '../services/svg.service'
+import { VueperSlides, VueperSlide } from 'vueperslides'
+import 'vueperslides/dist/vueperslides.css'
 
 export default {
   name: 'Gig-Details',
@@ -88,16 +99,25 @@ export default {
     },
     HandlePurchase() {
       this.$router.push('/')
+    }, imgUrl(img) {
+      return new URL(img, import.meta.url).href
+    },
+  },
+  computed: {
+    handleImages() {
+      return this.gig.images[0]
     }
   },
-  computed: {},
   created() {
     const { id } = this.$route.params
     gigService.getById(id).then(gig => {
       this.gig = gig
     })
   },
-  components: {},
+  components: {
+    VueperSlides,
+    VueperSlide,
+  },
 }
 </script>
 
