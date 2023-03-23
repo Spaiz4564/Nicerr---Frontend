@@ -1,5 +1,5 @@
 <template>
-  <section class="gig-index" v-if="gigs">
+  <section class="gig-index main-layout full" v-if="gigs">
     <GigFilter @filtered="setFilter" />
     <GigList :gigs="gigs" />
   </section>
