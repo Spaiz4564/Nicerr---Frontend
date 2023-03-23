@@ -1,7 +1,7 @@
 <template>
   <section class="gig-preview">
     <div class="gig-preview-img">
-      <div class="gig-preview-img-container">
+      <div class="gig-preview-img-container" @click="goToDetails(gig._id)">
         <vueper-slides fade :touchable="false">
           <vueper-slide
             v-for="(img, i) in gig.images"
@@ -49,9 +49,6 @@ export default {
     totalRates() {
       return '(355)'
     },
-    ownerLevel() {
-      return 'Level 2 Seller'
-    },
   },
   methods: {
     getSvg(iconName) {
@@ -59,6 +56,9 @@ export default {
     },
     imgUrl(img) {
       return new URL(img, import.meta.url).href
+    },
+    goToDetails(gigId) {
+      this.$router.push(`/gig/${gigId}`)
     },
   },
   components: {
