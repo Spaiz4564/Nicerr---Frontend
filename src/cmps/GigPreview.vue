@@ -1,16 +1,19 @@
 <template>
   <section class="gig-preview">
     <div class="gig-preview-img">
-      <div class="gig-preview-img-container" @click="goToDetails(gig._id)">
+      <div class="gig-preview-img-container">
         <vueper-slides fade :touchable="false">
           <vueper-slide
+            @click="goToDetails(gig._id)"
             v-for="(img, i) in gig.images"
             :key="i"
-            :image="imgUrl(img)" />
+            :image="imgUrl(img)"
+            style="cursor: pointer">
+          </vueper-slide>
         </vueper-slides>
       </div>
     </div>
-    <section class="seller-container">
+    <section class="seller-container" @click.stop="goToDetails(gig._id)">
       <div class="seller-img">
         <img :src="gig.owner.imgUrl" alt="" />
       </div>

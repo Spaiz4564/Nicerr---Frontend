@@ -60,13 +60,10 @@ svg {
   display: flex;
   align-items: center;
   justify-content: center;
-  background-color: #fff;
   border-radius: 4px 0 0 4px;
   width: 24px;
   padding-top: 3px;
 }
-
-
 
 header {
   // @include for-wide-layout {
@@ -81,7 +78,7 @@ header {
   grid-template-columns: 1fr 1400px 1fr;
   width: 100%;
   position: static;
-  
+
   z-index: 99;
   nav {
     align-items: center;
@@ -91,10 +88,17 @@ header {
 }
 
 nav {
-  a:link { text-decoration: none; }
-a:visited { text-decoration: none; }
-a:hover { text-decoration: none; }
-a:active { text-decoration: none; }
+  a:link {
+    text-decoration: none;
+  }
+  a:visited {
+    text-decoration: none;
+  }
+  a:hover {
+    text-decoration: none;
+  }
+  a:active {
+    text-decoration: none;
+  }
   width: 100%;
 }
-
