@@ -2,22 +2,67 @@
   <section class="gig-details-main" v-if="gig">
     <main class="gig-details flex">
       <div class="gig-user-info flex column">
-        <p>{{ gig.title }}</p>
-        <div class="gig-user-info-img">
-          <img :src="gig.owner.imgUrl" alt="" />
+        <p class="title">I will create modern unique and creative logo design</p>
+        <div class="info-img">
+          <img class="logo" :src="gig.owner.imgUrl" alt="" />
+          <p class="name">{{ gig.owner.fullname }}</p>
+          <p>level 3 Seller (569)</p>
         </div>
-        <p>{{ gig.owner.fullname }}</p>
-        <div class="gig-user-img">
-          <div class="gig-preview-img-container">
+        <div class="img">
+          <div class="img-container">
             <vueper-slides fade :touchable="false">
               <vueper-slide v-for="(img, i) in gig.images" :key="i" :image="imgUrl(img)" />
             </vueper-slides>
           </div>
         </div>
+        <section class="gig-review">
+          <section class="header">
+            <h2 class="title">What people loved about this seller</h2>
+            <a>See all reviews</a>
+          </section>
+          <section class="review-container">
+            <section class="review-preview">
+              <section class="grid">
+                <img class="img" />
+                <section class="user-details flex align-center">
+                  <p>Lidor</p>
+                  <img class="img" />
+                  <p>United State</p>
+                  <section>
+                    <ul class="ul-rate clean-list  flex justify-center align-center ">
+                      <li>
+                        <span className="check gold" v-html="getSvg('starGold')"></span>
+                      </li>
+                      <li>
+                        <span className="check gold" v-html="getSvg('starGold')"></span>
+                      </li>
+                      <li>
+                        <span className="check gold" v-html="getSvg('starGold')"></span>
+                      </li>
+                      <li>
+                        <span className="check gold" v-html="getSvg('starGold')"></span>
+                      </li>
+                      <li>
+                        <span className="check gold" v-html="getSvg('starGold')"></span>
+                      </li>
+                      <p class="rate">5</p>
+                    </ul>
+                  </section>
+
+                </section>
+                <section class="preview-content">
+                  <p class="content">Thank you SO MUCH to the seller. He was so patient and willing to work and correct as
+                    many times as
+                    we needed as some things got miscommunicated and he easily fixed them. Thank you!!!</p>
+                </section>
+              </section>
+            </section>
+          </section>
+        </section>
       </div>
       <div class="gig-purchase">
-        <div class="gig-purchase-info">
-          <section class="header-purchase ">
+        <div class="info">
+          <section class="header">
             <h3 class="flex space-between">
               <b class="gig-title">{{ gig.title }}</b>
               <div>
@@ -29,7 +74,7 @@
             </p>
           </section>
           <article>
-            <div class="gig-purchase-options flex">
+            <div class="options flex">
               <div class="delivery-wrapper flex align-center">
                 <span className="icon" v-html="getSvg('clock')"></span>
                 <b class="delivery"> 5 Days Delivery </b>
@@ -65,7 +110,7 @@
                 <p>Include source file</p>
               </li>
             </ul>
-            <div class="footer-purchase">
+            <div class="footer">
               <button @click="HandlePurchase" class="btn-purchase">Continue</button>
             </div>
           </article>
