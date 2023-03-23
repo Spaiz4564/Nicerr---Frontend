@@ -56,6 +56,7 @@ img {
 }
 
 header {
+  transition: all 0.3s;
   border-bottom: 1px solid rgba(128, 128, 128, 0.617);
   grid-column: 1 / -1;
   height: 80px;

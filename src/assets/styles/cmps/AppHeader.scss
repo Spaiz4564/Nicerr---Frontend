@@ -118,6 +118,30 @@
   }
 }
 
+.homeScroll{
+  background-color: white;
+  .logo{
+    color: $clr4;
+  }
+  .goTo a{
+    color: black !important;
+    &:last-child {
+      color: $clr-hover !important;
+      font-weight: 700;
+      border-radius: 4px;
+      padding: 5px 15px;
+      border: 1px solid $clr-hover;
+      &:hover {
+        background-color: $clr-hover;
+        color: white;
+        border: 1px solid transparent;
+      }
+    }
+  }
+
+ 
+}
+
 
 
 .header-suggestions {
