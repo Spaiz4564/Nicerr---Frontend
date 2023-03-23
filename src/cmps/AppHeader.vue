@@ -2,7 +2,7 @@
   <header :class="isHome ? 'headerHome' : ''"  ref="header">
     <div></div>
     <nav>
-      <h1 class="logo">Nicerr<span>.</span></h1>
+      <RouterLink to="/"><h1 to="/gig" class="logo">Nicerr<span>.</span></h1></RouterLink>
       <div v-if="!isHome" class="search-bar">
         <input 
           class="search-input"

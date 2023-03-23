@@ -66,18 +66,7 @@ svg {
   padding-top: 3px;
 }
 
-input {
-  &::placeholder {
-    color: #9f9a9d;
-  }
 
-  font-family: 'Macan-Regular';
-  font-size: 16px;
-  border: 0;
-  width: 100%;
-  outline: 0;
-  height: 48px;
-}
 
 header {
   // @include for-wide-layout {
@@ -102,6 +91,10 @@ header {
 }
 
 nav {
+  a:link { text-decoration: none; }
+a:visited { text-decoration: none; }
+a:hover { text-decoration: none; }
+a:active { text-decoration: none; }
   width: 100%;
 }
 
