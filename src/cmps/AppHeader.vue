@@ -1,10 +1,7 @@
 <template>
-  <header ref="header">
+  <header ref="header" :style="{ position: stickyNav ? 'fixed' : 'static'}">
     <div></div>
-    <nav
-      ref="nav"
-      v-bind:style="{ position: stickyNav ? 'absolute' : 'fixed' }"
-    >
+    <nav ref="nav">
       <h1 class="logo">Nicerr<span>.</span></h1>
       <div class="goTo">
         <RouterLink to="/gig">Explore</RouterLink>
@@ -23,9 +20,14 @@ export default {
       stickyNav: false,
     }
   },
-  computed: {},
+  computed: {
+    isWhite() {
+      return this.stickyNav ? true : false
+    },
+  },
   methods: {
     onHeaderObserved(entries) {
+      console.log(entries)
       entries.forEach(entry => {
         this.stickyNav = entry.isIntersecting ? true : false
         console.log(entry)
@@ -35,10 +37,12 @@ export default {
   },
   mounted() {
     this.headerObserver = new IntersectionObserver(this.onHeaderObserved, {
-      rootMargin: '100px 0px 0px',
+      rootMargin: '0px 0px 100px',
     })
     this.headerObserver.observe(this.$refs.header)
     console.log('hello -mounted')
   },
 }
 </script>
+
+
