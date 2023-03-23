@@ -1,0 +1,18 @@
+.explore-market-section{
+    grid-column: 2 / 3;
+    .categories-list{
+        display: grid;
+        padding-inline-start: 20px;
+        padding-inline-end: 20px;
+        grid-template-columns: repeat(5,1fr);
+        gap: 55px;
+    }
+    
+    h2{
+        padding-bottom: 24px;
+        margin-bottom: 96px;
+        font-size: 32px;
+        line-height: 120%;
+        color: $clr4;
+    }
+}

@@ -1,12 +1,10 @@
 <template>
-  <header ref="header">
+  <header :class="isHome ? 'headerHome' : ''" ref="header">
     <div></div>
-    <nav
-      ref="nav"
-      v-bind:style="{ position: stickyNav ? 'absolute' : 'fixed' }">
-      <h1 class="logo">Nicerr<span>.</span></h1>
-      <div class="search-bar">
-        <input
+    <nav>
+      <RouterLink to="/"><h1 to="/gig" class="logo">Nicerr<span>.</span></h1></RouterLink>
+      <div v-if="!isHome" class="search-bar">
+        <input 
           class="search-input"
           type="text"
           placeholder="What are you looking for today?"
@@ -39,11 +37,14 @@ export default {
       isHome: true,
     }
   },
-  computed: {
-    isWhite() {
-      return this.stickyNav ? true : false
+
+  computed: {},
+  watch: {
+    $route(to) {
+      this.isHome = to.path !== '/' ? false : true
+    }
     },
-  },
+ 
   methods: {
     onHeaderObserved(entries) {
       entries.forEach((entry) => {
@@ -79,4 +80,3 @@ export default {
 }
 </script>
 
-<!-- v-bind:style="{ position: stickyNav ? 'absolute' : 'fixed' }" -->
