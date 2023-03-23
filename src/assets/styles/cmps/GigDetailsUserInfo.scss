@@ -1,7 +1,8 @@
 .gig-user-info {
     height: auto;
-    width: 640px;
-    margin: 0 70px;
+    width: 55em;
+    margin: 0 em(30px);
+    margin-right: em(50px);
 
     .title {
         font-size: 1.75rem;
@@ -14,7 +15,7 @@
     .info-img {
         display: flex;
         gap: 2em;
-        margin-bottom: 8px;
+        margin-bottom: em(8px);
 
         .name {
             align-items: start;
@@ -26,8 +27,9 @@
     }
 
     .img {
-        height: 450px;
         width: auto;
+        margin-bottom: 4em;
+
 
         .vueperslides--fixed-height {
             height: 500px;
@@ -36,7 +38,7 @@
     }
 
     .gig-review {
-        margin-bottom: 12px;
+        margin-bottom: em(12px);
 
         .header {
             display: flex;
@@ -48,7 +50,7 @@
             border: 1px solid #d0d0d063;
             border-radius: 0.25em;
             padding: 1em 1.5em;
-            height: 130px;
+            margin-bottom: em(12px);
 
             .grid {
                 display: grid;
@@ -57,10 +59,12 @@
                 grid-template-areas: "img details"
                     ". review";
 
+
+
                 .img {
-                    margin-inline-end: 16px;
-                    width: 48px;
-                    height: 48px;
+                    margin-inline-end: em(16px);
+                    width: em(48px);
+                    height: em(48px);
                     border-radius: 50%;
                     grid-area: img;
 
@@ -106,7 +110,7 @@
     }
 
     .gig-desc {
-        padding-block-end: 25px;
+        padding-block-end: em(25px);
 
         h3 {
             font-size: 1.25rem;
@@ -127,21 +131,26 @@
 
     .about-seller {
 
-        margin-bottom: 8px;
+        margin-bottom: em(8px);
 
         h2 {
             font-size: 2em;
-            margin-bottom: 8px;
+            margin-bottom: em(8px);
         }
 
         .seller-review {
-            margin-block-end: 24px;
+            margin-block-end: em(24px);
             font-size: 1rem;
         }
 
         .img-container {
             height: 110px;
             width: 110px;
+            margin-right: em(15px);
+
+            img {
+                border-radius: 50%;
+            }
         }
 
         .info-details {

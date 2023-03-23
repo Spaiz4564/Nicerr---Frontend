@@ -1,27 +1,26 @@
 <template>
   <header
     :class="[isHome ? 'headerHome' : '', isWhite ? 'homeScroll' : '']"
-    ref="header"
-  >
+    ref="header">
     <div></div>
     <nav>
-      <RouterLink to="/"><h1 class="logo">Nicerr<span>.</span></h1></RouterLink>
+      <RouterLink to="/"
+        ><h1 class="logo">Nicerr<span>.</span></h1></RouterLink
+      >
       <div v-if="!isHome" class="search-bar">
         <input
           class="search-input"
           type="text"
           placeholder="What are you looking for today?"
-          v-model="filterBy.title"
-        />
+          v-model="filterBy.title" />
         <span
           @click="emitFiltered"
           class="icon-search"
-          v-html="getSvg('search')"
-        ></span>
+          v-html="getSvg('search')"></span>
       </div>
       <div class="goTo">
         <RouterLink to="/gig">Explore</RouterLink>
-        <a>Become a seller</a>
+        <a @click="goToSellerSignup">Become a Seller</a>
         <a>Sign In</a>
         <a>Join</a>
       </div>
@@ -64,6 +63,9 @@ export default {
           filterBy: { ...filterBy, title: '' },
         })
       }
+    },
+    goToSellerSignup() {
+      this.$router.push('/seller-signup')
     },
     handleScroll() {
       const scrollY = window.scrollY

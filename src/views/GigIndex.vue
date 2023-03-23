@@ -28,6 +28,10 @@ export default {
         title: '',
         price: null,
       },
+      sortBy: {
+        rate: '',
+        price: '',
+      },
     }
   },
   computed: {
@@ -41,7 +45,9 @@ export default {
   created() {
     this.loadGigs()
     const filterBy = this.$store.getters.filterBy
+    const sortBy = this.$store.getters.sortBy
     if (filterBy) this.filterBy = filterBy
+    if (sortBy) this.sortBy = sortBy
   },
   methods: {
     async addGig() {
@@ -90,11 +96,13 @@ export default {
       this.filterBy = filterBy
       this.loadGigs()
     },
+
     async loadGigs() {
       try {
         await this.$store.dispatch({
           type: 'loadGigs',
           filterBy: this.filterBy,
+          sortBy: this.sortBy,
         })
       } catch (err) {
         console.log(err)

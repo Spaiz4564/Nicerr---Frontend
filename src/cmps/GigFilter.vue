@@ -72,8 +72,6 @@ export default {
       const scrollY = window.scrollY
       if (scrollY > 180) {
         this.isBoxShadow = true
-        console.log('scrolling')
-        console.log(scrollY)
       } else {
         this.isBoxShadow = false
       }
@@ -87,7 +85,6 @@ export default {
 
   created() {
     window.addEventListener('scroll', this.handleScroll)
-    //we need to update the scroll position when the component is created
     this.handleScroll()
   },
   mounted() {

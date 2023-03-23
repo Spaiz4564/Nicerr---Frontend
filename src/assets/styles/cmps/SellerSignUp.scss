@@ -1,0 +1,44 @@
+.seller-signup {
+  grid-column: 2;
+}
+
+.seller-signup-inputs {
+  display: grid;
+  grid-template-columns: 300px 1fr;
+  grid-gap: 2rem;
+  margin-top: em(80px);
+  justify-items: center;
+  .label {
+    font-size: 1.2rem;
+    font-weight: 600;
+    color: #333;
+  }
+  .input {
+    width: 50%;
+    font-family: Macan-Regular;
+    height: 2.5rem;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    padding: 0 0.5rem;
+    font-size: 1rem;
+    color: #333;
+    &:focus {
+      outline: none;
+      border: 1px solid #333;
+    }
+  }
+  .btn-sign {
+    width: 50%;
+    grid-column: 2;
+    height: 2.5rem;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    padding: 0 0.5rem;
+    font-size: 1rem;
+    color: #333;
+    &:focus {
+      outline: none;
+      border: 1px solid #333;
+    }
+  }
+}

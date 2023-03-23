@@ -7,16 +7,21 @@
 }
 .budget-input {
   display: flex;
+  gap: 0.5em;
   grid-column: 2;
-  justify-content: space-evenly;
   align-items: center;
-  margin-left: 2.5em;
   color: $clr1;
   font-size: 1rem;
   width: 8em;
   height: 3.9em;
   border: 1px solid #dadbdd;
   border-radius: 10px;
+  .txt-budget {
+    font-family: Macan-Bold;
+    margin-left: 1em;
+    color: $clr2;
+    font-size: 18px;
+  }
 }
 
 .icon-arrow {
@@ -28,12 +33,6 @@
     width: 18px;
     position: inherit;
   }
-}
-
-.txt-budget {
-  font-family: Macan-Bold;
-  color: $clr2;
-  font-size: 18px;
 }
 
 .budget-dropdown {
