@@ -1,13 +1,12 @@
 .gig-user-info {
     height: auto;
     width: 640px;
-    margin: 0 32px;
+    margin: 0 70px;
 
     .title {
         font-size: 1.75rem;
         padding-block-end: 0.5714285714em;
         overflow-wrap: break-word;
-        color: var(--yro524);
         font-weight: 700;
         line-height: 130%;
     }
@@ -29,6 +28,10 @@
     .img {
         height: 450px;
         width: auto;
+
+        .vueperslides--fixed-height {
+            height: 500px;
+        }
 
     }
 
@@ -60,6 +63,7 @@
                     height: 48px;
                     border-radius: 50%;
                     grid-area: img;
+
                 }
 
                 .user-details {

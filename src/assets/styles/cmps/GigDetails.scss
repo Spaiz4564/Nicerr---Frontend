@@ -15,12 +15,13 @@
         word-break: break-word;
 
         color: $clr1;
+
+        margin-block-start: 32px;
     }
-
-    //Gig-User-Info
-    @import '../cmps/GigUserInfo.scss';
-
-    //Gig-Purchase
-    @import '../cmps/GigPurchase.scss';
-
 }
+
+//Gig-User-Info
+@import '../cmps/GigUserInfo.scss';
+
+//Gig-Purchase
+@import '../cmps/GigPurchase.scss';

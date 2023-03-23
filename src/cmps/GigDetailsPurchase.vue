@@ -79,7 +79,7 @@ export default {
             return svgService.getSvg(iconName)
         },
         HandlePurchase() {
-            this.$router.push('/')
+            this.$router.push('/purchase')
         }, imgUrl(img) {
             return new URL(img, import.meta.url).href
         },
