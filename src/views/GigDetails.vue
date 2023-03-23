@@ -51,7 +51,7 @@
                 <p>Printable file</p>
               </li>
               <li class="flex align-center">
-                <span className="check fill" v-html="getSvg('emptyCheckSign')"></span>
+                <span className="check fill" v-html="getSvg('checkSign')"></span>
 
                 <p>Include source file</p>
               </li>
