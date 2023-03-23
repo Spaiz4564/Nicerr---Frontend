@@ -1,7 +1,7 @@
 <template>
   <header :class="isHome ? 'headerHome' : ''"  ref="header">
     <div></div>
-    <nav ref="nav" v-bind:style="{ position: stickyNav ? 'absolute' : 'fixed' }">
+    <nav>
       <h1 class="logo">Nicerr<span>.</span></h1>
       <div v-if="!isHome" class="search-bar">
         <input 
