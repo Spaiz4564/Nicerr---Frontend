@@ -1,12 +1,12 @@
 <template>
-  <header ref="header">
+  <header :class="isHome ? 'headerHome' : ''"  ref="header">
     <div></div>
     <nav
       ref="nav"
       >
       <h1 class="logo">Nicerr<span>.</span></h1>
-      <div class="search-bar">
-        <input
+      <div v-if="!isHome" class="search-bar">
+        <input 
           class="search-input"
           type="text"
           placeholder="What are you looking for today?"
@@ -36,9 +36,26 @@ export default {
       filterBy: {
         title: '',
       },
+      isHome: true
     }
   },
+
+  watch: {
+    $route(to,from) {
+      if(to.path !== '/') {
+        this.isHome = false
+        console.log(this.isHome)
+        
+      } else if(from.path !== '/') {
+       this.isHome = true
+       console.log(this.isHome)
+      }
+
+    }
+    },
+ 
   computed: {
+
     isWhite() {
       return this.stickyNav ? true : false
     },
@@ -47,8 +64,7 @@ export default {
     onHeaderObserved(entries) {
       entries.forEach((entry) => {
         this.stickyNav = entry.isIntersecting ? true : false
-        console.log(entry)
-        console.log('hello')
+     
       })
     },
     getSvg(iconName) {

@@ -76,6 +76,11 @@
   @include aspect-ratio(9, 16);
 }
 
+.main-layout{
+  display: grid;
+  grid-template-columns: 1fr 1400px 1fr;
+}
+
 //svg helpers
 .check {
   fill: gainsboro;
@@ -84,3 +89,4 @@
 .fill {
   fill: #1dbf73;
 }
+

@@ -1,6 +1,7 @@
 <template>
-  <div class="about-section">
-    <div class="info">
+  <div class="about-section main-layout">
+    <div class="about">
+      <div class="info">
       <h2>A whole world of freelance talent at your fingertips</h2>
       <ul>
         <li>
@@ -48,6 +49,8 @@
     <div class="teaser-img">
       <img src="../assets/images/About/Video Teaser.png" alt="" />
     </div>
+    </div>
+    
   </div>
 </template>
 
