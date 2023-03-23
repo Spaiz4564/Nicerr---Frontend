@@ -7,7 +7,6 @@
 
     .gig-details {
         font-family: 'Macan-Regular';
-        text-align: center;
         font-size: 14px;
         line-height: 140%;
         word-break: break-word;
@@ -21,31 +20,105 @@
     width: 640px;
     margin: 0 32px;
 
-    align-items: center;
-
     background-color: lightblue;
 
-    .gig-user-info-img {
-        height: 100px;
-        width: 100px;
+    .title {
+        font-size: 1.75rem;
+        padding-block-end: 0.5714285714em;
+        overflow-wrap: break-word;
+        color: var(--yro524);
+        font-weight: 700;
+        line-height: 130%;
     }
 
-    .gig-user-img {
-        height: 200px;
-        width: 300px;
+    .info-img {
+        display: flex;
+        gap: 2em;
+        margin-bottom: 8px;
+
+        .name {
+            align-items: start;
+        }
+
+        .logo {
+            width: 1em;
+        }
+    }
+
+    .img {
+        height: 450px;
+        width: auto;
 
         background-color: lightcoral;
     }
-}
 
-.header-purchase {
-    line-height: 21px;
-    padding-bottom: 10px;
-    margin-bottom: 8px;
+    .gig-review {
 
-    .gig-title {
-        font-size: 20px;
-        margin: 0 0 25px;
+        .header {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+        }
+
+        .review-container {
+            border: 1px solid var(--yro5244);
+            border-radius: 0.25em;
+            padding: 1em 1.5em;
+            height: 130px;
+
+            .grid {
+                display: grid;
+                grid-template-columns: auto 1fr;
+                grid-template-rows: auto 1fr;
+                grid-template-areas: "img details"
+                    ". review";
+
+                .img {
+                    margin-inline-end: 16px;
+                    width: 48px;
+                    height: 48px;
+                    border-radius: 50%;
+                    grid-area: img;
+                }
+
+                .user-details {
+                    display: flex;
+                    grid-area: details;
+
+
+                    .img {
+                        height: 20px;
+                        width: 20px;
+                    }
+
+                    .ul-rate {
+                        display: flex;
+                        flex-direction: row;
+                    }
+
+                }
+
+                .preview-content {
+                    grid-area: review;
+                    margin-block-start: 0;
+                    font-size: .875rem;
+
+                    line-height: 1.7142857143e;
+
+                    .content {
+                        margin: 0;
+                        color: #62646a;
+                        -webkit-line-clamp: 2;
+                        -webkit-box-orient: vertical;
+                        display: -webkit-box;
+                        overflow: hidden;
+                        text-overflow: ellipsis;
+                    }
+                }
+            }
+
+        }
+
     }
 }
 
@@ -59,14 +132,24 @@
     right: 20px;
     margin-bottom: 8px;
 
-    .gig-purchase-info {
+    .header {
+        line-height: 21px;
+        padding-bottom: 10px;
+        margin-bottom: 8px;
+
+        .gig-title {
+            font-size: 20px;
+            margin: 0 0 25px;
+        }
+    }
+
+    .info {
         padding: $padding;
         border-bottom: 0.5px $clr02 solid;
 
     }
 
-    // border: 1px solid black;
-    .gig-purchase-options {
+    .options {
         height: auto;
 
         margin-bottom: 8px;
@@ -79,95 +162,98 @@
         }
     }
 
-}
+    .features {
+        margin: 0;
+        padding: 0;
+        margin-bottom: 15px;
 
-p {
-    display: block;
-    margin-block-start: 1em;
-    margin-block-end: 1em;
-    margin-inline-start: 0px;
-    margin-inline-end: 0px;
-    max-width: fit-content;
+        line-height: 0%;
 
-    padding: 0 20px;
+        list-style: none;
+        list-style-image: none;
 
-    &.gig-purchase-txt {
-        text-align: left;
-        color: $clr02;
+        color: $clr01;
+
+        span {
+            margin-right: 1em;
+        }
+
     }
-}
 
-.features {
-    margin: 0;
-    padding: 0;
-    margin-bottom: 15px;
+    p {
+        display: block;
+        margin-block-start: 1em;
+        margin-block-end: 1em;
+        margin-inline-start: 0px;
+        margin-inline-end: 0px;
+        max-width: fit-content;
 
-    line-height: 0%;
 
-    list-style: none;
-    list-style-image: none;
-
-    color: $clr01;
-
-}
-
-.footer-purchase {
-    display: flex;
-    justify-content: center;
-    height: 42px;
-    width: 100%;
-    margin-bottom: 20px;
-
-    border-radius: 5px;
-
-    background-color: #1dbf73;
-
-    .btn-purchase {
-        font-size: 16px;
-
-        color: $clr6;
-        background-color: inherit;
-        border: 0;
-    }
-}
-
-.contact-seller {
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    width: 100%;
-    height: 80px;
-
-    background-color: #fafafa;
-
-    .contact-seller-wrapper {
-        display: flex;
-        justify-content: center;
-        width: 90%;
-        height: 50%;
-
-        border: 1px grey solid;
-        border-radius: 5px;
-
-        &:hover {
-            background-color: #74767e;
-            color: #fafafa;
-
-            .contact-seller-btn {
-                color: $clr6;
-            }
+        &.gig-purchase-txt {
+            text-align: left;
+            color: $clr02;
         }
     }
 
-    button.contact-seller-btn {
-        margin: auto;
-        align-items: center;
+    .footer {
+        display: flex;
+        justify-content: center;
+        height: 42px;
+        width: 100%;
+        margin-bottom: 20px;
 
-        color: #62646a;
-        background-color: inherit;
+        border-radius: 5px;
 
-        font-size: 20px;
-        font-weight: 500;
-        border: 0;
+        background-color: #1dbf73;
+
+        .btn-purchase {
+            font-size: 16px;
+
+            color: $clr6;
+            background-color: inherit;
+            border: 0;
+        }
     }
+
+    .contact-seller {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        width: 100%;
+        height: 80px;
+
+        background-color: #fafafa;
+
+        .contact-seller-wrapper {
+            display: flex;
+            justify-content: center;
+            width: 90%;
+            height: 50%;
+
+            border: 1px grey solid;
+            border-radius: 5px;
+
+            &:hover {
+                background-color: #74767e;
+                color: #fafafa;
+
+                .contact-seller-btn {
+                    color: $clr6;
+                }
+            }
+        }
+
+        button.contact-seller-btn {
+            margin: auto;
+            align-items: center;
+
+            color: #62646a;
+            background-color: inherit;
+
+            font-size: 20px;
+            font-weight: 500;
+            border: 0;
+        }
+    }
+
 }
