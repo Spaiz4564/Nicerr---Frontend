@@ -1,18 +1,36 @@
-.explore-market-section{
-    grid-column: 2 / 3;
-    .categories-list{
-        display: grid;
-        padding-inline-start: 20px;
-        padding-inline-end: 20px;
-        grid-template-columns: repeat(5,1fr);
-        gap: 55px;
+.explore-market-section {
+    margin-bottom: 64px;
+  grid-column: 2 / 3;
+  .categories-list {
+    place-items: center;
+    display: grid;
+    padding-inline-start: 20px;
+    padding-inline-end: 20px;
+    grid-template-columns: repeat(5, 1fr);
+    gap: 55px;
+
+    span{
+        svg{
+            width: 100%;
+        }
+        width: 48px;
     }
-    
-    h2{
-        padding-bottom: 24px;
-        margin-bottom: 96px;
-        font-size: 32px;
-        line-height: 120%;
+
+    .category {
+        gap: 10px;
+        align-items: center;
+      display: flex;
+      flex-direction: column;
+      h4 {
         color: $clr4;
+        font-weight: 200;
+      }
     }
+  }
+  h2 {
+    margin-bottom: 64px;
+    font-size: 32px;
+    line-height: 120%;
+    color: $clr4;
+  }
 }

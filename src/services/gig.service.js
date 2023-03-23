@@ -62,3 +62,4 @@ function getEmptyGig() {
     price: utilService.getRandomIntInclusive(5, 200),
   }
 }
+

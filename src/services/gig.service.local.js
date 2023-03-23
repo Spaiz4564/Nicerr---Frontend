@@ -11,6 +11,7 @@ export const gigService = {
   remove,
   getEmptyGig,
   addGigMsg,
+  getMarketCategories
 }
 window.cs = gigService
 
@@ -20,11 +21,11 @@ async function query(filterBy = { title: '', minPrice: 0, maxPrice: 2000 }) {
   if (filterBy.title) {
     const regex = new RegExp(filterBy.title, 'i')
     gigs = gigs.filter(
-      (gig) => regex.test(gig.title) || regex.test(gig.description)
+      gig => regex.test(gig.title) || regex.test(gig.description)
     )
   }
   if (filterBy.minPrice || filterBy.maxPrice) {
-    gigs = gigs.filter((gig) => {
+    gigs = gigs.filter(gig => {
       return gig.price >= filterBy.minPrice && gig.price <= filterBy.maxPrice
     })
   }
@@ -175,3 +176,22 @@ function _createGigs() {
   storageService.postMany(STORAGE_KEY, gigs)
   return gigs
 }
+
+function getMarketCategories() {
+  const categories = [
+    { title: 'Graphics & Design', svg: 'cupAndPencil' },
+    { title: 'Digital Marketing', svg: 'tv' },
+    { title: 'Writing & Translition', svg: 'paperAndPen' },
+    { title: 'Video & Animation', svg: 'animation' },
+    { title: 'Music & Audio', svg: 'music' },
+    { title: 'Programming & Tech', svg: 'tech' },
+    { title: 'Business', svg: 'business' },
+    { title: 'Lifestyle', svg: 'lifestyle' },
+    { title: 'Data', svg: 'data' },
+    { title: 'Photography', svg: 'photography' },
+  ]
+  return categories
+  }
+
+console.log(getMarketCategories())
+  
