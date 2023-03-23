@@ -1,6 +1,5 @@
 .gig-preview {
   background-color: #fff;
-  width: 16em;
   font-family: Macan-Regular;
   border: 1px solid #e4e5e7;
   .gig-preview-info {
@@ -29,22 +28,26 @@
 
   .card-info {
     margin-left: 0.5em;
+    height: em(100px);
   }
 
   .gig-preview-price {
     display: flex;
-    font-family: Macan-Bold;
-    color: $clr1;
+    justify-content: flex-end;
+    font-family: Macan-Regular;
+    color: $clr4;
     align-items: center;
     height: 25px;
     border-top: 0.0625em solid #e4e5e7;
     padding: 0.625em 0.75em;
-    height: 44px;
+    height: 2.5em;
   }
   .txt-capitalized {
     font-family: Macan-Bold;
-    color: $clr1;
+    text-transform: uppercase;
+    color: $clr2;
     padding: 0;
+    font-size: em(10px);
   }
 }
 .gig-span-price {
@@ -81,6 +84,7 @@
   display: flex;
   align-items: center;
   gap: 0.2rem;
+  margin-top: 0.5em;
 }
 
 .total-rates {
@@ -144,20 +148,6 @@
   }
 }
 
-h3 {
-  font-size: 1rem;
-}
-p {
-  font-size: 0.9rem;
-}
-a {
-  text-decoration: none;
-  color: $clr4;
-}
-a:hover {
-  text-decoration: underline;
-}
-
 .vueperslides__inner {
   position: relative;
   -webkit-user-select: none;
@@ -165,14 +155,11 @@ a:hover {
   user-select: none;
 }
 
-///HERE WE CAN CONTROLL THE SIZE OF THE SLIDE
-///
 .vueperslides__parallax-wrapper {
   position: relative;
   overflow: hidden;
 }
 
-/////VUPER SLIDES BULLETS
 .vueperslides__bullet {
   margin: 0.6em 0.2em;
   padding: 0;
