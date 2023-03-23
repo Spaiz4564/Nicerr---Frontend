@@ -1,26 +1,5 @@
 <template>
-  <header ref="header" class="app-header">
-    <div></div>
-    <nav ref="nav">
-      <h1 class="logo">Nicerr<span>.</span></h1>
-      <div class="search-bar">
-        <input
-          class="search-input"
-          type="text"
-          placeholder="What are you looking for today?"
-          v-model="filterBy.title" />
-        <span
-          @click="emitFilered"
-          class="icon-search"
-          v-html="getSvg('search')"></span>
-      </div>
-      <div class="goTo">
-        <RouterLink to="/gig">Explore</RouterLink>
-        <a>Become a seller</a>
-        <a>Sign In</a>
-        <a>Join</a>
-      </div>
-    </nav>
+  <header ref="header">
     <div></div>
     <nav
       ref="nav"
@@ -57,9 +36,9 @@ export default {
       filterBy: {
         title: '',
       },
+      isHome: true,
     }
   },
-
   computed: {
     isWhite() {
       return this.stickyNav ? true : false
@@ -69,8 +48,6 @@ export default {
     onHeaderObserved(entries) {
       entries.forEach((entry) => {
         this.stickyNav = entry.isIntersecting ? true : false
-        console.log(entry)
-        console.log('hello')
       })
     },
     getSvg(iconName) {

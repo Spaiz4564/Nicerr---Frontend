@@ -1,15 +1,24 @@
 .about-section {
+.about{
+  gap: 30px;
+  padding: 96px 0px;
+  display: flex;
+  grid-column: 2/ 3;
+}
+
   margin-bottom: 96px;
-  gap: 28px;
-  padding: 65px 96px;
   .info {
     ul {
       margin: 0;
       padding: 0;
     }
     li {
-      padding-bottom: 30px;
+      &:not(:last-child) {
+        padding-bottom: 30px;
+      }
+    
       p {
+        padding: 0;
         line-height: 26px;
         margin: 0;
       }
@@ -38,17 +47,17 @@
       }
     }
     h2 {
+      width: 550px;
       padding-bottom: 24px;
       font-size: 32px;
       line-height: 120%;
       color: $clr4;
     }
-    max-width: 39.8%;
+    max-width: 47%;
     padding-right: 11%;
   }
   grid-column: 1 / -1;
   background-color: $clr8;
-  display: flex;
   justify-content: center;
 
   .teaser-img {

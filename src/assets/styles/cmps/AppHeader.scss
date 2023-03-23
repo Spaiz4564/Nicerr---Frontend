@@ -119,6 +119,21 @@ nav {
   }
 }
 
+.headerHome{
+  border: 0;
+  position: fixed;
+  background-color: transparent;
+  a{
+    color: white;
+  }
+
+  .logo{
+    color: white;
+  }
+}
+
+
+
 .header-suggestions {
   display: flex;
   align-items: center;
