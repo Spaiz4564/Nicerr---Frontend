@@ -1,9 +1,8 @@
 <template>
   <section class="gig-index" v-if="gigs">
+    <GigFilter @filtered="setFilter" />
     <GigList :gigs="gigs" />
-    <section class="filtering">
-      <GigFilter @filtered="setFilter" />
-    </section>
+    <section class="filtering"></section>
   </section>
 </template>
 

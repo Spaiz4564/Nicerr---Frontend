@@ -1,5 +1,5 @@
 <template>
-  <header :class="isHome ? 'headerHome' : ''"  ref="header">
+  <header ref="header">
     <div></div>
     <nav>
       <RouterLink to="/"><h1 to="/gig" class="logo">Nicerr<span>.</span></h1></RouterLink>
@@ -34,7 +34,7 @@ export default {
       filterBy: {
         title: '',
       },
-      isHome: true
+      isHome: true,
     }
   },
 
@@ -49,7 +49,6 @@ export default {
     onHeaderObserved(entries) {
       entries.forEach((entry) => {
         this.stickyNav = entry.isIntersecting ? true : false
-     
       })
     },
     getSvg(iconName) {
@@ -80,5 +79,4 @@ export default {
   },
 }
 </script>
-
 

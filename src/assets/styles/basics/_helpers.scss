@@ -41,7 +41,7 @@
 .flex {
   display: flex;
 
-  >*.full {
+  > *.full {
     flex: 1;
   }
 
@@ -58,7 +58,7 @@
   }
 
   &.space-between {
-    justify-content: space-between
+    justify-content: space-between;
   }
 }
 
@@ -76,7 +76,7 @@
   @include aspect-ratio(9, 16);
 }
 
-.main-layout{
+.main-layout {
   display: grid;
   grid-template-columns: 1fr 1400px 1fr;
 }
@@ -89,4 +89,6 @@
 .fill {
   fill: #1dbf73;
 }
-
+.gold {
+  fill: gold;
+}
