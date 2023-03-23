@@ -1,5 +1,5 @@
 .explore-market-section {
-    margin-bottom: 64px;
+  margin-bottom: 64px;
   grid-column: 2 / 3;
   .categories-list {
     place-items: center;
@@ -9,16 +9,36 @@
     grid-template-columns: repeat(5, 1fr);
     gap: 55px;
 
-    span{
-        svg{
-            width: 100%;
-        }
+    span {
+      &:after {
+        content: '';
+        position: absolute;
+        top: 45px;
+        right: 50%;
+        transform: translate(50%);
+        padding: 0 0 8px;
         width: 48px;
+        border-bottom: 2px solid #c5c6c9;
+        transition: border-color 0.2s ease-in-out, width 0.2s ease-in-out;
+      }
+
+      position: relative;
+      svg {
+        width: 100%;
+      }
+      width: 48px;
     }
 
     .category {
-        gap: 10px;
-        align-items: center;
+      &:hover span:after {
+        color: pink;
+        border-color: #1dbf73;
+        width: 90px;
+        transition: border-color 0.2s ease-in-out, width 0.2s ease-in-out;
+      }
+      cursor: pointer;
+      gap: 10px;
+      align-items: center;
       display: flex;
       flex-direction: column;
       h4 {

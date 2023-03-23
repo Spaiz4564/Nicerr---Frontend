@@ -193,5 +193,5 @@ function getMarketCategories() {
   return categories
   }
 
-console.log(getMarketCategories())
+
   
