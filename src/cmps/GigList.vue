@@ -17,7 +17,7 @@ export default {
     GigPreview,
   },
   methods: {
-    goToGigDetails(gigId) {
+    goToDetails(gigId) {
       this.$router.push(`/gig/${gigId}`)
     },
   },

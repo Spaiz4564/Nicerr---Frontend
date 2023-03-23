@@ -5,7 +5,7 @@
     <div class="arrow-down">
       <span
         v-if="!isBudgetOpen"
-        class="icon"
+        class="icon-arrow"
         v-html="getSvg('arrowDown')"></span>
     </div>
     <div class="arrow-up">

@@ -1,8 +1,21 @@
 <template>
   <header ref="header" :style="{ position: stickyNav ? 'fixed' : 'static'}">
     <div></div>
-    <nav ref="nav">
+    <nav
+      ref="nav"
+      v-bind:style="{ position: stickyNav ? 'absolute' : 'fixed' }">
       <h1 class="logo">Nicerr<span>.</span></h1>
+      <div class="search-bar">
+        <input
+          class="search-input"
+          type="text"
+          placeholder="What are you looking for today?"
+          v-model="filterBy.title" />
+        <span
+          @click="emitFilered"
+          class="icon-search"
+          v-html="getSvg('search')"></span>
+      </div>
       <div class="goTo">
         <RouterLink to="/gig">Explore</RouterLink>
         <a>Become a seller</a>
@@ -14,10 +27,15 @@
   </header>
 </template>
 <script>
+import { svgService } from '../services/svg.service'
 export default {
   data() {
     return {
       stickyNav: false,
+      headerObserver: null,
+      filterBy: {
+        title: '',
+      },
     }
   },
   computed: {
@@ -27,12 +45,29 @@ export default {
   },
   methods: {
     onHeaderObserved(entries) {
-      console.log(entries)
-      entries.forEach(entry => {
+      entries.forEach((entry) => {
         this.stickyNav = entry.isIntersecting ? true : false
         console.log(entry)
         console.log('hello')
       })
+    },
+    getSvg(iconName) {
+      return svgService.getSvg(iconName)
+    },
+
+    emitFilered() {
+      const filterBy = this.$store.getters.filterBy
+      if (this.filterBy.title) {
+        this.$store.commit({
+          type: 'setFilter',
+          filterBy: { ...filterBy, title: this.filterBy.title },
+        })
+      } else {
+        this.$store.commit({
+          type: 'setFilter',
+          filterBy: { ...filterBy, title: '' },
+        })
+      }
     },
   },
   mounted() {

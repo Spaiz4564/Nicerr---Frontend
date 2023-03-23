@@ -1,7 +1,7 @@
 <template>
   <section class="gig-preview">
     <div class="gig-preview-img">
-      <div class="gig-preview-img-container">
+      <div class="gig-preview-img-container" @click="goToDetails(gig._id)">
         <vueper-slides fade :touchable="false">
           <vueper-slide
             v-for="(img, i) in gig.images"
@@ -14,21 +14,24 @@
       <div class="seller-img">
         <img :src="gig.owner.imgUrl" alt="" />
       </div>
-      <div class="seller-info">
-        <h4 class="seller-name">{{ gig.owner.fullname }}</h4>
-        <p class="gig-seller-rate">{{ ownerLevel }}</p>
-      </div>
+      <section>
+        <div class="seller-info">
+          <h4 class="seller-name">{{ gig.owner.fullname }}</h4>
+        </div>
+      </section>
     </section>
     <div class="gig-preview-info">
       <p class="gig-preview-title">{{ gig.title }}</p>
       <div class="gig-rating">
-        <span class="icon" v-html="getSvg('star')"></span>
-        <p class="gig-preview-rate">{{ gig.rate }}{{ totalRates }}</p>
+        <span class="icon-star" v-html="getSvg('star')"></span>
+        <p class="gig-preview-rate">
+          {{ gig.rate }}<span class="total-rates">{{ totalRates }} </span>
+        </p>
       </div>
     </div>
     <div class="gig-preview-price">
-      <p class="txt-capitalized">starting at</p>
-      <span> US${{ gig.price }}</span>
+      <p class="txt-capitalized">From</p>
+      <span class="gig-span-price">${{ gig.price }}</span>
     </div>
   </section>
 </template>
@@ -46,9 +49,6 @@ export default {
     totalRates() {
       return '(355)'
     },
-    ownerLevel() {
-      return 'Level 2 Seller'
-    },
   },
   methods: {
     getSvg(iconName) {
@@ -56,6 +56,9 @@ export default {
     },
     imgUrl(img) {
       return new URL(img, import.meta.url).href
+    },
+    goToDetails(gigId) {
+      this.$router.push(`/gig/${gigId}`)
     },
   },
   components: {
