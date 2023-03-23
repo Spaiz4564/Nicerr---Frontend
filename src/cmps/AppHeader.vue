@@ -1,5 +1,5 @@
 <template>
-  <header ref="header">
+  <header :class="isHome ? 'headerHome' : ''" ref="header">
     <div></div>
     <nav>
       <RouterLink to="/"><h1 to="/gig" class="logo">Nicerr<span>.</span></h1></RouterLink>
