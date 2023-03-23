@@ -1,20 +1,11 @@
 <template>
   <header ref="header">
     <div></div>
-    <nav
-      ref="nav"
-      v-bind:style="{ position: stickyNav ? 'absolute' : 'fixed' }">
+    <nav ref="nav" v-bind:style="{ position: stickyNav ? 'absolute' : 'fixed' }">
       <h1 class="logo">Nicerr<span>.</span></h1>
       <div class="search-bar">
-        <input
-          class="search-input"
-          type="text"
-          placeholder="What are you looking for today?"
-          v-model="filterBy.title" />
-        <span
-          @click="emitFilered"
-          class="icon-search"
-          v-html="getSvg('search')"></span>
+        <input class="search-input" type="text" placeholder="What are you looking for today?" v-model="filterBy.title" />
+        <span @click="emitFilered" class="icon-search" v-html="getSvg('search')"></span>
       </div>
       <div class="goTo">
         <RouterLink to="/gig">Explore</RouterLink>
@@ -68,7 +59,7 @@ export default {
   },
   mounted() {
     this.headerObserver = new IntersectionObserver(this.onHeaderObserved, {
-      rootMargin: '100px 0px 0px',
+      rootMargin: '81px 0px 0px',
     })
     this.headerObserver.observe(this.$refs.header)
     console.log('hello -mounted')
