@@ -1,28 +1,4 @@
-header {
-  // @include for-wide-layout {
-  //   grid-template-columns: 32px 1fr 32px;
-  // }
-  border-bottom: 1px solid rgba(128, 128, 128, 0.617);
-  grid-column: 1 / -1;
-  height: 80px;
-  display: grid;
-  align-items: center;
-  margin: auto;
-  grid-template-columns: 1fr 1400px 1fr;
-  width: 100%;
-  position: static;
-  
-  z-index: 99;
-  nav {
-    align-items: center;
-    display: flex;
-    justify-content: space-between;
-  }
-}
 
-nav {
-  width: 100%;
-}
 
 .goTo {
   a {
@@ -96,30 +72,7 @@ nav {
     width: 100%;
   }
 
-  svg {
-    fill: rgb(98, 100, 106);
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    background-color: #fff;
-    border-radius: 4px 0 0 4px;
-    width: 24px;
-    padding-top: 3px;
-  }
 
-  input {
-    &::placeholder {
-      color: #9f9a9d;
-    }
-
-    font-family: 'Macan-Regular';
-    font-size: 16px;
-    border: 0;
-    width: 100%;
-    outline: 0;
-    height: 48px;
-  }
-}
 
 .headerHome{
   border: 0;
@@ -171,4 +124,5 @@ nav {
     gap: 15px;
     list-style-type: none;
   }
+}
 }
