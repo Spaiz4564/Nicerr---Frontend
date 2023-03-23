@@ -2,26 +2,31 @@
     <section class="explore-market-section">
         <h2>Explore the marketplace</h2>
 <div class="categories-list">
-<div>
-    <span></span>
-    <h4></h4>
+<div class="category" v-for="category in categories">
+    <span v-html="getSvg(category.svg)"></span>
+    <h4>{{ category.title }}</h4>
 </div>
 </div>
     </section>
   </template>
   
+
   <script>
-  
-  
+import { svgService } from '../services/svg.service'
+import { gigService } from '../services/gig.service.local'
   export default {
     name: 'Explore Market',
     data() {
-      return {}
+      return {
+        categories: gigService.getMarketCategories()
+      }
     },
-    methods: {},
-    components: {
-      
+    methods: {
+        getSvg(iconName) {
+      return svgService.getSvg(iconName)
     },
+    },
+  
   }
   </script>
   
