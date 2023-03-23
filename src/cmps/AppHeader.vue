@@ -2,15 +2,17 @@
   <header :class="isHome ? 'headerHome' : ''" ref="header">
     <div></div>
     <nav>
-      <RouterLink to="/"><h1 to="/gig" class="logo">Nicerr<span>.</span></h1></RouterLink>
+      <RouterLink to="/"
+        ><h1 to="/gig" class="logo">Nicerr<span>.</span></h1></RouterLink
+      >
       <div v-if="!isHome" class="search-bar">
-        <input 
+        <input
           class="search-input"
           type="text"
           placeholder="What are you looking for today?"
           v-model="filterBy.title" />
         <span
-          @click="emitFilered"
+          @click="emitFiltered"
           class="icon-search"
           v-html="getSvg('search')"></span>
       </div>
@@ -42,9 +44,9 @@ export default {
   watch: {
     $route(to) {
       this.isHome = to.path !== '/' ? false : true
-    }
     },
- 
+  },
+
   methods: {
     onHeaderObserved(entries) {
       entries.forEach((entry) => {
@@ -55,8 +57,10 @@ export default {
       return svgService.getSvg(iconName)
     },
 
-    emitFilered() {
+    emitFiltered() {
+      console.log('emitFiltered')
       const filterBy = this.$store.getters.filterBy
+      console.log('filterBy', filterBy)
       if (this.filterBy.title) {
         this.$store.commit({
           type: 'setFilter',
@@ -79,4 +83,3 @@ export default {
   },
 }
 </script>
-
