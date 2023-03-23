@@ -1,14 +1,11 @@
 header {
-  // @include for-wide-layout {
-  //   grid-template-columns: 32px 1fr 32px;
-  // }
   height: 80px;
   display: grid;
   align-items: center;
   margin: auto;
   grid-template-columns: 1fr 1400px 1fr;
   width: 100%;
-  position: fixed;
+  position: absolute;
   z-index: 99;
   nav {
     align-items: center;
@@ -40,7 +37,6 @@ nav {
     cursor: pointer;
     font-size: 15px;
   }
-  color: white;
   display: flex;
   gap: 23px;
   align-items: center;
@@ -50,7 +46,6 @@ nav {
   span {
     color: $clr-hover;
   }
-  color: #fff;
   font-size: 2rem;
   display: inline;
   text-decoration: none;
@@ -78,7 +73,6 @@ nav {
       background-color: #1dbf73;
       border: 1px solid #1dbf73;
       border-radius: 0 4px 4px 0;
-      color: #fff;
       font-weight: 600;
       font-size: 1rem;
     }
@@ -121,7 +115,6 @@ nav {
   display: flex;
   align-items: center;
   gap: 12px;
-  color: white;
   span {
     font-size: 14px;
   }

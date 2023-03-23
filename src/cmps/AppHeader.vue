@@ -1,5 +1,5 @@
 <template>
-  <header ref="header">
+  <header ref="header" class="app-header">
     <div></div>
     <nav
       ref="nav"
