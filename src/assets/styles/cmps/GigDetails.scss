@@ -10,17 +10,18 @@
         flex-wrap: wrap;
 
         font-family: 'Macan-Regular';
-        font-size: 14px;
+        font-size: rem(14px);
         line-height: 140%;
         word-break: break-word;
 
         color: $clr1;
+
+        margin-block-start: em(32px);
     }
-
-    //Gig-User-Info
-    @import '../cmps/GigUserInfo.scss';
-
-    //Gig-Purchase
-    @import '../cmps/GigPurchase.scss';
-
 }
+
+//Gig-User-Info
+@import '../cmps/GigDetailsUserInfo.scss';
+
+//Gig-Purchase
+@import '../cmps/GigDetailsPurchase.scss';

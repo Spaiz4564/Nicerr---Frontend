@@ -7,8 +7,6 @@ import ReviewIndex from './views/ReviewIndex.vue'
 import LoginSignup from './views/LoginSignup.vue'
 import UserDetails from './views/UserDetails.vue'
 import gigDetails from './views/GigDetails.vue'
-import SellerSignup from './views/SellerSignup.vue'
-import SellerProfile from './views/SellerProfile.vue'
 
 const routes = [
   {
@@ -30,6 +28,11 @@ const routes = [
     path: '/review',
     name: 'ReviewIndex',
     component: ReviewIndex,
+  },
+  {
+    path: '/purchase',
+    name: 'GigPurchase',
+    component: GigPurchase,
   },
   {
     path: '/chat',

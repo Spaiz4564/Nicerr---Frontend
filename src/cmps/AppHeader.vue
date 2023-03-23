@@ -1,9 +1,11 @@
 <template>
-  <header :class="isHome ? 'headerHome' : ''" ref="header">
+  <header
+    :class="[isHome ? 'headerHome' : '', isWhite ? 'homeScroll' : '']"
+    ref="header">
     <div></div>
     <nav>
       <RouterLink to="/"
-        ><h1 to="/gig" class="logo">Nicerr<span>.</span></h1></RouterLink
+        ><h1 class="logo">Nicerr<span>.</span></h1></RouterLink
       >
       <div v-if="!isHome" class="search-bar">
         <input
@@ -37,22 +39,11 @@ export default {
         title: '',
       },
       isHome: true,
+      isWhite: false,
     }
   },
 
-  computed: {},
-  watch: {
-    $route(to) {
-      this.isHome = to.path !== '/' ? false : true
-    },
-  },
-
   methods: {
-    onHeaderObserved(entries) {
-      entries.forEach((entry) => {
-        this.stickyNav = entry.isIntersecting ? true : false
-      })
-    },
     getSvg(iconName) {
       return svgService.getSvg(iconName)
     },
@@ -76,13 +67,25 @@ export default {
     goToSellerSignup() {
       this.$router.push('/seller-signup')
     },
+    handleScroll() {
+      const scrollY = window.scrollY
+      this.isWhite = scrollY > 20 ? true : false
+    },
+  },
+
+  watch: {
+    $route(to) {
+      this.isHome = to.path !== '/' ? false : true
+    },
+  },
+
+  created() {
+    window.addEventListener('scroll', this.handleScroll)
+    //we need to update the scroll position when the component is created
+    this.handleScroll()
   },
   mounted() {
-    this.headerObserver = new IntersectionObserver(this.onHeaderObserved, {
-      rootMargin: '0px 0px 100px',
-    })
-    this.headerObserver.observe(this.$refs.header)
-    console.log('hello -mounted')
+    window.addEventListener('scroll', this.handleScroll)
   },
 }
 </script>
