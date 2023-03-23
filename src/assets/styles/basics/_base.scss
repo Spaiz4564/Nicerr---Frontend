@@ -55,20 +55,7 @@ img {
   width: 100%;
 }
 
-svg {
-  fill: rgb(98, 100, 106);
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  border-radius: 4px 0 0 4px;
-  width: 24px;
-  padding-top: 3px;
-}
-
 header {
-  // @include for-wide-layout {
-  //   grid-template-columns: 32px 1fr 32px;
-  // }
   border-bottom: 1px solid rgba(128, 128, 128, 0.617);
   grid-column: 1 / -1;
   height: 80px;
