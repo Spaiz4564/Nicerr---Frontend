@@ -7,6 +7,9 @@ import ReviewIndex from './views/ReviewIndex.vue'
 import LoginSignup from './views/LoginSignup.vue'
 import UserDetails from './views/UserDetails.vue'
 import gigDetails from './views/GigDetails.vue'
+import GigPurchase from './views/GigPurchase.vue'
+import SellerProfile from './views/SellerProfile.vue'
+import SellerSignup from './views/SellerSignup.vue'
 
 const routes = [
   {
