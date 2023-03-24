@@ -52,6 +52,7 @@ export default {
       console.log('emitFiltered')
       const filterBy = this.$store.getters.filterBy
       console.log('filterBy', filterBy)
+      console.log('filterBy', filterBy)
       if (this.filterBy.title) {
         this.$store.commit({
           type: 'setFilter',
