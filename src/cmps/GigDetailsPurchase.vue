@@ -50,7 +50,7 @@
                     </li>
                 </ul>
                 <div class="footer">
-                    <button @click="HandlePurchase" class="btn-purchase">Continue</button>
+                    <button @click="HandlePurchase(gig._id)" class="btn-purchase">Continue</button>
                 </div>
             </article>
         </div>
@@ -66,20 +66,20 @@
 
 import { svgService } from '../services/svg.service';
 
+
 export default {
     props: ['gig'],
     name: 'GigPurchase',
     data() {
         return {
-            user: this.user
         }
     },
     methods: {
         getSvg(iconName) {
             return svgService.getSvg(iconName)
         },
-        HandlePurchase() {
-            this.$router.push('/purchase')
+        HandlePurchase(gigId) {
+            this.$router.push(`/purchase/${gigId}`)
         }, imgUrl(img) {
             return new URL(img, import.meta.url).href
         },
