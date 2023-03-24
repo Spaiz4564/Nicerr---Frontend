@@ -41,7 +41,7 @@
 .flex {
   display: flex;
 
-  > *.full {
+  >*.full {
     flex: 1;
   }
 
@@ -96,6 +96,10 @@
 
 .gold {
   fill: gold;
+}
+
+.grid {
+  display: grid;
 }
 
 //ul helpers
