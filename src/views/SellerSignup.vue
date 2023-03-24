@@ -16,31 +16,31 @@
             class="input"
             type="text"
             name="full-name"
-            v-model="seller.fullname"
+            v-model="owner.fullname"
             placeholder="Fullname" />
           <label class="label" for="username">Display name</label>
           <input
             type="text"
             class="input"
             name="username"
-            v-model="seller.username"
+            v-model="owner.username"
             placeholder="Type your display name " />
           <label class="label" for="description">Description</label>
           <textarea
             class="input"
             name="description"
-            v-model="seller.description"
+            v-model="owner.description"
             id=""
             cols="30"
             rows="10"></textarea>
           <label class="label" for="location">Enter your country</label>
           <input
             class="input"
-            v-model="seller.location"
+            v-model="owner.location"
             type="text"
             name="location"
             placeholder="Country" />
-          <button class="btn-sign" @click.prevent="addSeller">Continue</button>
+          <button class="btn-sign" @click.prevent="addOwner">Continue</button>
         </div>
       </form>
     </div>
@@ -51,23 +51,28 @@
 import { utilService } from '../services/util.service'
 
 export default {
-  name: ' SellerSignup',
-
   data() {
     return {
-      seller: {
+      owner: {
         fullname: '',
         username: '',
         description: '',
         location: '',
+        imgUrl: '',
+        gigs: [],
+        reviews: [],
+        orders: [],
       },
     }
   },
-
   methods: {
-    addSeller() {
-      this.$store.dispatch({ type: 'addSeller', seller: this.seller })
-      this.$router.push('/seller/profile')
+    addOwner() {
+      const id = utilService.makeId()
+      this.owner._id = id
+
+      this.$store.dispatch({ type: 'addNewOwner', owner: this.owner })
+      this.$router.push(`/seller/profile/${id}`)
+      console.log('owner', this.owner)
     },
   },
 }

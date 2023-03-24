@@ -3,7 +3,7 @@ import { utilService } from './util.service.js'
 import { userService } from './user.service.js'
 
 const STORAGE_KEY = 'gig'
-const STORAGE_SELLER_KEY = 'seller'
+const STORAGE_OWNER_KEY = 'seller'
 
 export const gigService = {
   query,
@@ -16,10 +16,15 @@ export const gigService = {
   getHeroBackgrounds,
   addNewSeller,
   loadSeller,
+  addNewOwner,
+  loadOwners,
 }
 window.cs = gigService
 
-async function query(filterBy = { title: '', minPrice: 0, maxPrice: 2000 }) {
+async function query(
+  filterBy = { title: '', minPrice: 0, maxPrice: 2000 },
+  sortBy = { by: 'name', desc: 1 }
+) {
   let gigs = await storageService.query(STORAGE_KEY)
   if (!gigs.length) gigs = _createGigs()
 
@@ -34,9 +39,16 @@ async function query(filterBy = { title: '', minPrice: 0, maxPrice: 2000 }) {
       return gig.price >= filterBy.minPrice && gig.price <= filterBy.maxPrice
     })
   }
-
-  //sort price
-
+  if (sortBy === 'name') {
+    gigs.sort((a, b) => {
+      return a.title.localeCompare(b.title)
+    })
+  }
+  if (sortBy === 'price') {
+    gigs.sort((a, b) => {
+      return a.price - b.price
+    })
+  }
   return gigs
 }
 
@@ -49,8 +61,19 @@ function loadSeller(sellerId) {
   return storageService.get(STORAGE_SELLER_KEY, sellerId)
 }
 
+function loadOwners(gigId) {
+  const gig = getById(gigId)
+  return gig.owner
+}
+
 async function remove(gigId) {
   await storageService.remove(STORAGE_KEY, gigId)
+}
+
+function addNewOwner(ownerId) {
+  console.log('ownerId', ownerId)
+  if (ownerId._id) return storageService.put(STORAGE_OWNER_KEY, ownerId)
+  else return storageService.post(STORAGE_OWNER_KEY, ownerId)
 }
 
 async function save(gig) {
@@ -209,32 +232,28 @@ function getMarketCategories() {
     { title: 'Photography', svg: 'photography' },
   ]
   return categories
-  }
+}
 
-  function getHeroBackgrounds() {
-    const backgrounds = [
-      {
-        img: '.././assets/images/Hero-section/Andrea.png',
-      },
-      {
-        img: '.././assets/images/Hero-section/Gabriella.png',
-      },
-      {
-        img: '.././assets/images/Hero-section/Moon.png',
-      },
-      {
-        img: '.././assets/images/Hero-section/Ritika.png',
-      },
-      {
-        img: '.././assets/images/Hero-section/Valentina.png',
-      },
-      {
-        img: '.././assets/images/Hero-section/Zach.png',
-      }
-    ]
-    return backgrounds
-  }
-
-
-
-  
+function getHeroBackgrounds() {
+  const backgrounds = [
+    {
+      img: '.././assets/images/Hero-section/Andrea.png',
+    },
+    {
+      img: '.././assets/images/Hero-section/Gabriella.png',
+    },
+    {
+      img: '.././assets/images/Hero-section/Moon.png',
+    },
+    {
+      img: '.././assets/images/Hero-section/Ritika.png',
+    },
+    {
+      img: '.././assets/images/Hero-section/Valentina.png',
+    },
+    {
+      img: '.././assets/images/Hero-section/Zach.png',
+    },
+  ]
+  return backgrounds
+}
