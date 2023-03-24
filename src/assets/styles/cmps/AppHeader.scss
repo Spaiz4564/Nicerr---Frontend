@@ -6,13 +6,13 @@
     transition: all 0.3s;
     &:last-child {
       font-size: 14px;
-      color: $clr-hover;
+      color: $clr-main;
       font-weight: 700;
       border-radius: 4px;
       padding: 5px 15px;
-      border: 1px solid $clr-hover;
+      border: 1px solid $clr-main;
       &:hover {
-        background-color: $clr-hover;
+        background-color: $clr-main;
         color: white;
         border: 1px solid transparent;
       }
@@ -30,11 +30,16 @@
 }
 
 .logo {
+  &:after{
+    content: ".";
+    font-size: 2.7rem;
+    color: $clr-main;
+  }
   cursor: pointer;
   span {
-    color: $clr-hover;
+    color: $clr-main;
   }
-  color: black;
+  color: $clr4;
   font-size: 2rem;
   font-family: 'Macan-Bold';
   display: inline;
@@ -43,9 +48,59 @@
   font-weight: 600;
 }
 
-.container-home {
-  grid-column: 1 / -1;
+
+
+.search-bar {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  border-radius: 4px;
+  width: 60.77%;
+  height: 43px;
+  border: 0;
+  box-shadow: 0 0 0 1px #dadbdd;
+  padding-inline-start: 10px;
+  .search-input {
+    &::placeholder{
+      color: $clr01;
+      font-family: 'Macan-Regular';
+      font-weight:500;
+      font-size: 16px;
+    }
+    width: 100%;
+    outline: none;
+    border: 0;
+    padding-inline-start: 5px;
+    font-size: 0.875rem;
+  }
+  .icon-search {
+    justify-content: center;
+    align-items: center;
+    display: flex;
+    border-top-right-radius: 3px;
+    border-bottom-right-radius: 3px;
+    background-color: #222325;
+    font-style: normal;
+    height: fit-content;
+    height: inherit;
+    width: 8%;
+    svg {
+      fill: white;
+      height: 16px;
+      width: 16px;
+    }
+  }
 }
+
+.logo-search{
+  display: flex;
+  width: 100%;
+  gap: 26px;
+  .search-input{
+    max-width: 434px;
+  }
+}
+
 
 .home-search-container {
   margin: 24px 0px;
@@ -128,13 +183,13 @@
   .goTo a{
     color: $clr3!important;
     &:last-child {
-      color: $clr-hover !important;
+      color: $clr-main !important;
       font-weight: 700;
       border-radius: 4px;
       padding: 5px 15px;
-      border: 1px solid $clr-hover;
+      border: 1px solid $clr-main;
       &:hover {
-        background-color: $clr-hover;
+        background-color: $clr-main;
         color: white;
         border: 1px solid transparent;
       }
@@ -144,41 +199,3 @@
  
 }
 
-
-
-.header-suggestions {
-  display: flex;
-  align-items: center;
-  gap: 12px;
-  span {
-    color: white;
-    font-size: 14px;
-  }
-  ul {
-    li {
-      cursor: pointer;
-      font-size: 13px;
-      border-radius: 20px;
-      border: 1px solid #fff;
-      border-radius: 40px;
-      color: #fff;
-      font-weight: 600;
-      line-height: 24px;
-      padding: 1px 14px 0;
-      -webkit-transition: all 0.2s ease-in-out;
-      -o-transition: all 0.2s ease-in-out;
-      transition: all 0.2s ease-in-out;
-      z-index: 4;
-      &:hover {
-        background-color: #fff;
-        color: #404145;
-        text-decoration: none;
-      }
-    }
-    margin: 0;
-    display: flex;
-    padding: 0;
-    gap: 15px;
-    list-style-type: none;
-  }
-}
