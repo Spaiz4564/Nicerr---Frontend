@@ -35,14 +35,21 @@ export const gigStore = {
       maxPrice: 1000,
       title: '',
     },
-
-    sortBy: {
-      sortBy: 'price',
-    },
+    owner: null,
   },
   getters: {
     gigs({ gigs }) {
       return gigs
+    },
+    gigById({ gigs }) {
+      return (gigId) => {
+        return gigs.find((gig) => gig._id === gigId)
+      }
+    },
+    getOwnerById({ id }) {
+      return (id) => {
+        return id
+      }
     },
   },
   mutations: {
@@ -103,6 +110,17 @@ export const gigStore = {
       }
     },
 
+    async loadOwner(context, { gigId }) {
+      console.log('loadOwner', gigId)
+      try {
+        const owners = await gigService.loadOwners(gigId)
+        return owners
+      } catch (err) {
+        console.log('gigStore: Error in loadOwners', err)
+        throw err
+      }
+    },
+
     async removeGig(context, { gigId }) {
       try {
         await gigService.remove(gigId)
@@ -122,13 +140,13 @@ export const gigStore = {
       }
     },
 
-    async addNewSeller(context, { seller }) {
+    async addNewOwner(context, { gigId, owner }) {
       try {
-        seller = await gigService.addNewSeller(seller)
-        console.log('addNewSeller', seller)
-        return seller
+        const newOwner = await gigService.addNewOwner(gigId, owner)
+        console.log('newOwner', newOwner)
+        return newOwner
       } catch (err) {
-        console.log('gigStore: Error in addNewSeller', err)
+        console.log('gigStore: Error in addNewOwner', err)
         throw err
       }
     },

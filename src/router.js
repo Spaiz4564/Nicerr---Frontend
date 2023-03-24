@@ -1,5 +1,6 @@
 import { createRouter, createWebHashHistory } from "vue-router";
 
+
 import Home from "./views/Home.vue";
 import Chat from "./views/Chat.vue";
 import GigIndex from "./views/GigIndex.vue";
@@ -10,6 +11,20 @@ import gigDetails from "./views/GigDetails.vue";
 import GigPurchase from "./views/GigPurchase.vue";
 import SellerSignup from "./views/SellerSignup.vue";
 import SellerProfile from "./views/SellerProfile.vue";
+=======
+import Home from './views/Home.vue'
+import Chat from './views/Chat.vue'
+import GigIndex from './views/GigIndex.vue'
+import ReviewIndex from './views/ReviewIndex.vue'
+import LoginSignup from './views/LoginSignup.vue'
+import UserDetails from './views/UserDetails.vue'
+import gigDetails from './views/GigDetails.vue'
+import GigPurchase from './views/GigPurchase.vue'
+import SellerProfile from './views/SellerProfile.vue'
+import SellerSignup from './views/SellerSignup.vue'
+import SellerSignup from './views/SellerSignup.vue'
+import SellerProfile from './views/SellerProfile.vue'
+
 
 const routes = [
   {
@@ -37,6 +52,11 @@ const routes = [
     name: "GigPurchase",
     component: GigPurchase,
   },
+  // {
+  //   path: '/purchase',
+  //   name: 'GigPurchase',
+  //   component: GigPurchase,
+  // },
   {
     path: "/chat",
     name: "Chat",
@@ -60,6 +80,8 @@ const routes = [
   {
     path: "/seller/profile",
     name: "SellerProfile",
+    path: '/seller/profile/:id',
+    name: 'SellerProfile',
     component: SellerProfile,
   },
 ];

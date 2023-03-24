@@ -1,6 +1,23 @@
 <template>
   <section class="gig-index main-layout full" v-if="gigs">
     <GigFilter @filtered="setFilter" />
+    <div class="sort-container flex">
+      <p class="sort-txt">Sort By</p>
+      <el-select
+        v-model="sortBy"
+        placeholder="Please select"
+        @change="setSort(sortBy)">
+        <el-option
+          v-for="item in options"
+          :key="item.value"
+          :label="item.label"
+          :value="item.value">
+        </el-option>
+      </el-select>
+      <!-- <a class="btn-sort" @click="setSort('name')">Name</a>
+      <a class="btn-sort" @click="setSort('price')">Price</a>
+      <span>{{ desc === -1 ? '↓' : '↑' }}</span> -->
+    </div>
     <GigList :gigs="gigs" />
   </section>
 </template>
@@ -28,10 +45,19 @@ export default {
         title: '',
         price: null,
       },
-      sortBy: {
-        rate: '',
-        price: '',
-      },
+
+      options: [
+        {
+          value: 'name',
+          label: 'Name',
+        },
+        {
+          value: 'price',
+          label: 'Price',
+        },
+      ],
+      sortBy: 'name',
+      desc: 1,
     }
   },
   computed: {
@@ -45,11 +71,16 @@ export default {
   created() {
     this.loadGigs()
     const filterBy = this.$store.getters.filterBy
-    const sortBy = this.$store.getters.sortBy
     if (filterBy) this.filterBy = filterBy
-    if (sortBy) this.sortBy = sortBy
   },
   methods: {
+    setSort(sortBy) {
+      console.log(sortBy)
+      this.sortBy = sortBy
+      console.log(this.sortBy)
+      this.desc *= -1
+      this.loadGigs()
+    },
     async addGig() {
       try {
         await this.$store.dispatch({ type: 'addGig', gig: this.gigToAdd })
@@ -98,16 +129,9 @@ export default {
     },
 
     async loadGigs() {
-      try {
-        await this.$store.dispatch({
-          type: 'loadGigs',
-          filterBy: this.filterBy,
-          sortBy: this.sortBy,
-        })
-      } catch (err) {
-        console.log(err)
-        showErrorMsg('Cannot load gigs')
-      }
+      const filterBy = JSON.parse(JSON.stringify(this.filterBy))
+      const sortBy = JSON.parse(JSON.stringify(this.sortBy))
+      await this.$store.dispatch({ type: 'loadGigs', filterBy, sortBy })
     },
   },
 }
