@@ -1,5 +1,5 @@
 <template>
-  <header :class="[isHome ? 'headerHome' : '', isWhite ? 'homeScroll' : '']" ref="header">
+  <header class="main-layout" :class="[isHome ? 'headerHome' : '', isWhite ? 'homeScroll' : '']" ref="header">
     <div></div>
     <nav>
       <div class="logo-search">

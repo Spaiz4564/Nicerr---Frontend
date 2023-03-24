@@ -2,14 +2,14 @@
 
 .goTo {
   a {
-    color: black;
+    color: $clr2;
     transition: all 0.3s;
     &:last-child {
       font-size: 14px;
       color: $clr-main;
       font-weight: 700;
       border-radius: 4px;
-      padding: 5px 15px;
+      padding: 5.5px 15.6px;
       border: 1px solid $clr-main;
       &:hover {
         background-color: $clr-main;
@@ -42,9 +42,8 @@
   color: $clr4;
   font-size: 2rem;
   font-family: 'Macan-Bold';
-  display: inline;
   text-decoration: none;
-  font-stretch: 50%;
+  letter-spacing: -2px;
   font-weight: 600;
 }
 
@@ -55,10 +54,10 @@
   justify-content: space-between;
   align-items: center;
   border-radius: 4px;
-  width: 60.77%;
-  height: 43px;
+  width: 61%;
+  height: 41.5px;
   border: 0;
-  box-shadow: 0 0 0 1px #dadbdd;
+  box-shadow: 0 0 0 1px #b4b4b4;
   padding-inline-start: 10px;
   .search-input {
     &::placeholder{
@@ -96,68 +95,10 @@
   display: flex;
   width: 100%;
   gap: 26px;
-  .search-input{
-    max-width: 434px;
-  }
+  
 }
 
 
-.home-search-container {
-  margin: 24px 0px;
-  flex-direction: column;
-  .home-search {
-    border-radius: 4px;
-    justify-content: space-between;
-    width: 100%;
-    background-color: white;
-    display: flex;
-
-    button {
-      color: white;
-      padding: 5px 25px;
-      margin: 0;
-      background-color: #1dbf73;
-      border: 1px solid #1dbf73;
-      border-radius: 0 4px 4px 0;
-      font-weight: 600;
-      font-size: 1rem;
-    }
-  }
-
-  .search {
-      svg {
-        fill: rgb(98, 100, 106);
-        display: flex;
-        align-items: center;
-        justify-content: center;
-        background-color: #fff;
-        border-radius: 4px 0 0 4px;
-        width: 24px;
-        padding-top: 3px;
-      }
-    
-    .icon {
-      padding: 0px 13px;
-    }
-    display: flex;
-    width: 100%;
-  }
-
-
-
-  input {
-    &::placeholder {
-      color: #9f9a9d;
-    }
-
-    font-family: 'Macan-Regular';
-    font-size: 16px;
-    border: 0;
-    width: 100%;
-    outline: 0;
-    height: 48px;
-  }
-}
 
 .headerHome{
   border: 0;
@@ -190,7 +131,7 @@
       border: 1px solid $clr-main;
       &:hover {
         background-color: $clr-main;
-        color: white;
+        color: white !important;
         border: 1px solid transparent;
       }
     }

@@ -1,5 +1,5 @@
 <template>
-  <section class="trustedBy-section">
+  <section class="trustedBy-section main-layout">
     <div class="trusted-by">
       <div class="imgs">
         <span>Trusted by:</span>

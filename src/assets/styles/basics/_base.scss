@@ -60,16 +60,14 @@ img {
 
 header {
   transition: all 0.3s;
-  border-bottom: 1px solid rgba(128, 128, 128, 0.617);
+  border-bottom: 1px solid #e4e5e7;
   grid-column: 1 / -1;
   height: 80px;
   display: grid;
   align-items: center;
   margin: auto;
-  grid-template-columns: 1fr 1400px 1fr;
   width: 100%;
   position: static;
-
   z-index: 99;
 
   nav {

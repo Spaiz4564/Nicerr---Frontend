@@ -1,7 +1,13 @@
 <template>
-  <div class="hero-wrapper">
+  <div class="hero-wrapper main-layout">
     <div ref="heroBackground" class="hero-background" v-for="background in backgrounds">
       <img :src="imgUrl(background.img)" alt="" />
+      <!-- <div></div> 5 STARS  -->
+      <div class="desc">
+        <p>{{ background.name}},</p>
+        <b>{{ background.desc }}</b>
+
+      </div>
     </div>
     <h5 class="hero-container">
       <div class="hero">

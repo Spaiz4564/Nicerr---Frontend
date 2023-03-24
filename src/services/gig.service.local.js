@@ -237,22 +237,35 @@ function getMarketCategories() {
 function getHeroBackgrounds() {
   const backgrounds = [
     {
-      img: '.././assets/images/Hero-section/Andrea.png',
+      img: '.././assets/images/Hero-section/Valentina.png',
+      name: 'Valentina',
+      desc: 'AI Artist'
     },
     {
-      img: '.././assets/images/Hero-section/Gabriella.png',
+      img: '.././assets/images/Hero-section/Andrea.png',
+      name: 'Andrea',
+      desc: 'Fashion Designer'
     },
     {
       img: '.././assets/images/Hero-section/Moon.png',
+      name: 'Moon',
+      desc: 'Marketing Expert'
     },
     {
       img: '.././assets/images/Hero-section/Ritika.png',
-    },
-    {
-      img: '.././assets/images/Hero-section/Valentina.png',
+      name: 'Ritika',
+      desc: 'Shoemaker and Designer'
     },
     {
       img: '.././assets/images/Hero-section/Zach.png',
+      name: 'Zach',
+      desc: 'Bar Owner'
+    },
+    {
+      img: '.././assets/images/Hero-section/Gabriella.png',
+      name: 'Gabrielle',
+      desc: 'Video Editor'
+      
     },
   ]
   return backgrounds
