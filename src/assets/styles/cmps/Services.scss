@@ -1,33 +1,70 @@
 .popular-services-section {
   margin-bottom: 96px;
   .services {
-  .services-img{
-    transition: all 0.3s;
-    &:hover{
-      opacity: .85;
+    .vueperslide--visible {
+      transition: all 0.3s;
+      &:hover {
+        opacity: 0.85;
+      }
+      border-radius: 4px;
+      width: 17.85% !important;
+      height: 345px;
     }
-    cursor: pointer;
-    position: relative;
-  }
-    .service-info{
-      span{
+    .vueperslides__arrow {
+      svg {
+        height: 25px;
+        width: 25px;
+        stroke-width: 3px !important;
+        color: #555555;
+      }
+      background-color: #fff;
+      border: 0;
+      opacity: 1;
+      -webkit-box-shadow: 0 2px 5px 0 rgba(0, 0, 0, 0.15);
+      box-shadow: 0 2px 5px 0 rgba(0, 0, 0, 0.15);
+      font-size: 16px;
+      height: 48px;
+      line-height: 100%;
+      margin: 0 32px;
+      border-radius: 50%;
+      position: absolute;
+      text-align: center;
+      top: 50%;
+      width: 48px;
+      z-index: 4;
+    }
+
+    .vueperslide--visible,
+    .vueperslide__active {
+      margin-right: 2.69% !important;
+    }
+
+    .vueperslide__content-wrapper {
+      .vueperslide__title {
+        height: 20px;
+        font-size: 14px;
+      }
+      .vueperslide__content {
         font-family: 'Macan-Bold';
         font-size: 22px;
         letter-spacing: 1px;
       }
-      small{
-        height: 20px;
-        font-size: 14px;
-      }
       color: white;
-      position: absolute;
-      left: 15px;
-      top: 15px;
-      display: flex;
-      flex-direction: column;
+      justify-content: flex-start;
+      align-items: baseline;
+      margin: 16px 0px 0px 16px;
     }
-    display: flex;
-    gap: 34px;
+    .vueperslides__bullets {
+      display: none;
+    }
+    .vueperslide {
+      width: auto;
+      max-height: 345px;
+    }
+    .vueperslides__parallax-wrapper {
+      padding-bottom: 25% !important;
+    }
+  
   }
   h2 {
     padding-bottom: 24px;
@@ -38,7 +75,6 @@
     font-size: 32px;
   }
   img {
-  
     border-radius: 4px;
     width: 254px;
     object-fit: cover;
