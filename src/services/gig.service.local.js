@@ -301,6 +301,36 @@ function getPopularServices() {
       title: 'Video Explainer',
       img: '.././assets/images/Services/Video Explainer.png',
     },
+    {
+      desc: 'Reach more customers',
+      title: 'Social Media',
+      img: '.././assets/images/Services/Social Media.png',
+    },
+    {
+      desc: 'Unlock growth online',
+      title: 'SEO',
+      img: '.././assets/images/Services/SEO.png',
+    },
+    {
+      desc: 'Color your dreams',
+      title: 'Illustrations',
+      img: '.././assets/images/Services/illustration.png',
+    },
+    {
+      desc: 'Go global',
+      title: 'Translation',
+      img: '.././assets/images/Services/Translation.png',
+    },
+    {
+      desc: 'Learn your business',
+      title: 'Data Entry',
+      img: '.././assets/images/Services/Data Entry.png',
+    },
+    // {
+    //   desc: 'Showcase your story',
+    //   title: 'Book Covers',
+    //   img: '.././assets/images/Services/Book Covers.png',
+    // },
   ]
   return services
 }
