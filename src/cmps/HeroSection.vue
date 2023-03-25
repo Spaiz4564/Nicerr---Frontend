@@ -2,11 +2,12 @@
   <div class="hero-wrapper main-layout">
     <div ref="heroBackground" class="hero-background" v-for="background in backgrounds">
       <img :src="imgUrl(background.img)" alt="" />
-      <!-- <div></div> 5 STARS  -->
       <div class="desc">
-        <p>{{ background.name}},</p>
+        <span v-if="background.isFiveStars" className="icon" v-html="getSvg('fiveStars')"></span>
+        <div class="artist-info">
+          <p>{{ background.name}}, </p>
         <b>{{ background.desc }}</b>
-
+        </div>
       </div>
     </div>
     <h5 class="hero-container">
@@ -59,14 +60,17 @@ export default {
     handleHeroGallery() {
       var counter = 1
       setInterval(() => {
-      var categories = this.$refs.heroBackground
+      const categories = this.$refs.heroBackground
+      categories[0].style.opacity = '0'
       if (counter === categories.length) {
         counter = 0
         categories[5].classList.remove('showOpacity')
       }
       categories[counter].classList.add('showOpacity')
       if (counter !== 0) {
-        categories[counter - 1].classList.toggle('showOpacity')
+        categories[counter - 1].classList.remove('showOpacity')
+      } else {
+        categories[0].style.opacity = '1'
       }
       counter++
     }, 7000)

@@ -1,18 +1,46 @@
 .popular-services-section {
   margin-bottom: 96px;
   .services {
+  .services-img{
+    transition: all 0.3s;
+    &:hover{
+      opacity: .85;
+    }
+    cursor: pointer;
+    position: relative;
+  }
+    .service-info{
+      span{
+        font-family: 'Macan-Bold';
+        font-size: 22px;
+        letter-spacing: 1px;
+      }
+      small{
+        height: 20px;
+        font-size: 14px;
+      }
+      color: white;
+      position: absolute;
+      left: 15px;
+      top: 15px;
+      display: flex;
+      flex-direction: column;
+    }
     display: flex;
-    gap: 38px;
+    gap: 34px;
   }
   h2 {
     padding-bottom: 24px;
+    line-height: 120%;
+    letter-spacing: 0.2px;
     color: $clr4;
     align-self: baseline;
     font-size: 32px;
   }
   img {
+  
     border-radius: 4px;
-    width: 250px;
+    width: 254px;
     object-fit: cover;
     height: 345px;
   }

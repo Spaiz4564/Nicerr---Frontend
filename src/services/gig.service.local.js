@@ -14,6 +14,7 @@ export const gigService = {
   addGigMsg,
   getMarketCategories,
   getHeroBackgrounds,
+  getPopularServices,
   addNewSeller,
   loadSeller,
   addNewOwner,
@@ -31,11 +32,11 @@ async function query(
   if (filterBy.title) {
     const regex = new RegExp(filterBy.title, 'i')
     gigs = gigs.filter(
-      (gig) => regex.test(gig.title) || regex.test(gig.description)
+      gig => regex.test(gig.title) || regex.test(gig.description)
     )
   }
   if (filterBy.minPrice || filterBy.maxPrice) {
-    gigs = gigs.filter((gig) => {
+    gigs = gigs.filter(gig => {
       return gig.price >= filterBy.minPrice && gig.price <= filterBy.maxPrice
     })
   }
@@ -239,34 +240,67 @@ function getHeroBackgrounds() {
     {
       img: '.././assets/images/Hero-section/Valentina.png',
       name: 'Valentina',
-      desc: 'AI Artist'
+      desc: 'AI Artist',
+      isFiveStars: true,
     },
     {
       img: '.././assets/images/Hero-section/Andrea.png',
       name: 'Andrea',
-      desc: 'Fashion Designer'
+      desc: 'Fashion Designer',
     },
     {
       img: '.././assets/images/Hero-section/Moon.png',
       name: 'Moon',
-      desc: 'Marketing Expert'
+      desc: 'Marketing Expert',
+      isFiveStars: true,
     },
     {
       img: '.././assets/images/Hero-section/Ritika.png',
       name: 'Ritika',
-      desc: 'Shoemaker and Designer'
+      desc: 'Shoemaker and Designer',
     },
     {
       img: '.././assets/images/Hero-section/Zach.png',
       name: 'Zach',
-      desc: 'Bar Owner'
+      desc: 'Bar Owner',
     },
     {
       img: '.././assets/images/Hero-section/Gabriella.png',
       name: 'Gabrielle',
-      desc: 'Video Editor'
-      
+      desc: 'Video Editor',
+      isFiveStars: true,
     },
   ]
   return backgrounds
+}
+
+function getPopularServices() {
+  const services = [
+    {
+      desc: 'Add talent to AI',
+      title: `AI Artists`,
+      img: '.././assets/images/Services/AI-artists.png',
+    },
+    {
+      desc: 'Build your brand',
+      title: 'Logo Design',
+      img: '.././assets/images/Services/Logo design.png',
+    },
+    {
+      desc: 'Customize your site',
+      title: 'WordPress',
+      img: '.././assets/images/Services/WordPress.png',
+    },
+    {
+      desc: 'Share your message',
+      title: 'Voice Over',
+      img: '.././assets/images/Services/Voice Over.png',
+    },
+    {
+      desc: 'Engage your audience',
+      title: 'Video Explainer',
+      img: '.././assets/images/Services/Video Explainer.png',
+    },
+  ]
+  return services
 }
