@@ -63,7 +63,6 @@ header {
   border-bottom: 1px solid #e4e5e7;
   grid-column: 1 / -1;
   height: 80px;
-  display: grid;
   align-items: center;
   margin: auto;
   width: 100%;
@@ -71,6 +70,7 @@ header {
   z-index: 99;
 
   nav {
+    grid-column: 2/ 3;
     align-items: center;
     display: flex;
     justify-content: space-between;
