@@ -1,23 +1,18 @@
 <template>
-  <header
-    :class="[isHome ? 'headerHome' : '', isWhite ? 'homeScroll' : '']"
-    ref="header">
+  <header class="main-layout" :class="[isHome ? 'headerHome' : '', isWhite ? 'homeScroll' : '']" ref="header">
     <div></div>
     <nav>
-      <RouterLink to="/"
-        ><h1 class="logo">Nicerr<span>.</span></h1></RouterLink
-      >
-      <div v-if="!isHome" class="search-bar">
-        <input
-          class="search-input"
-          type="text"
-          placeholder="What are you looking for today?"
-          v-model="filterBy.title" />
-        <span
-          @click="emitFiltered"
-          class="icon-search"
-          v-html="getSvg('search')"></span>
+      <div class="logo-search">
+        <RouterLink to="/">
+          <h1 class="logo">Nicerr</h1>
+        </RouterLink>
+        <div v-if="!isHome" class="search-bar">
+          <input class="search-input" type="text" placeholder="What service are you looking for today?"
+            v-model="filterBy.title" />
+          <span @click="emitFiltered" class="icon-search" v-html="getSvg('search')"></span>
+        </div>
       </div>
+
       <div class="goTo">
         <RouterLink to="/gig">Explore</RouterLink>
         <a @click="goToSellerSignup">Become a Seller</a>

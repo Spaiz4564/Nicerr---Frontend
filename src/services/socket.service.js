@@ -93,7 +93,7 @@ function createDummySocketService() {
         listener(data)
       })
     },
-    // Functions for easy testing of pushed data
+    // Functions for easy hero-testing of pushed data
     testChatMsg() {
       this.emit(SOCKET_EVENT_ADD_MSG, {
         from: 'Someone',

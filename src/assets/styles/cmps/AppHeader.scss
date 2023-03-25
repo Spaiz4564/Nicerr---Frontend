@@ -2,17 +2,17 @@
 
 .goTo {
   a {
-    color: black;
+    color: $clr2;
     transition: all 0.3s;
     &:last-child {
       font-size: 14px;
-      color: $clr-hover;
+      color: $clr-main;
       font-weight: 700;
       border-radius: 4px;
-      padding: 5px 15px;
-      border: 1px solid $clr-hover;
+      padding: 5.5px 15.6px;
+      border: 1px solid $clr-main;
       &:hover {
-        background-color: $clr-hover;
+        background-color: $clr-main;
         color: white;
         border: 1px solid transparent;
       }
@@ -30,79 +30,75 @@
 }
 
 .logo {
+  &:after{
+    content: ".";
+    font-size: 2.7rem;
+    color: $clr-main;
+  }
   cursor: pointer;
   span {
-    color: $clr-hover;
+    color: $clr-main;
   }
-  color: black;
+  color: $clr4;
   font-size: 2rem;
   font-family: 'Macan-Bold';
-  display: inline;
   text-decoration: none;
-  font-stretch: 50%;
+  letter-spacing: -2px;
   font-weight: 600;
 }
 
-.container-home {
-  grid-column: 1 / -1;
-}
 
-.home-search-container {
-  margin: 24px 0px;
-  flex-direction: column;
-  .home-search {
-    border-radius: 4px;
-    justify-content: space-between;
+
+.search-bar {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  border-radius: 4px;
+  width: 61%;
+  height: 41.5px;
+  border: 0;
+  box-shadow: 0 0 0 1px #b4b4b4;
+  padding-inline-start: 10px;
+  .search-input {
+    &::placeholder{
+      color: $clr01;
+      font-family: 'Macan-Regular';
+      font-weight:500;
+      font-size: 16px;
+    }
     width: 100%;
-    background-color: white;
-    display: flex;
-
-    button {
-      color: white;
-      padding: 5px 25px;
-      margin: 0;
-      background-color: #1dbf73;
-      border: 1px solid #1dbf73;
-      border-radius: 0 4px 4px 0;
-      font-weight: 600;
-      font-size: 1rem;
-    }
-  }
-
-  .search {
-      svg {
-        fill: rgb(98, 100, 106);
-        display: flex;
-        align-items: center;
-        justify-content: center;
-        background-color: #fff;
-        border-radius: 4px 0 0 4px;
-        width: 24px;
-        padding-top: 3px;
-      }
-    
-    .icon {
-      padding: 0px 13px;
-    }
-    display: flex;
-    width: 100%;
-  }
-
-
-
-  input {
-    &::placeholder {
-      color: #9f9a9d;
-    }
-
-    font-family: 'Macan-Regular';
-    font-size: 16px;
+    outline: none;
     border: 0;
-    width: 100%;
-    outline: 0;
-    height: 48px;
+    padding-inline-start: 5px;
+    font-size: 0.875rem;
+  }
+  .icon-search {
+    justify-content: center;
+    align-items: center;
+    display: flex;
+    border-top-right-radius: 3px;
+    border-bottom-right-radius: 3px;
+    background-color: #222325;
+    font-style: normal;
+    height: fit-content;
+    height: inherit;
+    width: 8.5%;
+    svg {
+      fill: white;
+      height: 16px;
+      width: 16px;
+    }
   }
 }
+
+.logo-search{
+  display: flex;
+  width: 100%;
+  gap: 26px;
+  
+}
+
+
 
 .headerHome{
   border: 0;
@@ -128,14 +124,14 @@
   .goTo a{
     color: $clr3!important;
     &:last-child {
-      color: $clr-hover !important;
+      color: $clr-main !important;
       font-weight: 700;
       border-radius: 4px;
       padding: 5px 15px;
-      border: 1px solid $clr-hover;
+      border: 1px solid $clr-main;
       &:hover {
-        background-color: $clr-hover;
-        color: white;
+        background-color: $clr-main;
+        color: white !important;
         border: 1px solid transparent;
       }
     }
@@ -144,41 +140,3 @@
  
 }
 
-
-
-.header-suggestions {
-  display: flex;
-  align-items: center;
-  gap: 12px;
-  span {
-    color: white;
-    font-size: 14px;
-  }
-  ul {
-    li {
-      cursor: pointer;
-      font-size: 13px;
-      border-radius: 20px;
-      border: 1px solid #fff;
-      border-radius: 40px;
-      color: #fff;
-      font-weight: 600;
-      line-height: 24px;
-      padding: 1px 14px 0;
-      -webkit-transition: all 0.2s ease-in-out;
-      -o-transition: all 0.2s ease-in-out;
-      transition: all 0.2s ease-in-out;
-      z-index: 4;
-      &:hover {
-        background-color: #fff;
-        color: #404145;
-        text-decoration: none;
-      }
-    }
-    margin: 0;
-    display: flex;
-    padding: 0;
-    gap: 15px;
-    list-style-type: none;
-  }
-}

@@ -1,6 +1,11 @@
 .trustedBy-section {
+  grid-column: 1 / -1;
   margin-bottom: 96px;
   img {
+    &:last-child {
+padding-right: 20px;
+    
+    }
     padding-right: 60px;
     height: 60px;
     object-fit: contain;
@@ -8,11 +13,10 @@
   background-color: #fafafa;
   color: $clr2;
   height: 96px;
-  display: grid;
-  grid-column: 1 / -1;
 }
 
 .trusted-by {
+  grid-column: 2 / 3;
   align-items: center;
   gap: 43px;
   .imgs {
@@ -23,8 +27,8 @@
     justify-content: center;
   }
   span {
-    padding-right: 50px;
-    color: #c2c2c2;
+    padding-right: 41px;
+    color: #b8b6b6;
     font-size: 16px;
     font-family: 'Macan-semi-bold';
   }
