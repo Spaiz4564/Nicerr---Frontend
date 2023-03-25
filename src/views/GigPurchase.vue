@@ -10,22 +10,22 @@
                             <div className="icon" v-html="getSvg('visa')"></div>
                         </div>
                     </section>
-                    <section class="payment-option flex">
+                    <section class="payment-option">
                         <div class="card-info flex">
                             <div class="card-container">
                                 <p>Card Number</p>
                                 <input class="card-num" type="text" value="4580 5926 7852 9996">
 
                             </div>
-                        </div>
-                        <div class="short-input flex">
-                            <div>
-                                <p>Expiration Date</p>
-                                <input class="short" type="text" value="11 / 22">
-                            </div>
-                            <div>
-                                <p>Security Code</p>
-                                <input class="short" type="text" value="776">
+                            <div class="short-input flex">
+                                <div>
+                                    <p>Expiration Date</p>
+                                    <input class="short" type="text" value="11 / 22">
+                                </div>
+                                <div>
+                                    <p>Security Code</p>
+                                    <input class="short" type="text" value="776">
+                                </div>
                             </div>
                         </div>
                         <div class="name-inputs flex">
@@ -43,9 +43,55 @@
                 </section>
                 <section class="package-container">
                     <section class="gig-package-payment">
+                        <section class="header flex space-between">
+                            <div class="img-container">
+                                <img src="" alt="">
+                            </div>
+                            <p class="title">{{ gig.title }}</p>
+                        </section>
+                        <h3 class="price">US{{ gig.price }}$</h3>
+                        <p>1 custom logo+high resolution file+3d mockup+logo transparency+ 300dpi</p>
+                        <ul class="features clean-list">
+                            <li class="regular">
+                                <div className="svg-container icon fill" v-html="getSvg('checkSign')"></div>
+                                1 concept included
+                            </li>
+                            <li class="regular">
+                                <div className="svg-container icon fill" v-html="getSvg('checkSign')"></div>
+                                Logo transparency
+                            </li>
+                            <li class="regular">
+                                <div className="svg-container icon fill" v-html="getSvg('checkSign')"></div>
+                                Include 3D mockup
+                            </li>
+                            <li class="regular">
+                                <div className="svg-container icon fill" v-html="getSvg('checkSign')"></div>
+                                1 concept included
+                            </li>
+                            <li class="regular">
+                                <div className="svg-container icon fill" v-html="getSvg('checkSign')"></div>
+                                Include source file
+                            </li>
 
+                        </ul>
+                        <div class="pricing">
+                            <p>Service Fee</p>
+                            <p>US$17.55</p>
+                        </div>
+                        <div class="pricing">
+                            <p>VAT</p>
+                            <p>US$17</p>
+                        </div>
+                        <div class="pricing total">
+                            <p>Total</p>
+                            <p>US${{ handlePrice }}</p>
+                        </div>
+                        <div class="pricing">
+                            <p class="bold">Delivery Time</p>
+                            <p>7 Days</p>
+                        </div>
+                        <button class="continue-btn">Confirm And Pay</button>
                     </section>
-
                 </section>
             </section>
         </section>
@@ -71,6 +117,9 @@ export default {
         },
     },
     computed: {
+        handlePrice() {
+            return this.gig.price + 34.55
+        }
 
     },
     created() {

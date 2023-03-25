@@ -1,13 +1,11 @@
 .app-container {
+    min-height: 100vh;
     grid-column: 1 / -1;
 
     .gig-payment {
         margin: em(32px);
 
-        .payment-container {
-            flex-wrap: wrap;
-
-        }
+        .payment-container {}
 
         .payment-details-container {
             flex: 1.5;
@@ -43,7 +41,6 @@
 
         .payment-option {
             .card-info {
-                flex-wrap: wrap;
 
                 .card-num {
                     display: flex;
@@ -88,11 +85,116 @@
         .package-container {
             min-width: 350px;
             flex: 1;
+            border-radius: em(3px);
+            padding: 2em 1.5em;
+            border: 1px solid $clr9;
+            margin-block-end: 16px;
 
             .gig-package-payment {
                 min-width: 340px;
+
+                button {
+                    border: 1px solid transparent;
+                    border-radius: 0.25em;
+                    font-size: 1rem;
+                    font-weight: 600;
+                    font-family: inherit;
+                    line-height: 100%;
+                    padding: 0.75em 1.5em;
+                    position: relative;
+                    text-align: center;
+                    width: 100%;
+                    transition: 70ms cubic-bezier(.75, 0, .25, 1);
+                    cursor: pointer;
+                }
             }
         }
-    }
 
+        .header {
+            margin-block-end: 18px;
+            min-height: 48px;
+
+            .title {
+                font-size: 1rem;
+                line-height: 1.5em;
+                color: $clr4;
+                flex: 1;
+            }
+        }
+
+        .price {
+            font-size: 1.25rem;
+            line-height: 1.5em;
+            font-weight: 400;
+            color: $clr4;
+        }
+
+        p {
+            font-size: .875rem;
+            min-height: 63px;
+            margin-block-end: 10px;
+            line-height: 140%;
+            font-weight: 500;
+            color: $clr3;
+        }
+
+        .features {
+            margin-block-end: 20px;
+
+            li {
+                display: flex;
+                align-items: center;
+                font-size: .875rem;
+                color: $clr01;
+                line-height: 1.7142857143em;
+            }
+
+        }
+
+        .regular {
+            font-family: 'Macan-Regular';
+
+            .svg-container {
+                width: 16px;
+                height: 16px;
+                margin-inline-end: 10px;
+            }
+
+        }
+
+        .pricing {
+            display: flex;
+            justify-content: space-between;
+            color: #62646a;
+
+            p {
+                font-size: 1rem;
+                min-height: 45px;
+                margin-block-end: 10px;
+                line-height: 120%;
+                font-weight: 500;
+            }
+
+            &.total {
+                border-top: 1px solid $clr9;
+                padding-top: em(15px);
+                color: $clr4;
+
+                p {
+                    font-weight: 700;
+                }
+            }
+
+        }
+
+        .continue-btn {
+            background-color: $clr1;
+            color: $clr6;
+
+            &:hover {
+                background-color: $clr-hover;
+            }
+        }
+
+    }
 }
