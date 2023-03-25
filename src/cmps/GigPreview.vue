@@ -25,7 +25,9 @@
         </section>
       </section>
       <div class="gig-preview-info">
-        <p class="gig-preview-title">{{ gig.title }}</p>
+        <p class="gig-preview-title" @click="goToDetails(gig._id)">
+          {{ gig.title }}
+        </p>
         <div class="gig-rating">
           <span class="icon-star gold" v-html="getSvg('starGold')"></span>
           <p class="gig-preview-rate">
@@ -35,6 +37,7 @@
       </div>
     </div>
     <div class="gig-preview-price">
+      <span class="icon-heart" v-html="getSvg('heartFill')"></span>
       <p class="txt-capitalized">starting at</p>
       <span class="gig-span-price">US${{ gig.price }}</span>
     </div>
