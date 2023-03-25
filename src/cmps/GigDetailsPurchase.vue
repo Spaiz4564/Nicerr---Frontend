@@ -49,8 +49,8 @@
                         <p>Include source file</p>
                     </li>
                 </ul>
-                <div class="footer">
-                    <button @click="HandlePurchase(gig._id)" class="btn-purchase">Continue</button>
+                <div class="footer" @click="HandlePurchase(gig._id)">
+                    <button class="btn-purchase">Continue</button>
                 </div>
             </article>
         </div>
