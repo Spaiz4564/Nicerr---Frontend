@@ -90,7 +90,7 @@
                             <p class="bold">Delivery Time</p>
                             <p>7 Days</p>
                         </div>
-                        <button class="continue-btn">Confirm And Pay</button>
+                        <button @click="handlePurchase" class="continue-btn">Confirm And Pay</button>
                     </section>
                 </section>
             </section>
@@ -102,6 +102,7 @@
 
 import { svgService } from '../services/svg.service'
 import { gigService } from '../services/gig.service.local'
+import { pushScopeId } from 'vue'
 
 export default {
     props: [],
@@ -115,6 +116,10 @@ export default {
         getSvg(iconName) {
             return svgService.getSvg(iconName)
         },
+        handlePurchase() {
+            this.$router.push(`/`)
+
+        }
     },
     computed: {
         handlePrice() {

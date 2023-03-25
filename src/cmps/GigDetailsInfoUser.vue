@@ -8,9 +8,21 @@
         </div>
         <div class="img">
             <div class="img-container">
-                <vueper-slides fade :touchable="false">
-                    <vueper-slide v-for="(img, i) in gig.images" :key="i" :image="imgUrl(img)" />
+                <vueper-slides ref="vueperslides1"
+                    @slide="$refs.vueperslides2 && $refs.vueperslides2.goToSlide($event.currentSlide.index, { emit: false })"
+                    :slide-ratio="1 / 4" :bullets="false">
+                    <vueper-slide v-for="(img, i) in gig.images" :key="i" :image="imgUrl(img)"
+                        :style="'background-color: ' + ['#ff5252', '#42b983'][i % 2]" />
                 </vueper-slides>
+
+                <vueper-slides ref="vueperslides2" :slide-ratio="1 / 8" :dragging-distance="50"
+                    @slide="$refs.vueperslides1 && $refs.vueperslides1.goToSlide($event.currentSlide.index, { emit: false })"
+                    :visible-slides="3" fixed-height="100px" :arrows="false" :bullets="false">
+                    <vueper-slide v-for="(img, i) in gig.images" :key="i" :image="imgUrl(img)"
+                        @click.native="$refs.vueperslides2 && $refs.vueperslides2.goToSlide(i)">
+                    </vueper-slide>
+                </vueper-slides>
+
             </div>
         </div>
         <section class="gig-review">
@@ -140,8 +152,8 @@
 <script>
 
 import { svgService } from '../services/svg.service';
-import { VueperSlides, VueperSlide } from 'vueperslides'
-import 'vueperslides/dist/vueperslides.css'
+import { VueperSlides, VueperSlide } from 'vueperslides';
+import 'vueperslides/dist/vueperslides.css';
 
 export default {
     props: ['gig'],
@@ -175,3 +187,7 @@ export default {
 </script>
 
 <style></style>
+
+<!-- <vueper-slides fade :touchable="false">
+    <vueper-slide v-for="(img, i) in gig.images" :key="i" :image="imgUrl(img)" />
+</vueper-slides> -->
