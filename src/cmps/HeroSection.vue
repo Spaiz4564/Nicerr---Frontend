@@ -21,11 +21,14 @@
         <h1>
           Find the perfect <span>freelance</span> services for your business
         </h1>
-        <form class="home-search-container" action="">
+        <form class="home-search-container" @submit.prevent="filterByTitle">
           <div class="home-search">
             <div class="search">
               <div class="icon" v-html="getSvg('search')"></div>
-              <input type="text" placeholder='Try "building mobile app"' />
+              <input
+                v-model="filterBy.title"
+                type="text"
+                placeholder='Try "building mobile app"' />
             </div>
             <button>Search</button>
           </div>
@@ -52,6 +55,9 @@ export default {
     return {
       backgrounds: gigService.getHeroBackgrounds(),
       heroInterval: null,
+      filterBy: {
+        title: '',
+      },
     }
   },
 
@@ -91,6 +97,11 @@ export default {
     filterCategory(categoryId) {
       this.$router.push(`/gig/${categoryId}`)
       this.$store.commit({ type: 'setFilter', filterBy: { categoryId } })
+    },
+    filterByTitle() {
+      console.log('filterByTitle')
+      this.$router.push(`/gig/${this.filterBy.title}`)
+      this.$store.commit({ type: 'setFilter', filterBy: this.filterBy })
     },
   },
 

@@ -4,32 +4,35 @@
       <div class="seller-profile-header">
         <div class="seller-profile-info">
           <h2>{{ owner.username }}</h2>
-          <p>{{ owner.location }}</p>
-          <p>{{ owner.description }}</p>
         </div>
       </div>
-      <h2>My gigs</h2>
-      <div
-        class="seller-profile-gig"
-        v-for="gig in owner.gigs"
-        :key="gig._id"></div>
     </div>
   </section>
 </template>
 
 <script>
+import { userService } from '../services/user.service'
+
 export default {
   name: 'SellerProfile',
   data() {
     return {
-      owner: null,
+      gigToAdd: {
+        title: '',
+        price: '',
+        category: '',
+      },
     }
   },
+  computed: {
+    owner() {
+      return this.$store.state.owner
+    },
+  },
   created() {
-    const id = this.$route.params.id
-    this.owner = this.$store.getters.getOwnerById(id)
+    const { owner } = this.$store.state
+    if (owner) this.owner = owner
     console.log('owner', this.owner)
-    console.log(this.owner.username)
   },
   methods: {},
 }
