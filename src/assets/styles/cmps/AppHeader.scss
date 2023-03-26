@@ -72,6 +72,9 @@
 }
 
 .search-bar {
+  span{
+    cursor: pointer;
+  }
   display: flex;
   justify-content: space-between;
   align-items: center;
@@ -82,6 +85,7 @@
   box-shadow: 0 0 0 0.7px #b4b4b4;
   padding-inline-start: 10px;
   .search-input {
+   
     &::placeholder{
       color: $clr01;
       font-family: 'Macan-Regular';

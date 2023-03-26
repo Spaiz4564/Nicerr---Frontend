@@ -19,6 +19,7 @@ export const gigService = {
   loadSeller,
   addNewOwner,
   loadOwners,
+  getTrustedBy
 }
 window.cs = gigService
 
@@ -334,3 +335,15 @@ function getPopularServices() {
   ]
   return services
 }
+
+function getTrustedBy() {
+  const trustedBy = [
+    '.././assets/images/trusted by/Meta.png',
+    '.././assets/images/trusted by/Google.png',
+    '.././assets/images/trusted by/Netflix.png',
+    '.././assets/images/trusted by/PG.png',
+    '.././assets/images/trusted by/Paypal.png',
+  ]
+  return trustedBy
+}
+

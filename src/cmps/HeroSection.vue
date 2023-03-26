@@ -1,12 +1,20 @@
 <template>
   <div class="hero-wrapper main-layout">
-    <div ref="heroBackground" class="hero-background" v-for="background in backgrounds">
+    <div
+      ref="heroBackground"
+      class="hero-background"
+      v-for="background in backgrounds"
+    >
       <img :src="imgUrl(background.img)" alt="" />
       <div class="desc">
-        <span v-if="background.isFiveStars" className="icon" v-html="getSvg('fiveStars')"></span>
+        <span
+          v-if="background.isFiveStars"
+          className="icon"
+          v-html="getSvg('fiveStars')"
+        ></span>
         <div class="artist-info">
-          <p>{{ background.name}}, </p>
-        <b>{{ background.desc }}</b>
+          <p>{{ background.name }},</p>
+          <b>{{ background.desc }}</b>
         </div>
       </div>
     </div>
@@ -45,7 +53,7 @@ export default {
   data() {
     return {
       backgrounds: gigService.getHeroBackgrounds(),
-      heroInterval: null
+      heroInterval: null,
     }
   },
 
@@ -61,21 +69,20 @@ export default {
     handleHeroGallery() {
       var counter = 1
       this.heroInterval = setInterval(() => {
-      const categories = this.$refs.heroBackground
-      categories[0].style.opacity = '0'
-      if (counter === categories.length) {
-        counter = 0
-        categories[5].classList.remove('showOpacity')
-      }
-      categories[counter].classList.add('showOpacity')
-      if (counter !== 0) {
-        categories[counter - 1].classList.remove('showOpacity')
-      } else {
-        categories[0].style.opacity = '1'
-      }
-      counter++
-    }, 7000)
-
+        const categories = this.$refs.heroBackground
+        categories[0].style.opacity = '0'
+        if (counter === categories.length) {
+          counter = 0
+          categories[5].classList.remove('showOpacity')
+        }
+        categories[counter].classList.add('showOpacity')
+        if (counter !== 0) {
+          categories[counter - 1].classList.remove('showOpacity')
+        } else {
+          categories[0].style.opacity = '1'
+        }
+        counter++
+      }, 7000)
     },
     getSvg(iconName) {
       return svgService.getSvg(iconName)
@@ -86,7 +93,7 @@ export default {
   },
 
   unmounted() {
-  clearInterval(this.heroInterval)
+    clearInterval(this.heroInterval)
   },
 
   created() {
