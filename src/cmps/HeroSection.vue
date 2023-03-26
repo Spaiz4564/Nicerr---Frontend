@@ -3,24 +3,19 @@
     <div
       ref="heroBackground"
       class="hero-background"
-      v-for="background in backgrounds"
-    >
+      v-for="background in backgrounds">
       <img :src="imgUrl(background.img)" alt="" />
-      <!-- <Teleport to=".hero-wrapper"> -->
 
-      
       <div class="desc">
         <span
           v-if="background.isFiveStars"
           className="icon"
-          v-html="getSvg('fiveStars')"
-        ></span>
+          v-html="getSvg('fiveStars')"></span>
         <div class="artist-info">
           <p>{{ background.name }},</p>
           <b>{{ background.desc }}</b>
         </div>
       </div>
-    <!-- </Teleport>  -->
     </div>
     <h5 class="hero-container">
       <div class="hero">
@@ -39,10 +34,10 @@
         <div class="header-suggestions">
           <span>Popular:</span>
           <ul>
-            <li>Website Design</li>
-            <li>WordPress</li>
-            <li>Logo Design</li>
-            <li>AI Services</li>
+            <li @click="filterCategory('website')">Website Design</li>
+            <li @click="filterCategory('wordpress')">WordPress</li>
+            <li @click="filterCategory('logo')">Logo Design</li>
+            <li @click="filterCategory('ai')">AI Services</li>
           </ul>
         </div>
       </div>
@@ -93,6 +88,10 @@ export default {
     },
     imgUrl(img) {
       return new URL(img, import.meta.url).href
+    },
+    filterCategory(categoryId) {
+      this.$router.push(`/gig/${categoryId}`)
+      this.$store.commit({ type: 'setFilter', filterBy: { categoryId } })
     },
   },
 

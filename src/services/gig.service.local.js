@@ -178,7 +178,7 @@ function _createGigs() {
         '../assets/images/gigs/gig4.jpg',
         '../assets/images/gigs/gig5.jpg',
       ],
-      'graphic',
+      'wordpress',
       3
     ),
     _createGig(
@@ -211,7 +211,7 @@ function _createGigs() {
         '../assets/images/gigs/gig1.png',
         '../assets/images/gigs/gig2.png',
       ],
-      'business',
+      'website',
       1
     ),
     _createGig(
@@ -222,7 +222,7 @@ function _createGigs() {
         '../assets/images/gigs/gig4.jpg',
         '../assets/images/gigs/gig7.jpg',
       ],
-      'data',
+      'ai',
       2
     ),
     _createGig(
@@ -233,7 +233,7 @@ function _createGigs() {
         '../assets/images/gigs/gig4.jpg',
         '../assets/images/gigs/gig5.jpg',
       ],
-      'business',
+      'logo',
       1
     ),
     _createGig(

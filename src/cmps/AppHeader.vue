@@ -28,7 +28,6 @@
     </div>
     </div>
   </section>
-  
 </template>
 <script>
 import { svgService } from '../services/svg.service'
