@@ -51,10 +51,11 @@ opacity: 1;
     h1 {
       font-family: 'Macan-Bold';
       letter-spacing: 0.50px;
-      line-height: 58px;
+      line-height: 57px;
       color: white;
       font-size: 47px;
       span {
+        padding-left: 3px;
         font-weight: 500;
         font-family: 'Domain-Medium';
       }
@@ -117,7 +118,7 @@ opacity: 1;
       border: 1px solid #1dbf73;
       border-radius: 0 4px 4px 0;
       font-weight: 600;
-      font-size: 1rem;
+      font-size: 1.02rem;
     }
   }
 

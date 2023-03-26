@@ -2,6 +2,7 @@
 
 .goTo {
   a {
+    font-family: 'Macan-semi-Bold';
     color: $clr2;
     transition: all 0.3s;
     &:last-child {
@@ -71,6 +72,9 @@
 }
 
 .search-bar {
+  span{
+    cursor: pointer;
+  }
   display: flex;
   justify-content: space-between;
   align-items: center;
@@ -78,9 +82,10 @@
   width: 61%;
   height: 41.5px;
   border: 0;
-  box-shadow: 0 0 0 1px #b4b4b4;
+  box-shadow: 0 0 0 0.7px #b4b4b4;
   padding-inline-start: 10px;
   .search-input {
+   
     &::placeholder{
       color: $clr01;
       font-family: 'Macan-Regular';
@@ -114,6 +119,7 @@
 
 .logo-search{
   display: flex;
+  align-items: center;
   width: 100%;
   gap: 26px;
   

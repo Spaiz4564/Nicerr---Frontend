@@ -50,7 +50,6 @@
       <img src="../assets/images/About/Video Teaser.png" alt="" />
     </div>
     </div>
-    
   </div>
 </template>
 

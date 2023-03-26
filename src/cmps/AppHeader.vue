@@ -6,11 +6,11 @@
         <RouterLink to="/">
           <h1 class="logo">Nicerr</h1>
         </RouterLink>
-        <div v-if="!isHome" class="search-bar">
+        <form @submit.prevent="emitFiltered" v-if="!isHome" class="search-bar">
           <input class="search-input" type="text" placeholder="What service are you looking for today?"
             v-model="filterBy.title" />
-          <span @click="emitFiltered" class="icon-search" v-html="getSvg('search')"></span>
-        </div>
+          <span class="icon-search" v-html="getSvg('search')"></span>
+        </form>
       </div>
       <div class="goTo">
         <RouterLink to="/gig">Explore</RouterLink>

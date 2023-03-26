@@ -1,10 +1,10 @@
 <template>
     <div class="gig-user-info flex column">
-        <p class="title">I will create modern unique and creative logo design</p>
-        <div class="info-img">
+        <p class="title">{{ gig.title }}</p>
+        <div class="info-img flex align-center ">
             <img class="logo" :src="gig.owner.imgUrl" alt="" />
             <p class="name">{{ gig.owner.fullname }}</p>
-            <p>level 3 Seller (569)</p>
+            <p>Level 3 Seller (569)</p>
         </div>
         <div class="img">
             <div class="img-container">
@@ -142,6 +142,14 @@
                             <span class="value">about 12 hours</span>
                         </li>
                     </ul>
+                    <div class="seller-desc">
+                        <p>
+                            I am a professional graphics designer from Canada. Designing is not only my job, it's my
+                            Passion. All I need from you is a rough sketch of your idea. Then you can just relax and see the
+                            magic happening. Not only you'll get stunning and professional designs, but also you'll have top
+                            class custome
+                        </p>
+                    </div>
 
                 </section>
             </section>
