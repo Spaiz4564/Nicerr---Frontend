@@ -3,23 +3,26 @@
     <div class="trusted-by">
       <div class="imgs">
         <span>Trusted by:</span>
-        <img src="../assets/images/Trusted by/Meta.png" alt="" />
-        <img src="../assets/images/Trusted by/Google.png" alt="" />
-        <img src="../assets/images/Trusted by/Netflix.png" alt="" />
-        <img src="../assets/images/Trusted by/PG.png" alt="" />
-        <img src="../assets/images/Trusted by/Paypal.png" alt="" />
+        <img v-for="img in trustedBy" :src="imgUrl(img)"  alt="">
       </div>
     </div>
   </section>
 </template>
 
 <script lang="ts">
+import { gigService } from '../services/gig.service.local';
 export default {
   name: 'Trusted By',
   data() {
-    return {}
+    return {
+      trustedBy: gigService.getTrustedBy() 
+    }
   },
-  methods: {},
+  methods: {
+    imgUrl(img) {
+      return new URL(img, import.meta.url).href
+    },
+  },
   components: {},
 }
 </script>
