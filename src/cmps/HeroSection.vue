@@ -45,6 +45,7 @@ export default {
   data() {
     return {
       backgrounds: gigService.getHeroBackgrounds(),
+      heroInterval: null
     }
   },
 
@@ -59,7 +60,7 @@ export default {
   methods: {
     handleHeroGallery() {
       var counter = 1
-      setInterval(() => {
+      this.heroInterval = setInterval(() => {
       const categories = this.$refs.heroBackground
       categories[0].style.opacity = '0'
       if (counter === categories.length) {
@@ -82,6 +83,10 @@ export default {
     imgUrl(img) {
       return new URL(img, import.meta.url).href
     },
+  },
+
+  unmounted() {
+  clearInterval(this.heroInterval)
   },
 
   created() {
