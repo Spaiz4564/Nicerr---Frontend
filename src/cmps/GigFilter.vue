@@ -34,6 +34,20 @@
         </div>
       </form>
     </div>
+    <div class="days-deliver">
+      <el-select
+        v-model="filterBy.daysToDeliver"
+        class="m-2"
+        placeholder="Select"
+        size="large"
+        @change="filterBudget">
+        <el-option
+          v-for="item in options"
+          :key="item.value"
+          :label="item.label"
+          :value="item.value" />
+      </el-select>
+    </div>
   </section>
 </template>
 <script>
@@ -46,15 +60,32 @@ export default {
       filterBy: {
         minPrice: null,
         maxPrice: null,
+        daysToDeliver: null,
       },
       isBudgetOpen: false,
       isBoxShadow: false,
+      options: [
+        {
+          value: '1',
+          label: 'Express 24H',
+        },
+        {
+          value: '3',
+          label: 'Up to 3 days',
+        },
+        {
+          value: '7',
+          label: 'Up to 7 days',
+        },
+        {
+          value: 'any',
+          label: 'Anytime',
+        },
+      ],
     }
   },
   methods: {
     filterBudget() {
-      console.log('filtering by budget')
-      console.log(this.filterBy)
       this.$emit('filtered', { ...this.filterBy })
     },
     toggleBudget() {
