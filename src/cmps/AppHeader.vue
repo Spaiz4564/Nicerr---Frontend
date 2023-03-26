@@ -3,7 +3,8 @@
     <header
       class="main-layout"
       :class="[isHome ? 'headerHome' : '', isWhite ? 'homeScroll' : '']"
-      ref="header">
+      ref="header"
+    >
       <nav>
         <div class="logo-search">
           <RouterLink to="/">
@@ -12,12 +13,14 @@
           <form
             @submit.prevent="emitFiltered"
             v-if="!isHome"
-            class="search-bar">
+            class="search-bar"
+          >
             <input
               class="search-input"
               type="text"
               placeholder="What service are you looking for today?"
-              v-model="filterBy.title" />
+              v-model="filterBy.title"
+            />
             <span class="icon-search" v-html="getSvg('search')"></span>
           </form>
         </div>
@@ -30,6 +33,20 @@
         </div>
       </nav>
     </header>
+    <div
+      class="nav-suggestions main-layout"
+      :class="[
+        isHome ? 'headerHome' : '',
+        isSuggestions ? 'display' : '',
+        isWhite ? 'homeScroll' : '',
+      ]"
+    >
+      <div class="suggestions main-layout">
+        <ul>
+          <li v-for="category in categories">{{ category.title }}</li>
+        </ul>
+      </div>
+    </div>
   </section>
 </template>
 <script>
@@ -46,6 +63,7 @@ export default {
       },
       isHome: true,
       isWhite: false,
+      isSuggestions: false,
       categories: gigService.getMarketCategories(),
     }
   },
@@ -76,6 +94,7 @@ export default {
     handleScroll() {
       const scrollY = window.scrollY
       this.isWhite = scrollY > 20 ? true : false
+      this.isSuggestions = scrollY > 170 ? true : false
     },
   },
   watch: {
