@@ -1,34 +1,35 @@
 <template>
   <section class="main-header main-layout">
-    <header class="main-layout" :class="[isHome ? 'headerHome' : '', isWhite ? 'homeScroll' : '']" ref="header">
-    <nav>
-      <div class="logo-search">
-        <RouterLink to="/">
-          <h1 class="logo">Nicerr</h1>
-        </RouterLink>
-        <form @submit.prevent="emitFiltered" v-if="!isHome" class="search-bar">
-          <input class="search-input" type="text" placeholder="What service are you looking for today?"
-            v-model="filterBy.title" />
-          <span class="icon-search" v-html="getSvg('search')"></span>
-        </form>
-      </div>
-      <div class="goTo">
-        <RouterLink to="/gig">Explore</RouterLink>
-        <a @click="goToSellerSignup">Become a Seller</a>
-        <a>Sign In</a>
-        <a>Join</a>
-      </div>
-    </nav>
-  </header>
-  <!-- <div class="nav-suggestions main-layout">
-    <div class="suggestions">
-      <ul>
-        <li v-for="category in categories">{{ category.title }}</li>
-      </ul>
-    </div>
-    </div> -->
+    <header
+      class="main-layout"
+      :class="[isHome ? 'headerHome' : '', isWhite ? 'homeScroll' : '']"
+      ref="header">
+      <nav>
+        <div class="logo-search">
+          <RouterLink to="/">
+            <h1 class="logo">Nicerr</h1>
+          </RouterLink>
+          <form
+            @submit.prevent="emitFiltered"
+            v-if="!isHome"
+            class="search-bar">
+            <input
+              class="search-input"
+              type="text"
+              placeholder="What service are you looking for today?"
+              v-model="filterBy.title" />
+            <span class="icon-search" v-html="getSvg('search')"></span>
+          </form>
+        </div>
+        <div class="goTo">
+          <RouterLink to="/gig">Explore</RouterLink>
+          <a @click="goToSellerSignup">Become a Seller</a>
+          <a>Sign In</a>
+          <a>Join</a>
+        </div>
+      </nav>
+    </header>
   </section>
-  
 </template>
 <script>
 import { svgService } from '../services/svg.service'
@@ -43,7 +44,7 @@ export default {
       },
       isHome: true,
       isWhite: false,
-      categories: gigService.getMarketCategories()
+      categories: gigService.getMarketCategories(),
     }
   },
 
