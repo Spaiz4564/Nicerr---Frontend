@@ -61,8 +61,8 @@ export default {
       this.isBudgetOpen = !this.isBudgetOpen
     },
     clearBudget() {
-      this.filterBy.min = null
-      this.filterBy.max = null
+      this.filterBy.minPrice = null
+      this.filterBy.maxPrice = null
       this.filterBudget()
     },
     getSvg(iconName) {

@@ -63,9 +63,6 @@ export default {
       return this.$store.getters.loggedinUser
     },
     gigs() {
-      //we need to check the params of the route
-      //if the route is /gig/:categoryId we need to return all the gigs of that category
-      //if the route is /gig we need to return all the gigs
       if (this.$route.params.categoryId) {
         return this.$store.getters.gigs.filter(
           (gig) => gig.categoryId === this.$route.params.categoryId
@@ -141,6 +138,7 @@ export default {
         await this.$store.dispatch({
           type: 'loadGigs',
           filterBy: this.filterBy,
+          sortBy: this.sortBy,
         })
       } catch (err) {
         console.log(err)

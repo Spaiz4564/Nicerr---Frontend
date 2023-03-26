@@ -19,7 +19,7 @@ export const gigService = {
   loadSeller,
   addNewOwner,
   loadOwners,
-  getTrustedBy
+  getTrustedBy,
 }
 window.cs = gigService
 
@@ -54,6 +54,11 @@ async function query(
   if (sortBy === 'price') {
     gigs.sort((a, b) => {
       return a.price - b.price
+    })
+  }
+  if (sortBy === 'rate') {
+    gigs.sort((a, b) => {
+      return a.rate - b.rate
     })
   }
   return gigs
@@ -371,4 +376,3 @@ function getTrustedBy() {
   ]
   return trustedBy
 }
-
