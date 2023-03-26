@@ -1,7 +1,11 @@
 .popular-services-section {
+  .vueperslide__track{
+cursor: default;
+  }
   margin-bottom: 96px;
   .services {
     .vueperslide--visible {
+      cursor: pointer;
       transition: all 0.3s;
       &:hover {
         opacity: 0.85;

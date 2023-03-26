@@ -6,6 +6,9 @@
       v-for="background in backgrounds"
     >
       <img :src="imgUrl(background.img)" alt="" />
+      <!-- <Teleport to=".hero-wrapper"> -->
+
+      
       <div class="desc">
         <span
           v-if="background.isFiveStars"
@@ -17,6 +20,7 @@
           <b>{{ background.desc }}</b>
         </div>
       </div>
+    <!-- </Teleport>  -->
     </div>
     <h5 class="hero-container">
       <div class="hero">
@@ -70,7 +74,7 @@ export default {
       var counter = 1
       this.heroInterval = setInterval(() => {
         const categories = this.$refs.heroBackground
-        categories[0].style.opacity = '0'
+      categories[0].style.opacity = '0'
         if (counter === categories.length) {
           counter = 0
           categories[5].classList.remove('showOpacity')
@@ -95,6 +99,8 @@ export default {
   unmounted() {
     clearInterval(this.heroInterval)
   },
+
+
 
   created() {
     this.handleHeroGallery()

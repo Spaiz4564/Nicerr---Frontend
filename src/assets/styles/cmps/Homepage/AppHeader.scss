@@ -53,12 +53,13 @@
 }
 
 .nav-suggestions{
-  border-bottom: 1px solid #e4e5e7;
-  grid-column: 1 / -1;
+  border-bottom: 1px solid #e4e5e7 !important;
+  border-top: 1px solid #e4e5e7 !important;
   .suggestions{
     grid-column: 2 / 3;
   }
   ul{
+    grid-column: 2 / 3;
     margin: 6px 0px;
     padding: 0;
     li{
@@ -69,7 +70,9 @@
     display: flex;
     gap: 6px;
   }
+  
 }
+
 
 .search-bar {
   span{
@@ -128,6 +131,18 @@
 
 
 .headerHome{
+  &.nav-suggestions{
+    visibility: visible;
+    transition: all 0.3s;
+    opacity: 0;
+    z-index: -1;
+    background-color: pink;
+    background-color: white;
+    position: fixed;
+    width: 100%;
+    top: 80px;
+    z-index: 50;
+  }
   border: 0;
   position: fixed;
   background-color: transparent;

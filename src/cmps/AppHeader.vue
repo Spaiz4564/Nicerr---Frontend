@@ -20,19 +20,20 @@
       </div>
     </nav>
   </header>
-  <!-- <div class="nav-suggestions main-layout">
-    <div class="suggestions">
+  <div class="nav-suggestions main-layout" :class="[isHome ? 'headerHome' : '', isSuggestions ? 'display' : '']" >
+    <div class="suggestions main-layout">
       <ul>
         <li v-for="category in categories">{{ category.title }}</li>
       </ul>
     </div>
-    </div> -->
+    </div>
   </section>
   
 </template>
 <script>
 import { svgService } from '../services/svg.service'
 import { gigService } from '../services/gig.service.local'
+import { Transition } from 'vue'
 export default {
   data() {
     return {
@@ -43,6 +44,7 @@ export default {
       },
       isHome: true,
       isWhite: false,
+      isSuggestions: false,
       categories: gigService.getMarketCategories()
     }
   },
@@ -75,7 +77,14 @@ export default {
     handleScroll() {
       const scrollY = window.scrollY
       this.isWhite = scrollY > 20 ? true : false
+      this.isSuggestions =  scrollY > 170 ? true : false
     },
+  },
+  
+  computed:{
+Transition(){
+  return 'transition: all 0.3s'
+}
   },
 
   watch: {
