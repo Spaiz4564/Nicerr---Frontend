@@ -8,7 +8,6 @@
 </template>
 
 <script>
-
 import { gigService } from '../services/gig.service.local'
 import GigPurchase from '../cmps/GigDetailsPurchase.vue'
 import GigInfoUser from '../cmps/GigDetailsInfoUser.vue'
@@ -24,7 +23,7 @@ export default {
   computed: {},
   created() {
     const { id } = this.$route.params
-    gigService.getById(id).then(gig => {
+    gigService.getById(id).then((gig) => {
       this.gig = gig
     })
   },

@@ -65,8 +65,8 @@ export default {
     imgUrl(img) {
       return new URL(img, import.meta.url).href
     },
-    goToDetails(gigId) {
-      this.$router.push(`/gig/${gigId}`)
+    goToDetails(id) {
+      this.$router.push(`/details/${id}`)
     },
   },
   components: {

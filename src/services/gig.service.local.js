@@ -23,23 +23,28 @@ export const gigService = {
 window.cs = gigService
 
 async function query(
-  filterBy = { title: '', minPrice: 0, maxPrice: 2000 },
+  filterBy = { title: '', minPrice: 0, maxPrice: 2000, categoryId: '' },
   sortBy = { by: 'name', desc: 1 }
 ) {
   let gigs = await storageService.query(STORAGE_KEY)
   if (!gigs.length) gigs = _createGigs()
-
   if (filterBy.title) {
     const regex = new RegExp(filterBy.title, 'i')
     gigs = gigs.filter(
-      gig => regex.test(gig.title) || regex.test(gig.description)
+      (gig) => regex.test(gig.title) || regex.test(gig.description)
     )
   }
   if (filterBy.minPrice || filterBy.maxPrice) {
-    gigs = gigs.filter(gig => {
+    gigs = gigs.filter((gig) => {
       return gig.price >= filterBy.minPrice && gig.price <= filterBy.maxPrice
     })
   }
+  if (filterBy.categoryId) {
+    gigs = gigs.filter((gig) => {
+      return gig.categoryId === filterBy.categoryId
+    })
+  }
+
   if (sortBy === 'name') {
     gigs.sort((a, b) => {
       return a.title.localeCompare(b.title)
@@ -117,7 +122,7 @@ function getEmptyGig() {
   }
 }
 
-function _createGig(title, images, tags) {
+function _createGig(title, images, categoryId) {
   return {
     title,
     price: utilService.getRandomIntInclusive(5, 200),
@@ -130,42 +135,62 @@ function _createGig(title, images, tags) {
       level: 'basic/intermediate/',
       rate: 4,
     },
-    tags,
+    categoryId,
   }
 }
 
 function _createGigs() {
   const gigs = [
-    _createGig('I will create soccer pitch for you', [
-      '../assets/images/gigs/gig2.png',
-      '../assets/images/gigs/gig1.png',
-      '../assets/images/gigs/gig4.jpg',
-      '../assets/images/gigs/gig5.jpg',
-    ]),
-    _createGig('I will create logo', [
-      '../assets/images/gigs/gig1.png',
-      '../assets/images/gigs/gig2.png',
-      '../assets/images/gigs/gig4.jpg',
-      '../assets/images/gigs/gig5.jpg',
-    ]),
-    _createGig('I will create website', [
-      '../assets/images/gigs/gig5.jpg',
-      '../assets/images/gigs/gig2.png',
-      '../assets/images/gigs/gig3.png',
-      '../assets/images/gigs/gig4.jpg',
-    ]),
-    _createGig('I will create animals', [
-      '../assets/images/gigs/gig6.jpg',
-      '../assets/images/gigs/gig5.jpg',
-      '../assets/images/gigs/gig1.png',
-      '../assets/images/gigs/gig2.png',
-    ]),
-    _createGig('I will create code', [
-      '../assets/images/gigs/gig2.png',
-      '../assets/images/gigs/gig3.png',
-      '../assets/images/gigs/gig4.jpg',
-      '../assets/images/gigs/gig7.jpg',
-    ]),
+    _createGig(
+      'I will create soccer pitch for you',
+      [
+        '../assets/images/gigs/gig2.png',
+        '../assets/images/gigs/gig1.png',
+        '../assets/images/gigs/gig4.jpg',
+        '../assets/images/gigs/gig5.jpg',
+      ],
+      'graphic'
+    ),
+    _createGig(
+      'I will create logo',
+      [
+        '../assets/images/gigs/gig1.png',
+        '../assets/images/gigs/gig2.png',
+        '../assets/images/gigs/gig4.jpg',
+        '../assets/images/gigs/gig5.jpg',
+      ],
+      'graphic'
+    ),
+    _createGig(
+      'I will create website',
+      [
+        '../assets/images/gigs/gig5.jpg',
+        '../assets/images/gigs/gig2.png',
+        '../assets/images/gigs/gig3.png',
+        '../assets/images/gigs/gig4.jpg',
+      ],
+      'digital'
+    ),
+    _createGig(
+      'I will create animals',
+      [
+        '../assets/images/gigs/gig6.jpg',
+        '../assets/images/gigs/gig5.jpg',
+        '../assets/images/gigs/gig1.png',
+        '../assets/images/gigs/gig2.png',
+      ],
+      'business'
+    ),
+    _createGig(
+      'I will create code',
+      [
+        '../assets/images/gigs/gig2.png',
+        '../assets/images/gigs/gig3.png',
+        '../assets/images/gigs/gig4.jpg',
+        '../assets/images/gigs/gig7.jpg',
+      ],
+      'data'
+    ),
     _createGig('I will create food', [
       '../assets/images/gigs/gig7.jpg',
       '../assets/images/gigs/gig2.png',
@@ -221,16 +246,16 @@ function _createGigs() {
 
 function getMarketCategories() {
   const categories = [
-    { title: 'Graphics & Design', svg: 'cupAndPencil' },
-    { title: 'Digital Marketing', svg: 'tv' },
-    { title: 'Writing & Translition', svg: 'paperAndPen' },
-    { title: 'Video & Animation', svg: 'animation' },
-    { title: 'Music & Audio', svg: 'music' },
-    { title: 'Programming & Tech', svg: 'tech' },
-    { title: 'Business', svg: 'business' },
-    { title: 'Lifestyle', svg: 'lifestyle' },
-    { title: 'Data', svg: 'data' },
-    { title: 'Photography', svg: 'photography' },
+    { title: 'Graphics & Design', svg: 'cupAndPencil', name: 'graphic' },
+    { title: 'Digital Marketing', svg: 'tv', name: 'digital' },
+    { title: 'Writing & Translition', svg: 'paperAndPen', name: 'writing' },
+    { title: 'Video & Animation', svg: 'animation', name: 'video' },
+    { title: 'Music & Audio', svg: 'music', name: 'music' },
+    { title: 'Programming & Tech', svg: 'tech', name: 'tech' },
+    { title: 'Business', svg: 'business', name: 'business' },
+    { title: 'Lifestyle', svg: 'lifestyle', name: 'lifestyle' },
+    { title: 'Data', svg: 'data', name: 'data' },
+    { title: 'Photography', svg: 'photography', name: 'photography' },
   ]
   return categories
 }

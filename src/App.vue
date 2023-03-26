@@ -2,7 +2,7 @@
   <div class="main-layout">
     <AppHeader />
     <RouterView />
-    <Footer/>
+    <Footer />
     <UserMsg />
   </div>
 </template>
@@ -24,7 +24,7 @@ export default {
   components: {
     AppHeader,
     UserMsg,
-    Footer
+    Footer,
   },
 }
 </script>

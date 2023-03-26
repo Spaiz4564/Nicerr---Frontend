@@ -34,6 +34,7 @@ export const gigStore = {
       minPrice: 0,
       maxPrice: 1000,
       title: '',
+      categoryId: '',
     },
     owner: null,
   },
@@ -74,6 +75,7 @@ export const gigStore = {
     },
 
     setFilter(state, { filterBy }) {
+      console.log('setFilter', filterBy)
       state.filterBy = filterBy
       this.dispatch({ type: 'loadGigs', filterBy })
       console.log('setFilter', state.filterBy)

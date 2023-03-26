@@ -14,9 +14,6 @@
           :value="item.value">
         </el-option>
       </el-select>
-      <!-- <a class="btn-sort" @click="setSort('name')">Name</a>
-      <a class="btn-sort" @click="setSort('price')">Price</a>
-      <span>{{ desc === -1 ? '↓' : '↑' }}</span> -->
     </div>
     <GigList :gigs="gigs" />
   </section>
@@ -44,6 +41,7 @@ export default {
       filterBy: {
         title: '',
         price: null,
+        categoryId: '',
       },
 
       options: [
@@ -65,12 +63,22 @@ export default {
       return this.$store.getters.loggedinUser
     },
     gigs() {
-      return this.$store.getters.gigs
+      //we need to check the params of the route
+      //if the route is /gig/:categoryId we need to return all the gigs of that category
+      //if the route is /gig we need to return all the gigs
+      if (this.$route.params.categoryId) {
+        return this.$store.getters.gigs.filter(
+          (gig) => gig.categoryId === this.$route.params.categoryId
+        )
+      } else {
+        return this.$store.getters.gigs
+      }
     },
   },
   created() {
     this.loadGigs()
     const filterBy = this.$store.getters.filterBy
+    console.log(filterBy)
     if (filterBy) this.filterBy = filterBy
   },
   methods: {
@@ -129,9 +137,15 @@ export default {
     },
 
     async loadGigs() {
-      const filterBy = JSON.parse(JSON.stringify(this.filterBy))
-      const sortBy = JSON.parse(JSON.stringify(this.sortBy))
-      await this.$store.dispatch({ type: 'loadGigs', filterBy, sortBy })
+      try {
+        await this.$store.dispatch({
+          type: 'loadGigs',
+          filterBy: this.filterBy,
+        })
+      } catch (err) {
+        console.log(err)
+        showErrorMsg('Cannot load gigs')
+      }
     },
   },
 }
