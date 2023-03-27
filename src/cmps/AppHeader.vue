@@ -59,6 +59,7 @@ export default {
       isHome: true,
       isWhite: false,
       isSuggestions: false,
+      isPurchase: false,
       categories: gigService.getMarketCategories(),
     }
   },
@@ -92,6 +93,7 @@ export default {
   watch: {
     $route(to) {
       this.isHome = to.path !== '/' ? false : true
+      this.isPurchase = to.path === `/purchase` ? true : false
     },
   },
   created() {

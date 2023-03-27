@@ -37,10 +37,7 @@
         <div class="header-suggestions">
           <span>Popular:</span>
           <ul>
-            <li @click="filterCategory('website')">Website Design</li>
-            <li @click="filterCategory('wordpress')">WordPress</li>
-            <li @click="filterCategory('logo')">Logo Design</li>
-            <li @click="filterCategory('ai')">AI Services</li>
+            <li v-for="category in popularCategories" @click="filterCategory(category)">{{ category }}</li>
           </ul>
         </div>
       </div>
@@ -56,6 +53,7 @@ export default {
     return {
       backgrounds: gigService.getHeroBackgrounds(),
       heroInterval: null,
+      popularCategories: ['Website Design','WordPress','Logo Design','AI Services'],
       filterBy: {
         title: '',
       },

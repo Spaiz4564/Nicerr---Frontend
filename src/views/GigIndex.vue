@@ -2,7 +2,9 @@
   <section class="gig-index main-layout full">
     <GigFilter @filtered="setFilter" />
     <div class="sort-container flex">
-      <p class="sort-txt">Sort By</p>
+      <span>{{ gigsLength }} services available</span>
+      <div class="sort">
+        <p class="sort-txt">Sort by</p>
       <el-select
         v-model="sortBy"
         placeholder="Please select"
@@ -14,6 +16,8 @@
           :value="item.value">
         </el-option>
       </el-select>
+      </div>
+    
     </div>
     <GigList :gigs="gigs" />
   </section>
@@ -70,6 +74,9 @@ export default {
       }
       return this.$store.getters.gigs
     },
+    gigsLength(){
+      return this.$store.getters.gigs.length
+    }
   },
   created() {
     this.loadGigs()

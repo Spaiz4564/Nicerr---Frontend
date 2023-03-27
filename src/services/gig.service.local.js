@@ -157,7 +157,7 @@ function _createGigs() {
         '../assets/images/gigs/gig4.jpg',
         '../assets/images/gigs/gig5.jpg',
       ],
-      'wordpress',
+      'WordPress',
       3
     ),
     _createGig(
@@ -190,7 +190,7 @@ function _createGigs() {
         '../assets/images/gigs/gig1.png',
         '../assets/images/gigs/gig2.png',
       ],
-      'website',
+      'Website Design',
       1
     ),
     _createGig(
@@ -201,7 +201,7 @@ function _createGigs() {
         '../assets/images/gigs/gig4.jpg',
         '../assets/images/gigs/gig7.jpg',
       ],
-      'ai',
+      'AI Services',
       2
     ),
     _createGig(
@@ -212,7 +212,7 @@ function _createGigs() {
         '../assets/images/gigs/gig4.jpg',
         '../assets/images/gigs/gig5.jpg',
       ],
-      'logo',
+      'Logo Design',
       1
     ),
     _createGig(

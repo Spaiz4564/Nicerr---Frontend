@@ -1,21 +1,37 @@
 <template>
   <section class="gig-filter main-layout full" :class="{ shadow: isBoxShadow }">
-    <div @click="toggleBudget" class="budget-input">
-      <p class="txt-budget">Budget</p>
-      <div class="arrow-down">
-        <span
-          v-if="!isBudgetOpen"
-          class="icon-arrow"
-          v-html="getSvg('arrowDown')"></span>
+    <div class="filters">
+      <div @click="toggleBudget" class="budget">
+        <p class="txt-budget">Budget</p>
+        <div class="arrow-down">
+          <span :class="isBudgetOpen ? 'rotate' : ''"
+            class="icon-arrow"
+            v-html="getSvg('arrowDown')"
+          ></span>
+        </div>
       </div>
-      <div class="arrow-up">
-        <span v-if="isBudgetOpen">⬆</span>
+      <div class="days-deliver">
+        <el-select
+          v-model="filterBy.daysToDeliver"
+          class="m-2"
+          placeholder="Delivery Time"
+          size="large"
+          @change="filterBudget"
+        >
+          <el-option
+            v-for="item in options"
+            :key="item.value"
+            :label="item.label"
+            :value="item.value"
+          />
+        </el-select>
       </div>
 
       <form
         @submit.prevent="filterBudget"
         v-if="budgetOpen"
-        class="budget-dropdown">
+        class="budget-dropdown"
+      >
         <div @click.stop class="inputs">
           <div>
             <p class="bold">MIN.</p>
@@ -33,20 +49,6 @@
           <button>Apply</button>
         </div>
       </form>
-    </div>
-    <div class="days-deliver">
-      <el-select
-        v-model="filterBy.daysToDeliver"
-        class="m-2"
-        placeholder="Select"
-        size="large"
-        @change="filterBudget">
-        <el-option
-          v-for="item in options"
-          :key="item.value"
-          :label="item.label"
-          :value="item.value" />
-      </el-select>
     </div>
   </section>
 </template>

@@ -81,11 +81,11 @@
   display: grid;
   grid-template-columns: 1fr 1400px 1fr;
   grid-column: 1/-1;
+
   @media (max-width: 1480px) {
     grid-template-columns: 32px 1fr 32px !important
   }
 }
-
 
 .full {
   grid-column: 1 / -1;
@@ -102,6 +102,10 @@
 
 .gold {
   fill: gold;
+}
+
+.none {
+  display: none !important;
 }
 
 
