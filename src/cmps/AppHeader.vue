@@ -8,7 +8,7 @@
           </RouterLink>
           <form @submit.prevent="emitFiltered" v-if="!isHome || isSuggestions" class="search-bar">
             <input class="search-input" type="text" placeholder="What service are you looking for today?"
-              v-model="filterBy.categoryId" />
+              v-model="filterBy.title" />
             <span class="icon-search" v-html="getSvg('search')"></span>
           </form>
         </div>
@@ -48,18 +48,17 @@ export default {
     },
     emitFiltered() {
       console.log('emitFiltered')
-      const filterBy = this.$store.getters.filterBy
-      console.log('filterBy', filterBy)
-      console.log('filterBy', filterBy)
+      // const filterBy = this.$store.getters.filterBy
       if (this.filterBy.title) {
+        this.$router.push(`/gig/${this.filterBy.title}`)
         this.$store.commit({
           type: 'setFilter',
-          filterBy: { ...filterBy, title: this.filterBy.title },
+          filterBy: { title: this.filterBy.title },
         })
       } else {
         this.$store.commit({
           type: 'setFilter',
-          filterBy: { ...filterBy, title: '' },
+          filterBy: { title: '' },
         })
       }
     },

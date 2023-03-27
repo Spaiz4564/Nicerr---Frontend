@@ -114,7 +114,7 @@ export default {
     filterByTitle() {
       console.log('filterByTitle')
       this.$router.push(`/gig/${this.filterBy.title}`)
-      this.$store.commit({ type: 'setFilter', filterBy: this.filterBy })
+      this.$store.commit({ type: 'setFilter', filterBy: this.filterBy.title })
     },
   },
 

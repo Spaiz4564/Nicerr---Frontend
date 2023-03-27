@@ -34,12 +34,12 @@ async function query(
 ) {
   let gigs = await storageService.query(STORAGE_KEY)
   if (!gigs.length) gigs = _createGigs()
-  gigs = gigs.filter(gig => gig.title)
+  // gigs = gigs.filter(gig => gig.title)
 
   if (filterBy.title) {
     const regex = new RegExp(filterBy.title, 'i')
     gigs = gigs.filter(
-      gig => regex.test(gig.title) || regex.test(gig.description)
+      gig => regex.test(gig.title) || regex.test(gig.description) || regex.test(gig.categories)
     )
   }
   if (filterBy.minPrice || filterBy.maxPrice) {
@@ -49,7 +49,8 @@ async function query(
   }
   if (filterBy.categoryId) {
     gigs = gigs.filter((gig) => {
-      return gig.categories.includes(filterBy.categoryId) 
+
+      return gig.categories.includes(filterBy.categoryId)  
     })
   }
   if (filterBy.daysToDeliver) {

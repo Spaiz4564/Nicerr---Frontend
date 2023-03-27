@@ -69,7 +69,7 @@ export default {
     gigs() {
       if (this.$route.params.categoryId) {
         return this.$store.getters.gigs.filter(
-          (gig) => gig.categories.includes(this.$route.params.categoryId)
+          (gig) => gig.categories.includes(this.$route.params.categoryId) || gig.title.includes(this.$route.params.categoryId)
         )
       }
       return this.$store.getters.gigs
