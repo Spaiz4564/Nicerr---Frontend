@@ -1,13 +1,22 @@
 <template>
   <section class="main-header main-layout">
-    <header class="main-layout" :class="[isHome ? 'headerHome' : '', isWhite ? 'homeScroll' : '']" ref="header">
+    <header
+      class="main-layout"
+      :class="[isHome ? 'headerHome' : '', isWhite ? 'homeScroll' : '']"
+      ref="header">
       <nav>
         <div class="logo-search">
           <RouterLink to="/">
             <h1 class="logo">Nicerr</h1>
           </RouterLink>
-          <form @submit.prevent="emitFiltered" v-if="!isHome || isSuggestions" class="search-bar">
-            <input class="search-input" type="text" placeholder="What service are you looking for today?"
+          <form
+            @submit.prevent="emitFiltered"
+            v-if="!isHome || isSuggestions"
+            class="search-bar">
+            <input
+              class="search-input"
+              type="text"
+              placeholder="What service are you looking for today?"
               v-model="filterBy.title" />
             <span class="icon-search" v-html="getSvg('search')"></span>
           </form>
@@ -15,18 +24,31 @@
         <div class="goTo">
           <RouterLink to="/gig">Explore</RouterLink>
           <a @click="goToSellerSignup">Become a Seller</a>
-          <a v-if="!loggedinUser">Sign In</a>
+          <a v-if="!loggedinUser" @click.stop="toggleSignInModal">Sign In</a>
           <a v-if="!loggedinUser">Join</a>
         </div>
+        <div class="modal-sign" v-if="modalSignIsOpen">
+          <LoginSignup
+            @close="toggleSignInModal"
+            @closeModal="toggleSignInModal" />
+        </div>
         <div class="modal" v-if="loggedinUser">
-          <img class="user-img" :src="loggedinUser.imgUrl" alt="user-img" @click.stop="toggleUserModal" />
+          <img
+            class="user-img"
+            :src="loggedinUser.imgUrl"
+            alt="user-img"
+            @click.stop="toggleUserModal" />
           <div class="user-modal" v-if="modalOpen">
             <a @click="goToProfile">Profile</a>
+            <a @click="logout">Logout</a>
           </div>
         </div>
       </nav>
     </header>
-    <NavSuggestions :isWhite="isWhite" :isSuggestions="isSuggestions" :isHome="isHome" />
+    <NavSuggestions
+      :isWhite="isWhite"
+      :isSuggestions="isSuggestions"
+      :isHome="isHome" />
   </section>
 </template>
 <script>
@@ -48,6 +70,7 @@ export default {
       isPurchase: false,
       categories: gigService.getMarketCategories(),
       modalOpen: false,
+      modalSignIsOpen: false,
     }
   },
   computed: {
@@ -61,7 +84,6 @@ export default {
     },
     emitFiltered() {
       console.log('emitFiltered')
-      // const filterBy = this.$store.getters.filterBy
       if (this.filterBy.title) {
         this.$router.push(`/gig/${this.filterBy.title}`)
         this.$store.commit({
@@ -93,6 +115,14 @@ export default {
     filterCategory(categoryId) {
       this.$router.push(`/gig/${categoryId}`)
       this.$store.commit({ type: 'setFilter', filterBy: { categoryId } })
+    },
+    logout() {
+      this.$store.dispatch({ type: 'logout' })
+      this.$router.push('/')
+    },
+    toggleSignInModal() {
+      console.log('toggle')
+      this.modalSignIsOpen = !this.modalSignIsOpen
     },
   },
   watch: {
