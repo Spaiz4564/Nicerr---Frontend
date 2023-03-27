@@ -20,7 +20,6 @@ export const userStore = {
       return users
     },
     loggedinUser({ loggedinUser }) {
-      console.log('userStore: loggedinUser', loggedinUser)
       return loggedinUser
     },
     watchedUser({ watchedUser }) {

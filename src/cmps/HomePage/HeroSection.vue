@@ -3,16 +3,14 @@
     <div
       ref="heroBackground"
       class="hero-background"
-      v-for="background in backgrounds"
-    >
+      v-for="background in backgrounds">
       <img :src="imgUrl(background.img)" alt="" />
 
       <div class="desc">
         <span
           v-if="background.isFiveStars"
           className="icon"
-          v-html="getSvg('fiveStars')"
-        ></span>
+          v-html="getSvg('fiveStars')"></span>
         <div class="artist-info">
           <p>{{ background.name }},</p>
           <b>{{ background.desc }}</b>
@@ -31,8 +29,7 @@
               <input
                 v-model="filterBy.title"
                 type="text"
-                placeholder='Try "building mobile app"'
-              />
+                placeholder='Try "building mobile app"' />
             </div>
             <button>Search</button>
           </div>
@@ -42,8 +39,7 @@
           <ul>
             <li
               v-for="category in popularCategories"
-              @click="filterCategory(category.toLocaleLowerCase())"
-            >
+              @click="filterCategory(category.toLocaleLowerCase())">
               {{ category }}
             </li>
           </ul>
@@ -69,6 +65,7 @@ export default {
       ],
       filterBy: {
         title: '',
+        categoryId: '',
       },
     }
   },
@@ -108,13 +105,10 @@ export default {
     },
     filterCategory(categoryId) {
       console.log(categoryId)
-      this.$router.push(`/gig/${categoryId}`)
-      this.$store.commit({ type: 'setFilter', filterBy: { categoryId } })
+      this.$router.push({ path: '/gig', query: { categoryId } })
     },
     filterByTitle() {
-      console.log('filterByTitle')
-      this.$router.push(`/gig/${this.filterBy.title}`)
-      this.$store.commit({ type: 'setFilter', filterBy: this.filterBy.title })
+      this.$router.push({ path: '/gig', query: { title: this.filterBy.title } })
     },
   },
 

@@ -81,6 +81,7 @@ export default {
   },
   created() {
     const filterBy = this.$store.getters.filterBy
+    console.log(filterBy)
     this.$store.commit({ type: 'setFilter', filterBy })
     this.$router.push({ path: '/gig', query: { ...filterBy } })
     this.loadGigs()
@@ -141,7 +142,8 @@ export default {
     },
 
     async loadGigs() {
-      const filterBy = this.$route.query
+      const filterBy = this.$route.query || this.$store.getters.filterBy
+      console.log(filterBy)
       this.$router.push({ path: '/gig', query: { ...filterBy } })
       try {
         await this.$store.dispatch({

@@ -15,8 +15,8 @@
 .seller {
   width: 50%;
   .desc-container {
-    h4{
-        color: $clr1;
+    h4 {
+      color: $clr1;
     }
     border: 1px solid $clr01;
     padding: 50px;
@@ -29,24 +29,24 @@
 
 .user-info {
   border: 1px solid $clr01;
-//   height: 365px;
+  //   height: 365px;
   padding: 20px;
   background-color: white;
   .seller-profile-info {
     text-align: center;
-    .details{
-        span{
-            font-weight: bold;
-        }
-        padding: 5px;
-        width: 100%;
-        h4{
-            font-weight: 200;
-            padding: 10px;
-            display: flex;
-            justify-content: space-between;
-        }
-        border-top: 1px solid rgb(195, 195, 195);
+    .details {
+      span {
+        font-weight: bold;
+      }
+      padding: 5px;
+      width: 100%;
+      h4 {
+        font-weight: 200;
+        padding: 10px;
+        display: flex;
+        justify-content: space-between;
+      }
+      border-top: 1px solid rgb(195, 195, 195);
     }
     gap: 50px;
     h2 {

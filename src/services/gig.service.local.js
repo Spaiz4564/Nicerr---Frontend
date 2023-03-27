@@ -30,6 +30,7 @@ async function query(
 ) {
   let gigs = await storageService.query(STORAGE_KEY)
   if (!gigs.length) gigs = _createGigs()
+  if (!filterBy) return gigs
   if (filterBy.title) {
     const regex = new RegExp(filterBy.title, 'i')
     gigs = gigs.filter(
@@ -43,7 +44,7 @@ async function query(
   }
   if (filterBy.categoryId) {
     gigs = gigs.filter((gig) => {
-      return gig.categoryId === filterBy.categoryId
+      return gig.categories.includes(filterBy.categoryId)
     })
   }
   if (filterBy.daysToDeliver) {
@@ -90,6 +91,7 @@ async function remove(gigId) {
 }
 
 async function save(gig) {
+  console.log('gig', gig._id)
   var savedGig
   console.log('gig', gig)
   if (gig._id) {
@@ -126,6 +128,8 @@ function getEmptyGig() {
     rate: 0,
     daysToDeliver: 0,
     categories: [],
+    description: '',
+    images: [],
   }
 }
 
@@ -358,6 +362,7 @@ function getPopularServices() {
       desc: 'Add talent to AI',
       title: `AI Artists`,
       img: '../../assets/images/Services/AI-artists.png',
+      link: 'http://localhost:5173/#/gig/ai/',
     },
     {
       desc: 'Build your brand',
@@ -368,6 +373,7 @@ function getPopularServices() {
       desc: 'Customize your site',
       title: 'WordPress',
       img: '../../assets/images/Services/WordPress.png',
+      link: `http://localhost:5173/#/gig/${'wordpress'}`,
     },
     {
       desc: 'Share your message',
