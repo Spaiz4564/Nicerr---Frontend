@@ -2,7 +2,7 @@
     <div class="gig-purchase" v-if="gig">
         <div class="info">
             <section class="header">
-                <h3 class="flex space-between">
+                <h3 class="flex space-between align-center">
                     <b class="gig-title">{{ gig.title }}</b>
                     <div>
                         <span class="price">{{ gig.price }}$</span>
@@ -54,17 +54,17 @@
                 </div>
             </article>
         </div>
-        <div class="contact-seller">
+        <!-- <div class="contact-seller">
             <div class="contact-seller-wrapper">
                 <button class="contact-seller-btn">Contact seller</button>
             </div>
-        </div>
+        </div> -->
     </div>
 </template>
 
 <script>
 
-import { svgService } from '../services/svg.service';
+import { svgService } from '../../services/svg.service';
 
 
 export default {
