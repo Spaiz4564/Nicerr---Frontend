@@ -168,7 +168,7 @@ function _createGigs() {
         '../assets/images/gigs/gig4.jpg',
         '../assets/images/gigs/gig5.jpg',
       ],
-      ['graphic'],
+      ['graphic', 'voice over'],
       3
     ),
     _createGig(
