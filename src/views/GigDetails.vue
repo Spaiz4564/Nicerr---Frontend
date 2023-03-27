@@ -9,8 +9,8 @@
 
 <script>
 import { gigService } from '../services/gig.service.local'
-import GigPurchase from '../cmps/GigDetailsPurchase.vue'
-import GigInfoUser from '../cmps/GigDetailsInfoUser.vue'
+import GigPurchase from '../cmps/details/GigDetailsPurchase.vue'
+import GigInfoUser from '../cmps/details/GigDetailsInfoUser.vue'
 
 export default {
   name: 'Gig-Details',

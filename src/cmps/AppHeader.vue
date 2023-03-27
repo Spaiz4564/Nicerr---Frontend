@@ -1,5 +1,5 @@
 <template>
-  <section :class="[isPurchase ? 'none' : '']" class="main-header main-layout">
+  <section class="main-header main-layout">
     <header class="main-layout" :class="[isHome ? 'headerHome' : '', isWhite ? 'homeScroll' : '']" ref="header">
       <nav>
         <div class="logo-search">
@@ -25,7 +25,6 @@
       isHome ? 'headerHome' : '',
       isSuggestions ? 'display' : '',
       isWhite ? 'homeScroll' : '',
-
     ]">
       <div class="suggestions main-layout">
         <ul>
@@ -87,7 +86,7 @@ export default {
   watch: {
     $route(to) {
       this.isHome = to.path !== '/' ? false : true
-      this.isPurchase = to.path === `/purchase` ? true : false
+      this.isPurchase = to.path.includes('purchase') ? true : false
     },
   },
   created() {

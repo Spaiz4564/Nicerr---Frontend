@@ -2,11 +2,11 @@
     display: flex;
     flex-direction: column;
     position: sticky;
-    width: 409px;
+    width: 460px;
     height: 525px;
     top: 40px;
-    right: em(20px);
-    margin-bottom: em(8px);
+    right: em(30px);
+    margin-bottom: em(20px);
     gap: em(25px);
     flex-shrink: 1;
 
@@ -18,6 +18,11 @@
         .gig-title {
             font-size: em(20px);
             margin: 0 0 25px;
+        }
+
+        .price {
+            word-break: keep-all;
+            margin: auto 0px;
         }
     }
 
