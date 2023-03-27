@@ -1,5 +1,5 @@
 <template>
-    <section class="app-container main-layout">
+    <section class="app-container main-layout" v-if="gig">
         <section class="gig-payment flex justify-center">
             <section class="payment-container flex">
                 <section class="payment-details-container">
@@ -15,7 +15,6 @@
                             <div class="card-container">
                                 <p>Card Number</p>
                                 <input class="card-num" type="text" value="4580 5926 7852 9996">
-
                             </div>
                             <div class="short-input flex">
                                 <div>
@@ -39,7 +38,6 @@
                             </div>
                         </div>
                     </section>
-
                 </section>
                 <section class="package-container">
                     <section class="gig-package-payment">
@@ -125,7 +123,6 @@ export default {
         handlePrice() {
             return this.gig.price + 34.55
         }
-
     },
     created() {
         const { id } = this.$route.params
