@@ -1,22 +1,13 @@
 <template>
   <section class="main-header main-layout">
-    <header
-      class="main-layout"
-      :class="[isHome ? 'headerHome' : '', isWhite ? 'homeScroll' : '']"
-      ref="header">
+    <header class="main-layout" :class="[isHome ? 'headerHome' : '', isWhite ? 'homeScroll' : '']" ref="header">
       <nav>
         <div class="logo-search">
           <RouterLink to="/">
             <h1 class="logo">Nicerr</h1>
           </RouterLink>
-          <form
-            @submit.prevent="emitFiltered"
-            v-if="!isHome || isSuggestions"
-            class="search-bar">
-            <input
-              class="search-input"
-              type="text"
-              placeholder="What service are you looking for today?"
+          <form @submit.prevent="emitFiltered" v-if="!isHome || isSuggestions" class="search-bar">
+            <input class="search-input" type="text" placeholder="What service are you looking for today?"
               v-model="filterBy.title" />
             <span class="icon-search" v-html="getSvg('search')"></span>
           </form>
@@ -28,21 +19,14 @@
           <a v-if="!loggedinUser">Join</a>
         </div>
         <div class="modal" v-if="loggedinUser">
-          <img
-            class="user-img"
-            :src="loggedinUser.imgUrl"
-            alt="user-img"
-            @click.stop="toggleUserModal" />
+          <img class="user-img" :src="loggedinUser.imgUrl" alt="user-img" @click.stop="toggleUserModal" />
           <div class="user-modal" v-if="modalOpen">
             <a @click="goToProfile">Profile</a>
           </div>
         </div>
       </nav>
     </header>
-    <NavSuggestions
-      :isWhite="isWhite"
-      :isSuggestions="isSuggestions"
-      :isHome="isHome" />
+    <NavSuggestions :isWhite="isWhite" :isSuggestions="isSuggestions" :isHome="isHome" />
   </section>
 </template>
 <script>
@@ -114,7 +98,7 @@ export default {
   watch: {
     $route(to) {
       this.isHome = to.path !== '/' ? false : true
-      this.isPurchase = to.path === `/purchase` ? true : false
+      this.isPurchase = to.path.includes('purchase') ? true : false
     },
   },
   created() {
