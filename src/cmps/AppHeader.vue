@@ -39,25 +39,17 @@
         </div>
       </nav>
     </header>
-    <div
-      class="nav-suggestions main-layout"
-      :class="[
-        isHome ? 'headerHome' : '',
-        isSuggestions ? 'display' : '',
-        isWhite ? 'homeScroll' : '',
-      ]">
-      <div class="suggestions main-layout">
-        <ul>
-          <li v-for="category in categories">{{ category.title }}</li>
-        </ul>
-      </div>
-    </div>
+    <NavSuggestions
+      :isWhite="isWhite"
+      :isSuggestions="isSuggestions"
+      :isHome="isHome" />
   </section>
 </template>
 <script>
 import { svgService } from '../services/svg.service'
 import { gigService } from '../services/gig.service.local'
 import LoginSignup from '../views/LoginSignup.vue'
+import NavSuggestions from './NavSuggestions.vue'
 export default {
   data() {
     return {
@@ -84,16 +76,18 @@ export default {
       return svgService.getSvg(iconName)
     },
     emitFiltered() {
-      const filterBy = this.$store.getters.filterBy
+      console.log('emitFiltered')
+      // const filterBy = this.$store.getters.filterBy
       if (this.filterBy.title) {
+        this.$router.push(`/gig/${this.filterBy.title}`)
         this.$store.commit({
           type: 'setFilter',
-          filterBy: { ...filterBy, title: this.filterBy.title },
+          filterBy: { title: this.filterBy.title },
         })
       } else {
         this.$store.commit({
           type: 'setFilter',
-          filterBy: { ...filterBy, title: '' },
+          filterBy: { title: '' },
         })
       }
     },
@@ -112,6 +106,10 @@ export default {
     goToProfile() {
       this.$router.push(`/seller/profile/${this.loggedinUser._id}`)
     },
+    filterCategory(categoryId) {
+      this.$router.push(`/gig/${categoryId}`)
+      this.$store.commit({ type: 'setFilter', filterBy: { categoryId } })
+    },
   },
   watch: {
     $route(to) {
@@ -126,6 +124,6 @@ export default {
   mounted() {
     window.addEventListener('scroll', this.handleScroll)
   },
-  components: { LoginSignup },
+  components: { LoginSignup, NavSuggestions },
 }
 </script>

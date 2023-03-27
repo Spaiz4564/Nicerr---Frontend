@@ -69,13 +69,13 @@ export default {
     gigs() {
       if (this.$route.params.categoryId) {
         return this.$store.getters.gigs.filter(
-          (gig) => gig.categoryId === this.$route.params.categoryId
+          (gig) => gig.categories.includes(this.$route.params.categoryId) || gig.title.includes(this.$route.params.categoryId)
         )
       }
       return this.$store.getters.gigs
     },
     gigsLength(){
-      return this.$store.getters.gigs.length
+      return this.gigs.length
     }
   },
   created() {

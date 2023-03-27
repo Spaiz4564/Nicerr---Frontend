@@ -83,6 +83,7 @@ export const gigStore = {
     },
 
     setFilter(state, { filterBy }) {
+      console.log(filterBy)
       state.filterBy = filterBy
       this.dispatch({ type: 'loadGigs', filterBy })
     },
