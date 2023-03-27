@@ -1,11 +1,9 @@
 .gig-user-info {
     height: auto;
-    width: 58em;
-    padding: 0px em(15px);
-    margin-right: 2px;
-    padding-right: 129px;
-    font-size: rem(16px);
-    flex-shrink: 2;
+    font-size: 1rem;
+    margin: 0 90px;
+    max-width: 700px;
+    margin-right: 123px;
 
     .title {
         font-size: 1.75rem;
@@ -475,8 +473,9 @@
                     }
 
                     .border {
-                        border-right: 1px solid black;
+                        border-right: 1px solid $clr7;
                         margin: 2px 8px;
+                        height: 14px;
                     }
 
                     p {

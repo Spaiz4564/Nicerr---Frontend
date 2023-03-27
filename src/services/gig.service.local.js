@@ -170,7 +170,7 @@ function _createGigs() {
         "../assets/images/gigs/gig4.jpg",
         "../assets/images/gigs/gig5.jpg",
       ],
-      ["graphic"],
+      ["data entry", "graphic"],
       3
     ),
     _createGig(
@@ -181,7 +181,7 @@ function _createGigs() {
         "../assets/images/gigs/gig3.png",
         "../assets/images/gigs/gig4.jpg",
       ],
-      ["digital"],
+      ["translation", "digital"],
       3
     ),
     _createGig(
@@ -203,7 +203,7 @@ function _createGigs() {
         "../assets/images/gigs/gig4.jpg",
         "../assets/images/gigs/gig7.jpg",
       ],
-      ["ai services"],
+      ["ai services", "seo"],
       2
     ),
     _createGig(
@@ -225,7 +225,7 @@ function _createGigs() {
         "../assets/images/gigs/gig4.jpg",
         "../assets/images/gigs/gig5.jpg",
       ],
-      ["business"],
+      ["business", "ilustrations"],
       6
     ),
     _createGig(
@@ -247,7 +247,7 @@ function _createGigs() {
         "../assets/images/gigs/gig4.jpg",
         "../assets/images/gigs/gig5.jpg",
       ],
-      ["lifestyle"],
+      ["lifestyle", "social media"],
       2
     ),
     _createGig(
@@ -258,7 +258,7 @@ function _createGigs() {
         "../assets/images/gigs/gig4.jpg",
         "../assets/images/gigs/gig5.jpg",
       ],
-      ["lifestyle"],
+      ["lifestyle", "video explainer"],
       7
     ),
     _createGig(
@@ -291,7 +291,7 @@ function _createGigs() {
         "../assets/images/gigs/gig4.jpg",
         "../assets/images/gigs/gig5.jpg",
       ],
-      ["data"],
+      ["data", "voice over"],
       7
     ),
   ];
@@ -360,51 +360,61 @@ function getPopularServices() {
       desc: "Add talent to AI",
       title: `AI Artists`,
       img: "../../assets/images/Services/AI-artists.png",
+      link: `http://localhost:5173/#/gig/ai services`,
     },
     {
       desc: "Build your brand",
       title: "Logo Design",
       img: "../../assets/images/Services/Logo design.png",
+      link: `http://localhost:5173/#/gig/logo design`,
     },
     {
       desc: "Customize your site",
       title: "WordPress",
       img: "../../assets/images/Services/WordPress.png",
+      link: `http://localhost:5173/#/gig/wordpress`,
     },
     {
       desc: "Share your message",
       title: "Voice Over",
       img: "../../assets/images/Services/Voice Over.png",
+      link: `http://localhost:5173/#/gig/voice over`,
     },
     {
       desc: "Engage your audience",
       title: "Video Explainer",
       img: "../../assets/images/Services/Video Explainer.png",
+      link: `http://localhost:5173/#/gig/video explainer`,
     },
     {
       desc: "Reach more customers",
       title: "Social Media",
       img: "../../assets/images/Services/Social Media.png",
+      link: `http://localhost:5173/#/gig/social media`,
     },
     {
       desc: "Unlock growth online",
       title: "SEO",
       img: "../../assets/images/Services/SEO.png",
+      link: `http://localhost:5173/#/gig/seo`,
     },
     {
       desc: "Color your dreams",
       title: "Illustrations",
       img: "../../assets/images/Services/illustration.png",
+      link: `http://localhost:5173/#/gig/ilustrations`,
     },
     {
       desc: "Go global",
       title: "Translation",
       img: "../../assets/images/Services/Translation.png",
+      link: `http://localhost:5173/#/gig/translation`,
     },
     {
       desc: "Learn your business",
       title: "Data Entry",
       img: "../../assets/images/Services/Data Entry.png",
+      link: `http://localhost:5173/#/gig/data entry`,
     },
   ];
   return services;
