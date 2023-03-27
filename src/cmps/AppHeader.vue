@@ -24,8 +24,18 @@
         <div class="goTo">
           <RouterLink to="/gig">Explore</RouterLink>
           <a @click="goToSellerSignup">Become a Seller</a>
-          <a>Sign In</a>
-          <a>Join</a>
+          <a v-if="!loggedinUser">Sign In</a>
+          <a v-if="!loggedinUser">Join</a>
+        </div>
+        <div class="modal" v-if="loggedinUser">
+          <img
+            class="user-img"
+            :src="loggedinUser.imgUrl"
+            alt="user-img"
+            @click.stop="toggleUserModal" />
+          <div class="user-modal" v-if="modalOpen">
+            <a @click="goToProfile">Profile</a>
+          </div>
         </div>
       </nav>
     </header>
@@ -61,7 +71,13 @@ export default {
       isSuggestions: false,
       isPurchase: false,
       categories: gigService.getMarketCategories(),
+      modalOpen: false,
     }
+  },
+  computed: {
+    loggedinUser() {
+      return this.$store.getters.loggedinUser
+    },
   },
   methods: {
     getSvg(iconName) {
@@ -88,6 +104,13 @@ export default {
       const scrollY = window.scrollY
       this.isWhite = scrollY > 20 ? true : false
       this.isSuggestions = scrollY > 170 ? true : false
+    },
+    toggleUserModal() {
+      console.log('toggle')
+      this.modalOpen = !this.modalOpen
+    },
+    goToProfile() {
+      this.$router.push(`/seller/profile/${this.loggedinUser._id}`)
     },
   },
   watch: {

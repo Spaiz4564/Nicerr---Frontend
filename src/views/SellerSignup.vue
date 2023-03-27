@@ -59,13 +59,16 @@ export default {
     }
   },
   created() {
-    const getLoggedinUser = userService.getLoggedinUser()
-    if (getLoggedinUser) this.userToEdit = getLoggedinUser
-    else this.userToEdit = userService.getEmptyUser()
+    const loggedinUser = this.$store.getters.loggedinUser
+    if (loggedinUser) {
+      this.userToEdit = loggedinUser
+    } else {
+      this.userToEdit = userService.getEmptyUser()
+    }
   },
+
   methods: {
     async saveUser() {
-      console.log('userToEdit', this.userToEdit)
       if (!this.userToEdit._id)
         await this.$store.dispatch({
           type: 'signup',
@@ -76,7 +79,7 @@ export default {
           type: 'updateUsers',
           user: { ...this.userToEdit, isSeller: true },
         })
-      this.$router.push('/seller/profile')
+      this.$router.push(`/seller/profile/${this.userToEdit._id}`)
     },
   },
 }

@@ -1,8 +1,13 @@
 <template>
   <section class="seller-profile" v-if="owner">
     <div class="seller-profile-container">
+      <div class="seller-profile-img">
+        <img :src="owner.imgUrl" alt="" />
+      </div>
       <div class="seller-profile-info">
-        <h2>{{ owner.username }}</h2>
+        <h2>{{ owner.fullname }}</h2>
+        <h2>Country {{ owner.location }}</h2>
+        <h2>Member since Mar 2023</h2>
       </div>
     </div>
     <form @submit.prevent="saveGig">
@@ -48,9 +53,11 @@ export default {
   },
   created() {
     this.gigToAdd = gigService.getEmptyGig()
+    this.loadGigs()
   },
   computed: {
     owner() {
+      console.log('owner', userService.getLoggedinUser())
       return userService.getLoggedinUser()
     },
     gigs() {
@@ -62,6 +69,9 @@ export default {
     saveGig() {
       this.$store.dispatch({ type: 'saveGig', gig: this.gigToAdd })
       console.log('gig saved')
+    },
+    loadGigs() {
+      this.$store.dispatch({ type: 'loadGigs' })
     },
   },
 }

@@ -20,14 +20,22 @@ export const userStore = {
       return users
     },
     loggedinUser({ loggedinUser }) {
+      console.log('userStore: loggedinUser', loggedinUser)
       return loggedinUser
     },
     watchedUser({ watchedUser }) {
       return watchedUser
     },
   },
+
+  rootGetters: {
+    loggedinUser({ loggedinUser }) {
+      return loggedinUser
+    },
+  },
+
   mutations: {
-    setLoggedinUser(state, { user }) {
+    setLoggedInUser(state, { user }) {
       // Yaron: needed this workaround as for score not reactive from birth
       state.loggedinUser = user ? { ...user } : null
     },
@@ -48,18 +56,19 @@ export const userStore = {
     async login({ commit }, { userCred }) {
       try {
         const user = await userService.login(userCred)
-        commit({ type: 'setLoggedinUser', user })
+        commit({ type: 'setLoggedInUser', user })
         return user
       } catch (err) {
         console.log('userStore: Error in login', err)
         throw err
       }
     },
-    async signup({ commit }, { userCred }) {
+    async signup({ commit }, { user }) {
       try {
-        const user = await userService.signup(userCred)
-        commit({ type: 'setLoggedinUser', user })
-        return user
+        await userService.signup(user)
+        const localLoggedInUser = await userService.getLoggedInUser()
+        await commit({ type: 'setLoggedInUser', user: localLoggedInUser })
+        return localLoggedInUser
       } catch (err) {
         console.log('userStore: Error in signup', err)
         throw err
@@ -68,7 +77,7 @@ export const userStore = {
     async logout({ commit }) {
       try {
         await userService.logout()
-        commit({ type: 'setLoggedinUser', user: null })
+        commit({ type: 'setLoggedInUser', user: null })
       } catch (err) {
         console.log('userStore: Error in logout', err)
         throw err
@@ -104,8 +113,8 @@ export const userStore = {
     },
     async updateUsers({ commit }, { user }) {
       try {
-        user = await userService.update(user)
-        commit({ type: 'setUsers', user })
+        const savedUser = await userService.update(user)
+        commit({ type: 'setLoggedInUser', user: savedUser })
       } catch (err) {
         console.log('userStore: Error in updateUser', err)
         throw err
@@ -123,9 +132,18 @@ export const userStore = {
     async loadUser({ commit }) {
       try {
         const user = await userService.getById()
-        commit({ type: 'setLoggedinUser', user })
+        commit({ type: 'setLoggedInUser', user })
       } catch (err) {
         console.log('userStore: Error in loadUser', err)
+        throw err
+      }
+    },
+    async addUser({ commit }, { user }) {
+      try {
+        const savedUser = await userService.add(user)
+        commit({ type: 'setLoggedInUser', user: savedUser })
+      } catch (err) {
+        console.log('userStore: Error in addUser', err)
         throw err
       }
     },
