@@ -25,6 +25,7 @@
           </form>
         </div>
         <div class="goTo">
+          <!-- <LoginSignup /> -->
           <RouterLink to="/gig">Explore</RouterLink>
           <a @click="goToSellerSignup">Become a Seller</a>
           <a>Sign In</a>
@@ -51,6 +52,7 @@
 <script>
 import { svgService } from '../services/svg.service'
 import { gigService } from '../services/gig.service.local'
+import LoginSignup from '../views/LoginSignup.vue'
 export default {
   data() {
     return {
@@ -65,12 +67,10 @@ export default {
       categories: gigService.getMarketCategories(),
     }
   },
-
   methods: {
     getSvg(iconName) {
       return svgService.getSvg(iconName)
     },
-
     emitFiltered() {
       console.log('emitFiltered')
       const filterBy = this.$store.getters.filterBy
@@ -97,13 +97,11 @@ export default {
       this.isSuggestions = scrollY > 170 ? true : false
     },
   },
-
   watch: {
     $route(to) {
       this.isHome = to.path !== '/' ? false : true
     },
   },
-
   created() {
     window.addEventListener('scroll', this.handleScroll)
     //we need to update the scroll position when the component is created
@@ -112,5 +110,6 @@ export default {
   mounted() {
     window.addEventListener('scroll', this.handleScroll)
   },
+  components: { LoginSignup },
 }
 </script>

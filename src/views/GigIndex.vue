@@ -67,16 +67,12 @@ export default {
         return this.$store.getters.gigs.filter(
           (gig) => gig.categoryId === this.$route.params.categoryId
         )
-      } else {
-        return this.$store.getters.gigs
       }
+      return this.$store.getters.gigs
     },
   },
   created() {
     this.loadGigs()
-    const filterBy = this.$store.getters.filterBy
-    console.log(filterBy)
-    if (filterBy) this.filterBy = filterBy
   },
   methods: {
     setSort(sortBy) {

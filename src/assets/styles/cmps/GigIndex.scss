@@ -1,3 +1,10 @@
 .gig-index {
   margin-top: 60px;
 }
+
+.add-gigs-container {
+  display: flex;
+  flex-direction: column;
+  grid-column: 2;
+  margin-top: 60px;
+}
