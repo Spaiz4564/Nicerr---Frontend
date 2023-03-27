@@ -127,8 +127,7 @@ function getEmptyGig() {
     price: 0,
     rate: 0,
     daysToDeliver: 0,
-    owner,
-    categoryId: '',
+    categories: [],
   }
 }
 
