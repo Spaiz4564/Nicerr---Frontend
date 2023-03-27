@@ -21,6 +21,7 @@
               placeholder="What service are you looking for today?"
               v-model="filterBy.title"
             />
+
             <span class="icon-search" v-html="getSvg('search')"></span>
           </form>
         </div>
