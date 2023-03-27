@@ -41,6 +41,7 @@ export default {
       this.$router.push(`/gig/${service.id}`)
     },
   },
+  computed: {},
   components: {
     VueperSlides,
     VueperSlide,

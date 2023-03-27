@@ -172,7 +172,7 @@ function _createGigs() {
         '../assets/images/gigs/gig4.jpg',
         '../assets/images/gigs/gig5.jpg',
       ],
-      ['graphic', 'voice over'],
+      ['data entry", "graphic', 'voice over'],
       3
     ),
     _createGig(
@@ -362,7 +362,6 @@ function getPopularServices() {
       desc: 'Add talent to AI',
       title: `AI Artists`,
       img: '../../assets/images/Services/AI-artists.png',
-      link: 'http://localhost:5173/#/gig/ai/',
     },
     {
       desc: 'Build your brand',
@@ -373,7 +372,6 @@ function getPopularServices() {
       desc: 'Customize your site',
       title: 'WordPress',
       img: '../../assets/images/Services/WordPress.png',
-      link: `http://localhost:5173/#/gig/${'wordpress'}`,
     },
     {
       desc: 'Share your message',

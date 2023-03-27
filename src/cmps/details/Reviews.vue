@@ -157,7 +157,6 @@
                                 <span>No</span>
                             </div>
                         </section>
-
                     </li>
                     <li class="review-item">
                         <section class="review-header">
