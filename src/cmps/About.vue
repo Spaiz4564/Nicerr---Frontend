@@ -47,7 +47,7 @@
       </ul>
     </div>
     <div class="teaser-img">
-      <img src="../assets/images/About/Video Teaser.png" alt="" />
+      <img src="../../src/assets/images/About/Video Teaser.png" alt="" />
     </div>
     </div>
   </div>
@@ -64,6 +64,7 @@ export default {
     getSvg(iconName) {
       return svgService.getSvg(iconName)
     },
+   
   },
   components: {},
 }

@@ -7,11 +7,11 @@
 </template>
 
 <script>
-import HeroSection from '../cmps/HeroSection.vue'
-import TrustedBy from '../cmps/TrustedBy.vue'
-import PopularServices from '../cmps/PopularServices.vue'
+import HeroSection from '../cmps/homePage/HeroSection.vue'
+import TrustedBy from '../cmps/homePage/TrustedBy.vue'
+import PopularServices from '../cmps/homePage/PopularServices.vue'
 import About from '../cmps/About.vue'
-import ExploreMarket from '../cmps/ExploreMarket.vue'
+import ExploreMarket from '../cmps/homePage/ExploreMarket.vue'
 
 export default {
   name: 'home',

@@ -10,7 +10,7 @@
 </template>
 
 <script lang="ts">
-import { gigService } from '../services/gig.service.local';
+import { gigService } from '../../services/gig.service.local';
 export default {
   name: 'Trusted By',
   data() {

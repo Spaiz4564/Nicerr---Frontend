@@ -13,7 +13,6 @@
           </form>
         </div>
         <div class="goTo">
-          <!-- <LoginSignup /> -->
           <RouterLink to="/gig">Explore</RouterLink>
           <a @click="goToSellerSignup">Become a Seller</a>
           <a>Sign In</a>
@@ -21,24 +20,14 @@
         </div>
       </nav>
     </header>
-    <div class="nav-suggestions main-layout" :class="[
-      isHome ? 'headerHome' : '',
-      isSuggestions ? 'display' : '',
-      isWhite ? 'homeScroll' : '',
-
-    ]">
-      <div class="suggestions main-layout">
-        <ul>
-          <li v-for="category in categories">{{ category.title }}</li>
-        </ul>
-      </div>
-    </div>
+    <NavSuggestions :isWhite="isWhite" :isSuggestions="isSuggestions" :isHome="isHome"/>
   </section>
 </template>
 <script>
 import { svgService } from '../services/svg.service'
 import { gigService } from '../services/gig.service.local'
 import LoginSignup from '../views/LoginSignup.vue'
+import NavSuggestions from './NavSuggestions.vue'
 export default {
   data() {
     return {
@@ -51,7 +40,6 @@ export default {
       isWhite: false,
       isSuggestions: false,
       isPurchase: false,
-      categories: gigService.getMarketCategories(),
     }
   },
   methods: {
@@ -83,6 +71,10 @@ export default {
       this.isWhite = scrollY > 20 ? true : false
       this.isSuggestions = scrollY > 170 ? true : false
     },
+    filterCategory(categoryId) {
+      this.$router.push(`/gig/${categoryId}`)
+      this.$store.commit({ type: 'setFilter', filterBy: { categoryId } })
+    },
   },
   watch: {
     $route(to) {
@@ -98,6 +90,6 @@ export default {
   mounted() {
     window.addEventListener('scroll', this.handleScroll)
   },
-  components: { LoginSignup },
+  components: { LoginSignup, NavSuggestions },
 }
 </script>
