@@ -34,35 +34,35 @@ async function query(
 ) {
   let gigs = await storageService.query(STORAGE_KEY)
   if (!gigs.length) gigs = _createGigs()
-  gigs = gigs.filter((gig) => gig.title)
+  gigs = gigs.filter(gig => gig.title)
 
   if (filterBy.title) {
     const regex = new RegExp(filterBy.title, 'i')
     gigs = gigs.filter(
-      (gig) => regex.test(gig.title) || regex.test(gig.description)
+      gig => regex.test(gig.title) || regex.test(gig.description)
     )
   }
   if (filterBy.minPrice || filterBy.maxPrice) {
-    gigs = gigs.filter((gig) => {
+    gigs = gigs.filter(gig => {
       return gig.price >= filterBy.minPrice && gig.price <= filterBy.maxPrice
     })
   }
   if (filterBy.categoryId) {
-    gigs = gigs.filter((gig) => {
+    gigs = gigs.filter(gig => {
       return gig.categoryId === filterBy.categoryId
     })
   }
   if (filterBy.daysToDeliver) {
     if (filterBy.daysToDeliver === '1') {
-      gigs = gigs.filter((gig) => {
+      gigs = gigs.filter(gig => {
         return gig.daysToDeliver === 1
       })
     } else if (filterBy.daysToDeliver === '3') {
-      gigs = gigs.filter((gig) => {
+      gigs = gigs.filter(gig => {
         return gig.daysToDeliver <= 3 && gig.daysToDeliver >= 2
       })
     } else if (filterBy.daysToDeliver === '7') {
-      gigs = gigs.filter((gig) => {
+      gigs = gigs.filter(gig => {
         return gig.daysToDeliver <= 7 && gig.daysToDeliver >= 4
       })
     } else if (filterBy.daysToDeliver === 'any') {
@@ -183,7 +183,7 @@ function _createGigs() {
         '../assets/images/gigs/gig4.jpg',
         '../assets/images/gigs/gig5.jpg',
       ],
-      'wordpress',
+      'WordPress',
       3
     ),
     _createGig(
@@ -216,7 +216,7 @@ function _createGigs() {
         '../assets/images/gigs/gig1.png',
         '../assets/images/gigs/gig2.png',
       ],
-      'website',
+      'Website Design',
       1
     ),
     _createGig(
@@ -227,7 +227,7 @@ function _createGigs() {
         '../assets/images/gigs/gig4.jpg',
         '../assets/images/gigs/gig7.jpg',
       ],
-      'ai',
+      'AI Services',
       2
     ),
     _createGig(
@@ -238,7 +238,7 @@ function _createGigs() {
         '../assets/images/gigs/gig4.jpg',
         '../assets/images/gigs/gig5.jpg',
       ],
-      'logo',
+      'Logo Design',
       1
     ),
     _createGig(
@@ -425,7 +425,6 @@ function getPopularServices() {
       title: 'Data Entry',
       img: '.././assets/images/Services/Data Entry.png',
     },
-   
   ]
   return services
 }

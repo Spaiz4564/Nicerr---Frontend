@@ -5,21 +5,41 @@
   z-index: 100;
   background-color: #fff;
 }
-.budget-input {
+
+.rotate{
+  transform: rotate(180deg);
+}
+
+.budget{
+  transition: all 0.3s;
+  &:hover{
+    box-shadow: 0 0 0 1.3px var(--el-input-border-color,var(--el-border-color));
+  }
+  padding: 12px 14.9px;
+  gap: 2px;
+  cursor: pointer;
+  .arrow-down{
+    padding-left: 7%;
+  }
+  border-radius: 8px;
+  box-shadow: 0 0 0 1px var(--el-input-border-color,var(--el-border-color));
   display: flex;
-  gap: 0.5em;
+  height: 95%;
+  text-align: center;
+  align-items: center;
+}
+
+.filters {
+  display: flex;
+  gap: 0.6em;
   grid-column: 2;
   align-items: center;
   color: $clr1;
-  font-size: 1rem;
-  width: 7.5em;
-  height: 3.2em;
-  border: 1px solid #dadbdd;
+  font-size: 1rem;  
   border-radius: 10px;
   .txt-budget {
     font-family: Macan-bold;
     font-weight: 400;
-    margin-left: 1em;
     color: $clr1;
     font-size: em(16px);
   }
@@ -30,9 +50,29 @@
   svg {
     fill: black;
     height: em(15px);
-    margin-right: em(16px);
     width: em(18px);
     position: inherit;
+  }
+}
+
+.days-deliver{
+  border-radius: 8px;
+  .el-select{
+    .el-input__inner{
+      &::placeholder{
+
+        color: #222325!important;
+      }
+      font-family: 'Macan-Bold';
+      font-weight: 400;
+      font-size: em(18px);
+    }
+    .el-input__wrapper{
+      border-radius: 8px;
+      padding: 5px 15px;
+    }
+   
+    max-width: 160px;
   }
 }
 
@@ -101,34 +141,7 @@
   box-shadow: 0 9px 20px -13px #74767ed9;
 }
 
-.sort-container {
-  grid-column: 2;
-  align-items: center;
-  justify-content: flex-end;
-  .sort-txt {
-    margin: 0;
-    font-size: em(14px);
-  }
-  .el-select {
-    box-shadow: none;
-    outline: none;
-    --el-select-border-color-hover: var(--el-select-border-color);
-    --el-select-input-focus-border-color: var(--el-select-border-color);
-    .el-input__inner {
-      font-family: Macan-Bold;
-      color: $clr1;
-      font-size: em(20px);
-      width: 3em;
-    }
-    .el-input__wrapper {
-      box-shadow: none;
-    }
-  }
-  .el-select-dropdown__wrap {
-    width: 11em;
-    color: #1dbf73;
-  }
-}
+
 .el-select-dropdown__item {
   font-family: Macan-Regular;
   text-align: center;
