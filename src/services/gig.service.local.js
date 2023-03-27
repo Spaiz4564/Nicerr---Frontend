@@ -30,8 +30,6 @@ async function query(
 ) {
   let gigs = await storageService.query(STORAGE_KEY)
   if (!gigs.length) gigs = _createGigs()
-  gigs = gigs.filter((gig) => gig.title)
-
   if (filterBy.title) {
     const regex = new RegExp(filterBy.title, 'i')
     gigs = gigs.filter(

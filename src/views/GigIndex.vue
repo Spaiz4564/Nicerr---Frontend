@@ -5,19 +5,18 @@
       <span>{{ gigsLength }} services available</span>
       <div class="sort">
         <p class="sort-txt">Sort by</p>
-      <el-select
-        v-model="sortBy"
-        placeholder="Please select"
-        @change="setSort(sortBy)">
-        <el-option
-          v-for="item in options"
-          :key="item.value"
-          :label="item.label"
-          :value="item.value">
-        </el-option>
-      </el-select>
+        <el-select
+          v-model="sortBy"
+          placeholder="Please select"
+          @change="setSort(sortBy)">
+          <el-option
+            v-for="item in options"
+            :key="item.value"
+            :label="item.label"
+            :value="item.value">
+          </el-option>
+        </el-select>
       </div>
-    
     </div>
     <GigList :gigs="gigs" />
   </section>
@@ -69,18 +68,22 @@ export default {
     gigs() {
       if (this.$route.params.categoryId) {
         return this.$store.getters.gigs.filter(
-          (gig) => gig.categories.includes(this.$route.params.categoryId) || gig.title.includes(this.$route.params.categoryId)
+          (gig) =>
+            gig.categories.includes(this.$route.params.categoryId) ||
+            gig.title.includes(this.$route.params.categoryId)
         )
       }
       return this.$store.getters.gigs
     },
-    gigsLength(){
+    gigsLength() {
       return this.gigs.length
-    }
+    },
   },
   created() {
+    const filterBy = this.$store.getters.filterBy
+    this.$store.commit({ type: 'setFilter', filterBy })
+    this.$router.push({ path: '/gig', query: { ...filterBy } })
     this.loadGigs()
-    console.log(this.gigs)
   },
   methods: {
     setSort(sortBy) {
@@ -133,15 +136,17 @@ export default {
       console.log('Gig msgs:', gig.msgs)
     },
     setFilter(filterBy) {
-      this.filterBy = filterBy
-      this.loadGigs()
+      this.$store.commit({ type: 'setFilter', filterBy })
+      this.$router.push({ path: '/gig', query: { ...filterBy } })
     },
 
     async loadGigs() {
+      const filterBy = this.$route.query
+      this.$router.push({ path: '/gig', query: { ...filterBy } })
       try {
         await this.$store.dispatch({
           type: 'loadGigs',
-          filterBy: this.filterBy,
+          filterBy,
           sortBy: this.sortBy,
         })
       } catch (err) {

@@ -46,11 +46,16 @@ export const gigStore = {
         return gigs.find((gig) => gig._id === gigId)
       }
     },
+
     gigsByOwner({ gigs }) {
       return (ownerId) => {
         console.log('gigsByOwner', ownerId)
         return gigs.filter((gig) => gig.owner._id === ownerId)
       }
+    },
+
+    filterBy({ filterBy }) {
+      return filterBy
     },
   },
   mutations: {
