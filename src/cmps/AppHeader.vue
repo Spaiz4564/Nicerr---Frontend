@@ -12,7 +12,7 @@
           </RouterLink>
           <form
             @submit.prevent="emitFiltered"
-            v-if="!isHome"
+            v-if="!isHome || isSuggestions"
             class="search-bar"
           >
             <input

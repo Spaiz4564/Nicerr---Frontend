@@ -317,7 +317,7 @@ function getMarketCategories() {
   const categories = [
     { title: 'Graphics & Design', svg: 'cupAndPencil', name: 'graphic' },
     { title: 'Digital Marketing', svg: 'tv', name: 'digital' },
-    { title: 'Writing & Translition', svg: 'paperAndPen', name: 'writing' },
+    { title: 'Writing & Translation', svg: 'paperAndPen', name: 'writing' },
     { title: 'Video & Animation', svg: 'animation', name: 'video' },
     { title: 'Music & Audio', svg: 'music', name: 'music' },
     { title: 'Programming & Tech', svg: 'tech', name: 'tech' },
@@ -420,11 +420,7 @@ function getPopularServices() {
       title: 'Data Entry',
       img: '.././assets/images/Services/Data Entry.png',
     },
-    // {
-    //   desc: 'Showcase your story',
-    //   title: 'Book Covers',
-    //   img: '.././assets/images/Services/Book Covers.png',
-    // },
+   
   ]
   return services
 }

@@ -1,6 +1,6 @@
 .popular-services-section {
-  .vueperslide__track{
-cursor: default;
+  .vueperslides__track {
+    cursor: default !important;
   }
   margin-bottom: 96px;
   .services {
@@ -68,7 +68,6 @@ cursor: default;
     .vueperslides__parallax-wrapper {
       padding-bottom: 25% !important;
     }
-  
   }
   h2 {
     padding-bottom: 24px;
