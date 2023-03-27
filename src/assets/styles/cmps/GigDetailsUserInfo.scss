@@ -381,7 +381,7 @@
             }
 
             .key {
-                color: $clr12;
+                color: $clr13;
                 width: 25%;
             }
 
@@ -389,7 +389,7 @@
                 line-height: 10px;
 
                 .star-num {
-                    color: $clr12;
+                    color: $clr13;
                     font-family: 'Macan-Regular';
                     font-weight: 100;
                     font-size: 18px;
@@ -423,9 +423,12 @@
             border-top: 1px solid $clr9;
 
             .review-header {
+                align-items: center;
 
                 .user-profile-image {
                     display: flex;
+                    align-items: center;
+                    gap: 12px;
 
                     .user-img {
                         width: 48px;

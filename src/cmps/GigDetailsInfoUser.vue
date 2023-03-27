@@ -253,8 +253,8 @@
                 <ul class="review-lists clean-list ">
                     <span class="review-item-component">
                         <li class="review-item">
-                            <section class="review-header">
-                                <div class="flex item-center">
+                            <section class="review-header flex">
+                                <div class="flex align-center">
                                     <div class="user-profile-image">
                                         <label class="user-img">
                                             <img src="" alt="">

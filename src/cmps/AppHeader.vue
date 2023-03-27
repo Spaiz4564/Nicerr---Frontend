@@ -1,26 +1,14 @@
 <template>
-  <section class="main-header main-layout">
-    <header
-      class="main-layout"
-      :class="[isHome ? 'headerHome' : '', isWhite ? 'homeScroll' : '']"
-      ref="header"
-    >
+  <section :class="[isPurchase ? 'none' : '']" class="main-header main-layout">
+    <header class="main-layout" :class="[isHome ? 'headerHome' : '', isWhite ? 'homeScroll' : '']" ref="header">
       <nav>
         <div class="logo-search">
           <RouterLink to="/">
             <h1 class="logo">Nicerr</h1>
           </RouterLink>
-          <form
-            @submit.prevent="emitFiltered"
-            v-if="!isHome || isSuggestions"
-            class="search-bar"
-          >
-            <input
-              class="search-input"
-              type="text"
-              placeholder="What service are you looking for today?"
-              v-model="filterBy.title"
-            />
+          <form @submit.prevent="emitFiltered" v-if="!isHome || isSuggestions" class="search-bar">
+            <input class="search-input" type="text" placeholder="What service are you looking for today?"
+              v-model="filterBy.title" />
             <span class="icon-search" v-html="getSvg('search')"></span>
           </form>
         </div>
@@ -33,14 +21,12 @@
         </div>
       </nav>
     </header>
-    <div
-      class="nav-suggestions main-layout"
-      :class="[
-        isHome ? 'headerHome' : '',
-        isSuggestions ? 'display' : '',
-        isWhite ? 'homeScroll' : '',
-      ]"
-    >
+    <div class="nav-suggestions main-layout" :class="[
+      isHome ? 'headerHome' : '',
+      isSuggestions ? 'display' : '',
+      isWhite ? 'homeScroll' : '',
+
+    ]">
       <div class="suggestions main-layout">
         <ul>
           <li v-for="category in categories">{{ category.title }}</li>
@@ -64,6 +50,7 @@ export default {
       isHome: true,
       isWhite: false,
       isSuggestions: false,
+      isPurchase: false,
       categories: gigService.getMarketCategories(),
     }
   },
@@ -100,6 +87,7 @@ export default {
   watch: {
     $route(to) {
       this.isHome = to.path !== '/' ? false : true
+      this.isPurchase = to.path === `/purchase` ? true : false
     },
   },
   created() {
