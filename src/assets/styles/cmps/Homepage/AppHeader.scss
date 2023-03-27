@@ -61,22 +61,20 @@
   }
   ul {
     grid-column: 2 / 3;
-   margin: 0;
-   padding: 0;
+    margin: 0;
+    padding: 0;
     li {
       position: relative;
       color: $clr02;
       cursor: pointer;
       font-size: 16px;
-     
-      
     }
 
-    li:hover{
-      &:after{
+    li:hover {
+      &:after {
         background: #1dbf73;
         bottom: -7px;
-        content: "";
+        content: '';
         height: 3px;
         left: 0;
         position: absolute;
@@ -202,4 +200,10 @@
       }
     }
   }
+}
+.user-img {
+  width: em(50px);
+  height: em(50px);
+  border-radius: 50%;
+  object-fit: cover;
 }

@@ -1,5 +1,5 @@
 <template>
-  <section class="seller-signup">
+  <section class="seller-signup" v-if="userToEdit">
     <div class="signup-header">
       <h2>Personal Info</h2>
       <p class="seller-info">
@@ -9,38 +9,38 @@
       <hr />
     </div>
     <div class="seller-signup-form">
-      <form>
+      <form @submit.prevent="saveUser">
         <div class="seller-signup-inputs">
           <label class="label" for="full-name">Full name</label>
           <input
             class="input"
             type="text"
             name="full-name"
-            v-model="owner.fullname"
+            v-model="userToEdit.fullname"
             placeholder="Fullname" />
           <label class="label" for="username">Display name</label>
+          <label class="label" for="password">Password</label>
+          <input
+            type="password"
+            class="input"
+            name="password"
+            v-model="userToEdit.password"
+            placeholder="Password" />
+
           <input
             type="text"
             class="input"
             name="username"
-            v-model="owner.username"
+            v-model="userToEdit.username"
             placeholder="Type your display name " />
-          <label class="label" for="description">Description</label>
-          <textarea
-            class="input"
-            name="description"
-            v-model="owner.description"
-            id=""
-            cols="30"
-            rows="10"></textarea>
           <label class="label" for="location">Enter your country</label>
           <input
             class="input"
-            v-model="owner.location"
+            v-model="userToEdit.location"
             type="text"
             name="location"
             placeholder="Country" />
-          <button class="btn-sign" @click.prevent="addOwner">Continue</button>
+          <button class="btn-sign">Continue</button>
         </div>
       </form>
     </div>
@@ -49,28 +49,38 @@
 
 <script>
 import { utilService } from '../services/util.service'
+import { userService } from '../services/user.service'
 
 export default {
+  name: 'SellerSignup',
   data() {
     return {
-      owner: {
-        fullname: '',
-        username: '',
-        description: '',
-        location: '',
-      },
+      userToEdit: null,
     }
   },
-  methods: {
-    addOwner() {
-      this.$store.dispatch({ type: 'addOwner', owner: this.owner })
-      this.$router.push(`/seller/profile/${this.owner.fullname}`)
-    },
-  },
   created() {
-    const { owner } = this.$store.state
-    if (owner) this.owner = owner
-    console.log('owner', this.owner)
+    const loggedinUser = this.$store.getters.loggedinUser
+    if (loggedinUser) {
+      this.userToEdit = loggedinUser
+    } else {
+      this.userToEdit = userService.getEmptyUser()
+    }
+  },
+
+  methods: {
+    async saveUser() {
+      if (!this.userToEdit._id)
+        await this.$store.dispatch({
+          type: 'signup',
+          user: { ...this.userToEdit, isSeller: true },
+        })
+      else
+        await this.$store.dispatch({
+          type: 'updateUsers',
+          user: { ...this.userToEdit, isSeller: true },
+        })
+      this.$router.push(`/seller/profile/${this.userToEdit._id}`)
+    },
   },
 }
 </script>

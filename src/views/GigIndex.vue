@@ -1,5 +1,5 @@
 <template>
-  <section class="gig-index main-layout full" v-if="gigs">
+  <section class="gig-index main-layout full">
     <GigFilter @filtered="setFilter" />
     <div class="sort-container flex">
       <span>{{ gigsLength }} services available</span>
@@ -69,17 +69,18 @@ export default {
     gigs() {
       if (this.$route.params.categoryId) {
         return this.$store.getters.gigs.filter(
-          (gig) => gig.categoryId === this.$route.params.categoryId
+          (gig) => gig.categories.includes(this.$route.params.categoryId) || gig.title.includes(this.$route.params.categoryId)
         )
       }
       return this.$store.getters.gigs
     },
     gigsLength(){
-      return this.$store.getters.gigs.length
+      return this.gigs.length
     }
   },
   created() {
     this.loadGigs()
+    console.log(this.gigs)
   },
   methods: {
     setSort(sortBy) {

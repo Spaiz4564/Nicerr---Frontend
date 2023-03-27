@@ -15,8 +15,8 @@
 </template>
 
 <script>
-import { svgService } from '../services/svg.service'
-import { gigService } from '../services/gig.service.local'
+import { svgService } from '../../services/svg.service'
+import { gigService } from '../../services/gig.service.local'
 export default {
   name: 'Explore Market',
   data() {

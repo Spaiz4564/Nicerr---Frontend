@@ -16,12 +16,16 @@ export const userService = {
   logout,
   signup,
   getLoggedinUser,
+  getEmptyUser,
   saveLocalUser,
   getUsers,
   getById,
   remove,
   update,
   changeScore,
+  getGigsByUser,
+  updateUser,
+  getLoggedInUser,
 }
 
 window.userService = userService
@@ -31,6 +35,23 @@ function getUsers() {
   // return httpService.get(`user`)
 }
 
+function getGigsByUser(userId) {
+  return storageService.query('gig', { userId })
+  // return httpService.get(`gig?userId=${userId}`)
+}
+
+function getEmptyUser() {
+  return {
+    fullname: '',
+    username: '',
+    password: '',
+    imgUrl:
+      'https://cdn.pixabay.com/photo/2020/07/01/12/58/icon-5359553_1280.png',
+    score: 0,
+    isSeller: false,
+  }
+}
+
 function onUserUpdate(user) {
   showSuccessMsg(
     `This user ${user.fullname} just got updated from socket, new score: ${user.score}`
@@ -38,7 +59,12 @@ function onUserUpdate(user) {
   store.dispatch({ type: 'setWatchedUser', user })
 }
 
+function getLoggedInUser() {
+  return JSON.parse(sessionStorage.getItem(STORAGE_KEY_LOGGEDIN_USER) || 'null')
+}
+
 async function getById(userId) {
+  console.log('user.service: getById', userId)
   const user = await storageService.get('user', userId)
   // const user = await httpService.get(`user/${userId}`)
 
@@ -55,11 +81,12 @@ function remove(userId) {
 
 async function update({ _id, score }) {
   const user = await storageService.get('user', _id)
+  console.log('user.service: update', user)
   // let user = getById(_id)
   user.score = score
-  // await storageService.put('user', user)
+  await storageService.put('user', user)
 
-  user = await httpService.put(`user/${user._id}`, user)
+  // user = await httpService.put(`user/${user._id}`, user)
   // Handle case in which admin updates other user's details
   if (getLoggedinUser()._id === user._id) saveLocalUser(user)
   return user
@@ -75,11 +102,13 @@ async function login(userCred) {
   }
 }
 async function signup(userCred) {
-  userCred.score = 10000
   if (!userCred.imgUrl)
     userCred.imgUrl =
       'https://cdn.pixabay.com/photo/2020/07/01/12/58/icon-5359553_1280.png'
   const user = await storageService.post('user', userCred)
+  if (user) {
+    return setLoggedInUser(user)
+  }
   // const user = await httpService.post('auth/signup', userCred)
   socketService.login(user._id)
   return saveLocalUser(user)
@@ -88,6 +117,18 @@ async function logout() {
   sessionStorage.removeItem(STORAGE_KEY_LOGGEDIN_USER)
   // socketService.logout()
   // return await httpService.post('auth/logout')
+}
+
+function setLoggedInUser(user) {
+  console.log('user.service: setLoggedInUser', user)
+  const userToSave = {
+    _id: user._id,
+    fullname: user.fullname,
+    imgUrl: user.imgUrl,
+    location: user.location,
+  }
+  sessionStorage.setItem(STORAGE_KEY_LOGGEDIN_USER, JSON.stringify(userToSave))
+  return userToSave
 }
 
 async function changeScore(by) {
@@ -104,6 +145,7 @@ function saveLocalUser(user) {
     fullname: user.fullname,
     imgUrl: user.imgUrl,
     score: user.score,
+    isSeller: user.isSeller,
   }
   sessionStorage.setItem(STORAGE_KEY_LOGGEDIN_USER, JSON.stringify(user))
   return user
@@ -111,6 +153,10 @@ function saveLocalUser(user) {
 
 function getLoggedinUser() {
   return JSON.parse(sessionStorage.getItem(STORAGE_KEY_LOGGEDIN_USER) || 'null')
+}
+
+function updateUser(user) {
+  return storageService.put('user', user)
 }
 
 // ;(async ()=>{

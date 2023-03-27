@@ -3,14 +3,16 @@
     <div
       ref="heroBackground"
       class="hero-background"
-      v-for="background in backgrounds">
+      v-for="background in backgrounds"
+    >
       <img :src="imgUrl(background.img)" alt="" />
 
       <div class="desc">
         <span
           v-if="background.isFiveStars"
           className="icon"
-          v-html="getSvg('fiveStars')"></span>
+          v-html="getSvg('fiveStars')"
+        ></span>
         <div class="artist-info">
           <p>{{ background.name }},</p>
           <b>{{ background.desc }}</b>
@@ -22,14 +24,15 @@
         <h1>
           Find the perfect <span>freelance</span> services for your business
         </h1>
-        <form class="home-search-container" @submit.prevent="filterByTitle">
+        <form class="home-search-container" @submit.prevent="filterByTitle()">
           <div class="home-search">
             <div class="search">
               <div class="icon" v-html="getSvg('search')"></div>
               <input
                 v-model="filterBy.title"
                 type="text"
-                placeholder='Try "building mobile app"' />
+                placeholder='Try "building mobile app"'
+              />
             </div>
             <button>Search</button>
           </div>
@@ -37,7 +40,12 @@
         <div class="header-suggestions">
           <span>Popular:</span>
           <ul>
-            <li v-for="category in popularCategories" @click="filterCategory(category)">{{ category }}</li>
+            <li
+              v-for="category in popularCategories"
+              @click="filterCategory(category.toLocaleLowerCase())"
+            >
+              {{ category }}
+            </li>
           </ul>
         </div>
       </div>
@@ -45,15 +53,20 @@
   </div>
 </template>
 <script>
-import { svgService } from '../services/svg.service'
-import { gigService } from '../services/gig.service.local'
+import { svgService } from '../../services/svg.service'
+import { gigService } from '../../services/gig.service.local'
 export default {
   name: 'Hero Section',
   data() {
     return {
       backgrounds: gigService.getHeroBackgrounds(),
       heroInterval: null,
-      popularCategories: ['Website Design','WordPress','Logo Design','AI Services'],
+      popularCategories: [
+        'Website Design',
+        'WordPress',
+        'Logo Design',
+        'AI Services',
+      ],
       filterBy: {
         title: '',
       },
@@ -73,7 +86,7 @@ export default {
       var counter = 1
       this.heroInterval = setInterval(() => {
         const categories = this.$refs.heroBackground
-      categories[0].style.opacity = '0'
+        categories[0].style.opacity = '0'
         if (counter === categories.length) {
           counter = 0
           categories[5].classList.remove('showOpacity')
@@ -94,21 +107,20 @@ export default {
       return new URL(img, import.meta.url).href
     },
     filterCategory(categoryId) {
+      console.log(categoryId)
       this.$router.push(`/gig/${categoryId}`)
       this.$store.commit({ type: 'setFilter', filterBy: { categoryId } })
     },
     filterByTitle() {
       console.log('filterByTitle')
       this.$router.push(`/gig/${this.filterBy.title}`)
-      this.$store.commit({ type: 'setFilter', filterBy: this.filterBy })
+      this.$store.commit({ type: 'setFilter', filterBy: this.filterBy.title })
     },
   },
 
   unmounted() {
     clearInterval(this.heroInterval)
   },
-
-
 
   created() {
     this.handleHeroGallery()

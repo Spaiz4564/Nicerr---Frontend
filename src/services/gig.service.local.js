@@ -3,7 +3,6 @@ import { utilService } from "./util.service.js";
 import { userService } from "./user.service.js";
 
 const STORAGE_KEY = "gig";
-const STORAGE_OWNER_KEY = "owner";
 
 export const gigService = {
   query,
@@ -16,9 +15,6 @@ export const gigService = {
   getHeroBackgrounds,
   getPopularServices,
   getTrustedBy,
-  getOwnerById,
-  saveOwner,
-  saveGigToOwner,
 };
 window.cs = gigService;
 
@@ -91,41 +87,22 @@ function getById(gigId) {
   return storageService.get(STORAGE_KEY, gigId);
 }
 
-function saveOwner(owner) {
-  if (owner._id) {
-    return storageService.put(STORAGE_OWNER_KEY, owner);
-  } else {
-    return storageService.post(STORAGE_OWNER_KEY, owner);
-  }
-}
-
 async function remove(gigId) {
   await storageService.remove(STORAGE_KEY, gigId);
 }
 
-function getOwnerById(ownerId) {
-  return storageService.get(STORAGE_OWNER_KEY, ownerId);
-}
-
-async function save(gig, owner) {
+async function save(gig) {
   var savedGig;
-  var owner = console.log("owner", owner);
+  console.log("gig", gig);
   if (gig._id) {
     savedGig = await storageService.put(STORAGE_KEY, gig);
-
-    console.log("owner", owner);
   } else {
     // Later, owner is set by the backend
     gig.owner = userService.getLoggedinUser();
-    console.log("gig.owner", gig.owner);
+    // gig._id = utilService.makeId()
     savedGig = await storageService.post(STORAGE_KEY, gig);
   }
   return savedGig;
-}
-function saveGigToOwner(gig, owner) {
-  console.log("owner", owner);
-  owner.gigs.push(gig);
-  return storageService.put(STORAGE_OWNER_KEY, owner);
 }
 
 async function addGigMsg(gigId, txt) {
@@ -144,7 +121,7 @@ async function addGigMsg(gigId, txt) {
   return msg;
 }
 
-function getEmptyGig(owner) {
+function getEmptyGig() {
   return {
     title: "",
     price: 0,
@@ -155,7 +132,7 @@ function getEmptyGig(owner) {
   };
 }
 
-function _createGig(title, images, categoryId, daysToDeliver) {
+function _createGig(title, images, categories, daysToDeliver) {
   return {
     title,
     price: utilService.getRandomIntInclusive(5, 200),
@@ -169,7 +146,7 @@ function _createGig(title, images, categoryId, daysToDeliver) {
       level: "basic/intermediate/",
       rate: 4,
     },
-    categoryId,
+    categories,
   };
 }
 
@@ -183,7 +160,7 @@ function _createGigs() {
         "../assets/images/gigs/gig4.jpg",
         "../assets/images/gigs/gig5.jpg",
       ],
-      "WordPress",
+      ["wordpress", "digital marketing"],
       3
     ),
     _createGig(
@@ -194,7 +171,7 @@ function _createGigs() {
         "../assets/images/gigs/gig4.jpg",
         "../assets/images/gigs/gig5.jpg",
       ],
-      "graphic",
+      ["graphic"],
       3
     ),
     _createGig(
@@ -205,7 +182,7 @@ function _createGigs() {
         "../assets/images/gigs/gig3.png",
         "../assets/images/gigs/gig4.jpg",
       ],
-      "digital",
+      ["digital"],
       3
     ),
     _createGig(
@@ -216,7 +193,7 @@ function _createGigs() {
         "../assets/images/gigs/gig1.png",
         "../assets/images/gigs/gig2.png",
       ],
-      "Website Design",
+      ["website design"],
       1
     ),
     _createGig(
@@ -227,7 +204,7 @@ function _createGigs() {
         "../assets/images/gigs/gig4.jpg",
         "../assets/images/gigs/gig7.jpg",
       ],
-      "AI Services",
+      ["ai services"],
       2
     ),
     _createGig(
@@ -238,7 +215,7 @@ function _createGigs() {
         "../assets/images/gigs/gig4.jpg",
         "../assets/images/gigs/gig5.jpg",
       ],
-      "Logo Design",
+      ["logo design"],
       1
     ),
     _createGig(
@@ -249,7 +226,7 @@ function _createGigs() {
         "../assets/images/gigs/gig4.jpg",
         "../assets/images/gigs/gig5.jpg",
       ],
-      "business",
+      ["business"],
       6
     ),
     _createGig(
@@ -260,7 +237,7 @@ function _createGigs() {
         "../assets/images/gigs/gig4.jpg",
         "../assets/images/gigs/gig5.jpg",
       ],
-      "lifestyle",
+      ["lifestyle"],
       2
     ),
     _createGig(
@@ -271,7 +248,7 @@ function _createGigs() {
         "../assets/images/gigs/gig4.jpg",
         "../assets/images/gigs/gig5.jpg",
       ],
-      "lifestyle",
+      ["lifestyle"],
       2
     ),
     _createGig(
@@ -282,15 +259,20 @@ function _createGigs() {
         "../assets/images/gigs/gig4.jpg",
         "../assets/images/gigs/gig5.jpg",
       ],
-      "lifestyle",
+      ["lifestyle"],
       7
     ),
-    _createGig("I will create games so you can play with all of your friends", [
-      "../assets/images/gigs/gig6.jpg",
-      "../assets/images/gigs/gig2.png",
-      "../assets/images/gigs/gig4.jpg",
-      "../assets/images/gigs/gig5.jpg",
-    ]),
+    _createGig(
+      "I will create games so you can play with all of your friends",
+      [
+        "../assets/images/gigs/gig6.jpg",
+        "../assets/images/gigs/gig2.png",
+        "../assets/images/gigs/gig4.jpg",
+        "../assets/images/gigs/gig5.jpg",
+      ],
+      ["lifestyle"],
+      4
+    ),
     _createGig(
       "I will create store that you can sell your products",
       [
@@ -299,7 +281,7 @@ function _createGigs() {
         "../assets/images/gigs/gig4.jpg",
         "../assets/images/gigs/gig5.jpg",
       ],
-      "business",
+      ["business"],
       5
     ),
     _createGig(
@@ -310,7 +292,7 @@ function _createGigs() {
         "../assets/images/gigs/gig4.jpg",
         "../assets/images/gigs/gig5.jpg",
       ],
-      "data",
+      ["data"],
       7
     ),
   ];
@@ -337,34 +319,34 @@ function getMarketCategories() {
 function getHeroBackgrounds() {
   const backgrounds = [
     {
-      img: ".././assets/images/Hero-section/Valentina.png",
+      img: "../../assets/images/Hero-section/Valentina.png",
       name: "Valentina",
       desc: "AI Artist",
       isFiveStars: true,
     },
     {
-      img: ".././assets/images/Hero-section/Andrea.png",
+      img: "../../assets/images/Hero-section/Andrea.png",
       name: "Andrea",
       desc: "Fashion Designer",
     },
     {
-      img: ".././assets/images/Hero-section/Moon.png",
+      img: "../../assets/images/Hero-section/Moon.png",
       name: "Moon",
       desc: "Marketing Expert",
       isFiveStars: true,
     },
     {
-      img: ".././assets/images/Hero-section/Ritika.png",
+      img: "../../assets/images/Hero-section/Ritika.png",
       name: "Ritika",
       desc: "Shoemaker and Designer",
     },
     {
-      img: ".././assets/images/Hero-section/Zach.png",
+      img: "../../assets/images/Hero-section/Zach.png",
       name: "Zach",
       desc: "Bar Owner",
     },
     {
-      img: ".././assets/images/Hero-section/Gabriella.png",
+      img: "../../assets/images/Hero-section/Gabriella.png",
       name: "Gabrielle",
       desc: "Video Editor",
       isFiveStars: true,
@@ -378,52 +360,52 @@ function getPopularServices() {
     {
       desc: "Add talent to AI",
       title: `AI Artists`,
-      img: ".././assets/images/Services/AI-artists.png",
+      img: "../../assets/images/Services/AI-artists.png",
     },
     {
       desc: "Build your brand",
       title: "Logo Design",
-      img: ".././assets/images/Services/Logo design.png",
+      img: "../../assets/images/Services/Logo design.png",
     },
     {
       desc: "Customize your site",
       title: "WordPress",
-      img: ".././assets/images/Services/WordPress.png",
+      img: "../../assets/images/Services/WordPress.png",
     },
     {
       desc: "Share your message",
       title: "Voice Over",
-      img: ".././assets/images/Services/Voice Over.png",
+      img: "../../assets/images/Services/Voice Over.png",
     },
     {
       desc: "Engage your audience",
       title: "Video Explainer",
-      img: ".././assets/images/Services/Video Explainer.png",
+      img: "../../assets/images/Services/Video Explainer.png",
     },
     {
       desc: "Reach more customers",
       title: "Social Media",
-      img: ".././assets/images/Services/Social Media.png",
+      img: "../../assets/images/Services/Social Media.png",
     },
     {
       desc: "Unlock growth online",
       title: "SEO",
-      img: ".././assets/images/Services/SEO.png",
+      img: "../../assets/images/Services/SEO.png",
     },
     {
       desc: "Color your dreams",
       title: "Illustrations",
-      img: ".././assets/images/Services/illustration.png",
+      img: "../../assets/images/Services/illustration.png",
     },
     {
       desc: "Go global",
       title: "Translation",
-      img: ".././assets/images/Services/Translation.png",
+      img: "../../assets/images/Services/Translation.png",
     },
     {
       desc: "Learn your business",
       title: "Data Entry",
-      img: ".././assets/images/Services/Data Entry.png",
+      img: "../../assets/images/Services/Data Entry.png",
     },
   ];
   return services;
@@ -431,11 +413,11 @@ function getPopularServices() {
 
 function getTrustedBy() {
   const trustedBy = [
-    ".././assets/images/trusted by/Meta.png",
-    ".././assets/images/trusted by/Google.png",
-    ".././assets/images/trusted by/Netflix.png",
-    ".././assets/images/trusted by/PG.png",
-    ".././assets/images/trusted by/Paypal.png",
+    "../../assets/images/trusted by/Meta.png",
+    "../../assets/images/trusted by/Google.png",
+    "../../assets/images/trusted by/Netflix.png",
+    "../../assets/images/trusted by/PG.png",
+    "../../assets/images/trusted by/Paypal.png",
   ];
   return trustedBy;
 }

@@ -1,7 +1,7 @@
 <template>
   <ul class="gig-list">
     <li v-for="gig in gigs" :key="gig._id">
-      <GigPreview :gig="gig" />
+      <GigPreview :gig="gig" v-if="gig" />
     </li>
   </ul>
 </template>
@@ -16,6 +16,7 @@ export default {
   components: {
     GigPreview,
   },
+
   methods: {
     goToDetails(gigId) {
       this.$router.push(`/gig/${gigId}`)

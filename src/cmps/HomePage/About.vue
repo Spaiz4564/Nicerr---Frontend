@@ -47,14 +47,14 @@
       </ul>
     </div>
     <div class="teaser-img">
-      <img src="../assets/images/About/Video Teaser.png" alt="" />
+      <img src="../../assets/images/About/Video Teaser.png" alt="" />
     </div>
     </div>
   </div>
 </template>
 
 <script lang="ts">
-import { svgService } from '../services/svg.service'
+import { svgService } from '../../services/svg.service'
 export default {
   name: 'Popular Services',
   data() {
@@ -64,6 +64,7 @@ export default {
     getSvg(iconName) {
       return svgService.getSvg(iconName)
     },
+   
   },
   components: {},
 }
