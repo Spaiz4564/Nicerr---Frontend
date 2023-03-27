@@ -8,7 +8,7 @@
           </RouterLink>
           <form @submit.prevent="emitFiltered" v-if="!isHome || isSuggestions" class="search-bar">
             <input class="search-input" type="text" placeholder="What service are you looking for today?"
-              v-model="filterBy.title" />
+              v-model="filterBy.categoryId" />
             <span class="icon-search" v-html="getSvg('search')"></span>
           </form>
         </div>

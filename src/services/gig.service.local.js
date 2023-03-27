@@ -48,8 +48,8 @@ async function query(
     })
   }
   if (filterBy.categoryId) {
-    gigs = gigs.filter(gig => {
-      return gig.categoryId === filterBy.categoryId
+    gigs = gigs.filter((gig) => {
+      return gig.categories.includes(filterBy.categoryId) 
     })
   }
   if (filterBy.daysToDeliver) {
@@ -151,11 +151,11 @@ function getEmptyGig(owner) {
     rate: 0,
     daysToDeliver: 0,
     owner,
-    categoryId: '',
+    categories: [],
   }
 }
 
-function _createGig(title, images, categoryId, daysToDeliver) {
+function _createGig(title, images, categories, daysToDeliver) {
   return {
     title,
     price: utilService.getRandomIntInclusive(5, 200),
@@ -169,7 +169,7 @@ function _createGig(title, images, categoryId, daysToDeliver) {
       level: 'basic/intermediate/',
       rate: 4,
     },
-    categoryId,
+    categories,
   }
 }
 
@@ -183,7 +183,7 @@ function _createGigs() {
         '../assets/images/gigs/gig4.jpg',
         '../assets/images/gigs/gig5.jpg',
       ],
-      'WordPress',
+      ['wordpress', 'digital marketing'],
       3
     ),
     _createGig(
@@ -194,7 +194,7 @@ function _createGigs() {
         '../assets/images/gigs/gig4.jpg',
         '../assets/images/gigs/gig5.jpg',
       ],
-      'graphic',
+      ['graphic'],
       3
     ),
     _createGig(
@@ -205,7 +205,7 @@ function _createGigs() {
         '../assets/images/gigs/gig3.png',
         '../assets/images/gigs/gig4.jpg',
       ],
-      'digital',
+      ['digital'],
       3
     ),
     _createGig(
@@ -216,7 +216,7 @@ function _createGigs() {
         '../assets/images/gigs/gig1.png',
         '../assets/images/gigs/gig2.png',
       ],
-      'Website Design',
+      ['website design'],
       1
     ),
     _createGig(
@@ -227,7 +227,7 @@ function _createGigs() {
         '../assets/images/gigs/gig4.jpg',
         '../assets/images/gigs/gig7.jpg',
       ],
-      'AI Services',
+      ['ai services'],
       2
     ),
     _createGig(
@@ -238,7 +238,7 @@ function _createGigs() {
         '../assets/images/gigs/gig4.jpg',
         '../assets/images/gigs/gig5.jpg',
       ],
-      'Logo Design',
+      ['logo design'],
       1
     ),
     _createGig(
@@ -249,7 +249,7 @@ function _createGigs() {
         '../assets/images/gigs/gig4.jpg',
         '../assets/images/gigs/gig5.jpg',
       ],
-      'business',
+      ['business'],
       6
     ),
     _createGig(
@@ -260,7 +260,7 @@ function _createGigs() {
         '../assets/images/gigs/gig4.jpg',
         '../assets/images/gigs/gig5.jpg',
       ],
-      'lifestyle',
+      ['lifestyle'],
       2
     ),
     _createGig(
@@ -271,7 +271,7 @@ function _createGigs() {
         '../assets/images/gigs/gig4.jpg',
         '../assets/images/gigs/gig5.jpg',
       ],
-      'lifestyle',
+      ['lifestyle'],
       2
     ),
     _createGig(
@@ -282,15 +282,20 @@ function _createGigs() {
         '../assets/images/gigs/gig4.jpg',
         '../assets/images/gigs/gig5.jpg',
       ],
-      'lifestyle',
+      ['lifestyle'],
       7
     ),
-    _createGig('I will create games so you can play with all of your friends', [
+    _createGig(
+      'I will create games so you can play with all of your friends', [
       '../assets/images/gigs/gig6.jpg',
       '../assets/images/gigs/gig2.png',
       '../assets/images/gigs/gig4.jpg',
       '../assets/images/gigs/gig5.jpg',
-    ]),
+     
+    ],
+    ['lifestyle'],
+    4
+    ),
     _createGig(
       'I will create store that you can sell your products',
       [
@@ -299,7 +304,7 @@ function _createGigs() {
         '../assets/images/gigs/gig4.jpg',
         '../assets/images/gigs/gig5.jpg',
       ],
-      'business',
+      ['business'],
       5
     ),
     _createGig(
@@ -310,7 +315,7 @@ function _createGigs() {
         '../assets/images/gigs/gig4.jpg',
         '../assets/images/gigs/gig5.jpg',
       ],
-      'data',
+      ['data'],
       7
     ),
   ]
@@ -439,3 +444,5 @@ function getTrustedBy() {
   ]
   return trustedBy
 }
+
+

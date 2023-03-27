@@ -25,7 +25,7 @@
   },
     methods: {
         filterCategory(categoryId) {
-      this.$router.push(`/gig/${categoryId}`)
+      this.$router.push(`/gig/${categoryId.toLowerCase()}`)
       this.$store.commit({ type: 'setFilter', filterBy: { categoryId } })
     },
     setSelectedCategory(categoryId) {

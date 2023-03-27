@@ -63,7 +63,6 @@ export const gigStore = {
   },
   mutations: {
     setGigs(state, { gigs }) {
-      console.log('setGigs', gigs)
       state.gigs = gigs
     },
     addGig(state, { gig }) {
@@ -83,6 +82,7 @@ export const gigStore = {
     },
 
     setFilter(state, { filterBy }) {
+      console.log(filterBy)
       state.filterBy = filterBy
       this.dispatch({ type: 'loadGigs', filterBy })
     },
