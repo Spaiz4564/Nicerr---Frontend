@@ -15,6 +15,7 @@ export const userService = {
   login,
   logout,
   signup,
+  add,
   getLoggedinUser,
   saveLocalUser,
   getUsers,
@@ -22,6 +23,7 @@ export const userService = {
   remove,
   update,
   changeScore,
+  getGigsByUser,
 }
 
 window.userService = userService
@@ -29,6 +31,16 @@ window.userService = userService
 function getUsers() {
   return storageService.query('user')
   // return httpService.get(`user`)
+}
+
+function add(user) {
+  return storageService.post('user', user)
+  // return httpService.post(`user`, user)
+}
+
+function getGigsByUser(userId) {
+  return storageService.query('gig', { userId })
+  // return httpService.get(`gig?userId=${userId}`)
 }
 
 function onUserUpdate(user) {
@@ -39,6 +51,7 @@ function onUserUpdate(user) {
 }
 
 async function getById(userId) {
+  console.log('user.service: getById', userId)
   const user = await storageService.get('user', userId)
   // const user = await httpService.get(`user/${userId}`)
 
@@ -57,9 +70,9 @@ async function update({ _id, score }) {
   const user = await storageService.get('user', _id)
   // let user = getById(_id)
   user.score = score
-  // await storageService.put('user', user)
+  await storageService.put('user', user)
 
-  user = await httpService.put(`user/${user._id}`, user)
+  // user = await httpService.put(`user/${user._id}`, user)
   // Handle case in which admin updates other user's details
   if (getLoggedinUser()._id === user._id) saveLocalUser(user)
   return user
@@ -104,6 +117,7 @@ function saveLocalUser(user) {
     fullname: user.fullname,
     imgUrl: user.imgUrl,
     score: user.score,
+    isSeller: user.isSeller,
   }
   sessionStorage.setItem(STORAGE_KEY_LOGGEDIN_USER, JSON.stringify(user))
   return user

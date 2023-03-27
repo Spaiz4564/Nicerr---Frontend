@@ -3,8 +3,7 @@
     <header
       class="main-layout"
       :class="[isHome ? 'headerHome' : '', isWhite ? 'homeScroll' : '']"
-      ref="header"
-    >
+      ref="header">
       <nav>
         <div class="logo-search">
           <RouterLink to="/">
@@ -13,19 +12,16 @@
           <form
             @submit.prevent="emitFiltered"
             v-if="!isHome || isSuggestions"
-            class="search-bar"
-          >
+            class="search-bar">
             <input
               class="search-input"
               type="text"
               placeholder="What service are you looking for today?"
-              v-model="filterBy.title"
-            />
+              v-model="filterBy.title" />
             <span class="icon-search" v-html="getSvg('search')"></span>
           </form>
         </div>
         <div class="goTo">
-          <!-- <LoginSignup /> -->
           <RouterLink to="/gig">Explore</RouterLink>
           <a @click="goToSellerSignup">Become a Seller</a>
           <a>Sign In</a>
@@ -39,8 +35,7 @@
         isHome ? 'headerHome' : '',
         isSuggestions ? 'display' : '',
         isWhite ? 'homeScroll' : '',
-      ]"
-    >
+      ]">
       <div class="suggestions main-layout">
         <ul>
           <li v-for="category in categories">{{ category.title }}</li>
@@ -72,10 +67,7 @@ export default {
       return svgService.getSvg(iconName)
     },
     emitFiltered() {
-      console.log('emitFiltered')
       const filterBy = this.$store.getters.filterBy
-      console.log('filterBy', filterBy)
-      console.log('filterBy', filterBy)
       if (this.filterBy.title) {
         this.$store.commit({
           type: 'setFilter',
@@ -104,7 +96,6 @@ export default {
   },
   created() {
     window.addEventListener('scroll', this.handleScroll)
-    //we need to update the scroll position when the component is created
     this.handleScroll()
   },
   mounted() {

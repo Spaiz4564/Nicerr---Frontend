@@ -3,7 +3,6 @@ import { utilService } from './util.service.js'
 import { userService } from './user.service.js'
 
 const STORAGE_KEY = 'gig'
-const STORAGE_OWNER_KEY = 'owner'
 
 export const gigService = {
   query,
@@ -16,9 +15,6 @@ export const gigService = {
   getHeroBackgrounds,
   getPopularServices,
   getTrustedBy,
-  getOwnerById,
-  saveOwner,
-  saveGigToOwner,
 }
 window.cs = gigService
 
@@ -34,8 +30,6 @@ async function query(
 ) {
   let gigs = await storageService.query(STORAGE_KEY)
   if (!gigs.length) gigs = _createGigs()
-  gigs = gigs.filter((gig) => gig.title)
-
   if (filterBy.title) {
     const regex = new RegExp(filterBy.title, 'i')
     gigs = gigs.filter(
@@ -91,41 +85,22 @@ function getById(gigId) {
   return storageService.get(STORAGE_KEY, gigId)
 }
 
-function saveOwner(owner) {
-  if (owner._id) {
-    return storageService.put(STORAGE_OWNER_KEY, owner)
-  } else {
-    return storageService.post(STORAGE_OWNER_KEY, owner)
-  }
-}
-
 async function remove(gigId) {
   await storageService.remove(STORAGE_KEY, gigId)
 }
 
-function getOwnerById(ownerId) {
-  return storageService.get(STORAGE_OWNER_KEY, ownerId)
-}
-
-async function save(gig, owner) {
+async function save(gig) {
   var savedGig
-  var owner = console.log('owner', owner)
+  console.log('gig', gig)
   if (gig._id) {
     savedGig = await storageService.put(STORAGE_KEY, gig)
-
-    console.log('owner', owner)
   } else {
     // Later, owner is set by the backend
     gig.owner = userService.getLoggedinUser()
-    console.log('gig.owner', gig.owner)
+    // gig._id = utilService.makeId()
     savedGig = await storageService.post(STORAGE_KEY, gig)
   }
   return savedGig
-}
-function saveGigToOwner(gig, owner) {
-  console.log('owner', owner)
-  owner.gigs.push(gig)
-  return storageService.put(STORAGE_OWNER_KEY, owner)
 }
 
 async function addGigMsg(gigId, txt) {
@@ -144,13 +119,12 @@ async function addGigMsg(gigId, txt) {
   return msg
 }
 
-function getEmptyGig(owner) {
+function getEmptyGig() {
   return {
     title: '',
     price: 0,
     rate: 0,
     daysToDeliver: 0,
-    owner,
     categoryId: '',
   }
 }
@@ -425,7 +399,6 @@ function getPopularServices() {
       title: 'Data Entry',
       img: '.././assets/images/Services/Data Entry.png',
     },
-   
   ]
   return services
 }

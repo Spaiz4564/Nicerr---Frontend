@@ -1,5 +1,5 @@
 <template>
-  <section class="gig-index main-layout full" v-if="gigs">
+  <section class="gig-index main-layout full">
     <GigFilter @filtered="setFilter" />
     <div class="sort-container flex">
       <p class="sort-txt">Sort By</p>
@@ -73,6 +73,7 @@ export default {
   },
   created() {
     this.loadGigs()
+    console.log(this.gigs)
   },
   methods: {
     setSort(sortBy) {

@@ -36,14 +36,6 @@ export const gigStore = {
       title: '',
       categoryId: '',
     },
-
-    owner: {
-      _id: '',
-      fullname: '',
-      username: '',
-      isSeller: false,
-      gigs: [],
-    },
   },
   getters: {
     gigs({ gigs }) {
@@ -54,21 +46,29 @@ export const gigStore = {
         return gigs.find((gig) => gig._id === gigId)
       }
     },
-    getOwnerByUsername({ owner }) {
-      return (username) => {
-        console.log('getOwnerByUsername', username)
-        return owner
+    gigsByOwner({ gigs }) {
+      return (ownerId) => {
+        console.log('gigsByOwner', ownerId)
+        return gigs.filter((gig) => gig.owner._id === ownerId)
       }
     },
   },
   mutations: {
     setGigs(state, { gigs }) {
-      console.log('setGigs', gigs)
+      if (!gigs) return
       state.gigs = gigs
     },
+
     addGig(state, { gig }) {
       state.gigs.push(gig)
     },
+    saveGig(state, { gig }) {
+      console.log(gig)
+      const idx = state.gigs.findIndex((currGig) => currGig._id === gig._id)
+      if (idx !== -1) state.gigs.splice(idx, 1, gig)
+      else state.gigs.push(gig)
+    },
+
     updateGig(state, { gig }) {
       const idx = state.gigs.findIndex((c) => c._id === gig._id)
       state.gigs.splice(idx, 1, gig)
@@ -85,13 +85,6 @@ export const gigStore = {
     setFilter(state, { filterBy }) {
       state.filterBy = filterBy
       this.dispatch({ type: 'loadGigs', filterBy })
-    },
-    updateOwner(state, { owner }) {
-      //we need to update the owner in the stor
-      state.owner = owner
-    },
-    addGigToOwner(state, { gig }) {
-      state.owner.gigs.push(gig)
     },
   },
   actions: {
@@ -149,6 +142,16 @@ export const gigStore = {
         context.commit({ type: 'updateOwner', owner })
       } catch (err) {
         console.log('gigStore: Error in addOwner', err)
+        throw err
+      }
+    },
+    async saveGig({ commit }, { gig }) {
+      try {
+        const newGig = await gigService.save(gig)
+        console.log('newGig', newGig)
+        commit({ type: 'saveGig', gig: newGig })
+      } catch (err) {
+        console.log('Could Not save gig')
         throw err
       }
     },
