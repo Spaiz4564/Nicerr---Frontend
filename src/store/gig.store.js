@@ -36,7 +36,14 @@ export const gigStore = {
       title: '',
       categoryId: '',
     },
-    owner: null,
+
+    owner: {
+      _id: '',
+      fullname: '',
+      username: '',
+      isSeller: false,
+      gigs: [],
+    },
   },
   getters: {
     gigs({ gigs }) {
@@ -47,9 +54,10 @@ export const gigStore = {
         return gigs.find((gig) => gig._id === gigId)
       }
     },
-    getOwnerById({ id }) {
-      return (id) => {
-        return id
+    getOwnerByUsername({ owner }) {
+      return (username) => {
+        console.log('getOwnerByUsername', username)
+        return owner
       }
     },
   },
@@ -75,10 +83,15 @@ export const gigStore = {
     },
 
     setFilter(state, { filterBy }) {
-      console.log('setFilter', filterBy)
       state.filterBy = filterBy
       this.dispatch({ type: 'loadGigs', filterBy })
-      console.log('setFilter', state.filterBy)
+    },
+    updateOwner(state, { owner }) {
+      //we need to update the owner in the stor
+      state.owner = owner
+    },
+    addGigToOwner(state, { gig }) {
+      state.owner.gigs.push(gig)
     },
   },
   actions: {
@@ -112,17 +125,6 @@ export const gigStore = {
       }
     },
 
-    async loadOwner(context, { gigId }) {
-      console.log('loadOwner', gigId)
-      try {
-        const owners = await gigService.loadOwners(gigId)
-        return owners
-      } catch (err) {
-        console.log('gigStore: Error in loadOwners', err)
-        throw err
-      }
-    },
-
     async removeGig(context, { gigId }) {
       try {
         await gigService.remove(gigId)
@@ -142,23 +144,11 @@ export const gigStore = {
       }
     },
 
-    async addNewOwner(context, { gigId, owner }) {
+    async addOwner(context, { owner }) {
       try {
-        const newOwner = await gigService.addNewOwner(gigId, owner)
-        console.log('newOwner', newOwner)
-        return newOwner
+        context.commit({ type: 'updateOwner', owner })
       } catch (err) {
-        console.log('gigStore: Error in addNewOwner', err)
-        throw err
-      }
-    },
-
-    async loadSeller(context, { sellerId }) {
-      try {
-        const seller = await gigService.loadSeller(sellerId)
-        return seller
-      } catch (err) {
-        console.log('gigStore: Error in loadSeller', err)
+        console.log('gigStore: Error in addOwner', err)
         throw err
       }
     },

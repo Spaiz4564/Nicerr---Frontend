@@ -58,22 +58,19 @@ export default {
         username: '',
         description: '',
         location: '',
-        imgUrl: '',
-        gigs: [],
-        reviews: [],
-        orders: [],
       },
     }
   },
   methods: {
     addOwner() {
-      const id = utilService.makeId()
-      this.owner._id = id
-
-      this.$store.dispatch({ type: 'addNewOwner', owner: this.owner })
-      this.$router.push(`/seller/profile/${id}`)
-      console.log('owner', this.owner)
+      this.$store.dispatch({ type: 'addOwner', owner: this.owner })
+      this.$router.push(`/seller/profile/${this.owner.fullname}`)
     },
+  },
+  created() {
+    const { owner } = this.$store.state
+    if (owner) this.owner = owner
+    console.log('owner', this.owner)
   },
 }
 </script>

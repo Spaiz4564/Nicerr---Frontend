@@ -1,7 +1,11 @@
 .popular-services-section {
+  .vueperslides__track {
+    cursor: default !important;
+  }
   margin-bottom: 96px;
   .services {
     .vueperslide--visible {
+      cursor: pointer;
       transition: all 0.3s;
       &:hover {
         opacity: 0.85;
@@ -64,7 +68,6 @@
     .vueperslides__parallax-wrapper {
       padding-bottom: 25% !important;
     }
-  
   }
   h2 {
     padding-bottom: 24px;

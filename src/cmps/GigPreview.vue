@@ -8,6 +8,9 @@
             v-for="(img, i) in gig.images"
             :key="i"
             :image="imgUrl(img)"
+            @mouseenter="hoverTxt = true"
+            @mouseleave="hoverTxt = false"
+            :class="{ 'hover-txt': hoverTxt }"
             style="cursor: pointer">
           </vueper-slide>
         </vueper-slides>
@@ -21,11 +24,15 @@
         <section>
           <div class="seller-info">
             <h4 class="seller-name">{{ gig.owner.fullname }}</h4>
+            <span class="seller-rate">Level {{ gig.owner.rate }} Seller</span>
           </div>
         </section>
       </section>
       <div class="gig-preview-info">
-        <p class="gig-preview-title" @click="goToDetails(gig._id)">
+        <p
+          class="gig-preview-title"
+          @click="goToDetails(gig._id)"
+          :class="{ 'hover-txt': hoverTxt }">
           {{ gig.title }}
         </p>
         <div class="gig-rating">
@@ -50,8 +57,14 @@ import { VueperSlides, VueperSlide } from 'vueperslides'
 import 'vueperslides/dist/vueperslides.css'
 export default {
   name: 'GigPreview',
+
   props: {
     gig: Object,
+  },
+  data() {
+    return {
+      hoverTxt: false,
+    }
   },
   computed: {
     totalRates() {

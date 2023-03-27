@@ -3,7 +3,7 @@ import { utilService } from './util.service.js'
 import { userService } from './user.service.js'
 
 const STORAGE_KEY = 'gig'
-const STORAGE_OWNER_KEY = 'seller'
+const STORAGE_OWNER_KEY = 'owner'
 
 export const gigService = {
   query,
@@ -15,20 +15,27 @@ export const gigService = {
   getMarketCategories,
   getHeroBackgrounds,
   getPopularServices,
-  addNewSeller,
-  loadSeller,
-  addNewOwner,
-  loadOwners,
-  getTrustedBy
+  getTrustedBy,
+  getOwnerById,
+  saveOwner,
+  saveGigToOwner,
 }
 window.cs = gigService
 
 async function query(
-  filterBy = { title: '', minPrice: 0, maxPrice: 2000, categoryId: '' },
+  filterBy = {
+    title: '',
+    minPrice: 0,
+    maxPrice: 2000,
+    categoryId: '',
+    daysToDeliver: null,
+  },
   sortBy = { by: 'name', desc: 1 }
 ) {
   let gigs = await storageService.query(STORAGE_KEY)
   if (!gigs.length) gigs = _createGigs()
+  gigs = gigs.filter((gig) => gig.title)
+
   if (filterBy.title) {
     const regex = new RegExp(filterBy.title, 'i')
     gigs = gigs.filter(
@@ -45,7 +52,23 @@ async function query(
       return gig.categoryId === filterBy.categoryId
     })
   }
-
+  if (filterBy.daysToDeliver) {
+    if (filterBy.daysToDeliver === '1') {
+      gigs = gigs.filter((gig) => {
+        return gig.daysToDeliver === 1
+      })
+    } else if (filterBy.daysToDeliver === '3') {
+      gigs = gigs.filter((gig) => {
+        return gig.daysToDeliver <= 3 && gig.daysToDeliver >= 2
+      })
+    } else if (filterBy.daysToDeliver === '7') {
+      gigs = gigs.filter((gig) => {
+        return gig.daysToDeliver <= 7 && gig.daysToDeliver >= 4
+      })
+    } else if (filterBy.daysToDeliver === 'any') {
+      return gigs
+    }
+  }
   if (sortBy === 'name') {
     gigs.sort((a, b) => {
       return a.title.localeCompare(b.title)
@@ -56,6 +79,11 @@ async function query(
       return a.price - b.price
     })
   }
+  if (sortBy === 'rate') {
+    gigs.sort((a, b) => {
+      return a.rate - b.rate
+    })
+  }
   return gigs
 }
 
@@ -63,36 +91,41 @@ function getById(gigId) {
   return storageService.get(STORAGE_KEY, gigId)
 }
 
-function loadSeller(sellerId) {
-  console.log('sellerId', sellerId)
-  return storageService.get(STORAGE_SELLER_KEY, sellerId)
-}
-
-function loadOwners(gigId) {
-  const gig = getById(gigId)
-  return gig.owner
+function saveOwner(owner) {
+  if (owner._id) {
+    return storageService.put(STORAGE_OWNER_KEY, owner)
+  } else {
+    return storageService.post(STORAGE_OWNER_KEY, owner)
+  }
 }
 
 async function remove(gigId) {
   await storageService.remove(STORAGE_KEY, gigId)
 }
 
-function addNewOwner(ownerId) {
-  console.log('ownerId', ownerId)
-  if (ownerId._id) return storageService.put(STORAGE_OWNER_KEY, ownerId)
-  else return storageService.post(STORAGE_OWNER_KEY, ownerId)
+function getOwnerById(ownerId) {
+  return storageService.get(STORAGE_OWNER_KEY, ownerId)
 }
 
-async function save(gig) {
+async function save(gig, owner) {
   var savedGig
+  var owner = console.log('owner', owner)
   if (gig._id) {
     savedGig = await storageService.put(STORAGE_KEY, gig)
+
+    console.log('owner', owner)
   } else {
     // Later, owner is set by the backend
     gig.owner = userService.getLoggedinUser()
+    console.log('gig.owner', gig.owner)
     savedGig = await storageService.post(STORAGE_KEY, gig)
   }
   return savedGig
+}
+function saveGigToOwner(gig, owner) {
+  console.log('owner', owner)
+  owner.gigs.push(gig)
+  return storageService.put(STORAGE_OWNER_KEY, owner)
 }
 
 async function addGigMsg(gigId, txt) {
@@ -111,24 +144,24 @@ async function addGigMsg(gigId, txt) {
   return msg
 }
 
-function addNewSeller(seller) {
-  if (seller._id) return storageService.put(STORAGE_SELLER_KEY, seller)
-  else return storageService.post(STORAGE_SELLER_KEY, seller)
-}
-
-function getEmptyGig() {
+function getEmptyGig(owner) {
   return {
-    title: 'Gig' + (Date.now() % 1000),
-    price: utilService.getRandomIntInclusive(5, 200),
+    title: '',
+    price: 0,
+    rate: 0,
+    daysToDeliver: 0,
+    owner,
+    categoryId: '',
   }
 }
 
-function _createGig(title, images, categoryId) {
+function _createGig(title, images, categoryId, daysToDeliver) {
   return {
     title,
     price: utilService.getRandomIntInclusive(5, 200),
     images,
     rate: 4.5,
+    daysToDeliver,
     owner: {
       _id: 'u101',
       fullname: 'Shuki Cohen',
@@ -143,103 +176,143 @@ function _createGig(title, images, categoryId) {
 function _createGigs() {
   const gigs = [
     _createGig(
-      'I will create soccer pitch for you',
+      'I will create soccer pitch for you so you can play soccer with your friends',
       [
         '../assets/images/gigs/gig2.png',
         '../assets/images/gigs/gig1.png',
         '../assets/images/gigs/gig4.jpg',
         '../assets/images/gigs/gig5.jpg',
       ],
-      'graphic'
+      'wordpress',
+      3
     ),
     _createGig(
-      'I will create logo',
+      'I will create logo for your company so you can be more professional',
       [
         '../assets/images/gigs/gig1.png',
         '../assets/images/gigs/gig2.png',
         '../assets/images/gigs/gig4.jpg',
         '../assets/images/gigs/gig5.jpg',
       ],
-      'graphic'
+      'graphic',
+      3
     ),
     _createGig(
-      'I will create website',
+      'I will create website for your company so you can be more professional',
       [
         '../assets/images/gigs/gig5.jpg',
         '../assets/images/gigs/gig2.png',
         '../assets/images/gigs/gig3.png',
         '../assets/images/gigs/gig4.jpg',
       ],
-      'digital'
+      'digital',
+      3
     ),
     _createGig(
-      'I will create animals',
+      'I will create animals for your self so you can be more happy',
       [
         '../assets/images/gigs/gig6.jpg',
         '../assets/images/gigs/gig5.jpg',
         '../assets/images/gigs/gig1.png',
         '../assets/images/gigs/gig2.png',
       ],
-      'business'
+      'website',
+      1
     ),
     _createGig(
-      'I will create code',
+      'I will create code for your company to develop your business',
       [
         '../assets/images/gigs/gig2.png',
         '../assets/images/gigs/gig3.png',
         '../assets/images/gigs/gig4.jpg',
         '../assets/images/gigs/gig7.jpg',
       ],
-      'data'
+      'ai',
+      2
     ),
-    _createGig('I will create food', [
-      '../assets/images/gigs/gig7.jpg',
-      '../assets/images/gigs/gig2.png',
-      '../assets/images/gigs/gig4.jpg',
-      '../assets/images/gigs/gig5.jpg',
-    ]),
-    _createGig('I will create love', [
-      '../assets/images/gigs/gig7.jpg',
-      '../assets/images/gigs/gig2.png',
-      '../assets/images/gigs/gig4.jpg',
-      '../assets/images/gigs/gig5.jpg',
-    ]),
-    _createGig('I will create pool', [
-      '../assets/images/gigs/gig5.jpg',
-      '../assets/images/gigs/gig2.png',
-      '../assets/images/gigs/gig4.jpg',
-      '../assets/images/gigs/gig5.jpg',
-    ]),
-    _createGig('I will create ball', [
-      '../assets/images/gigs/gig4.jpg',
-      '../assets/images/gigs/gig2.png',
-      '../assets/images/gigs/gig4.jpg',
-      '../assets/images/gigs/gig5.jpg',
-    ]),
-    _createGig('I will create zoo', [
-      '../assets/images/gigs/gig7.jpg',
-      '../assets/images/gigs/gig2.png',
-      '../assets/images/gigs/gig4.jpg',
-      '../assets/images/gigs/gig5.jpg',
-    ]),
-    _createGig('I will create games', [
+    _createGig(
+      'I will create food to you so you can cook dinner',
+      [
+        '../assets/images/gigs/gig7.jpg',
+        '../assets/images/gigs/gig2.png',
+        '../assets/images/gigs/gig4.jpg',
+        '../assets/images/gigs/gig5.jpg',
+      ],
+      'logo',
+      1
+    ),
+    _createGig(
+      'I will create love to the whole planet so your find your soulmate ',
+      [
+        '../assets/images/gigs/gig7.jpg',
+        '../assets/images/gigs/gig2.png',
+        '../assets/images/gigs/gig4.jpg',
+        '../assets/images/gigs/gig5.jpg',
+      ],
+      'business',
+      6
+    ),
+    _createGig(
+      'I will create pool for your house so you can swim ',
+      [
+        '../assets/images/gigs/gig5.jpg',
+        '../assets/images/gigs/gig2.png',
+        '../assets/images/gigs/gig4.jpg',
+        '../assets/images/gigs/gig5.jpg',
+      ],
+      'lifestyle',
+      2
+    ),
+    _createGig(
+      'I will create ball to the soccer pitch so you can play with your frinds',
+      [
+        '../assets/images/gigs/gig4.jpg',
+        '../assets/images/gigs/gig2.png',
+        '../assets/images/gigs/gig4.jpg',
+        '../assets/images/gigs/gig5.jpg',
+      ],
+      'lifestyle',
+      2
+    ),
+    _createGig(
+      'I will create zoo so you can explore and find more animals',
+      [
+        '../assets/images/gigs/gig7.jpg',
+        '../assets/images/gigs/gig2.png',
+        '../assets/images/gigs/gig4.jpg',
+        '../assets/images/gigs/gig5.jpg',
+      ],
+      'lifestyle',
+      7
+    ),
+    _createGig('I will create games so you can play with all of your friends', [
       '../assets/images/gigs/gig6.jpg',
       '../assets/images/gigs/gig2.png',
       '../assets/images/gigs/gig4.jpg',
       '../assets/images/gigs/gig5.jpg',
     ]),
-    _createGig('I will create store', [
-      '../assets/images/gigs/gig5.jpg',
-      '../assets/images/gigs/gig2.png',
-      '../assets/images/gigs/gig4.jpg',
-      '../assets/images/gigs/gig5.jpg',
-    ]),
-    _createGig('I will create database', [
-      '../assets/images/gigs/gig7.jpg',
-      '../assets/images/gigs/gig2.png',
-      '../assets/images/gigs/gig4.jpg',
-      '../assets/images/gigs/gig5.jpg',
-    ]),
+    _createGig(
+      'I will create store that you can sell your products',
+      [
+        '../assets/images/gigs/gig5.jpg',
+        '../assets/images/gigs/gig2.png',
+        '../assets/images/gigs/gig4.jpg',
+        '../assets/images/gigs/gig5.jpg',
+      ],
+      'business',
+      5
+    ),
+    _createGig(
+      'I will create database so you can control your items',
+      [
+        '../assets/images/gigs/gig7.jpg',
+        '../assets/images/gigs/gig2.png',
+        '../assets/images/gigs/gig4.jpg',
+        '../assets/images/gigs/gig5.jpg',
+      ],
+      'data',
+      7
+    ),
   ]
   storageService.postMany(STORAGE_KEY, gigs)
   return gigs
@@ -249,7 +322,7 @@ function getMarketCategories() {
   const categories = [
     { title: 'Graphics & Design', svg: 'cupAndPencil', name: 'graphic' },
     { title: 'Digital Marketing', svg: 'tv', name: 'digital' },
-    { title: 'Writing & Translition', svg: 'paperAndPen', name: 'writing' },
+    { title: 'Writing & Translation', svg: 'paperAndPen', name: 'writing' },
     { title: 'Video & Animation', svg: 'animation', name: 'video' },
     { title: 'Music & Audio', svg: 'music', name: 'music' },
     { title: 'Programming & Tech', svg: 'tech', name: 'tech' },
@@ -352,11 +425,7 @@ function getPopularServices() {
       title: 'Data Entry',
       img: '.././assets/images/Services/Data Entry.png',
     },
-    // {
-    //   desc: 'Showcase your story',
-    //   title: 'Book Covers',
-    //   img: '.././assets/images/Services/Book Covers.png',
-    // },
+   
   ]
   return services
 }
@@ -371,4 +440,3 @@ function getTrustedBy() {
   ]
   return trustedBy
 }
-
