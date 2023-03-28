@@ -74,36 +74,59 @@
                 </div>
             </section>
         </section>
+        <!-- <button class="contact-me-btn">Contact Me</button> -->
+      </section>
+    <section class="seller-details-container">
+      <section class="seller-stat">
+        <ul class="grid clean-list user-info">
+          <li class="flex column">
+            <span class="key">From</span>
+            <span class="value">Bangladesh</span>
+          </li>
+          <li class="flex column">
+            <span class="key">Member since</span>
+            <span class="value">Jan 2023</span>
+          </li>
+          <li class="flex column">
+            <span class="key">Avg. response time</span>
+            <span class="value">1 hour</span>
+          </li>
+          <li class="flex column">
+            <span class="key">Last delivery</span>
+            <span class="value">about 12 hours</span>
+          </li>
+        </ul>
+        <div class="seller-desc">
+          <p>
+            I am a professional graphics designer from Canada. Designing is not
+            only my job, it's my Passion. All I need from you is a rough sketch
+            of your idea. Then you can just relax and see the magic happening.
+            Not only you'll get stunning and professional designs, but also
+            you'll have top class custome
+          </p>
+        </div>
+      </section>
     </section>
 </template>
 
 <script>
+  import { svgService } from '../../services/svg.service'
 
-import { svgService } from '../../services/svg.service';
-
-export default {
+  export default {
     props: ['gig'],
     name: 'AboutSeller',
     data() {
-        return {
-
-        }
+      return {}
     },
     methods: {
-        getSvg(iconName) {
-            return svgService.getSvg(iconName)
-        },
+      getSvg(iconName) {
+        return svgService.getSvg(iconName)
+      },
     },
-    computed: {
-
-    },
-    created() {
-
-    },
-    components: {
-
-    },
-}
+    computed: {},
+    created() {},
+    components: {},
+  }
 </script>
 
 <style></style>

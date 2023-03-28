@@ -1,8 +1,8 @@
 <template>
-  <div class="hero-wrapper main-layout">
+  <div class="hero-wrapper main-layout full">
     <div
       ref="heroBackground"
-      class="hero-background"
+      class="hero-background full"
       v-for="background in backgrounds">
       <img :src="imgUrl(background.img)" alt="" />
 
