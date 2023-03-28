@@ -25,7 +25,7 @@
                 </div>
                 <ul class="features">
                     <li class="flex align-center">
-                        <span className="check fill" v-html="getSvg('checkSign')"></span>
+                        <span className="check fillGreen" v-html="getSvg('checkSign')"></span>
                         <p>1 concept included</p>
                     </li>
                     <li class="flex align-center">
