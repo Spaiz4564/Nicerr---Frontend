@@ -3,7 +3,7 @@
         <div class="info">
             <section class="header">
                 <h3 class="flex space-between align-center">
-                    <b class="gig-title">{{ gig.title }}</b>
+                    <b class="gig-title">Basic Price</b>
                     <div>
                         <span class="price">{{ gig.price }}$</span>
                     </div>
@@ -13,7 +13,7 @@
                 </p>
             </section>
             <article>
-                <div class="options flex">
+                <div class="options flex align-center">
                     <div class="delivery-wrapper flex align-center">
                         <span className="icon" v-html="getSvg('clock')"></span>
                         <b class="delivery"> 5 Days Delivery </b>
@@ -51,6 +51,7 @@
                 </ul>
                 <div class="footer" @click="HandlePurchase(gig._id)">
                     <button class="btn-purchase">Continue</button>
+                    <div className="icon arrow" v-html="getSvg('arrowRight')"></div>
                 </div>
             </article>
         </div>

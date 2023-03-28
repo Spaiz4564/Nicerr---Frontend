@@ -15,9 +15,14 @@
         padding-bottom: em(10px);
         margin-bottom: em(8px);
 
-        .gig-title {
-            font-size: em(20px);
+        h3 {
             margin: 0 0 25px;
+        }
+
+        .gig-title {
+            display: flex;
+            align-items: center;
+            font-size: em(16px);
         }
 
         .price {
@@ -47,6 +52,8 @@
 
         span {
             align-self: center;
+            padding-top: em(4px);
+            fill: $clr02;
         }
 
     }
@@ -54,14 +61,11 @@
     .features {
         margin: 0;
         padding: 0;
-        margin-bottom: em(15px);
-
-        line-height: 0%;
-
         list-style: none;
         list-style-image: none;
-
+        line-height: 0;
         color: $clr01;
+        margin-bottom: 25px;
 
         span {
             margin-right: 1em;
@@ -89,19 +93,27 @@
         justify-content: center;
         height: 42px;
         width: 100%;
-        margin-bottom: 20px;
         cursor: pointer;
+        margin-bottom: 6px;
 
         border-radius: em(5px);
 
         background-color: $clr-main;
 
         .btn-purchase {
-            font-size: em(16px);
-
+            font-size: em(20px);
             color: $clr6;
             background-color: inherit;
             border: 0;
+        }
+
+        .arrow {
+            display: flex;
+            position: relative;
+            align-items: center;
+            fill: $clr6;
+            left: 30%;
+
         }
     }
 
