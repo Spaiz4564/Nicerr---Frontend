@@ -4,7 +4,12 @@
         <div class="info-img flex align-center ">
             <img class="logo" :src="gig.owner.imgUrl" alt="" />
             <p class="name">{{ gig.owner.fullname }}</p>
-            <p>Level 3 Seller (569)</p>
+            <p>Level 3 Seller</p>
+            <div class="rate flex align-center">
+                <div className="icon" v-html="getSvg('fiveStars')"></div>
+                <p class="gold">5</p>
+                <p>(154)</p>
+            </div>
         </div>
         <div class="img">
             <div class="img-container">

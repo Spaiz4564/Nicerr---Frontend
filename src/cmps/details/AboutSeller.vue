@@ -34,7 +34,7 @@
                         <li>
                             <span className="check gold" v-html="getSvg('starGold')"></span>
                         </li>
-                        <p class="rate">5 (569)</p>
+                        <p class="rate gold">5 (569)</p>
                     </ul>
                 </section>
                 <!-- <button class="contact-me-btn">Contact Me</button> -->
@@ -63,8 +63,10 @@
                 <div class="seller-desc">
                     <p>
                         I am a professional graphics designer from Canada. Designing is not only my job, it's my
-                        Passion. All I need from you is a rough sketch of your idea. Then you can just relax and see the
-                        magic happening. Not only you'll get stunning and professional designs, but also you'll have top
+                        Passion.</p>
+                    <p> All I need from you is a rough sketch of your idea. Then you can just relax and see the
+                        magic happening.</p>
+                    <p class="end"> Not only you'll get stunning and professional designs, but also you'll have top
                         class custome
                     </p>
                 </div>

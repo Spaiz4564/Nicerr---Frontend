@@ -1,6 +1,6 @@
 .gig-user-info {
     height: auto;
-    font-size: 1rem;
+    font-size: 16px;
     margin: 0 90px;
     max-width: 700px;
     margin-right: 123px;
@@ -14,15 +14,32 @@
     }
 
     .info-img {
-        gap: 2em;
+        gap: 1em;
         margin-bottom: em(16px);
+        font-size: em(14px);
 
         .name {
             align-items: start;
+            color: $clr4;
+            font-family: 'Macan-Bold';
+        }
+
+        p {
+            color: $clr2;
+            margin: 0;
+
+        }
+
+        .rate {
+            gap: 5px;
         }
 
         .logo {
             width: 1em;
+        }
+
+        .gold {
+            color: $clr-star;
         }
     }
 
@@ -96,6 +113,13 @@
             display: flex;
             align-items: center;
             justify-content: space-between;
+            margin-bottom: 15px;
+
+            h2 {
+                font-size: em(22px);
+                font-family: 'Macan-bold';
+                color: $clr4;
+            }
 
             a {
                 color: $clr-main
@@ -106,7 +130,7 @@
             border: 1px solid $clr10;
             border-radius: 0.25em;
             padding: 1em 1.5em;
-            margin-bottom: em(75px);
+            margin-bottom: 62px;
 
             .grid {
                 display: grid;
@@ -169,22 +193,48 @@
         padding-block-end: em(25px);
 
         h3 {
-            font-size: 22px;
+            font-size: 20px;
             line-height: 1.4em;
             font-weight: 700;
             margin-bottom: 32px
         }
 
         p {
+            font-family: 'Macan-Regular';
             color: $clr3;
             word-break: break-word;
             word-wrap: break-word;
-            font-size: em(18px);
-            font-weight: 400;
+            font-size: em(16px);
             line-height: 26px;
             white-space: pre-wrap;
-            font-weight: 600;
             margin-bottom: 20px;
+
+        }
+
+        ul {
+            font-family: 'Macan-bold';
+            color: $clr3;
+            word-break: break-word;
+            word-wrap: break-word;
+            font-size: em(16px);
+            line-height: 26px;
+            white-space: pre-wrap;
+
+        }
+
+        li {
+            font-family: 'Macan-Regular';
+            color: $clr3;
+            word-break: break-word;
+            word-wrap: break-word;
+            font-size: em(16px);
+            line-height: 26px;
+            white-space: pre-wrap;
+            margin-left: 12px;
+        }
+
+        .bold {
+            font-family: 'Macan-bold';
         }
 
         .metadata {
@@ -193,15 +243,13 @@
 
             p {
                 color: $clr01;
-                font-size: 18px;
-                margin-bottom: 10px;
+                font-size: em(16px);
+                margin-bottom: 0;
             }
-
 
             .attribute {
                 box-sizing: border-box;
                 padding-right: em(20px);
-                width: 33%;
                 color: $clr2;
 
                 ul {
@@ -209,20 +257,21 @@
                 }
 
                 li {
-                    font-size: em(18px);
+                    font-size: em(16px);
                     line-height: em(27px);
+                    margin-left: 0;
                 }
             }
         }
     }
 
     .about-seller {
-
         margin-bottom: em(8px);
+        font-family: 'Macan-Regular';
 
         h2 {
-            font-size: me(20px);
-            margin-bottom: em(8px);
+            font-size: em(20px);
+            margin-bottom: em(21px);
         }
 
         .seller-preview {
@@ -311,10 +360,10 @@
         .seller-details-container {
             border: 1px solid $clr9;
             border-radius: 0.1875em;
-            padding: 1.5em;
+            padding: em(22px);
             margin-block-end: em(32px);
             color: $clr2;
-            font-size: 18px;
+            font-size: em(16px);
 
             .user-info {
                 grid-template-columns: repeat(2, 1fr);
@@ -322,7 +371,7 @@
             }
 
             li {
-                padding-block-end: 1.5em
+                padding-block-end: 16px
             }
 
             .key {
@@ -330,13 +379,24 @@
             }
 
             .value {
-                font-weight: 700;
+                font-family: 'Macan-bold';
+                color: $clr3;
             }
 
             .seller-desc {
                 border-top: 1px solid $clr9;
                 line-height: 150%;
                 padding-block-start: 0.9375em;
+                color: $clr3;
+
+                p {
+                    margin-bottom: 16px;
+                }
+
+                .end {
+                    margin-bottom: 0px;
+
+                }
             }
         }
 
@@ -346,20 +406,37 @@
         font-size: em(20px);
         line-height: em(28px);
         margin-bottom: em(28px);
-        font-weight: 700;
+
+        h3 {
+            font-size: em(16px);
+            color: $clr4;
+            margin-bottom: em(12px);
+        }
 
         .review-star {
             gap: em(10px);
+            font-family: 'Macan-bold';
+
+            span {
+                font-size: em(13px);
+                color: $clr4;
+
+            }
 
             p {
-                color: $clr-star;
+                color: $clr-progress-bar;
+                font-size: em(12px);
+                margin-left: em(8px);
+            }
+
+            &.icon {
+                fill: $clr-progress-bar;
             }
         }
 
         .breakdown-progress {
-            font-weight: 800;
-            font-size: em(18px);
-            margin-bottom: em(30px);
+            font-family: 'Macan-bold';
+            font-size: em(13px);
 
             .progress-bar {
                 min-width: 60%;
@@ -395,29 +472,33 @@
                 .star-num {
                     color: $clr13;
                     font-family: 'Macan-Regular';
-                    font-weight: 100;
-                    font-size: 18px;
+
+                    font-size: em(13px);
                 }
             }
 
             .rating-bar {
+                font-family: 'Macan-Regular';
                 width: 100%;
-                color: $clr2;
+                color: $clr01;
+                line-height: em(29px);
 
                 .main-title {
-                    font-weight: 600;
-                    padding-bottom: 10px;
-                    font-size: 18px;
+                    padding-bottom: em(10px);
+                    font-size: em(16px);
+                    color: $clr4;
+                    font-family: 'Macan-bold';
+
                 }
 
                 .rating-option {
-                    font-size: 16px;
+                    font-size: em(16px);
                 }
 
                 .ratting {
                     margin-left: em(5px);
                     color: $clr-star;
-                    font-size: 16px;
+                    font-family: 'Macan-bold';
                 }
             }
         }
@@ -425,6 +506,20 @@
         .review-item {
             padding: 40px 0;
             border-top: 1px solid $clr9;
+
+            .review-user-info {
+
+                .name {
+                    font-family: 'Macan-bold';
+                    font-size: em(13px);
+                    color: $clr4;
+                }
+
+                &.country {
+                    font-size: em(12px);
+                    color: $clr3;
+                }
+            }
 
             .review-header {
                 align-items: center;
@@ -463,14 +558,16 @@
                     margin-top: 10px;
 
                     .review {
-                        fill: $clr-star;
+                        fill: $clr-progress-bar;
                     }
 
                     .review-num {
-                        color: $clr-star;
-                        font-size: 16px;
-                        padding-left: 5px;
+                        color: $clr-progress-bar;
+                        font-size: em(12px);
+                        padding-left: em(5px);
+                        font-family: 'Macan-bold';
                     }
+
 
                     .border {
                         border-right: 1px solid $clr7;
@@ -479,7 +576,7 @@
                     }
 
                     p {
-                        font-size: 16px;
+                        font-size: em(12px);
                         line-height: 21px;
                         font-weight: 500;
                         color: $clr3;
@@ -490,18 +587,19 @@
                     p {
                         word-wrap: break-word;
                         color: $clr4;
-                        font-weight: 300;
-                        font-size: 18px;
+                        font-size: em(12px);
                         word-spacing: 0;
-                        line-height: 1px;
-                        line-height: 28px
+                        line-height: em(26px);
+                        font-family: 'Macan-Regular';
+
                     }
                 }
 
                 .helpful {
                     margin-top: 8px;
                     color: $clr4;
-                    font-size: 16px;
+                    font-size: em(12px);
+                    font-family: 'Macan-bold';
 
                     span {
                         margin-right: 10px;
