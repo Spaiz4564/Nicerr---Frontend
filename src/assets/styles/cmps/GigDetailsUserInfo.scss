@@ -11,6 +11,7 @@
         overflow-wrap: break-word;
         font-weight: 700;
         line-height: 130%;
+        color: $clr4;
     }
 
     .info-img {
@@ -38,6 +39,12 @@
 
         .rate {
             gap: 5px;
+            fill: $clr-progress-bar;
+        }
+
+        .info-rate {
+            font-family: 'Macan-Bold';
+            color: $clr-progress-bar;
         }
 
         .logo {
@@ -137,6 +144,7 @@
             border-radius: 0.25em;
             padding: 1em 1.5em;
             margin-bottom: 62px;
+            font-size: 16px;
 
             .grid {
                 display: grid;
@@ -160,6 +168,9 @@
                     display: flex;
                     grid-area: details;
 
+                    & p {
+                        margin-right: 10px;
+                    }
 
                     .img {
                         height: 20px;
@@ -169,6 +180,14 @@
                     .ul-rate {
                         display: flex;
                         flex-direction: row;
+                    }
+
+                    .rate {
+                        color: $clr-progress-bar;
+                        font-family: 'Macan-Bold';
+                        margin-left: em(5px);
+                        font-size: em(14px);
+                        margin-bottom: 1px;
                     }
 
                 }
@@ -301,7 +320,6 @@
             flex-direction: column;
             color: $clr3;
             cursor: pointer;
-            font-weight: 700;
             line-height: 1.25em;
             padding-block-end: 0.3125em;
 
@@ -315,6 +333,11 @@
             .line {
                 display: flex;
                 gap: em(5px);
+
+                .user-name {
+                    font-family: 'Macan-Bold';
+
+                }
 
                 .online {
                     display: flex;
@@ -335,6 +358,12 @@
                         align-items: center;
                     }
                 }
+
+            }
+
+            .rate {
+                color: $clr-progress-bar;
+                font-family: 'Macan-Bold';
 
             }
 
@@ -431,6 +460,7 @@
 
             p {
                 color: $clr-progress-bar;
+
                 font-size: em(12px);
                 margin-left: em(8px);
             }
@@ -522,10 +552,22 @@
                     color: $clr4;
                 }
 
+                &.img {
+                    display: flex;
+                    gap: 10px;
+                    align-items: center;
+
+                    img {
+                        width: em(20px);
+                    }
+                }
+
                 &.country {
                     font-size: em(12px);
                     color: $clr3;
                 }
+
+
             }
 
             .review-header {
@@ -542,6 +584,7 @@
                         font-size: 1em;
 
                         img {
+                            border-radius: 50%;
                             width: 100%;
                             height: 100%;
                         }
@@ -560,6 +603,7 @@
             }
 
             .review-details {
+                margin-left: 57px;
 
                 .stars-count {
                     margin-top: 10px;
@@ -614,6 +658,17 @@
 
                     div {
                         margin-right: 10px;
+                    }
+
+                    .thumbsUp {
+                        padding-top: 4px;
+                        cursor: pointer;
+                    }
+
+                    .thumbsDown {
+                        padding-top: 6px;
+                        cursor: pointer;
+
                     }
                 }
             }

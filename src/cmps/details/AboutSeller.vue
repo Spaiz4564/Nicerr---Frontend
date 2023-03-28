@@ -3,7 +3,7 @@
         <h2>About The Seller</h2>
         <section class="seller-preview flex">
             <div class="img-container">
-                <img src="" alt="">
+                <img :src=gig.owner.imgUrl alt="">
             </div>
             <section class="info-details flex ">
                 <section class="line">
@@ -34,7 +34,9 @@
                         <li>
                             <span className="check gold" v-html="getSvg('starGold')"></span>
                         </li>
-                        <p class="rate gold">5 (569)</p>
+                        <p class="rate">5</p>
+                        <p>(569)</p>
+
                     </ul>
                 </section>
                 <!-- <button class="contact-me-btn">Contact Me</button> -->
