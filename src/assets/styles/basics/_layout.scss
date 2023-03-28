@@ -61,4 +61,22 @@
   grid-gap: 20px;
 }
 
+.backdrop{
+  position: fixed;
+  background-color: #000;
+  opacity: 0;
+  width: 100%;
+  min-height: 100%;
+  z-index: -1;
+}
+
+.showBackdrop{
+  opacity: 0.7;
+  z-index: 99;
+}
+
+.hideBackDrop{
+  display: none;
+}
+
 

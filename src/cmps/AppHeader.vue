@@ -25,13 +25,9 @@
           <RouterLink to="/gig">Explore</RouterLink>
           <a @click="goToSellerSignup">Become a Seller</a>
           <a v-if="!loggedinUser" @click.stop="toggleSignInModal">Sign In</a>
-          <a v-if="!loggedinUser">Join</a>
+          <a v-if="!loggedinUser" @click.stop="toggleJoinModal">Join</a>
         </div>
-        <div class="modal-sign" v-if="modalSignIsOpen">
-          <LoginSignup
-            @close="toggleSignInModal"
-            @closeModal="toggleSignInModal" />
-        </div>
+        
         <div class="modal" v-if="loggedinUser">
           <img
             class="user-img"
@@ -54,7 +50,7 @@
 <script>
 import { svgService } from '../services/svg.service'
 import { gigService } from '../services/gig.service.local'
-import LoginSignup from '../views/LoginSignup.vue'
+import Login from '../views/Login.vue'
 import NavSuggestions from './NavSuggestions.vue'
 export default {
   data() {
@@ -71,6 +67,7 @@ export default {
       categories: gigService.getMarketCategories(),
       modalOpen: false,
       modalSignIsOpen: false,
+      backdrop: document.querySelector('.backdrop')
     }
   },
   computed: {
@@ -106,7 +103,6 @@ export default {
       this.isSuggestions = scrollY > 170 ? true : false
     },
     toggleUserModal() {
-      console.log('toggle')
       this.modalOpen = !this.modalOpen
     },
     goToProfile() {
@@ -121,9 +117,13 @@ export default {
       this.$router.push('/')
     },
     toggleSignInModal() {
-      console.log('toggle')
       this.modalSignIsOpen = !this.modalSignIsOpen
+      this.$emit('backdrop', this.modalSignIsOpen, 'signIn')
     },
+    toggleJoinModal() {
+      this.modalSignIsOpen = !this.modalSignIsOpen
+      this.$emit('backdrop', this.modalSignIsOpen, 'join')
+    }
   },
   watch: {
     $route(to) {
@@ -133,11 +133,14 @@ export default {
   },
   created() {
     window.addEventListener('scroll', this.handleScroll)
+    if(this.backdrop) {
+      this.backdrop.addEventListener('click', this.toggleSignInModal)
+    }
     this.handleScroll()
   },
   mounted() {
     window.addEventListener('scroll', this.handleScroll)
   },
-  components: { LoginSignup, NavSuggestions },
+  components: { Login, NavSuggestions },
 }
 </script>

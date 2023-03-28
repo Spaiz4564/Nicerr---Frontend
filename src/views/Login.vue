@@ -1,7 +1,7 @@
 <template>
   <div class="container-about">
     <form @submit.prevent="doLogin" class="login-form">
-      <h2>Sign In to Nicerr</h2>
+      <h3>Sign In to Nicerr</h3>
       <input type="text" v-model="loginCred.username" placeholder="Email / Username" />
       <input
         type="password"
@@ -11,7 +11,6 @@
       <span>Dont have an account yet?</span>
       <a href="">Open account</a>
     </form>
-    <div></div>
   </div>
 </template>
 
