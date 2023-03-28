@@ -27,39 +27,7 @@
   gap: 35px;
 }
 
-.user-info {
-  border: 1px solid $clr01;
-  //   height: 365px;
-  padding: 20px;
-  background-color: white;
-  .seller-profile-info {
-    text-align: center;
-    .details {
-      span {
-        font-weight: bold;
-      }
-      padding: 5px;
-      width: 100%;
-      h4 {
-        font-weight: 200;
-        padding: 10px;
-        display: flex;
-        justify-content: space-between;
-      }
-      border-top: 1px solid rgb(195, 195, 195);
-    }
-    gap: 50px;
-    h2 {
-      color: $clr4;
-    }
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-  }
-  display: flex;
-  flex-direction: column;
-  gap: 100px;
-}
+
 
 .seller-profile-gigs {
   .seller-profile-gig-info {
@@ -78,6 +46,39 @@
 }
 
 .seller-profile-container {
+  .user-info {
+    border: 1px solid $clr01;
+    //   height: 365px;
+    padding: 20px;
+    background-color: white;
+    .seller-profile-info {
+      text-align: center;
+      .details {
+        span {
+          font-weight: bold;
+        }
+        padding: 5px;
+        width: 100%;
+        h4 {
+          font-weight: 200;
+          padding: 10px;
+          display: flex;
+          justify-content: space-between;
+        }
+        border-top: 1px solid rgb(195, 195, 195);
+      }
+      gap: 50px;
+      h2 {
+        color: $clr4;
+      }
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+    }
+    display: flex;
+    flex-direction: column;
+    gap: 100px;
+  }
   height: 100vh;
   .seller-profile {
     display: flex;
