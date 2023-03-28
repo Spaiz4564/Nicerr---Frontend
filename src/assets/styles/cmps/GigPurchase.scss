@@ -81,10 +81,9 @@
         }
 
         .package-container {
-            min-width: 350px;
+            max-width: em(334px);
             flex: 1;
             border-radius: em(3px);
-            padding: 2em 1.5em;
             border: 1px solid $clr9;
             margin-block-end: 16px;
 
@@ -108,16 +107,48 @@
             }
         }
 
+        .main-header {
+            padding: 1em 1.5em;
+            background-color: $clr11;
+            border-bottom: 0.5px solid #dadbdd70;
+
+
+        }
+
         .header {
             margin-block-end: 18px;
             min-height: 48px;
+            border-bottom: 1px solid $clr9;
 
             .title {
                 font-size: 1rem;
-                line-height: 1.5em;
+                font-family: 'Macan-Bold';
                 color: $clr4;
                 flex: 1;
             }
+
+            .img-container {
+                width: em(90px);
+                height: em(55px);
+                margin-right: em(12px);
+
+                img {
+                    width: 100%;
+                    border-radius: 5px;
+                }
+            }
+        }
+
+        .promo {
+            border-bottom: 0.5px solid #dadbdd70;
+            padding: em(21px);
+
+            p {
+                font-size: em(14px);
+                color: $clr4;
+                color: $clr3;
+            }
+
         }
 
         .price {
@@ -127,24 +158,14 @@
             color: $clr4;
         }
 
-        p {
-            font-size: .875rem;
-            min-height: 63px;
-            margin-block-end: 10px;
-            line-height: 140%;
-            font-weight: 500;
-            color: $clr3;
-        }
-
         .features {
-            margin-block-end: 20px;
 
             li {
                 display: flex;
                 align-items: center;
-                font-size: .875rem;
-                color: $clr01;
-                line-height: 1.7142857143em;
+                font-size: em(15px);
+                color: $clr02;
+                line-height: em(33px);
             }
 
         }
@@ -156,11 +177,19 @@
                 width: 16px;
                 height: 16px;
                 margin-inline-end: 10px;
+
             }
+
+            &.fill {
+                fill: $clr-review-star
+            }
+
+
 
         }
 
         .pricing {
+            margin-top: em(16px);
             display: flex;
             justify-content: space-between;
             color: #62646a;

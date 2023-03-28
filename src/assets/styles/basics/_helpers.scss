@@ -31,7 +31,6 @@
   text-align: center;
 }
 
-
 // flex helpers
 
 .margin {
@@ -42,7 +41,7 @@
 .flex {
   display: flex;
 
-  >*.full {
+  > *.full {
     flex: 1;
   }
 
@@ -79,9 +78,12 @@
 
 .main-layout {
   display: grid;
-  grid-template-columns: minmax(32px, 1fr) minmax(auto, 1400px) minmax(32px, 1fr);
+  grid-template-columns: minmax(32px, 1fr) minmax(auto, 1400px) minmax(
+      32px,
+      1fr
+    );
 
-  >*:not(.full) {
+  > *:not(.full) {
     grid-column: 2;
   }
 
@@ -89,7 +91,6 @@
     grid-column: 1 / -1;
   }
 }
-
 
 //svg helpers
 .check {
@@ -101,13 +102,12 @@
 }
 
 .gold {
-  fill: $clr-star;
+  fill: $clr-progress-bar;
 }
 
 .none {
   display: none !important;
 }
-
 
 .grid {
   display: grid;

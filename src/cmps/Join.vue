@@ -8,40 +8,31 @@
         </div>
         <ImgUploader @uploaded="imgUrl" @image="handleImage" />
       </div>
-      <input
-        type="text"
-        v-model="userToEdit.fullname"
-        placeholder="Full name"
-      />
+      <input type="text" v-model="userToEdit.fullname" placeholder="Full name" />
       <input type="text" v-model="userToEdit.username" placeholder="Username" />
-      <input
-        type="password"
-        v-model="userToEdit.password"
-        placeholder="Password"
-      />
+      <input type="password" v-model="userToEdit.password" placeholder="Password" />
       <button>Continue</button>
     </form>
   </div>
 </template>
 
 <script>
-  import { userService } from '../services/user.service'
-  import ImgUploader from './ImgUploader.vue'
-  export default {
-    name: 'Join',
-    data() {
-      return {
-        userToEdit: null,
-        img: false,
-      }
+import { userService } from '../services/user.service'
+import ImgUploader from './ImgUploader.vue'
+export default {
+  name: 'Join',
+  data() {
+    return {
+      userToEdit: null,
+      img: false,
+    }
+  },
+  computed: {
+    users() {
+      return this.$store.getters.users
     },
-    computed: {
-      users() {
-        return this.$store.getters.users
-      },
-      loggedinUser() {
-        return this.$store.getters.loggedinUser
-      },
+    loggedinUser() {
+      return this.$store.getters.loggedinUser
     },
     methods: {
       async saveUser() {
@@ -57,27 +48,27 @@
           })
         this.$router.push(`/seller/profile/${this.userToEdit._id}`)
       },
-      handleImage() {
-        this.userToEdit.imageUrl = this.img
-        this.img = !this.img
-      },
-      imgUrl(ev) {
-        this.userToEdit.imgUrl = ev
-        console.log(this.userToEdit)
-      },
     },
+    handleImage() {
+      this.userToEdit.imageUrl = this.img
+      this.img = !this.img
+    },
+    imgUrl(ev) {
+      this.userToEdit.imgUrl = ev
+      console.log(this.userToEdit)
+    }
+  },
+  created() {
+    const loggedinUser = this.$store.getters.loggedinUser
+    if (loggedinUser) {
+      this.userToEdit = loggedinUser
+    } else {
+      this.userToEdit = userService.getEmptyUser()
+    }
+  },
 
-    created() {
-      const loggedinUser = this.$store.getters.loggedinUser
-      if (loggedinUser) {
-        this.userToEdit = loggedinUser
-      } else {
-        this.userToEdit = userService.getEmptyUser()
-      }
-    },
-
-    components: {
-      ImgUploader,
-    },
+  components:{
+    ImgUploader
   }
+}
 </script>
