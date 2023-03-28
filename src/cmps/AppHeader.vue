@@ -25,10 +25,8 @@
           <RouterLink to="/gig">Explore</RouterLink>
           <a @click="goToSellerSignup">Become a Seller</a>
           <a v-if="!loggedinUser" @click.stop="toggleSignInModal">Sign In</a>
-          <a v-if="!loggedinUser" @click.stop="toggleJoinModal">Join</a>
-        </div>
-        
-        <div class="modal" v-if="loggedinUser">
+          <a class="join" v-if="!loggedinUser" @click.stop="toggleJoinModal">Join</a>
+          <div class="modal" v-if="loggedinUser">
           <img
             class="user-img"
             :src="loggedinUser.imgUrl"
@@ -39,6 +37,9 @@
             <a @click="logout">Logout</a>
           </div>
         </div>
+        </div>
+        
+        
       </nav>
     </header>
     <NavSuggestions

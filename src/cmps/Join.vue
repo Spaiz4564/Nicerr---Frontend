@@ -45,12 +45,12 @@ import ImgUploader from './ImgUploader.vue'
         if (!this.userToEdit._id)
           await this.$store.dispatch({
             type: 'signup',
-            user: { ...this.userToEdit, isSeller: true },
+            user: { ...this.userToEdit, isSeller: false },
           })
         else
           await this.$store.dispatch({
             type: 'updateUsers',
-            user: { ...this.userToEdit, isSeller: true },
+            user: { ...this.userToEdit, isSeller: false },
           })
         this.$router.push(`/seller/profile/${this.userToEdit._id}`)
       },
@@ -65,7 +65,7 @@ import ImgUploader from './ImgUploader.vue'
     }
   
   },
-  
+
   components:{
     ImgUploader
   }
