@@ -1,38 +1,37 @@
 <template>
-   <div class="nav-suggestions main-layout" :class="[
+  <div
+    class="nav-suggestions main-layout"
+    :class="[
       isHome ? 'headerHome' : '',
       isSuggestions ? 'display' : '',
       isWhite ? 'homeScroll' : '',
-
     ]">
-      <div class="suggestions main-layout">
-        <ul>
-          <li @click="filterCategory(category.title)" v-for="category in categories">{{ category.title }}</li>
-        </ul>
-      </div>
+    <div class="suggestions main-layout">
+      <ul>
+        <li
+          @click="filterCategory(category.name)"
+          v-for="category in categories">
+          {{ category.title }}
+        </li>
+      </ul>
     </div>
-  </template>
-  
-  <script>
-  import { gigService } from '../services/gig.service.local';
-  export default {
-    props: ['isHome','isSuggestions','isWhite'],
-    name: 'Nav Suggestions',
+  </div>
+</template>
+
+<script>
+import { gigService } from '../services/gig.service.local'
+export default {
+  props: ['isHome', 'isSuggestions', 'isWhite'],
+  name: 'Nav Suggestions',
   data() {
     return {
-        categories: gigService.getMarketCategories()
+      categories: gigService.getMarketCategories(),
     }
   },
-    methods: {
-        filterCategory(categoryId) {
-      this.$router.push(`/gig/${categoryId.toLowerCase()}`)
-      this.$store.commit({ type: 'setFilter', filterBy: { categoryId } })
+  methods: {
+    filterCategory(categoryId) {
+      this.$router.push(`/gig?categoryId=${categoryId}`)
     },
-    setSelectedCategory(categoryId) {
-        console.log(categoryId)
-        this.$emit('setCategory',categoryId )
-    }
-    },
-  }
-  </script>
-  
+  },
+}
+</script>

@@ -83,19 +83,11 @@ export default {
       return svgService.getSvg(iconName)
     },
     emitFiltered() {
-      console.log('emitFiltered')
-      if (this.filterBy.title) {
-        this.$router.push(`/gig/${this.filterBy.title}`)
-        this.$store.commit({
-          type: 'setFilter',
-          filterBy: { title: this.filterBy.title },
-        })
-      } else {
-        this.$store.commit({
-          type: 'setFilter',
-          filterBy: { title: '' },
-        })
-      }
+      //push the query to the url
+      this.$router.push({
+        path: '/gig',
+        query: { title: this.filterBy.title },
+      })
     },
     goToSellerSignup() {
       this.$router.push('/seller-signup')

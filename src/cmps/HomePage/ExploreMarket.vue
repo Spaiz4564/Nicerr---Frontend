@@ -29,13 +29,9 @@ export default {
       return svgService.getSvg(iconName)
     },
     showGigsByCategory(categoryId) {
-      this.$router.push(`/gig/${categoryId}`)
-      this.$store.commit({ type: 'setFilter', filterBy: { categoryId } })
+      //we need to push to the query string
+      this.$router.push(`/gig?categoryId=${categoryId}`)
     },
-  },
-
-  created() {
-    this.$store.commit({ type: 'setFilter', filterBy: { categoryId: '' } })
   },
 }
 </script>

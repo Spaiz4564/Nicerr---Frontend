@@ -4,10 +4,10 @@
       <div @click="toggleBudget" class="budget">
         <p class="txt-budget">Budget</p>
         <div class="arrow-down">
-          <span :class="isBudgetOpen ? 'rotate' : ''"
+          <span
+            :class="isBudgetOpen ? 'rotate' : ''"
             class="icon-arrow"
-            v-html="getSvg('arrowDown')"
-          ></span>
+            v-html="getSvg('arrowDown')"></span>
         </div>
       </div>
       <div class="days-deliver">
@@ -16,22 +16,19 @@
           class="m-2"
           placeholder="Delivery Time"
           size="large"
-          @change="filterBudget"
-        >
+          @change="filterBudget">
           <el-option
             v-for="item in options"
             :key="item.value"
             :label="item.label"
-            :value="item.value"
-          />
+            :value="item.value" />
         </el-select>
       </div>
 
       <form
         @submit.prevent="filterBudget"
         v-if="budgetOpen"
-        class="budget-dropdown"
-      >
+        class="budget-dropdown">
         <div @click.stop class="inputs">
           <div>
             <p class="bold">MIN.</p>
@@ -63,6 +60,7 @@ export default {
         minPrice: null,
         maxPrice: null,
         daysToDeliver: null,
+        categoryId: null,
       },
       isBudgetOpen: false,
       isBoxShadow: false,
