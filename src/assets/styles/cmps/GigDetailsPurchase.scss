@@ -40,7 +40,7 @@
 
     .options {
         height: auto;
-
+        gap: 15px;
         margin: em(8px);
 
         color: $clr02;
@@ -101,6 +101,7 @@
         background-color: $clr-main;
 
         .btn-purchase {
+            font-family: 'Macan-bold';
             font-size: em(20px);
             color: $clr6;
             background-color: inherit;

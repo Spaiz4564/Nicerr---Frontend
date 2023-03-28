@@ -3,9 +3,9 @@
         <div class="info">
             <section class="header">
                 <h3 class="flex space-between align-center">
-                    <b class="gig-title">Basic Price</b>
+                    <b class="gig-title">Order Details</b>
                     <div>
-                        <span class="price">{{ gig.price }}$</span>
+                        <span class="price">${{ gig.price }}</span>
                     </div>
                 </h3>
                 <p class="gig-purchase-txt">
@@ -66,7 +66,7 @@
 <script>
 
 import { svgService } from '../../services/svg.service';
-
+import { gigService } from '../../services/gig.service.local.js'
 
 export default {
     props: ['gig'],
@@ -88,6 +88,9 @@ export default {
     computed: {
         handleImages() {
             return this.gig.images[0]
+        },
+        img() {
+            return gigService.getImage[0]
         }
     },
     created() {
