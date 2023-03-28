@@ -1,7 +1,8 @@
 <template>
   <section class="gig-details-main" v-if="gig">
+    <button @click="navigateTo">About Seller</button>
     <main class="gig-details flex">
-      <GigInfoUser :gig="gig" />
+      <GigInfoUser id="AboutSeller" :gig="gig" />
       <GigPurchase :gig="gig" />
     </main>
   </section>
@@ -20,7 +21,17 @@ export default {
       gig: null,
     }
   },
-  methods: {},
+  methods: {
+    navigateTo() {
+      this.$router.push({ hash: '#AboutSeller' })
+      this.$nextTick(() => {
+        const el = document.getElementById('AboutSeller')
+        if (el) {
+          el.scrollIntoView()
+        }
+      })
+    }
+  },
   computed: {},
   created() {
     const { id } = this.$route.params

@@ -27,6 +27,8 @@ export default {
     },
     created() {
 
+        console.log('$atters', this.$attrs);
+
     },
     components: {
 
