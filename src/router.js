@@ -10,6 +10,7 @@ import GigPurchase from './views/GigPurchase.vue'
 import SellerSignup from './views/SellerSignup.vue'
 import SellerProfile from './views/SellerProfile.vue'
 import LoginSignup from './views/LoginSignup.vue'
+import GigEdit from './views/GigEdit.vue'
 
 const routes = [
   {
@@ -21,6 +22,11 @@ const routes = [
     path: '/gig/:categoryId?',
     name: 'GigIndex',
     component: GigIndex,
+  },
+  {
+    path: '/edit/:gigId?',
+    name: 'GigEdit',
+    component: GigEdit,
   },
   {
     path: '/details/:id',

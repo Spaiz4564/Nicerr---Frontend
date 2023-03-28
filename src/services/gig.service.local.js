@@ -28,10 +28,9 @@ async function query(
   },
   sortBy = { by: "name", desc: 1 }
 ) {
-  let gigs = await storageService.query(STORAGE_KEY);
-  if (!gigs.length) gigs = _createGigs();
-  gigs = gigs.filter((gig) => gig.title);
-
+  let gigs = await storageService.query(STORAGE_KEY)
+  if (!gigs.length) gigs = _createGigs()
+  if (!filterBy) return gigs
   if (filterBy.title) {
     const regex = new RegExp(filterBy.title, "i");
     gigs = gigs.filter(
@@ -45,8 +44,8 @@ async function query(
   }
   if (filterBy.categoryId) {
     gigs = gigs.filter((gig) => {
-      return gig.categoryId === filterBy.categoryId;
-    });
+      return gig.categories.includes(filterBy.categoryId)
+    })
   }
   if (filterBy.daysToDeliver) {
     if (filterBy.daysToDeliver === "1") {
@@ -92,8 +91,9 @@ async function remove(gigId) {
 }
 
 async function save(gig) {
-  var savedGig;
-  console.log("gig", gig);
+  console.log('gig', gig._id)
+  var savedGig
+  console.log('gig', gig)
   if (gig._id) {
     savedGig = await storageService.put(STORAGE_KEY, gig);
   } else {
@@ -128,6 +128,8 @@ function getEmptyGig() {
     rate: 0,
     daysToDeliver: 0,
     categories: [],
+    description: '',
+    images: [],
   }
 }
 
@@ -170,7 +172,7 @@ function _createGigs() {
         "../assets/images/gigs/gig4.jpg",
         "../assets/images/gigs/gig5.jpg",
       ],
-      ["graphic", 'voice over'],
+      ['data entry", "graphic', 'voice over'],
       3
     ),
     _createGig(
