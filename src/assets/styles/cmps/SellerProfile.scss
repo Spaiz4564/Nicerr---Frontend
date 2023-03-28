@@ -4,7 +4,7 @@
 }
 
 .seller-profile {
-  padding-top: 40px;
+  padding: 40px 0px;
   background-color: #f7f7f7;
 }
 
@@ -12,35 +12,115 @@
   background-color: white;
 }
 
+.seller-profile-gigs{
+    width: 100%;
+    margin-bottom: 40px;
+  h4{
+    font-size: 16px;
+  color: $clr1;
+    background-color: #fff;
+    width: 100%;
+    height: 60px;
+    border: 1px solid $clr9;
+    margin-bottom: 40px;
+    padding: 23px 25px;
+  }
+}
+
+.add-gig-container{
+  p{
+    color: $clr4;
+    font-size: 16px;
+  }
+  cursor: pointer;
+  span{
+    color: #fff;
+    width: 65px;
+    height: 65px;
+    background-color: #78cdd2;
+    font-size: 3rem;
+    border-radius: 10.4375em;
+    line-height: 70px;
+    text-align: center;
+    margin-bottom: 20px;
+  }
+  align-items: center;
+  justify-content: center;
+  display: flex;
+  background-color: #fff;
+    width: 230px;
+    height: 254px;
+    border: 1px solid $clr9;
+}
+
 .seller {
-  width: 70%;
+  min-width: 398px;
+  max-width: 398px;
+  width: 28%;
   .desc-container {
+    height: fit-content;
+    .desc {
+      h4 {
+        margin-bottom: 20px;
+        font-size: 18.5px;
+      }
+      p {
+        font-size: 16px;
+        color: $clr1;
+      }
+    }
+    border: 1px solid $clr9;
     h4 {
       color: $clr1;
     }
-    border: 1px solid $clr01;
-    padding: 50px;
+    padding: 30px;
     background-color: white;
   }
   display: flex;
   flex-direction: column;
-  gap: 35px;
+  gap: 20px;
+}
+
+.svg-info {
+  h4 {
+    font-size: 16px;
+  }
+
+  align-items: center;
+  justify-content: space-between;
+  display: flex;
+}
+
+.details {
+  span {
+    font-size: 16px;
+    color: $clr3;
+  }
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
 }
 
 .seller-profile-container {
   .user-info {
-    border: 1px solid $clr01;
-    padding: 20px;
+    height: 363px;
+    border: 1px solid $clr9;
+    padding: 26px;
     background-color: white;
     .seller-profile-info {
       text-align: center;
-      .details {
+      .details-container {
+        display: flex;
+        flex-direction: column;
         span {
           font-weight: bold;
         }
-        padding: 5px;
+
+        margin-top: 24px;
+        padding-top: 13px;
         width: 100%;
         h4 {
+          margin: 0;
           font-weight: 200;
           padding: 10px;
           display: flex;
@@ -48,7 +128,7 @@
         }
         border-top: 1px solid rgb(195, 195, 195);
       }
-      gap: 50px;
+      gap: 35px;
       h2 {
         color: $clr4;
       }
@@ -59,6 +139,7 @@
     display: flex;
     flex-direction: column;
     gap: 100px;
+    // justify-content: space-between;
   }
   .seller-profile {
     display: flex;
@@ -66,7 +147,7 @@
   }
   grid-column: 2/ 3;
   display: flex;
-  gap: 200px;
+gap: 13%;
 }
 .gigs-list-seller {
   gap: 20px;

@@ -34,20 +34,20 @@ export default {
     loggedinUser() {
       return this.$store.getters.loggedinUser
     },
-  },
-  methods: {
-    async saveUser() {
-      if (!this.userToEdit._id)
-        await this.$store.dispatch({
-          type: 'signup',
-          user: { ...this.userToEdit, isSeller: true },
-        })
-      else
-        await this.$store.dispatch({
-          type: 'updateUsers',
-          user: { ...this.userToEdit, isSeller: true },
-        })
-      this.$router.push(`/seller/profile/${this.userToEdit._id}`)
+    methods: {
+      async saveUser() {
+        if (!this.userToEdit._id)
+          await this.$store.dispatch({
+            type: 'signup',
+            user: { ...this.userToEdit, isSeller: false },
+          })
+        else
+          await this.$store.dispatch({
+            type: 'updateUsers',
+            user: { ...this.userToEdit, isSeller: false },
+          })
+        this.$router.push(`/seller/profile/${this.userToEdit._id}`)
+      },
     },
     handleImage() {
       this.userToEdit.imageUrl = this.img
@@ -66,7 +66,8 @@ export default {
       this.userToEdit = userService.getEmptyUser()
     }
   },
-  components: {
+
+  components:{
     ImgUploader
   }
 }
