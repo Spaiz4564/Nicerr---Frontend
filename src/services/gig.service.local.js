@@ -288,10 +288,10 @@ function _createGigs() {
     _createGig(
       "I will create database so you can control your items",
       [
-        "../assets/images/gigs/gig7.jpg",
-        "../assets/images/gigs/gig2.png",
-        "../assets/images/gigs/gig4.jpg",
-        "../assets/images/gigs/gig5.jpg",
+        "../../assets/images/gigs/gig7.jpg",
+        "../../assets/images/gigs/gig2.png",
+        "../../assets/images/gigs/gig4.jpg",
+        "../../assets/images/gigs/gig5.jpg",
       ],
       ["data"],
       7

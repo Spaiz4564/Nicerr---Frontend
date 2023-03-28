@@ -14,10 +14,17 @@
     }
 
     .info-img {
-        gap: 2em;
+        font-size: 14px;
+        gap: 1em;
         margin-bottom: em(16px);
 
+.seller-level{
+  
+}
+
         .name {
+            
+            font-weight: bold;
             align-items: start;
         }
 

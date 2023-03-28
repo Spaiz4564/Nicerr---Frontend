@@ -1,5 +1,5 @@
 <template>
-  <section class="gig-index main-layout full">
+  <section class="gig-index">
     <GigFilter @filtered="setFilter" />
     <div class="sort-container flex">
       <span>{{ gigsLength }} services available</span>

@@ -4,7 +4,7 @@
     color: $clr2;
     transition: all 0.3s;
     &:last-child {
-      font-size: 14px;
+      font-size: rem(14px);
       color: $clr-main;
       font-weight: 700;
       border-radius: 4px;
