@@ -44,7 +44,7 @@ export default {
         this.gigToAdd.owner = this.$store.getters.loggedinUser
         this.$store.dispatch({ type: 'addGig', gig: this.gigToAdd })
       }
-      this.$router.push('/gig')
+      this.$router.push(`/seller/profile/${this.gigToAdd.owner._id}`)
     },
   },
 }

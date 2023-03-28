@@ -8,10 +8,7 @@
       <div class="gig-seller-price">
         <h4>starting at {{ gig.price }}$</h4>
       </div>
-      <div class="gig-seller-btns">
-        <button @click="editGig" class="btn">Edit</button>
-        <button @click="removeGig" class="btn">Delete</button>
-      </div>
+ 
     </div>
   </section>
 </template>
