@@ -75,7 +75,6 @@ async function query(
     }
   }
   if (sortBy === 'level') {
-    //level of the seller
     gigs.sort((a, b) => {
       return b.owner.rate - a.owner.rate
     })

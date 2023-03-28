@@ -3,6 +3,10 @@
   font-family: Macan-Regular;
   border: 1px solid #e4e5e7;
   color: $clr1;
+  &:hover {
+    color: $clr-main;
+    transition: all 0.3s;
+  }
   .gig-preview-info {
     display: flex;
     flex-direction: column;
@@ -16,14 +20,12 @@
       max-height: 4em;
       line-height: em(18.5px);
       cursor: pointer;
-      &:hover {
-        color: $clr-main;
-        transition: all 0.3s;
-      }
+   
     }
   }
   img {
     height: 80%;
+    aspect-ratio: 1;
     border-radius: 50%;
   }
   .gig-preview-rate {
@@ -172,10 +174,14 @@
   position: relative;
   overflow: hidden;
 }
+.vueperslides__bullets{
+  padding-bottom: 7px;
+}
 
 .vueperslides__bullet {
+
   margin: 0.6em 0.2em;
-  padding: 0;
+padding: 0;
   border: none;
   background: none;
 }
