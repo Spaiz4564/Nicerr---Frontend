@@ -74,9 +74,10 @@ async function query(
       return gigs
     }
   }
-  if (sortBy === 'name') {
+  if (sortBy === 'level') {
+    //level of the seller
     gigs.sort((a, b) => {
-      return a.title.localeCompare(b.title)
+      return b.owner.rate - a.owner.rate
     })
   }
   if (sortBy === 'price') {
@@ -86,7 +87,7 @@ async function query(
   }
   if (sortBy === 'rate') {
     gigs.sort((a, b) => {
-      return a.rate - b.rate
+      return b.rate - a.rate
     })
   }
   return gigs
