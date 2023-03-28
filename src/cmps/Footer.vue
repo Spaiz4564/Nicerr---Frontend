@@ -1,5 +1,5 @@
 <template>
-  <section class="app-footer main-layout">
+  <section class="app-footer main-layout full">
     <div class="footer-container">
 <div class="title">
     <h1>Nicerr</h1>

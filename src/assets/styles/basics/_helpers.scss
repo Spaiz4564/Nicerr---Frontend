@@ -80,7 +80,6 @@
 .main-layout {
   display: grid;
   grid-template-columns: minmax(32px, 1fr) minmax(auto, 1400px) minmax(32px, 1fr);
-  grid-column: 1/-1;
 
   >*:not(.full) {
     grid-column: 2;

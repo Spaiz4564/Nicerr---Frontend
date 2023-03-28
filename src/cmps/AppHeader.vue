@@ -1,5 +1,5 @@
 <template>
-  <section class="main-header main-layout">
+  <section class="main-header full">
     <header
       class="main-layout"
       :class="[isHome ? 'headerHome' : '', isWhite ? 'homeScroll' : '']"

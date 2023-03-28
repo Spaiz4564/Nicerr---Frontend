@@ -1,5 +1,5 @@
 <template>
-  <div class="about-section main-layout">
+  <div class="about-section main-layout full">
     <div class="about">
       <div class="info">
       <h2>A whole world of freelance talent at your fingertips</h2>

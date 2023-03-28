@@ -74,7 +74,6 @@
         </section>
         <!-- <button class="contact-me-btn">Contact Me</button> -->
       </section>
-    </section>
     <section class="seller-details-container">
       <section class="seller-stat">
         <ul class="grid clean-list user-info">
@@ -106,7 +105,6 @@
         </div>
       </section>
     </section>
-  </section>
 </template>
 
 <script>
