@@ -1,6 +1,6 @@
 <template>
   <section class="gig-details-main" v-if="gig">
-    <button @click="navigateTo">About Seller</button>
+    <!-- <button @click="navigateTo">About Seller</button> -->
     <main class="gig-details flex">
       <GigInfoUser id="AboutSeller" :gig="gig" />
       <GigPurchase :gig="gig" />
