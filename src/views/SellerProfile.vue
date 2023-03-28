@@ -31,6 +31,10 @@
           <ul class="gigs-list-seller">
             <li v-for="gig in gigs">
               <GigPreview :gig="gig" :is="'gig-preview-seller'" />
+              <div class="gig-seller-btns">
+                <button @click="editGig(gig._id)" class="btn">Edit</button>
+                <button @click="removeGig(gig._id)" class="btn">Remove</button>
+              </div>
             </li>
           </ul>
         </div>
@@ -51,29 +55,43 @@ export default {
   data() {
     return {
       gigToAdd: null,
+      gigs: null,
     }
   },
   created() {
-    this.loadGigs()
-    console.log('gigs', this.gigs)
+    this.loadGigsByOwner()
   },
   computed: {
     owner() {
       return userService.getLoggedinUser()
     },
-    gigs() {
-      const owner = userService.getLoggedinUser()
-      return this.$store.getters.gigsByOwner(owner._id)
-    },
   },
   methods: {
-    async loadGigs() {
-      await this.$store.dispatch({ type: 'loadGigs' })
+    async loadGigsByOwner() {
+      const owner = userService.getLoggedinUser()
+      this.gigs = await gigService.query({ owner: owner._id })
     },
 
     addGig() {
       console.log('add gig')
       this.$router.push('/edit')
+    },
+    editGig(gigId) {
+      console.log('editGig', gigId)
+      this.$router.push(`/edit/${gigId}`)
+    },
+    removeGig(gigId) {
+      console.log('removeGig', gigId)
+      this.$store.dispatch({ type: 'removeGig', gigId })
+      this.loadGigsByOwner()
+    },
+  },
+  watch: {
+    $store: {
+      handler() {
+        this.loadGigsByOwner()
+      },
+      deep: true,
     },
   },
 

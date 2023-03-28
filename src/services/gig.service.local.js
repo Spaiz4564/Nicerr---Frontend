@@ -32,6 +32,15 @@ async function query(
   let gigs = await storageService.query(STORAGE_KEY)
   if (!gigs.length) gigs = _createGigs()
   if (!filterBy) return gigs
+
+  const { owner } = filterBy
+  if (owner) {
+    //we need to return the gigs that the owner has
+    gigs = gigs.filter((gig) => {
+      return gig.owner._id === owner
+    })
+  }
+
   if (filterBy.title) {
     const regex = new RegExp(filterBy.title, 'i')
     gigs = gigs.filter(
@@ -130,7 +139,10 @@ function getEmptyGig() {
     daysToDeliver: 0,
     categories: [],
     description: '',
-    imgUrl: '/src/assets/images/gigs/gig1.png',
+    images: [
+      'https://res.cloudinary.com/dzcangpqd/image/upload/v1680008847/user1/img1_hc4qok.png',
+      'https://res.cloudinary.com/dzcangpqd/image/upload/v1680008858/user1/img7_mqbyac.png',
+    ],
   }
 }
 

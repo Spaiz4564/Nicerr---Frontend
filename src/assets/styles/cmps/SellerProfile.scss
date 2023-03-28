@@ -75,6 +75,17 @@
   padding: 0;
 }
 
-.gigs-preview-seller {
+.gig-preview-seller {
   display: flex;
+  flex-direction: column;
+  width: 12em;
+  .txt-capitalized {
+    display: none;
+  }
+  .icon-heart {
+    display: none;
+  }
+  .gig-rating {
+    display: none;
+  }
 }

@@ -10,7 +10,6 @@
     height: 65%;
     .gig-preview-title {
       font-family: Macan-Regular;
-
       display: flex;
       font-size: em(14px);
       flex-grow: 1;
@@ -25,6 +24,7 @@
   }
   img {
     height: 80%;
+    border-radius: 50%;
   }
   .gig-preview-rate {
     font-family: Macan-Bold;
@@ -91,10 +91,6 @@
     }
   }
 }
-
-// .fill{
-//   fill: red;
-// }
 
 .gig-rating {
   display: flex;
