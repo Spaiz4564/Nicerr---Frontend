@@ -14,7 +14,6 @@
   border-radius: 4px;
 }
 .login-form {
- 
   h3 {
     color: $clr4;
     font-size: 22px;
@@ -69,4 +68,9 @@
   align-items: center;
   background-color: #fff;
   z-index: 10;
+}
+.upload-preview {
+  img {
+    aspect-ratio: 1;
+  }
 }

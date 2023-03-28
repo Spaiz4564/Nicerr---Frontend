@@ -4,13 +4,19 @@
       <h3>Join Nicerr</h3>
       <div class="img-upload">
         <div :class="[img ? 'clear' : '']">
-          <img src="../assets/images/About/default.png" alt="">
+          <img src="../assets/images/About/default.png" alt="" />
         </div>
         <ImgUploader @uploaded="imgUrl" @image="handleImage" />
       </div>
-      <input type="text" v-model="userToEdit.fullname" placeholder="Full name" />
+      <input
+        type="text"
+        v-model="userToEdit.fullname"
+        placeholder="Full name" />
       <input type="text" v-model="userToEdit.username" placeholder="Username" />
-      <input type="password" v-model="userToEdit.password" placeholder="Password" />
+      <input
+        type="password"
+        v-model="userToEdit.password"
+        placeholder="Password" />
       <button>Continue</button>
     </form>
   </div>
@@ -47,7 +53,7 @@ export default {
           type: 'updateUsers',
           user: { ...this.userToEdit, isSeller: true },
         })
-      this.$router.push(`/seller/profile/${this.userToEdit._id}`)
+      this.$router.push(`/`)
     },
     handleImage() {
       this.userToEdit.imageUrl = this.img
@@ -56,7 +62,7 @@ export default {
     imgUrl(ev) {
       this.userToEdit.imgUrl = ev
       console.log(this.userToEdit)
-    }
+    },
   },
   created() {
     const loggedinUser = this.$store.getters.loggedinUser
@@ -67,7 +73,7 @@ export default {
     }
   },
   components: {
-    ImgUploader
-  }
+    ImgUploader,
+  },
 }
 </script>

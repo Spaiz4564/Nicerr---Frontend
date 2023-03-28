@@ -74,9 +74,10 @@ async function query(
       return gigs
     }
   }
-  if (sortBy === 'name') {
+  if (sortBy === 'level') {
+    //we need to sort by the level of the owner
     gigs.sort((a, b) => {
-      return a.title.localeCompare(b.title)
+      return b.owner.rate - a.owner.rate
     })
   }
   if (sortBy === 'price') {
@@ -85,8 +86,9 @@ async function query(
     })
   }
   if (sortBy === 'rate') {
+    //show the highest rate first
     gigs.sort((a, b) => {
-      return a.rate - b.rate
+      return b.rate - a.rate
     })
   }
   return gigs
@@ -409,6 +411,7 @@ function getPopularServices() {
       desc: 'Add talent to AI',
       title: `AI Artists`,
       img: '../../assets/images/Services/AI-artists.png',
+      link: '/gig/ai-artist',
     },
     {
       desc: 'Build your brand',
