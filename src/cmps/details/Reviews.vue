@@ -86,14 +86,16 @@
                             <div class="flex align-center">
                                 <div class="user-profile-image">
                                     <label class="user-img">
-                                        <img src="" alt="">
+                                        <img src="https://res.cloudinary.com/dzcangpqd/image/upload/v1680014788/7b328e0e-e99a-4504-bde9-3ae9cd115341_oswrvw.jpg"
+                                            alt="">
                                     </label>
                                     <div class="flex column">
                                         <div class=" review-user-info flex column">
                                             <span class="review-user-info name">worldexpo2016</span>
-                                            <div>
-                                                <span>Germany-flag</span>
-                                                <span class="review-user-info country">Germany</span>
+                                            <div class="review-user-info img">
+                                                <img src="https://res.cloudinary.com/dzcangpqd/image/upload/v1680012726/1f1fa-1f1f8_dxvj1l.png"
+                                                    alt="">
+                                                <span class="review-user-info country">United State</span>
                                             </div>
                                         </div>
                                     </div>
@@ -114,9 +116,9 @@
                             </div>
                             <div class="helpful flex align-center">
                                 <span>Helpful?</span>
-                                <div className="icon" v-html="getSvg('thumbsUp')"></div>
+                                <div className="icon thumbsUp" v-html="getSvg('thumbsUp')"></div>
                                 <span>Yes</span>
-                                <div className="icon" v-html="getSvg('thumbsDown')"></div>
+                                <div className="icon thumbsDown" v-html="getSvg('thumbsDown')"></div>
                                 <span>No</span>
                             </div>
                         </section>
@@ -126,14 +128,16 @@
                             <div class="flex item-center">
                                 <div class="user-profile-image">
                                     <label class="user-img">
-                                        <img src="" alt="">
+                                        <img src="https://res.cloudinary.com/dzcangpqd/image/upload/v1680014786/65b1b4ab-926d-46be-95d0-fe3ebeb2e61f_lnlwu5.jpg"
+                                            alt="">
                                     </label>
                                     <div class="flex column">
                                         <div class=" review-user-info flex column">
                                             <span class="review-user-info name">joellauren</span>
-                                            <div>
-                                                <span>Sweden-flag</span>
-                                                <span class="review-user-info country">Sweden</span>
+                                            <div class="review-user-info img">
+                                                <img src="https://res.cloudinary.com/dzcangpqd/image/upload/v1680012724/1f1f7-1f1f4_s35l9n.png"
+                                                    alt="">
+                                                <span class="review-user-info country">Romania</span>
                                             </div>
                                         </div>
                                     </div>
@@ -153,9 +157,9 @@
                             </div>
                             <div class="helpful flex align-center">
                                 <span>Helpful?</span>
-                                <div className="icon" v-html="getSvg('thumbsUp')"></div>
+                                <div className="icon thumbsUp" v-html="getSvg('thumbsUp')"></div>
                                 <span>Yes</span>
-                                <div className="icon" v-html="getSvg('thumbsDown')"></div>
+                                <div className="icon thumbsDown" v-html="getSvg('thumbsDown')"></div>
                                 <span>No</span>
                             </div>
                         </section>
@@ -165,14 +169,16 @@
                             <div class="flex item-center">
                                 <div class="user-profile-image">
                                     <label class="user-img">
-                                        <img src="" alt="">
+                                        <img src="https://res.cloudinary.com/dzcangpqd/image/upload/v1680014784/bbeab7dd-e6e9-44e8-ac16-9f73ab57974d_gmwav2.jpg"
+                                            alt="">
                                     </label>
                                     <div class="flex column">
                                         <div class=" review-user-info flex column">
                                             <span class="review-user-info name">diplomattylaa</span>
-                                            <div>
-                                                <span>United States-flag</span>
-                                                <span class="review-user-info country">United States</span>
+                                            <div class="review-user-info img">
+                                                <img src="https://res.cloudinary.com/dzcangpqd/image/upload/v1680012722/1f1ee-1f1f1_opzusm.png"
+                                                    alt="">
+                                                <span class="review-user-info country">Israel</span>
                                             </div>
                                         </div>
                                     </div>
@@ -194,9 +200,9 @@
                             </div>
                             <div class="helpful flex align-center">
                                 <span>Helpful?</span>
-                                <div className="icon" v-html="getSvg('thumbsUp')"></div>
+                                <div className="icon thumbsUp" v-html="getSvg('thumbsUp')"></div>
                                 <span>Yes</span>
-                                <div className="icon" v-html="getSvg('thumbsDown')"></div>
+                                <div className="icon thumbsDown" v-html="getSvg('thumbsDown')"></div>
                                 <span>No</span>
                             </div>
                         </section>
@@ -207,14 +213,16 @@
                             <div class="flex item-center">
                                 <div class="user-profile-image">
                                     <label class="user-img">
-                                        <img src="" alt="">
+                                        <img src="https://res.cloudinary.com/dzcangpqd/image/upload/v1680014788/7b328e0e-e99a-4504-bde9-3ae9cd115341_oswrvw.jpg"
+                                            alt="">
                                     </label>
                                     <div class="flex column">
                                         <div class=" review-user-info flex column">
                                             <span class="review-user-info name">birdcam_vt</span>
-                                            <div>
-                                                <span>United States-flag</span>
-                                                <span class="review-user-info country">United States</span>
+                                            <div class="review-user-info img">
+                                                <img src="https://res.cloudinary.com/dzcangpqd/image/upload/v1680012722/1f1ff-1f1e6_fu2irs.png"
+                                                    alt="">
+                                                <span class="review-user-info country">South Africa</span>
                                             </div>
                                         </div>
                                     </div>
@@ -235,9 +243,9 @@
                             </div>
                             <div class="helpful flex align-center">
                                 <span>Helpful?</span>
-                                <div className="icon" v-html="getSvg('thumbsUp')"></div>
+                                <div className="icon thumbsUp" v-html="getSvg('thumbsUp')"></div>
                                 <span>Yes</span>
-                                <div className="icon" v-html="getSvg('thumbsDown')"></div>
+                                <div className="icon thumbsDown" v-html="getSvg('thumbsDown')"></div>
                                 <span>No</span>
                             </div>
                         </section>
@@ -248,14 +256,16 @@
                             <div class="flex item-center">
                                 <div class="user-profile-image">
                                     <label class="user-img">
-                                        <img src="" alt="">
+                                        <img src="https://res.cloudinary.com/dzcangpqd/image/upload/v1680014784/bbeab7dd-e6e9-44e8-ac16-9f73ab57974d_gmwav2.jpg"
+                                            alt="">
                                     </label>
-                                    <div class="flex column">
-                                        <div class=" review-user-info flex column">
+                                    <div>
+                                        <div class=" review-user-info">
                                             <span class="review-user-info name">khabou</span>
-                                            <div>
-                                                <span>Spain-flag</span>
-                                                <span class="review-user-info country">Spain</span>
+                                            <div class="review-user-info img">
+                                                <img src="https://res.cloudinary.com/dzcangpqd/image/upload/v1680012726/1f1fa-1f1f8_dxvj1l.png"
+                                                    alt="">
+                                                <span class="review-user-info country">United State</span>
                                             </div>
                                         </div>
                                     </div>
@@ -276,18 +286,16 @@
                             </div>
                             <div class="helpful flex align-center">
                                 <span>Helpful?</span>
-                                <div className="icon" v-html="getSvg('thumbsUp')"></div>
+                                <div className="icon thumbsUp" v-html="getSvg('thumbsUp')"></div>
                                 <span>Yes</span>
-                                <div className="icon" v-html="getSvg('thumbsDown')"></div>
+                                <div className="icon thumbsDown" v-html="getSvg('thumbsDown')"></div>
                                 <span>No</span>
                             </div>
                         </section>
 
                     </li>
                 </span>
-
             </ul>
-
         </section>
     </section>
 </template>

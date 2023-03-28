@@ -28,9 +28,9 @@ async function query(
   },
   sortBy = { by: "name", desc: 1 }
 ) {
-  let gigs = await storageService.query(STORAGE_KEY)
-  if (!gigs.length) gigs = _createGigs()
-  if (!filterBy) return gigs
+  let gigs = await storageService.query(STORAGE_KEY);
+  if (!gigs.length) gigs = _createGigs();
+  if (!filterBy) return gigs;
   if (filterBy.title) {
     const regex = new RegExp(filterBy.title, "i");
     gigs = gigs.filter(
@@ -44,8 +44,8 @@ async function query(
   }
   if (filterBy.categoryId) {
     gigs = gigs.filter((gig) => {
-      return gig.categories.includes(filterBy.categoryId)
-    })
+      return gig.categories.includes(filterBy.categoryId);
+    });
   }
   if (filterBy.daysToDeliver) {
     if (filterBy.daysToDeliver === "1") {
@@ -91,9 +91,9 @@ async function remove(gigId) {
 }
 
 async function save(gig) {
-  console.log('gig', gig._id)
-  var savedGig
-  console.log('gig', gig)
+  console.log("gig", gig._id);
+  var savedGig;
+  console.log("gig", gig);
   if (gig._id) {
     savedGig = await storageService.put(STORAGE_KEY, gig);
   } else {
@@ -128,9 +128,9 @@ function getEmptyGig() {
     rate: 0,
     daysToDeliver: 0,
     categories: [],
-    description: '',
+    description: "",
     images: [],
-  }
+  };
 }
 
 function _createGig(title, images, categories, daysToDeliver) {
@@ -156,10 +156,13 @@ function _createGigs() {
     _createGig(
       "I will create soccer pitch for you so you can play soccer with your friends",
       [
-        "../assets/images/gigs/gig2.png",
-        "../assets/images/gigs/gig1.png",
-        "../assets/images/gigs/gig4.jpg",
-        "../assets/images/gigs/gig5.jpg",
+        "https://res.cloudinary.com/dzcangpqd/image/upload/v1680008847/user1/img1_hc4qok.png",
+        "https://res.cloudinary.com/dzcangpqd/image/upload/v1680008858/user1/img7_mqbyac.png",
+        "https://res.cloudinary.com/dzcangpqd/image/upload/v1680008856/user1/img6_j5v239.png",
+        "https://res.cloudinary.com/dzcangpqd/image/upload/v1680008855/user1/img5_awr6af.png",
+        "https://res.cloudinary.com/dzcangpqd/image/upload/v1680008853/user1/img4_udwrru.png",
+        "https://res.cloudinary.com/dzcangpqd/image/upload/v1680008851/user1/img3_jvwdgd.png",
+        "https://res.cloudinary.com/dzcangpqd/image/upload/v1680008849/user1/img2_buznmr.png",
       ],
       ["wordpress", "digital marketing"],
       3
@@ -167,12 +170,15 @@ function _createGigs() {
     _createGig(
       "I will create logo for your company so you can be more professional",
       [
-        "../assets/images/gigs/gig1.png",
-        "../assets/images/gigs/gig2.png",
-        "../assets/images/gigs/gig4.jpg",
-        "../assets/images/gigs/gig5.jpg",
+        "../assets/images/img/img1.png",
+        "../assets/images/img/img2.png",
+        "../assets/images/img/img3.png",
+        "../assets/images/img/img4.png",
+        "../assets/images/img/img5.png",
+        "../assets/images/img/img6.png",
+        "../assets/images/img/img7.png",
       ],
-      ['data entry", "graphic', 'voice over'],
+      ['data entry", "graphic', "voice over"],
       3
     ),
     _createGig(
