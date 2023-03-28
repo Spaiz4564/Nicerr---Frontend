@@ -44,7 +44,7 @@
       </div>
     </div>
     <div class="gig-preview-price">
-      <span class="icon-heart" v-html="getSvg('heartFill')"></span>
+      <span @click="addToFav" :class="isFav ? 'fill' : ''" class="icon-heart" v-html="getSvg('heartFill')"></span>
       <p class="txt-capitalized">starting at</p>
       <span class="gig-span-price">US${{ gig.price }}</span>
     </div>
@@ -63,6 +63,7 @@ export default {
   },
   data() {
     return {
+      isFav: false,
       hoverTxt: false,
     }
   },
@@ -72,6 +73,9 @@ export default {
     },
   },
   methods: {
+    addToFav() {
+this.isFav = !this.isFav
+    },
     getSvg(iconName) {
       return svgService.getSvg(iconName)
     },
