@@ -3,13 +3,10 @@
     <form @submit.prevent="doLogin" class="login-form">
       <h3>Sign In to Nicerr</h3>
       <input type="text" v-model="loginCred.username" placeholder="Email / Username" />
-      <input
-        type="password"
-        v-model="loginCred.password"
-        placeholder="Password" />
+      <input type="password" v-model="loginCred.password" placeholder="Password" />
       <button>Login</button>
       <span>Dont have an account yet?</span>
-      <a href="">Open account</a>
+      <a @click="handleJoin">Open account</a>
     </form>
   </div>
 </template>
@@ -43,6 +40,11 @@ export default {
       this.$emit('closeModal')
       console.log('this.loggedinUser', this.loggedinUser)
     },
+    handleJoin() {
+      console.log('handleJoin');
+      this.$emit('closeModal')
+      // this.$emit('openJoin')
+    }
   },
 }
 </script>

@@ -1,5 +1,5 @@
 <template>
-  <div className="upload-preview">
+  <div className="upload-preview flex column">
     <img v-if="imgUrl" :src="imgUrl" :style="{ maxWidth: '200px', float: 'right' }" />
     <label for="imgUpload">{{ uploadMsg }}</label>
     <input type="file" @change="uploadImg" accept="img/*" id="imgUpload" />
@@ -27,6 +27,7 @@ export default {
       this.height = height
       this.width = width
       this.$emit('uploaded', this.imgUrl)
+      this.$emit('image')
     }
   },
   computed: {

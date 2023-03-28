@@ -19,7 +19,7 @@
                     <vueper-slide v-for="(img, i) in gig.images" :key="i" :image="imgUrl(img)"
                         :style="'background-color: ' + ['#ff5252']" />
                 </vueper-slides>
-                <vueper-slides class="thumbnails" ref="vueperslides2" :slide-ratio="1 / 6" :dragging-distance="20"
+                <vueper-slides class="thumbnails" ref="vueperslides2" :slide-ratio="1 / 8" :dragging-distance="20"
                     @slide="$refs.vueperslides1 && $refs.vueperslides1.goToSlide($event.currentSlide.index, { emit: false })"
                     :visible-slides="6" fixed-height="60px" :arrows="false" :bullets="false">
                     <vueper-slide v-for="(img, i) in gig.images" :key="i" :image="imgUrl(img)"
@@ -42,7 +42,7 @@
                             <p>Lidor</p>
                             <img class="img"
                                 src="https://res.cloudinary.com/dzcangpqd/image/upload/v1680012722/1f1ee-1f1f1_opzusm.png" />
-                            <p>United State</p>
+                            <p class="country">United State</p>
                             <section>
                                 <ul class="ul-rate clean-list  flex justify-center align-center ">
                                     <li>
