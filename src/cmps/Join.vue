@@ -46,14 +46,14 @@ export default {
       if (!this.userToEdit._id)
         await this.$store.dispatch({
           type: 'signup',
-          user: { ...this.userToEdit, isSeller: true },
+          user: { ...this.userToEdit, isSeller: false },
         })
       else
         await this.$store.dispatch({
           type: 'updateUsers',
-          user: { ...this.userToEdit, isSeller: true },
+          user: { ...this.userToEdit, isSeller: false },
         })
-      this.$router.push(`/`)
+      this.$router.push(`/seller/profile/${this.userToEdit._id}`)
     },
     handleImage() {
       this.userToEdit.imageUrl = this.img
@@ -64,6 +64,7 @@ export default {
       console.log(this.userToEdit)
     },
   },
+
   created() {
     const loggedinUser = this.$store.getters.loggedinUser
     if (loggedinUser) {

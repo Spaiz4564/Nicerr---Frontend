@@ -1,6 +1,6 @@
 <template>
   <div
-    class="nav-suggestions main-layout"
+    class="nav-suggestions full"
     :class="[
       isHome ? 'headerHome' : '',
       isSuggestions ? 'display' : '',

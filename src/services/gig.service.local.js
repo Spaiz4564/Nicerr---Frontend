@@ -74,10 +74,9 @@ async function query(
       return gigs
     }
   }
-  if (sortBy === 'level') {
-    //we need to sort by the level of the owner
+  if (sortBy === 'name') {
     gigs.sort((a, b) => {
-      return b.owner.rate - a.owner.rate
+      return a.title.localeCompare(b.title)
     })
   }
   if (sortBy === 'price') {
@@ -86,9 +85,8 @@ async function query(
     })
   }
   if (sortBy === 'rate') {
-    //show the highest rate first
     gigs.sort((a, b) => {
-      return b.rate - a.rate
+      return a.rate - b.rate
     })
   }
   return gigs
@@ -207,7 +205,7 @@ function _createGigs() {
         'https://res.cloudinary.com/dzcangpqd/image/upload/v1679925739/cld-sample.jpg',
         'https://res.cloudinary.com/dzcangpqd/image/upload/v1679925725/samples/landscapes/beach-boat.jpg',
       ],
-      ['digital'],
+      ['digital', 'wordpress'],
       3,
       3.5
     ),
@@ -262,7 +260,7 @@ function _createGigs() {
         'https://res.cloudinary.com/dzcangpqd/image/upload/v1679925718/samples/food/dessert.jpg',
         'https://res.cloudinary.com/dzcangpqd/image/upload/v1679925723/samples/people/boy-snow-hoodie.jpg',
       ],
-      ['business'],
+      ['business', 'voice over'],
       6,
       3.5
     ),
@@ -276,7 +274,7 @@ function _createGigs() {
         'https://res.cloudinary.com/dzcangpqd/image/upload/v1679925740/cld-sample-2.jpg',
         'https://res.cloudinary.com/dzcangpqd/image/upload/v1679925725/samples/people/bicycle.jpg',
       ],
-      ['lifestyle'],
+      ['illustrations', 'lifestyle'],
       2,
       4.5
     ),
@@ -289,7 +287,7 @@ function _createGigs() {
         'https://res.cloudinary.com/dzcangpqd/image/upload/v1679925724/samples/animals/three-dogs.jpg',
         'https://res.cloudinary.com/dzcangpqd/image/upload/v1679925725/samples/landscapes/beach-boat.jpg',
       ],
-      ['lifestyle'],
+      ['lifestyle', 'video explainer'],
       2,
       5.5
     ),
@@ -301,7 +299,7 @@ function _createGigs() {
         'https://res.cloudinary.com/dzcangpqd/image/upload/v1679925726/samples/ecommerce/leather-bag-gray.jpg',
         'https://res.cloudinary.com/dzcangpqd/image/upload/v1679925718/samples/food/dessert.jpg',
       ],
-      ['lifestyle'],
+      ['lifestyle', 'social media'],
       7,
       9.5
     ),
@@ -314,7 +312,7 @@ function _createGigs() {
         'https://res.cloudinary.com/dzcangpqd/image/upload/v1679925722/samples/ecommerce/shoes.png',
         'https://res.cloudinary.com/dzcangpqd/image/upload/v1679925725/samples/people/bicycle.jpg',
       ],
-      ['lifestyle'],
+      ['lifestyle', 'seo'],
       4,
       3.5
     ),
@@ -327,7 +325,7 @@ function _createGigs() {
         'https://res.cloudinary.com/dzcangpqd/image/upload/v1679925726/samples/ecommerce/leather-bag-gray.jpg',
         'https://res.cloudinary.com/dzcangpqd/image/upload/v1679925724/samples/animals/three-dogs.jpg',
       ],
-      ['business'],
+      ['business', 'data entry'],
       5,
       4.5
     ),
@@ -341,7 +339,7 @@ function _createGigs() {
         'https://res.cloudinary.com/dzcangpqd/image/upload/v1679925726/samples/ecommerce/leather-bag-gray.jpg',
         'https://res.cloudinary.com/dzcangpqd/image/upload/v1679925722/samples/ecommerce/shoes.png',
       ],
-      ['data'],
+      ['data', 'translation'],
       7,
       2.5
     ),
@@ -411,52 +409,60 @@ function getPopularServices() {
       desc: 'Add talent to AI',
       title: `AI Artists`,
       img: '../../assets/images/Services/AI-artists.png',
-      link: '/gig/ai-artist',
     },
     {
       desc: 'Build your brand',
       title: 'Logo Design',
       img: '../../assets/images/Services/Logo design.png',
+      link: '/#/gig?categoryId=logo+design',
     },
     {
       desc: 'Customize your site',
       title: 'WordPress',
       img: '../../assets/images/Services/WordPress.png',
+      link: '/#/gig?categoryId=wordpress',
     },
     {
       desc: 'Share your message',
       title: 'Voice Over',
       img: '../../assets/images/Services/Voice Over.png',
+      link: '/#/gig?categoryId=voice+over',
     },
     {
       desc: 'Engage your audience',
       title: 'Video Explainer',
       img: '../../assets/images/Services/Video Explainer.png',
+      link: '/#/gig?categoryId=video+explainer',
     },
     {
       desc: 'Reach more customers',
       title: 'Social Media',
       img: '../../assets/images/Services/Social Media.png',
+      link: '/#/gig?categoryId=social+media',
     },
     {
       desc: 'Unlock growth online',
       title: 'SEO',
       img: '../../assets/images/Services/SEO.png',
+      link: '/#/gig?categoryId=seo',
     },
     {
       desc: 'Color your dreams',
       title: 'Illustrations',
       img: '../../assets/images/Services/illustration.png',
+      link: '/#/gig?categoryId=illustrations',
     },
     {
       desc: 'Go global',
       title: 'Translation',
       img: '../../assets/images/Services/Translation.png',
+      link: '/#/gig?categoryId=translation',
     },
     {
       desc: 'Learn your business',
       title: 'Data Entry',
       img: '../../assets/images/Services/Data Entry.png',
+      link: '/#/gig?categoryId=data+entry',
     },
   ]
   return services
