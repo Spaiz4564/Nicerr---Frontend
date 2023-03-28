@@ -3,11 +3,10 @@
     <div
       @click="closeModal"
       :class="isBackdrop ? 'showBackdrop' : 'hideBackDrop'"
-      class="backdrop full"
-    ></div>
-    <div  class="modal-sign" v-if="isBackdrop">
+      class="backdrop full"></div>
+    <div class="modal-sign" v-if="isBackdrop">
       <Login v-clickOutsideDirective="hey" v-if="whatModal === 'signIn'" />
-      <Join v-if="whatModal === 'join'"/>
+      <Join v-if="whatModal === 'join'" />
     </div>
   </section>
   <div class="main-layout">
@@ -19,58 +18,62 @@
 </template>
 
 <script>
- 
-  import AppHeader from './cmps/AppHeader.vue'
-  import UserMsg from './cmps/UserMsg.vue'
-  import Footer from './cmps/Footer.vue'
-  import Login from './views/Login.vue'
-  import Join from './cmps/Join.vue'
+import AppHeader from './cmps/AppHeader.vue'
+import UserMsg from './cmps/UserMsg.vue'
+import Footer from './cmps/Footer.vue'
+import Login from './views/Login.vue'
+import Join from './cmps/Join.vue'
+import { store } from './store/store'
 
-  export default {
-   
-    data() {
-      return {
-        isBackdrop: false,
-        whatModal: null
-      }
-    },
+export default {
+  data() {
+    return {
+      isBackdrop: false,
+      whatModal: null,
+    }
+  },
+  created() {
+    console.log('Vue App created')
+    const user = userService.getLoggedinUser()
+    console.log(user)
+    if (user) store.commit({ type: 'setLoggedInUser', user })
+  },
 
-    watch: {
-      user: {
-        handler() {
-          if (this.user) {
-            this.isBackdrop = false
-          }
-        },
-        immediate: true,
+  watch: {
+    user: {
+      handler() {
+        if (this.user) {
+          this.isBackdrop = false
+        }
       },
+      immediate: true,
     },
+  },
 
-    components: {
-      Join,
-      Login,
-      AppHeader,
-      UserMsg,
-      Footer,
+  components: {
+    Join,
+    Login,
+    AppHeader,
+    UserMsg,
+    Footer,
+  },
+  methods: {
+    backdrop(isOpen, whichModal) {
+      console.log(this.isBackdrop)
+      this.whatModal = whichModal
+      this.isBackdrop = isOpen
     },
-    methods: {
-      backdrop(isOpen, whichModal) {
-        console.log(this.isBackdrop)
-        this.whatModal = whichModal
-        this.isBackdrop = isOpen
-      },
-      closeModal() {
-        this.isBackdrop = false
-      },
-      hey() {
-        console.log('hey')
-      }
+    closeModal() {
+      this.isBackdrop = false
     },
-    computed: {
-      user() {
-        return this.$store.getters.loggedinUser
-      },
-    
+    hey() {
+      console.log('hey')
     },
-  }
+  },
+  computed: {
+    user() {
+      return this.$store.getters.loggedinUser
+    },
+  },
+}
 </script>
