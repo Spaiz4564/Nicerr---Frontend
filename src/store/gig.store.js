@@ -88,9 +88,7 @@ export const gigStore = {
     },
 
     setFilter(state, { filterBy }) {
-      console.log(filterBy)
       state.filterBy = filterBy
-      this.dispatch({ type: 'loadGigs', filterBy })
     },
   },
   actions: {
@@ -158,6 +156,18 @@ export const gigStore = {
         commit({ type: 'saveGig', gig: newGig })
       } catch (err) {
         console.log('Could Not save gig')
+        throw err
+      }
+    },
+
+    async loadGigsByOwner(context, { ownerId }) {
+      console.log('loadGigsByOwner', ownerId)
+      try {
+        const gigs = await gigService.query({ ownerId })
+        console.log('gigs', gigs)
+        context.commit({ type: 'setGigs', gigs })
+      } catch (err) {
+        console.log('gigStore: Error in loadGigs', err)
         throw err
       }
     },

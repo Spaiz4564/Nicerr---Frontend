@@ -13,7 +13,7 @@
 }
 
 .seller {
-  width: 50%;
+  width: 70%;
   .desc-container {
     h4 {
       color: $clr1;
@@ -27,28 +27,9 @@
   gap: 35px;
 }
 
-
-
-.seller-profile-gigs {
-  .seller-profile-gig-info {
-    display: flex;
-    justify-content: center;
-  }
-  width: 100%;
-  h4 {
-    padding: 20px;
-    background-color: white;
-  }
-  display: flex;
-  flex-direction: column;
-
-  gap: 5px;
-}
-
 .seller-profile-container {
   .user-info {
     border: 1px solid $clr01;
-    //   height: 365px;
     padding: 20px;
     background-color: white;
     .seller-profile-info {
@@ -79,7 +60,6 @@
     flex-direction: column;
     gap: 100px;
   }
-  height: 100vh;
   .seller-profile {
     display: flex;
     flex-direction: column;
@@ -87,4 +67,14 @@
   grid-column: 2/ 3;
   display: flex;
   gap: 200px;
+}
+.gigs-list-seller {
+  gap: 20px;
+  display: flex;
+  flex-wrap: wrap;
+  padding: 0;
+}
+
+.gigs-preview-seller {
+  display: flex;
 }

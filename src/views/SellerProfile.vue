@@ -23,13 +23,17 @@
 
       <div class="seller-profile-gigs">
         <h4>Active gigs</h4>
-        <div class="add-gig">
-          <div class="flex column align-center">
+        <div class="gigs-container-seller">
+          <div class="gigs-preview-seller">
             <span @click="addGig" class="add-gig-btn">+</span>
             <p>Create a new Gig</p>
           </div>
+          <ul class="gigs-list-seller">
+            <li v-for="gig in gigs">
+              <GigPreview :gig="gig" :is="'gig-preview-seller'" />
+            </li>
+          </ul>
         </div>
-        <GigPreviewSeller v-for="gig in gigs" :gig="gig" :key="gig._id" />
       </div>
     </div>
   </section>
@@ -37,8 +41,10 @@
 
 <script>
 import { gigService } from '../services/gig.service.local'
+
 import { userService } from '../services/user.service'
 import GigPreviewSeller from '../cmps/GigPreviewSeller.vue'
+import GigPreview from '../cmps/GigPreview.vue'
 
 export default {
   name: 'SellerProfile',
@@ -49,10 +55,10 @@ export default {
   },
   created() {
     this.loadGigs()
+    console.log('gigs', this.gigs)
   },
   computed: {
     owner() {
-      console.log('owner', userService.getLoggedinUser())
       return userService.getLoggedinUser()
     },
     gigs() {
@@ -61,9 +67,10 @@ export default {
     },
   },
   methods: {
-    loadGigs() {
-      this.$store.dispatch({ type: 'loadGigs' })
+    async loadGigs() {
+      await this.$store.dispatch({ type: 'loadGigs' })
     },
+
     addGig() {
       console.log('add gig')
       this.$router.push('/edit')
@@ -72,6 +79,7 @@ export default {
 
   components: {
     GigPreviewSeller,
+    GigPreview,
   },
 }
 </script>

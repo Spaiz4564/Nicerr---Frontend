@@ -1,5 +1,5 @@
 <template>
-  <section class="gig-preview">
+  <section :class="['gig-preview', is]">
     <div class="gig-preview-img">
       <div class="gig-preview-img-container">
         <vueper-slides fade :touchable="false">
@@ -44,7 +44,11 @@
       </div>
     </div>
     <div class="gig-preview-price">
-      <span @click="addToFav" :class="isFav ? 'fill' : ''" class="icon-heart" v-html="getSvg('heartFill')"></span>
+      <span
+        @click="addToFav"
+        :class="isFav ? 'fill' : ''"
+        class="icon-heart"
+        v-html="getSvg('heartFill')"></span>
       <p class="txt-capitalized">starting at</p>
       <span class="gig-span-price">US${{ gig.price }}</span>
     </div>
@@ -60,6 +64,10 @@ export default {
 
   props: {
     gig: Object,
+    is: {
+      type: String,
+      default: 'gig-preview',
+    },
   },
   data() {
     return {
@@ -74,7 +82,7 @@ export default {
   },
   methods: {
     addToFav() {
-this.isFav = !this.isFav
+      this.isFav = !this.isFav
     },
     getSvg(iconName) {
       return svgService.getSvg(iconName)

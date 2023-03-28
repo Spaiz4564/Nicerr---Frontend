@@ -1,14 +1,7 @@
 <template>
-  <section class="seller-signup" v-if="userToEdit">
-    <div class="signup-header">
-      <h2>Personal Info</h2>
-      <p class="seller-info">
-        Tell us a bit about yourself. This information will appear on your
-        public profile, so that potential buyers can get to know you better.
-      </p>
-      <hr />
-    </div>
+  <section class="seller-signup main-layout full" v-if="userToEdit">
     <div class="seller-signup-form">
+      <h1>Register as Seller</h1>
       <form @submit.prevent="saveUser">
         <div class="seller-signup-inputs">
           <label class="label" for="full-name">Full name</label>
@@ -52,7 +45,7 @@ import { utilService } from '../services/util.service'
 import { userService } from '../services/user.service'
 
 export default {
-  name: 'SellerSignup',
+  name: 'BecomeASeller',
   data() {
     return {
       userToEdit: null,
