@@ -5,6 +5,7 @@
                 <section class="payment-details-container">
                     <h2>Payment Options</h2>
                     <section class="credit-selection flex">
+                        <input type="checkbox" />
                         <div>Credit & Debit Cards</div>
                         <div class="visa">
                             <div className="icon" v-html="getSvg('visa')"></div>
@@ -41,37 +42,37 @@
                 </section>
                 <section class="package-container">
                     <section class="gig-package-payment">
-                        <section class="header flex space-between">
-                            <div class="img-container">
-                                <img src="" alt="">
-                            </div>
-                            <p class="title">{{ gig.title }}</p>
-                        </section>
-                        <h3 class="price">US{{ gig.price }}$</h3>
-                        <p>1 custom logo+high resolution file+3d mockup+logo transparency+ 300dpi</p>
-                        <ul class="features clean-list">
-                            <li class="regular">
-                                <div className="svg-container icon fill" v-html="getSvg('checkSign')"></div>
-                                1 concept included
-                            </li>
-                            <li class="regular">
-                                <div className="svg-container icon fill" v-html="getSvg('checkSign')"></div>
-                                Logo transparency
-                            </li>
-                            <li class="regular">
-                                <div className="svg-container icon fill" v-html="getSvg('checkSign')"></div>
-                                Include 3D mockup
-                            </li>
-                            <li class="regular">
-                                <div className="svg-container icon fill" v-html="getSvg('checkSign')"></div>
-                                1 concept included
-                            </li>
-                            <li class="regular">
-                                <div className="svg-container icon fill" v-html="getSvg('checkSign')"></div>
-                                Include source file
-                            </li>
-
-                        </ul>
+                        <div class="main-header">
+                            <section class="header flex space-between">
+                                <div class="img-container">
+                                    <img :src=gig.owner.imgUrl alt="">
+                                </div>
+                                <p class="title">{{ gig.title }}</p>
+                            </section>
+                            <h3 class="price">US{{ gig.price }}$</h3>
+                            <ul class="features clean-list">
+                                <li class="regular">
+                                    <div className=" regular fill svg-container" v-html="getSvg('checkSign')"></div>
+                                    1 concept included
+                                </li>
+                                <li class="regular">
+                                    <div className="svg-container icon regular fill" v-html="getSvg('checkSign')"></div>
+                                    Logo transparency
+                                </li>
+                                <li class="regular">
+                                    <div className="svg-container icon regular fill" v-html="getSvg('checkSign')"></div>
+                                    Include 3D mockup
+                                </li>
+                                <li class="regular">
+                                    <div className="svg-container icon regular fill" v-html="getSvg('checkSign')"></div>
+                                    1 concept included
+                                </li>
+                                <li class="regular">
+                                    <div className="svg-container icon regular fill" v-html="getSvg('checkSign')"></div>
+                                    Include source file
+                                </li>
+                            </ul>
+                        </div>
                         <div class="pricing">
                             <p>Service Fee</p>
                             <p>US$17.55</p>
