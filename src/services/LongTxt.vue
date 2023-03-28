@@ -19,7 +19,7 @@ export default {
   },
   computed: {
     txtToShow() {
-      if (this.txt.length > 20) {
+      if (this.txt.length > 30) {
         this.isLongTxt = true
         return this.txt.slice(0, 100) + '...'
       } else {
