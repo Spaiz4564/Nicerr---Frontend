@@ -18,7 +18,7 @@
       cursor: pointer;
       &:hover {
         color: $clr-main;
-        transition: 0.2s;
+        transition: all 0.3s;
       }
     }
   }
@@ -117,7 +117,7 @@
   .vueperslides__arrow {
     width: 25px;
     padding: 0.2em 0.1em;
-    transition: 0.2s;
+    transition: all 0.3s;
     & svg {
       width: 1.6em;
       height: 1.4em;
@@ -205,11 +205,16 @@
     fill: $clr2;
     stroke: $clr2;
     stroke-width: 1;
-    transition: 0.2s;
+    transition: all 0.3s;
   }
 }
 
 .hover-txt {
-  transition: 0.2s;
+  transition: all 0.3s;
   color: $clr-main;
+}
+
+.gig-seller-btns{
+display: none;
+
 }

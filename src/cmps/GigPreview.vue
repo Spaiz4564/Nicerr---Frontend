@@ -11,7 +11,8 @@
             @mouseenter="hoverTxt = true"
             @mouseleave="hoverTxt = false"
             :class="{ 'hover-txt': hoverTxt }"
-            style="cursor: pointer">
+            style="cursor: pointer"
+          >
           </vueper-slide>
         </vueper-slides>
       </div>
@@ -32,7 +33,8 @@
         <p
           class="gig-preview-title"
           @click="goToDetails(gig._id)"
-          :class="{ 'hover-txt': hoverTxt }">
+          :class="{ 'hover-txt': hoverTxt }"
+        >
           <LongTxt :txt="gig.title" />
         </p>
         <div class="gig-rating">
@@ -44,61 +46,90 @@
       </div>
     </div>
     <div class="gig-preview-price">
+      <div class="gig-seller-btns">
+        <div
+          @click="editGig(gig._id)"
+          className="icon"
+          v-html="getSvg('pencil')"
+        ></div>
+        <div
+          @click="removeGig(gig._id)"
+          className="icon"
+          v-html="getSvg('trash')"
+        ></div>
+      </div>
       <span
         @click="addToFav"
         :class="isFav ? 'fill' : ''"
         class="icon-heart"
-        v-html="getSvg('heartFill')"></span>
-      <p class="txt-capitalized">starting at</p>
-      <span class="gig-span-price">US${{ gig.price }}</span>
+        v-html="getSvg('heartFill')"
+      ></span>
+      <div class="price-info flex align-center">
+        <p class="txt-capitalized">starting at</p>
+        <span class="gig-span-price">US${{ gig.price }}</span>
+      </div>
     </div>
   </section>
 </template>
 
 <script>
-import { svgService } from '../services/svg.service'
-import { VueperSlides, VueperSlide } from 'vueperslides'
-import 'vueperslides/dist/vueperslides.css'
-import LongTxt from '../services/LongTxt.vue'
-export default {
-  name: 'GigPreview',
+  import { svgService } from '../services/svg.service'
+  import { VueperSlides, VueperSlide } from 'vueperslides'
+  import { gigService } from '../services/gig.service.local'
+  import 'vueperslides/dist/vueperslides.css'
+  import LongTxt from '../services/LongTxt.vue'
+  export default {
+    name: 'GigPreview',
 
-  props: {
-    gig: Object,
-    is: {
-      type: String,
-      default: 'gig-preview',
+    props: {
+      gig: Object,
+      is: {
+        type: String,
+        default: 'gig-preview',
+      },
     },
-  },
-  data() {
-    return {
-      isFav: false,
-      hoverTxt: false,
-    }
-  },
-  computed: {
-    totalRates() {
-      return '(355)'
+    data() {
+      return {
+        isFav: false,
+        hoverTxt: false,
+      }
     },
-  },
-  methods: {
-    addToFav() {
-      this.isFav = !this.isFav
+    computed: {
+      totalRates() {
+        return '(355)'
+      },
     },
-    getSvg(iconName) {
-      return svgService.getSvg(iconName)
+    methods: {
+      addToFav() {
+        this.isFav = !this.isFav
+      },
+      getSvg(iconName) {
+        return svgService.getSvg(iconName)
+      },
+      imgUrl(img) {
+        return new URL(img, import.meta.url).href
+      },
+      goToDetails(id) {
+        this.$router.push(`/details/${id}`)
+      },
+      editGig(gigId) {
+        console.log('editGig', gigId)
+        this.$router.push(`/edit/${gigId}`)
+      },
+      removeGig(gigId) {
+        console.log('removeGig', gigId)
+        this.$store.dispatch({ type: 'removeGig', gigId })
+        this.loadGigsByOwner()
+      },
+      async loadGigsByOwner() {
+        const owner = userService.getLoggedinUser()
+        this.gigs = await gigService.query({ owner: owner._id })
+      },
     },
-    imgUrl(img) {
-      return new URL(img, import.meta.url).href
+    components: {
+      VueperSlides,
+      VueperSlide,
+      LongTxt,
     },
-    goToDetails(id) {
-      this.$router.push(`/details/${id}`)
-    },
-  },
-  components: {
-    VueperSlides,
-    VueperSlide,
-    LongTxt,
-  },
-}
+  }
 </script>

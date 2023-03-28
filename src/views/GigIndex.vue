@@ -62,7 +62,7 @@ export default {
           label: 'Highest Rated',
         },
       ],
-      sortBy: '',
+      sortBy: 'rate',
     }
   },
   computed: {
