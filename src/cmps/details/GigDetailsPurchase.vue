@@ -25,16 +25,16 @@
                 </div>
                 <ul class="features">
                     <li class="flex align-center">
-                        <span className="check fill" v-html="getSvg('checkSign')"></span>
+                        <span className="check fillGreen" v-html="getSvg('checkSign')"></span>
                         <p>1 concept included</p>
                     </li>
                     <li class="flex align-center">
-                        <span className="check" v-html="getSvg('checkSign')"></span>
+                        <span className="check fill" v-html="getSvg('checkSign')"></span>
 
                         <p>Logo transparency</p>
                     </li>
                     <li class="flex align-center">
-                        <span className="check fill" v-html="getSvg('checkSign')"></span>
+                        <span className="check fillGreen" v-html="getSvg('checkSign')"></span>
 
                         <p>Vector File</p>
                     </li>
@@ -44,7 +44,7 @@
                         <p>Printable file</p>
                     </li>
                     <li class="flex align-center">
-                        <span className="check fill" v-html="getSvg('checkSign')"></span>
+                        <span className="check fillGreen" v-html="getSvg('checkSign')"></span>
 
                         <p>Include source file</p>
                     </li>

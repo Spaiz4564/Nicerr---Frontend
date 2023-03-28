@@ -3,8 +3,10 @@
         <h3>Reviews</h3>
         <div class="review-star flex">
             <span>270 reviews for this Gig</span>
-            <div className="icon" v-html="getSvg('fiveStars')"></div>
-            <p>5</p>
+            <div class="flex">
+                <div className="review-star icon" v-html="getSvg('fiveStarsEmpty')"></div>
+                <p>5</p>
+            </div>
         </div>
         <section class="breakdown-progress flex">
             <section class="progress-bar">
@@ -87,11 +89,11 @@
                                         <img src="" alt="">
                                     </label>
                                     <div class="flex column">
-                                        <div class=" user-info flex column">
-                                            <span>worldexpo2016</span>
+                                        <div class=" review-user-info flex column">
+                                            <span class="review-user-info name">worldexpo2016</span>
                                             <div>
                                                 <span>Germany-flag</span>
-                                                <span class="country">Germany</span>
+                                                <span class="review-user-info country">Germany</span>
                                             </div>
                                         </div>
                                     </div>
@@ -127,11 +129,11 @@
                                         <img src="" alt="">
                                     </label>
                                     <div class="flex column">
-                                        <div class=" user-info flex column">
-                                            <span>joellauren</span>
+                                        <div class=" review-user-info flex column">
+                                            <span class="review-user-info name">joellauren</span>
                                             <div>
                                                 <span>Sweden-flag</span>
-                                                <span class="country">Sweden</span>
+                                                <span class="review-user-info country">Sweden</span>
                                             </div>
                                         </div>
                                     </div>
@@ -166,11 +168,11 @@
                                         <img src="" alt="">
                                     </label>
                                     <div class="flex column">
-                                        <div class=" user-info flex column">
-                                            <span>diplomattylaa</span>
+                                        <div class=" review-user-info flex column">
+                                            <span class="review-user-info name">diplomattylaa</span>
                                             <div>
                                                 <span>United States-flag</span>
-                                                <span class="country">United States</span>
+                                                <span class="review-user-info country">United States</span>
                                             </div>
                                         </div>
                                     </div>
@@ -208,11 +210,11 @@
                                         <img src="" alt="">
                                     </label>
                                     <div class="flex column">
-                                        <div class=" user-info flex column">
-                                            <span>birdcam_vt</span>
+                                        <div class=" review-user-info flex column">
+                                            <span class="review-user-info name">birdcam_vt</span>
                                             <div>
                                                 <span>United States-flag</span>
-                                                <span class="country">United States</span>
+                                                <span class="review-user-info country">United States</span>
                                             </div>
                                         </div>
                                     </div>
@@ -249,11 +251,11 @@
                                         <img src="" alt="">
                                     </label>
                                     <div class="flex column">
-                                        <div class=" user-info flex column">
-                                            <span>khabou</span>
+                                        <div class=" review-user-info flex column">
+                                            <span class="review-user-info name">khabou</span>
                                             <div>
                                                 <span>Spain-flag</span>
-                                                <span class="country">Spain</span>
+                                                <span class="review-user-info country">Spain</span>
                                             </div>
                                         </div>
                                     </div>
