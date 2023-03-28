@@ -7,9 +7,9 @@ import ReviewIndex from './views/ReviewIndex.vue'
 import UserDetails from './views/UserDetails.vue'
 import gigDetails from './views/GigDetails.vue'
 import GigPurchase from './views/GigPurchase.vue'
-import SellerSignup from './views/SellerSignup.vue'
+import BecomeASeller from './views/BecomeASeller.vue'
 import SellerProfile from './views/SellerProfile.vue'
-import LoginSignup from './views/LoginSignup.vue'
+import Login from './views/Login.vue'
 import GigEdit from './views/GigEdit.vue'
 
 const routes = [
@@ -50,8 +50,8 @@ const routes = [
   },
   {
     path: '/login',
-    name: 'LoginSignup',
-    component: LoginSignup,
+    name: 'Login',
+    component: Login,
   },
   {
     path: '/user/:id',
@@ -60,8 +60,8 @@ const routes = [
   },
   {
     path: '/seller-signup',
-    name: 'SellerSignup',
-    component: SellerSignup,
+    name: 'BecomeASeller',
+    component: BecomeASeller,
   },
   {
     name: 'SellerProfile',
