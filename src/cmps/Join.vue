@@ -53,7 +53,7 @@ export default {
           type: 'updateUsers',
           user: { ...this.userToEdit, isSeller: false },
         })
-      this.$router.push(`/seller/profile/${this.userToEdit._id}`)
+      this.$router.push(`/`)
     },
     handleImage() {
       this.userToEdit.imageUrl = this.img

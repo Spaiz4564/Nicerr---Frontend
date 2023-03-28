@@ -1,7 +1,7 @@
 <template>
   <section class="seller-signup main-layout full" v-if="userToEdit">
     <div class="seller-signup-form">
-      <h1>Register as Seller</h1>
+      <h1 class="txt-header">Register as Seller</h1>
       <form @submit.prevent="saveUser">
         <div class="seller-signup-inputs">
           <label class="label" for="full-name">Full name</label>
@@ -12,6 +12,12 @@
             v-model="userToEdit.fullname"
             placeholder="Fullname" />
           <label class="label" for="username">Display name</label>
+          <input
+            type="text"
+            class="input"
+            name="username"
+            v-model="userToEdit.username"
+            placeholder="Type your display name " />
           <label class="label" for="password">Password</label>
           <input
             type="password"
@@ -19,13 +25,6 @@
             name="password"
             v-model="userToEdit.password"
             placeholder="Password" />
-
-          <input
-            type="text"
-            class="input"
-            name="username"
-            v-model="userToEdit.username"
-            placeholder="Type your display name " />
           <label class="label" for="location">Enter your country</label>
           <input
             class="input"
@@ -33,6 +32,17 @@
             type="text"
             name="location"
             placeholder="Country" />
+          <h2 class="txt-upload">Upload your profile picture</h2>
+          <div :class="[img ? 'clear' : '']">
+            <img
+              class="img-become"
+              src="../assets/images/About/default.png"
+              alt="" />
+          </div>
+          <div class="upload-cmp">
+            <div class="img-upload-seller"></div>
+            <ImgUploader @uploaded="imgUrl" @image="handleImage" />
+          </div>
           <button class="btn-sign">Continue</button>
         </div>
       </form>
@@ -43,12 +53,14 @@
 <script>
 import { utilService } from '../services/util.service'
 import { userService } from '../services/user.service'
+import ImgUploader from '../cmps/ImgUploader.vue'
 
 export default {
   name: 'BecomeASeller',
   data() {
     return {
       userToEdit: null,
+      img: false,
     }
   },
   created() {
@@ -72,8 +84,18 @@ export default {
           type: 'updateUsers',
           user: { ...this.userToEdit, isSeller: true },
         })
-      this.$router.push(`/seller/profile/${this.userToEdit._id}`)
+      this.$router.push(`/gig`)
     },
+    imgUrl(url) {
+      console.log(url)
+      this.userToEdit.imgUrl = url
+    },
+    handleImage() {
+      this.img = !this.img
+    },
+  },
+  components: {
+    ImgUploader,
   },
 }
 </script>

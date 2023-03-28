@@ -33,7 +33,7 @@
           class="gig-preview-title"
           @click="goToDetails(gig._id)"
           :class="{ 'hover-txt': hoverTxt }">
-          {{ gig.title }}
+          <LongTxt :txt="gig.title" />
         </p>
         <div class="gig-rating">
           <span class="icon-star gold" v-html="getSvg('starGold')"></span>
@@ -59,6 +59,7 @@
 import { svgService } from '../services/svg.service'
 import { VueperSlides, VueperSlide } from 'vueperslides'
 import 'vueperslides/dist/vueperslides.css'
+import LongTxt from '../services/LongTxt.vue'
 export default {
   name: 'GigPreview',
 
@@ -97,6 +98,7 @@ export default {
   components: {
     VueperSlides,
     VueperSlide,
+    LongTxt,
   },
 }
 </script>
