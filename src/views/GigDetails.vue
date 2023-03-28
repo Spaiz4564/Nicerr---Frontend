@@ -11,6 +11,7 @@
 import { gigService } from '../services/gig.service.local'
 import GigPurchase from '../cmps/details/GigDetailsPurchase.vue'
 import GigInfoUser from '../cmps/details/GigDetailsInfoUser.vue'
+import About from '../cmps/HomePage/About.vue'
 
 export default {
   name: 'Gig-Details',
@@ -30,6 +31,7 @@ export default {
   components: {
     GigPurchase,
     GigInfoUser,
+    About
   },
 }
 </script>
