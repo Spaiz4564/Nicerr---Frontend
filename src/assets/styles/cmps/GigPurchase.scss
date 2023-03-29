@@ -3,7 +3,7 @@
     font-size: rem(16px);
 
     .gig-payment {
-        margin: em(32px);
+        margin: em(32px) 0px;
 
         .payment-details-container {
             flex: 1.5;
@@ -140,10 +140,13 @@
             border-bottom: 1px solid $clr9;
 
             .title {
-                font-size: 1rem;
-                font-family: 'Macan-Bold';
+                font-size: 1em;
+                font-family: 'Macan-Regular';
+                font-weight: 700;
                 color: $clr4;
                 flex: 1;
+                color: $clr02;
+
             }
 
             .img-container {
@@ -176,10 +179,13 @@
 
         }
 
+        .seller-h3 {
+            margin-bottom: 8px;
+        }
+
         .price {
-            font-size: 1.25rem;
+            font-size: 1rem;
             line-height: 1.5em;
-            font-weight: 400;
             color: $clr4;
         }
 
@@ -206,7 +212,8 @@
             }
 
             &.fill {
-                fill: $clr-review-star
+                fill: $clr-review-star;
+                margin-bottom: 9px;
             }
 
 
