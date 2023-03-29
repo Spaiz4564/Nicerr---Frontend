@@ -15,14 +15,14 @@
           v-model="gigToAdd.price" />
         <label for="category">Category</label>
         <select v-model="gigToAdd.categories" multiple>
-          <option value="Art & Design">Art & Design</option>
-          <option value="Digital Marketing">Digital Marketing</option>
-          <option value="Writing & Translation">Writing & Translation</option>
-          <option value="Video & Animation">Video & Animation</option>
-          <option value="Music & Audio">Music & Audio</option>
-          <option value="Programming & Tech">Programming & Tech</option>
-          <option value="Business">Business</option>
-          <option value="Lifestyle">Lifestyle</option>
+          <option value="website design">Website & Design</option>
+          <option value="digital marketing">Digital Marketing</option>
+          <option value="illustrations">Illustrations</option>
+          <option value="ai services">Ai-Services</option>
+          <option value="logo design">Logo Design</option>
+          <option value="voice over">Voice & Sound</option>
+          <option value="business">Business</option>
+          <option value="lifestyle">Lifestyle</option>
         </select>
         <label for="days">Days to deliver</label>
         <input

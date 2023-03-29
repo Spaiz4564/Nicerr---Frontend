@@ -11,8 +11,7 @@
             @mouseenter="hoverTxt = true"
             @mouseleave="hoverTxt = false"
             :class="{ 'hover-txt': hoverTxt }"
-            style="cursor: pointer"
-          >
+            style="cursor: pointer">
           </vueper-slide>
         </vueper-slides>
       </div>
@@ -25,7 +24,7 @@
         <section>
           <div class="seller-info">
             <h4 class="seller-name">{{ gig.owner.fullname }}</h4>
-            <span class="seller-rate">Level {{ gig.owner.rate }} Seller</span>
+            <span class="seller-rate">Level {{ gig.owner.level }} Seller</span>
           </div>
         </section>
       </section>
@@ -33,8 +32,7 @@
         <p
           class="gig-preview-title"
           @click="goToDetails(gig._id)"
-          :class="{ 'hover-txt': hoverTxt }"
-        >
+          :class="{ 'hover-txt': hoverTxt }">
           <LongTxt :txt="gig.title" />
         </p>
         <div class="gig-rating">
@@ -50,20 +48,17 @@
         <div
           @click="editGig(gig._id)"
           className="icon"
-          v-html="getSvg('pencil')"
-        ></div>
+          v-html="getSvg('pencil')"></div>
         <div
           @click="removeGig(gig._id)"
           className="icon"
-          v-html="getSvg('trash')"
-        ></div>
+          v-html="getSvg('trash')"></div>
       </div>
       <span
         @click="addToFav"
         :class="isFav ? 'fill' : ''"
         class="icon-heart"
-        v-html="getSvg('heartFill')"
-      ></span>
+        v-html="getSvg('heartFill')"></span>
       <div class="price-info flex align-center">
         <p class="txt-capitalized">starting at</p>
         <span class="gig-span-price">US${{ gig.price }}</span>
@@ -73,63 +68,63 @@
 </template>
 
 <script>
-  import { svgService } from '../services/svg.service'
-  import { VueperSlides, VueperSlide } from 'vueperslides'
-  import { gigService } from '../services/gig.service.local'
-  import 'vueperslides/dist/vueperslides.css'
-  import LongTxt from '../services/LongTxt.vue'
-  export default {
-    name: 'GigPreview',
+import { svgService } from '../services/svg.service'
+import { VueperSlides, VueperSlide } from 'vueperslides'
+import { gigService } from '../services/gig.service.local'
+import 'vueperslides/dist/vueperslides.css'
+import LongTxt from '../services/LongTxt.vue'
+export default {
+  name: 'GigPreview',
 
-    props: {
-      gig: Object,
-      is: {
-        type: String,
-        default: 'gig-preview',
-      },
+  props: {
+    gig: Object,
+    is: {
+      type: String,
+      default: 'gig-preview',
     },
-    data() {
-      return {
-        isFav: false,
-        hoverTxt: false,
-      }
+  },
+  data() {
+    return {
+      isFav: false,
+      hoverTxt: false,
+    }
+  },
+  computed: {
+    totalRates() {
+      return '(355)'
     },
-    computed: {
-      totalRates() {
-        return '(355)'
-      },
+  },
+  methods: {
+    addToFav() {
+      this.isFav = !this.isFav
     },
-    methods: {
-      addToFav() {
-        this.isFav = !this.isFav
-      },
-      getSvg(iconName) {
-        return svgService.getSvg(iconName)
-      },
-      imgUrl(img) {
-        return new URL(img, import.meta.url).href
-      },
-      goToDetails(id) {
-        this.$router.push(`/details/${id}`)
-      },
-      editGig(gigId) {
-        console.log('editGig', gigId)
-        this.$router.push(`/edit/${gigId}`)
-      },
-      removeGig(gigId) {
-        console.log('removeGig', gigId)
-        this.$store.dispatch({ type: 'removeGig', gigId })
-        this.loadGigsByOwner()
-      },
-      async loadGigsByOwner() {
-        const owner = userService.getLoggedinUser()
-        this.gigs = await gigService.query({ owner: owner._id })
-      },
+    getSvg(iconName) {
+      return svgService.getSvg(iconName)
     },
-    components: {
-      VueperSlides,
-      VueperSlide,
-      LongTxt,
+    imgUrl(img) {
+      return new URL(img, import.meta.url).href
     },
-  }
+    goToDetails(id) {
+      this.$router.push(`/details/${id}`)
+    },
+    editGig(gigId) {
+      console.log('editGig', gigId)
+      this.$router.push(`/edit/${gigId}`)
+    },
+    removeGig(gigId) {
+      console.log('removeGig', gigId)
+      this.$store.dispatch({ type: 'removeGig', gigId })
+      this.loadGigsByOwner()
+    },
+    async loadGigsByOwner() {
+      const owner = userService.getLoggedinUser()
+      this.gigs = await gigService.query({ owner: owner._id })
+    },
+  },
+  components: {
+    VueperSlides,
+    VueperSlide,
+    LongTxt,
+  },
+}
 </script>

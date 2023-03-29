@@ -23,7 +23,7 @@
         </div>
         <div class="goTo">
           <RouterLink to="/gig">Explore</RouterLink>
-          <div v-if="!seller">
+          <div v-if="!seller" class="flex">
             <a @click="goToSellerSignup">Become a Seller</a>
           </div>
           <a v-if="!loggedinUser" @click.stop="toggleSignInModal">Sign In</a>
