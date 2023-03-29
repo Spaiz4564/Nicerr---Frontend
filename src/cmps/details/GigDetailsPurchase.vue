@@ -13,10 +13,10 @@
                 </p>
             </section>
             <article>
-                <div class="options flex align-center">
+                <div class="details-options flex align-center">
                     <div class="delivery-wrapper flex align-center">
                         <span className="icon" v-html="getSvg('clock')"></span>
-                        <b class="delivery"> 5 Days Delivery </b>
+                        <b class="delivery">{{ gig.daysToDeliver }} Days Delivery </b>
                     </div>
                     <div class="revisions-wrapper flex align-center">
                         <span className="icon" v-html="getSvg('recycle')"></span>
