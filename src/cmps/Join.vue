@@ -1,5 +1,5 @@
 <template>
-  <div class="container-about">
+  <div v-clickOutsideDirective="hey" class="container-about">
     <form @submit.prevent="saveUser" class="signup-form">
       <h3>Join Nicerr</h3>
       <div class="img-upload">
@@ -62,6 +62,9 @@ export default {
     imgUrl(ev) {
       this.userToEdit.imgUrl = ev
       console.log(this.userToEdit)
+    },
+    hey() {
+      console.log('hi')
     },
   },
   created() {

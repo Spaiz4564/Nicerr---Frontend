@@ -36,7 +36,10 @@
               :src="loggedinUser.imgUrl"
               alt="user-img"
               @click.stop="toggleUserModal" />
-            <div class="user-modal" v-if="modalOpen">
+            <div
+              v-clickOutsideDirective="closeUserMenu"
+              class="user-modal"
+              v-if="modalOpen">
               <a @click="goToProfile">Profile</a>
               <a @click="logout">Logout</a>
             </div>
@@ -123,6 +126,9 @@ export default {
     toggleJoinModal() {
       this.modalSignIsOpen = !this.modalSignIsOpen
       this.$emit('backdrop', this.modalSignIsOpen, 'join')
+    },
+    closeUserMenu() {
+      this.modalOpen = false
     },
   },
   watch: {
