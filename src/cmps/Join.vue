@@ -8,9 +8,15 @@
         </div>
         <ImgUploader @uploaded="imgUrl" @image="handleImage" />
       </div>
-      <input type="text" v-model="userToEdit.fullname" placeholder="Full name" />
+      <input
+        type="text"
+        v-model="userToEdit.fullname"
+        placeholder="Full name" />
       <input type="text" v-model="userToEdit.username" placeholder="Username" />
-      <input type="password" v-model="userToEdit.password" placeholder="Password" />
+      <input
+        type="password"
+        v-model="userToEdit.password"
+        placeholder="Password" />
       <button>Continue</button>
     </form>
   </div>
@@ -34,20 +40,20 @@ export default {
     loggedinUser() {
       return this.$store.getters.loggedinUser
     },
-    methods: {
-      async saveUser() {
-        if (!this.userToEdit._id)
-          await this.$store.dispatch({
-            type: 'signup',
-            user: { ...this.userToEdit, isSeller: false },
-          })
-        else
-          await this.$store.dispatch({
-            type: 'updateUsers',
-            user: { ...this.userToEdit, isSeller: false },
-          })
-        this.$router.push(`/seller/profile/${this.userToEdit._id}`)
-      },
+  },
+  methods: {
+    async saveUser() {
+      if (!this.userToEdit._id)
+        await this.$store.dispatch({
+          type: 'signup',
+          user: { ...this.userToEdit, isSeller: false },
+        })
+      else
+        await this.$store.dispatch({
+          type: 'updateUsers',
+          user: { ...this.userToEdit, isSeller: false },
+        })
+      this.$router.push(`/`)
     },
     handleImage() {
       this.userToEdit.imageUrl = this.img
@@ -56,7 +62,7 @@ export default {
     imgUrl(ev) {
       this.userToEdit.imgUrl = ev
       console.log(this.userToEdit)
-    }
+    },
   },
   created() {
     const loggedinUser = this.$store.getters.loggedinUser
@@ -67,8 +73,8 @@ export default {
     }
   },
 
-  components:{
-    ImgUploader
-  }
+  components: {
+    ImgUploader,
+  },
 }
 </script>

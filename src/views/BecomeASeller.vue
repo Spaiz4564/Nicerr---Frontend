@@ -64,9 +64,10 @@ export default {
     }
   },
   created() {
-    const loggedinUser = this.$store.getters.loggedinUser
-    if (loggedinUser) {
-      this.userToEdit = loggedinUser
+    const userId = this.$route.params.userId
+    if (userId) {
+      const user = this.$store.getters.users.find((user) => user._id === userId)
+      this.userToEdit = user
     } else {
       this.userToEdit = userService.getEmptyUser()
     }
@@ -84,7 +85,7 @@ export default {
           type: 'updateUsers',
           user: { ...this.userToEdit, isSeller: true },
         })
-      this.$router.push(`/gig`)
+      this.$router.push(`/`)
     },
     imgUrl(url) {
       console.log(url)

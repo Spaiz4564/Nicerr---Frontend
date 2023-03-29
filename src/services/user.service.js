@@ -126,6 +126,7 @@ function setLoggedInUser(user) {
     fullname: user.fullname,
     imgUrl: user.imgUrl,
     location: user.location,
+    isSeller: user.isSeller,
   }
   sessionStorage.setItem(STORAGE_KEY_LOGGEDIN_USER, JSON.stringify(userToSave))
   return userToSave
