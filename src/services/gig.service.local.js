@@ -509,7 +509,7 @@ function getReviews() {
       imgUrl:
         "https://res.cloudinary.com/dzcangpqd/image/upload/v1680014786/65b1b4ab-926d-46be-95d0-fe3ebeb2e61f_lnlwu5.jpg",
       flagImg:
-        "https://res.cloudinary.com/dzcangpqd/image/upload/v1680012724/1f1f7-1f1f4_s35l9n.png",
+        "https://res.cloudinary.com/dzcangpqd/image/upload/v1680012722/1f1ee-1f1f1_opzusm.png",
       country: "Israel",
       rate: 5,
       months: 1,
@@ -520,7 +520,7 @@ function getReviews() {
       imgUrl:
         "https://res.cloudinary.com/dzcangpqd/image/upload/v1680014784/bbeab7dd-e6e9-44e8-ac16-9f73ab57974d_gmwav2.jpg",
       flagImg:
-        "https://res.cloudinary.com/dzcangpqd/image/upload/v1680012722/1f1ee-1f1f1_opzusm.png",
+        "https://res.cloudinary.com/dzcangpqd/image/upload/v1680012724/1f1f7-1f1f4_s35l9n.png",
       country: "Romania",
       rate: 5,
       months: 2,

@@ -75,7 +75,6 @@
                         </div>
                     </li>
                 </ul>
-
             </section>
         </section>
         <section class="reviews-wrap">
@@ -108,9 +107,7 @@
                                 <p> 2 months ago</p>
                             </div>
                             <div class="review-text">
-                                <p>
-                                    <LongTxt :txt="user.txt" />
-                                </p>
+                                <p>{{ user.txt }}</p>
                             </div>
                             <div class="helpful flex align-center">
                                 <span>Helpful?</span>
