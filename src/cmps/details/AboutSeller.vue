@@ -11,13 +11,13 @@
         </section>
         <p class="seller-level">Level 3 Seller</p>
         <section>
-          <ul class="ul-rate clean-list flex align-center">
+          <!-- <ul class="ul-rate clean-list flex align-center">
             <li v-for="rate in gig.rate">
               <span className="check gold" v-html="getSvg('starGold')"></span>
             </li>
             <p class="rate">{{ gig.rate }}</p>
             <p>(569)</p>
-          </ul>
+          </ul> -->
         </section>
       </section>
     </section>

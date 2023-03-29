@@ -20,7 +20,6 @@
         <Progress />
       </div>
     </div>
-
     <div class="seller-orders">
         <h2>Earnings</h2>
       <div class="income-order-dashboard flex">
@@ -46,7 +45,7 @@
             <span class="gig">I will write you an attractive instagram bio</span>
             <span class="date">21.3.2023</span>
             <span class="total">US$50</span>
-            <span class="status completed">Completed</span>
+            <Status/>
         </div>
         <div class="table-entity flex">
             <div class="buyer flex">
@@ -56,7 +55,7 @@
             <span class="gig">I will do data entry, copy paste and excel data entry work for you</span>
             <span class="date">29.3.2023</span>
             <span class="total">US$33</span>
-            <span class="status rejected">Rejected</span>
+            <Status/>
         </div>
         <div class="table-entity flex">
             <div class="buyer flex">
@@ -66,7 +65,7 @@
             <span class="gig">I will do hyper realistic pencil sketch portrait by hand drawing</span>
             <span class="date">21.2.2023</span>
             <span class="total">US$67</span>
-            <span class="status in-progress">In Progress</span>
+            <Status/>
         </div>
       </div>
     </div>
@@ -75,6 +74,7 @@
 
 <script>
   import Progress from '../cmps/Progress.vue'
+  import Status from '../cmps/Status.vue'
   export default {
     name: 'Dashboard',
     data() {
@@ -94,6 +94,7 @@
     },
     components: {
       Progress,
+      Status
     },
   }
 </script>

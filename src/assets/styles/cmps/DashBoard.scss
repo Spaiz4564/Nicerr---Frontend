@@ -74,7 +74,7 @@
 
 .table-header {
   padding-bottom: 15px;
-   font-weight: 200;
+  font-weight: 200;
   h4 {
     color: $clr1;
     font-size: 16px;
@@ -102,6 +102,33 @@
   border: 1px solid #dadbdd;
   padding: 18px 18px 0px 18px;
   .table-entity {
+    .el-input__wrapper.is-focus {
+      box-shadow: none !important;
+    }
+    .el-input.is-focus {
+      box-shadow: none !important;
+    }
+
+    .el-input__inner {
+      color: white;
+      // &::placeholder{
+
+      // }
+      text-align: center;
+    }
+    .el-select {
+      &:focus {
+        outline: 0;
+      }
+      text-align: center;
+      .el-input__suffix {
+        display: none;
+      }
+      svg {
+        display: none;
+      }
+      width: 160px;
+    }
     align-items: center;
 
     gap: 57px;
@@ -123,7 +150,7 @@
     }
 
     .status {
-        min-width: 110px;
+      min-width: 110px;
       display: flex;
       justify-content: center;
       color: #fff;
@@ -138,13 +165,25 @@
 }
 
 .completed {
-  background-color: $clr-main;
+  .el-input__wrapper {
+    background-color: $clr-main;
+  }
 }
+
 .rejected {
-  background-color: #c43333;
+  .el-input__wrapper {
+    background-color: #c43333;
+  }
 }
 .in-progress {
-  background-color: #ffbe5b;
+  .el-input__wrapper {
+    background-color: #ffbe5b;
+  }
+}
+.pending {
+  .el-input__wrapper {
+    background-color: gray;
+  }
 }
 
 .income-order-dashboard {

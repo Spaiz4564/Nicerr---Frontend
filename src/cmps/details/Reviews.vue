@@ -373,10 +373,7 @@
 </template>
 
 <script>
-  import { svgService } from '../../services/svg.service'
-
 import { svgService } from '../../services/svg.service';
-import LongTxt from '../../services/LongTxt.vue'
 import { gigService } from '../../services/gig.service.local';
 
 export default {
@@ -396,9 +393,6 @@ export default {
     },
     created() {
 
-    },
-    components: {
-        LongTxt,
     },
 }
 </script>

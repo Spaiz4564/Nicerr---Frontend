@@ -9,7 +9,7 @@
       <div class="gig-user-info flex column">
         <Overview id="OverView" :gig="gig" />
         <Description id="Description" :gig="gig" />
-        <AboutSeller id="AboutSeller" :gig="gig" />
+        <AboutSeller :gig="gig" />
         <Reviews id="Reviews" :gig="gig" />
       </div>
       <div class="gig-purchase" v-if="gig">
