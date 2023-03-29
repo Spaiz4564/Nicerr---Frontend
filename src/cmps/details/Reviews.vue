@@ -375,21 +375,32 @@
 <script>
   import { svgService } from '../../services/svg.service'
 
-  export default {
+import { svgService } from '../../services/svg.service';
+import LongTxt from '../../services/LongTxt.vue'
+import { gigService } from '../../services/gig.service.local';
+
+export default {
     props: ['gig'],
     name: 'Reviews',
     data() {
-      return {}
+        return {
+            reviews: gigService.getReviews()
+        }
     },
     methods: {
       getSvg(iconName) {
         return svgService.getSvg(iconName)
       },
     },
-    computed: {},
-    created() {},
-    components: {},
-  }
+    computed: {
+    },
+    created() {
+
+    },
+    components: {
+        LongTxt,
+    },
+}
 </script>
 
 <style></style>

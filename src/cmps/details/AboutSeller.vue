@@ -1,5 +1,5 @@
 <template>
-  <section id="AboutSeller" class="about-seller" v-if="gig">
+  <section class="about-seller" v-if="gig">
     <h2>About The Seller</h2>
     <section class="seller-preview flex">
       <div class="img-container">
@@ -8,36 +8,17 @@
       <section class="info-details flex">
         <section class="line">
           <p class="user-name">{{ gig.owner.fullname }}</p>
-          <div class="online-indicator">
-            <span class="online">
-              <div class="dot" v-html="getSvg('dot')"></div>
-              Online
-            </span>
-          </div>
         </section>
         <p class="seller-level">Level 3 Seller</p>
         <section>
           <ul class="ul-rate clean-list flex align-center">
-            <li>
+            <li v-for="rate in gig.rate">
               <span className="check gold" v-html="getSvg('starGold')"></span>
             </li>
-            <li>
-              <span className="check gold" v-html="getSvg('starGold')"></span>
-            </li>
-            <li>
-              <span className="check gold" v-html="getSvg('starGold')"></span>
-            </li>
-            <li>
-              <span className="check gold" v-html="getSvg('starGold')"></span>
-            </li>
-            <li>
-              <span className="check gold" v-html="getSvg('starGold')"></span>
-            </li>
-            <p class="rate">5</p>
+            <p class="rate">{{ gig.rate }}</p>
             <p>(569)</p>
           </ul>
         </section>
-        <!-- <button class="contact-me-btn">Contact Me</button> -->
       </section>
     </section>
     <section class="seller-details-container">
@@ -94,7 +75,7 @@ export default {
     },
   },
   computed: {},
-  created() {},
+  created() { },
   components: {},
 }
 </script>
