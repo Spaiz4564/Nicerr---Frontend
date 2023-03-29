@@ -9,38 +9,35 @@
               <h2>{{ owner.fullname }}</h2>
             </div>
             <div class="details-container">
-
               <div class="details">
-              <div class="svg-info">
-                <div className="icon" v-html="getSvg('location')"></div>
-                <h4>Country</h4>
+                <div class="svg-info">
+                  <div className="icon" v-html="getSvg('location')"></div>
+                  <h4>Country</h4>
+                </div>
+                <span>Israel</span>
               </div>
-                <!-- <span>{{ owner.location }}</span> -->
-                <span>United states</span>
-              </div>
-             
+
               <div class="details">
                 <div class="svg-info">
                   <div className="icon" v-html="getSvg('user')"></div>
-                <h4>Member since</h4>
+                  <h4>Member since</h4>
                 </div>
                 <span>June 2018</span>
               </div>
             </div>
-
           </div>
         </div>
         <div class="desc-container">
           <div class="desc">
             <h4>Description</h4>
             <p>
-              Hello, this is Guy, stand up for vividstore,I am a young and
-              enthusiastic graphic artist and realistic pencil sketch artist. I
-              am certified as graphic designer from George Washington
-              University, USA. I have almost 11 years experience in this field
-              since my university life. I really love to work with Adobe
-              Illustrator, Adobe Photoshop, and so on as a full time online
-              freelancer. And also passionate about sketching. Thank you.
+              Hello, this is {{ owner.fullname }}, stand up for vividstore,I am
+              a young and enthusiastic graphic artist and realistic pencil
+              sketch artist. I am certified as graphic designer from George
+              Washington University, USA. I have almost 11 years experience in
+              this field since my university life. I really love to work with
+              Adobe Illustrator, Adobe Photoshop, and so on as a full time
+              online freelancer. And also passionate about sketching. Thank you.
             </p>
           </div>
         </div>
@@ -51,14 +48,13 @@
         <div class="gigs-container">
           <ul class="gigs-list-seller">
             <div class="add-gig-container">
-            <div class="flex column align-center">
-              <span @click="addGig" class="add-gig-btn">+</span>
-              <p>Create a new Gig</p>
+              <div class="flex column align-center">
+                <span @click="addGig" class="add-gig-btn">+</span>
+                <p>Create a new Gig</p>
+              </div>
             </div>
-          </div>
             <li v-for="gig in gigs">
               <GigPreview :gig="gig" :is="'gig-preview-seller'" />
-            
             </li>
           </ul>
         </div>
@@ -68,56 +64,56 @@
 </template>
 
 <script>
-  import { gigService } from '../services/gig.service.local'
+import { gigService } from '../services/gig.service.local'
 
-  import { userService } from '../services/user.service'
-  import GigPreviewSeller from '../cmps/GigPreviewSeller.vue'
-  import GigPreview from '../cmps/GigPreview.vue'
-  import { svgService } from '../services/svg.service'
+import { userService } from '../services/user.service'
+import GigPreviewSeller from '../cmps/GigPreviewSeller.vue'
+import GigPreview from '../cmps/GigPreview.vue'
+import { svgService } from '../services/svg.service'
 
-  export default {
-    name: 'SellerProfile',
-    data() {
-      return {
-        gigToAdd: null,
-        gigs: null,
-      }
+export default {
+  name: 'SellerProfile',
+  data() {
+    return {
+      gigToAdd: null,
+      gigs: null,
+    }
+  },
+  created() {
+    this.loadGigsByOwner()
+  },
+  computed: {
+    owner() {
+      return userService.getLoggedinUser()
     },
-    created() {
-      this.loadGigsByOwner()
+  },
+  methods: {
+    async loadGigsByOwner() {
+      const owner = userService.getLoggedinUser()
+      this.gigs = await gigService.query({ owner: owner._id })
     },
-    computed: {
-      owner() {
-        return userService.getLoggedinUser()
-      },
-    },
-    methods: {
-      async loadGigsByOwner() {
-        const owner = userService.getLoggedinUser()
-        this.gigs = await gigService.query({ owner: owner._id })
-      },
 
-      addGig() {
-        console.log('add gig')
-        this.$router.push('/edit')
-      },
-     
-      getSvg(iconName) {
+    addGig() {
+      console.log('add gig')
+      this.$router.push('/edit')
+    },
+
+    getSvg(iconName) {
       return svgService.getSvg(iconName)
     },
-    },
-    watch: {
-      $store: {
-        handler() {
-          this.loadGigsByOwner()
-        },
-        deep: true,
+  },
+  watch: {
+    $store: {
+      handler() {
+        this.loadGigsByOwner()
       },
+      deep: true,
     },
+  },
 
-    components: {
-      GigPreviewSeller,
-      GigPreview,
-    },
-  }
+  components: {
+    GigPreviewSeller,
+    GigPreview,
+  },
+}
 </script>

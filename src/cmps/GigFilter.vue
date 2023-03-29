@@ -43,7 +43,7 @@
           </div>
         </div>
         <div @click.stop class="buttons-budget">
-          <div class="clear" @click.stop="clearBudget()">Clear All</div>
+          <div class="clear-budget" @click.stop="clearBudget()">Clear All</div>
           <button>Apply</button>
         </div>
       </form>

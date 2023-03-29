@@ -70,11 +70,14 @@ export default {
       this.userToEdit = user
     } else {
       this.userToEdit = userService.getEmptyUser()
+      console.log(this.userToEdit)
     }
   },
 
   methods: {
     async saveUser() {
+      const name = this.toUpperCase(this.userToEdit.fullname)
+      this.userToEdit.fullname = name
       if (!this.userToEdit._id)
         await this.$store.dispatch({
           type: 'signup',
@@ -93,6 +96,14 @@ export default {
     },
     handleImage() {
       this.img = !this.img
+    },
+
+    toUpperCase(fullname) {
+      const name = fullname
+        .split(' ')
+        .map((word) => word[0].toUpperCase() + word.slice(1))
+        .join(' ')
+      return name
     },
   },
   components: {

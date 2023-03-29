@@ -55,6 +55,9 @@
     position: inherit;
   }
 }
+.clear-budget {
+  color: $clr2;
+}
 
 .days-deliver {
   border-radius: 8px;
@@ -122,7 +125,7 @@
   padding: 12px 24px;
   font-size: 14px;
   button {
-    background-color: #1dbf73;
+    background-color: $clr1;
     font-weight: 700;
     height: 30px;
     width: 65px;
