@@ -36,6 +36,7 @@ export const gigStore = {
       title: '',
       categoryId: '',
     },
+    selectedCategory: null
   },
   getters: {
     gigs({ gigs }) {
@@ -57,6 +58,9 @@ export const gigStore = {
     filterBy({ filterBy }) {
       return filterBy
     },
+    selectedCategory(state) {
+      return state.selectedCategory
+    }
   },
   mutations: {
     setGigs(state, { gigs }) {
@@ -64,11 +68,14 @@ export const gigStore = {
       state.gigs = gigs
     },
 
+    updateCategory(state, {category}) {
+      state.selectedCategory = category
+    },
+
     addGig(state, { gig }) {
       state.gigs.push(gig)
     },
     saveGig(state, { gig }) {
-      console.log(gig)
       const idx = state.gigs.findIndex((currGig) => currGig._id === gig._id)
       if (idx !== -1) state.gigs.splice(idx, 1, gig)
       else state.gigs.push(gig)
@@ -149,6 +156,19 @@ export const gigStore = {
         throw err
       }
     },
+
+    async updateCategory(context, {category}) {
+      if(!category) {
+        category = null
+      }
+      try{
+        context.commit({type: 'updateCategory', category})
+      } catch(err) {
+        console.log("Could not update category")
+        throw err
+      }
+    },
+
     async saveGig({ commit }, { gig }) {
       try {
         const newGig = await gigService.save(gig)

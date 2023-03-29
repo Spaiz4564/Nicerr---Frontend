@@ -33,17 +33,17 @@
         <div @click.stop class="inputs">
           <div>
             <p class="bold">MIN.</p>
-            <input v-model.number="filterBy.minPrice" />
+            <input placeholder="Any" v-model.number="filterBy.minPrice" />
             <i>$</i>
           </div>
           <div>
             <p class="bold">MAX.</p>
-            <input v-model.number="filterBy.maxPrice" />
+            <input placeholder="Any" v-model.number="filterBy.maxPrice" />
             <i>$</i>
           </div>
         </div>
         <div @click.stop class="buttons-budget">
-          <div class="clear" @click.stop="clearBudget()">Clear All</div>
+          <div class="clear-budget" @click.stop="clearBudget()">Clear All</div>
           <button>Apply</button>
         </div>
       </form>

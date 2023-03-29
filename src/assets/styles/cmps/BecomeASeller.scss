@@ -1,28 +1,38 @@
 .seller-signup {
+  background-color: #f7f7f7;
+  padding: 25px;
   grid-column: 2;
   .txt-header {
+    margin: 30px auto;
     font-size: 2rem;
     font-weight: 600;
     color: #333;
-    margin-top: em(20px);
     display: flex;
     justify-content: center;
   }
 }
 
+.seller-signup-form {
+  padding: 25px;
+  width: 770px;
+  margin: auto;
+  background-color: white;
+}
+
 .seller-signup-inputs {
   display: grid;
-  grid-template-columns: 300px 1fr;
+  grid-template-columns: 230px 1fr;
   grid-gap: 2rem;
-  margin-top: em(80px);
-  justify-items: center;
+  margin-top: em(50px);
+  // justify-items: center;
   .label {
+    max-width: 200px;
     font-size: 1.2rem;
     font-weight: 600;
     color: #333;
   }
   .input {
-    width: 50%;
+    width: 100%;
     font-family: Macan-Regular;
     height: 2.5rem;
     border: 1px solid #ccc;
@@ -36,19 +46,20 @@
     }
   }
   .btn-sign {
+    height: 45px;
     width: 50%;
-    grid-column: 2;
-    height: 2.5rem;
-    border: 1px solid #ccc;
-    border-radius: 5px;
-    padding: 0 0.5rem;
+    border-radius: 4px;
+    font-family: "Macan-Regular";
     font-size: 1rem;
-    color: #333;
-    &:focus {
-      outline: none;
-      border: 1px solid #333;
-    }
+    padding: 15px 24px;
+    transition: 0.15s ease-in-out;
+    background-color: #1dbf73;
+    border: none;
+    color: #fff;
+    grid-column: 2;
+    margin-left: auto;
   }
+
   .img-upload-seller {
     display: flex;
     align-items: center;
@@ -79,7 +90,7 @@
 }
 
 .img-become {
-  width: 10em;
-  height: 10em;
+  width: 150px;
+  height: 150px;
   border-radius: 50%;
 }

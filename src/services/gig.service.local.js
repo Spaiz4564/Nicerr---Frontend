@@ -409,6 +409,7 @@ function getPopularServices() {
       desc: "Add talent to AI",
       title: `AI Artists`,
       img: "../../assets/images/Services/AI-artists.png",
+      link: "/#/gig?categoryId=ai+services",
     },
     {
       desc: "Build your brand",

@@ -2,10 +2,10 @@
   <section class="explore-market-section">
     <h2>Explore the marketplace</h2>
     <div class="categories-list">
-      <div
+      <div ref="category"
         class="category"
-        v-for="category in categories"
-        @click="showGigsByCategory(category.name)"
+        v-for="(category,index) in categories"
+        @click="showGigsByCategory(category.name, index)"
         :key="category.name">
         <span v-html="getSvg(category.svg)"></span>
         <h4>{{ category.title }}</h4>
@@ -28,8 +28,8 @@ export default {
     getSvg(iconName) {
       return svgService.getSvg(iconName)
     },
-    showGigsByCategory(categoryId) {
-      //we need to push to the query string
+    showGigsByCategory(categoryId, index) {
+      this.$store.dispatch({ type: 'updateCategory', category: this.$refs.category[index].innerText })
       this.$router.push(`/gig?categoryId=${categoryId}`)
     },
   },

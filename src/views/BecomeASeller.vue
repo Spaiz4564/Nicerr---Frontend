@@ -1,7 +1,7 @@
 <template>
   <section class="seller-signup main-layout full" v-if="userToEdit">
+    <h1 class="txt-header">Register as Seller</h1>
     <div class="seller-signup-form">
-      <h1 class="txt-header">Register as Seller</h1>
       <form @submit.prevent="saveUser">
         <div class="seller-signup-inputs">
           <label class="label" for="full-name">Full name</label>
@@ -32,7 +32,7 @@
             type="text"
             name="location"
             placeholder="Country" />
-          <h2 class="txt-upload">Upload your profile picture</h2>
+          <h2 class="txt-upload">Profile picture</h2>
           <div :class="[img ? 'clear' : '']">
             <img
               class="img-become"
@@ -70,11 +70,14 @@ export default {
       this.userToEdit = user
     } else {
       this.userToEdit = userService.getEmptyUser()
+      console.log(this.userToEdit)
     }
   },
 
   methods: {
     async saveUser() {
+      const name = this.toUpperCase(this.userToEdit.fullname)
+      this.userToEdit.fullname = name
       if (!this.userToEdit._id)
         await this.$store.dispatch({
           type: 'signup',
@@ -93,6 +96,14 @@ export default {
     },
     handleImage() {
       this.img = !this.img
+    },
+
+    toUpperCase(fullname) {
+      const name = fullname
+        .split(' ')
+        .map((word) => word[0].toUpperCase() + word.slice(1))
+        .join(' ')
+      return name
     },
   },
   components: {

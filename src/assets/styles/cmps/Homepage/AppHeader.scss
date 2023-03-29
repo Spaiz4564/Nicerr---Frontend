@@ -9,7 +9,7 @@
     cursor: pointer;
     font-size: 16px;
   }
-  .join{
+  .join {
     font-size: rem(14px);
     color: $clr-main;
     font-weight: 700;
@@ -22,10 +22,22 @@
       border: 1px solid transparent;
     }
   }
-  .modal{
+  .modal {
     z-index: 20;
     position: relative;
-    .user-modal{
+    .user-modal {
+      margin-top: 10px;
+      .modal-tip{
+        position: absolute;
+    background-color: #fff;
+    width: 15px;
+    height: 15px;
+    right: 10px;
+    top: -8px;
+    transform: rotate(45deg);
+    border-top: 1px solid #dadbdd;
+    border-left: 1px solid #dadbdd;
+      }
       width: 120px;
       border-radius: 4px;
       box-shadow: rgba(0, 0, 0, 0.15) 1.95px 1.95px 2.6px;
@@ -34,15 +46,21 @@
       flex-direction: column;
       gap: 5px;
       position: absolute;
+      right: 1px;
+      border: solid 1px #dadbdd;
       background-color: white;
-      a{
-        &:hover{
+      a {
+        &:hover {
           color: $clr-main !important;
         }
         font-family: 'Macan-light';
         font-weight: 200;
         color: black !important;
       }
+    }
+
+    .orders-modal {
+      background-color: pink;
     }
   }
   display: flex;
@@ -185,7 +203,7 @@
     color: white !important;
   }
 
-  .join{
+  .join {
     border-color: white;
   }
 
@@ -209,30 +227,29 @@
   .logo {
     color: $clr4;
   }
-  .goTo  {
-    a{
+  .goTo {
+    a {
       color: $clr3 !important;
-
     }
- 
-.join{
-    color: $clr-main !important;
-    font-weight: 700;
-    border-radius: 4px;
-    padding: 5px 15px;
-    border: 1px solid $clr-main;
-    &:hover {
-      background-color: $clr-main;
-      color: white !important;
-      border: 1px solid transparent;
+
+    .join {
+      color: $clr-main !important;
+      font-weight: 700;
+      border-radius: 4px;
+      padding: 5px 15px;
+      border: 1px solid $clr-main;
+      &:hover {
+        background-color: $clr-main;
+        color: white !important;
+        border: 1px solid transparent;
+      }
     }
   }
 }
-}
 .user-img {
   cursor: pointer;
-  width: em(40px);
-  height: em(40px);
+  width: em(32px);
+  height: em(32px);
   border-radius: 50%;
   object-fit: cover;
 }

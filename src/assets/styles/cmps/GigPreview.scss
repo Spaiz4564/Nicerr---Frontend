@@ -20,7 +20,6 @@
       max-height: 4em;
       line-height: em(18.5px);
       cursor: pointer;
-   
     }
   }
   img {
@@ -76,7 +75,6 @@
   .seller-info {
     display: flex;
     flex-direction: column;
-    align-items: center;
     gap: em(7px);
     .seller-name {
       color: $clr1;
@@ -98,6 +96,7 @@
   display: flex;
   align-items: center;
   gap: 0.2rem;
+  padding-bottom: 3px;
   margin-top: 0.5em;
 }
 
@@ -174,14 +173,13 @@
   position: relative;
   overflow: hidden;
 }
-.vueperslides__bullets{
+.vueperslides__bullets {
   padding-bottom: 7px;
 }
 
 .vueperslides__bullet {
-
   margin: 0.6em 0.2em;
-padding: 0;
+  padding: 0;
   border: none;
   background: none;
 }
@@ -208,7 +206,7 @@ padding: 0;
   svg {
     width: em(20px);
     height: em(17px);
-    fill: $clr2;
+    fill: $clr12;
     stroke: $clr2;
     stroke-width: 1;
     transition: all 0.3s;
@@ -220,7 +218,6 @@ padding: 0;
   color: $clr-main;
 }
 
-.gig-seller-btns{
-display: none;
-
+.gig-seller-btns {
+  display: none;
 }
