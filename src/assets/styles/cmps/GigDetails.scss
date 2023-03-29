@@ -1,13 +1,36 @@
 .gig-details-main {
-    grid-column: 2;
+    .details-nav {
+        padding: em(14px) 0px;
+        border-bottom: 1px solid $clr10;
+        position: sticky;
+        top: 0;
+        z-index: 99;
+        background-color: $clr6;
 
+        .details-router {
+            font-family: 'Macan-Bold';
+            font-size: em(12px);
+            gap: em(28px);
+            cursor: pointer;
 
-    *> {
-        grid-column: 2;
+            .detail-router:hover {
+                &:after {
+                    background: #1dbf73;
+                    bottom: -7px;
+                    height: 3px;
+                    left: 0;
+                    position: absolute;
+                    width: 100%;
+                    z-index: 1;
+                }
+            }
+        }
     }
 
     .gig-details {
-    
+        grid-column: 2;
+
+        flex-wrap: wrap;
         font-family: 'Macan-Regular';
         font-size: rem(14px);
         line-height: 140%;

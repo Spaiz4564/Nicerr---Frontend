@@ -226,6 +226,11 @@
 
         }
 
+        .publish {
+            font-size: em(16px);
+            color: #95979d;
+        }
+
     }
 
     .gig-desc {
@@ -382,7 +387,7 @@
             }
 
             .ul-rate {
-                gap: em(8px);
+                gap: em(2px);
             }
 
             .contact-me-btn {
