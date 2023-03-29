@@ -49,7 +49,10 @@
                                 </div>
                                 <p class="title">{{ gig.title }}</p>
                             </section>
-                            <h3 class="price">US{{ gig.price }}$</h3>
+                            <div class="seller-h3 flex align-center space-between">
+                                <h3>basic Order</h3>
+                                <h3 class="price">US{{ gig.price }}$</h3>
+                            </div>
                             <ul class="features clean-list">
                                 <li class="regular">
                                     <div className=" regular fill svg-container" v-html="getSvg('checkSign')"></div>
