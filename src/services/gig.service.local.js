@@ -134,9 +134,9 @@ async function addGigMsg(gigId, txt) {
 function getEmptyGig() {
   return {
     title: '',
-    price: 0,
-    rate: 0,
-    daysToDeliver: 0,
+    price: null,
+    rate: utilService.getRandomIntInclusive(1, 5),
+    daysToDeliver: null,
     categories: [],
     description: '',
     images: [
@@ -221,7 +221,7 @@ function _createGigs() {
       ],
       ['website design'],
       1,
-      7.5
+      2.5
     ),
     _createGig(
       'I will create code for your company to develop your business',
@@ -248,7 +248,7 @@ function _createGigs() {
       ],
       ['logo design'],
       1,
-      3
+      3.5
     ),
     _createGig(
       'I will create love to the whole planet so your find your soulmate ',
@@ -289,7 +289,7 @@ function _createGigs() {
       ],
       ['lifestyle', 'video explainer'],
       2,
-      5.5
+      5
     ),
     _createGig(
       'I will create zoo so you can explore and find more animals',
@@ -300,8 +300,7 @@ function _createGigs() {
         'https://res.cloudinary.com/dzcangpqd/image/upload/v1679925718/samples/food/dessert.jpg',
       ],
       ['lifestyle', 'social media'],
-      7,
-      9.5
+      2.5
     ),
     _createGig(
       'I will create games so you can play with all of your friends',

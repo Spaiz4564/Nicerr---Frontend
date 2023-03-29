@@ -6,7 +6,7 @@
       class="backdrop full"></div>
     <div class="modal-sign" v-if="isBackdrop">
       <Login v-clickOutsideDirective="hey" v-if="whatModal === 'signIn'" />
-      <Join v-if="whatModal === 'join'" />
+      <Join v-clickOutsideDirective="hey" v-if="whatModal === 'join'" />
     </div>
   </section>
   <div class="main-layout">

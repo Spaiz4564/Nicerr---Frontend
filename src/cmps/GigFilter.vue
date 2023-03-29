@@ -28,7 +28,8 @@
       <form
         @submit.prevent="filterBudget"
         v-if="budgetOpen"
-        class="budget-dropdown">
+        class="budget-dropdown"
+        v-clickOutsideDirective="hey">
         <div @click.stop class="inputs">
           <div>
             <p class="bold">MIN.</p>
@@ -106,6 +107,9 @@ export default {
       } else {
         this.isBoxShadow = false
       }
+    },
+    hey() {
+      this.isBudgetOpen = false
     },
   },
   computed: {

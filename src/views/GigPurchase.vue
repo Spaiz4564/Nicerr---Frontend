@@ -3,9 +3,9 @@
         <section class="gig-payment flex justify-center">
             <section class="payment-container flex">
                 <section class="payment-details-container">
-                    <h2>Payment Options</h2>
+                    <h2 class="title-purchase">Payment Options</h2>
                     <section class="credit-selection flex">
-                        <input type="checkbox" />
+                        <input class="checkbox" type="checkbox" />
                         <div>Credit & Debit Cards</div>
                         <div class="visa">
                             <div className="icon" v-html="getSvg('visa')"></div>
@@ -49,7 +49,10 @@
                                 </div>
                                 <p class="title">{{ gig.title }}</p>
                             </section>
-                            <h3 class="price">US{{ gig.price }}$</h3>
+                            <div class="seller-h3 flex align-center space-between">
+                                <h3>basic Order</h3>
+                                <h3 class="price">US{{ gig.price }}$</h3>
+                            </div>
                             <ul class="features clean-list">
                                 <li class="regular">
                                     <div className=" regular fill svg-container" v-html="getSvg('checkSign')"></div>
@@ -73,23 +76,25 @@
                                 </li>
                             </ul>
                         </div>
-                        <div class="pricing">
-                            <p>Service Fee</p>
-                            <p>US$17.55</p>
+                        <div class="footer-purchase">
+                            <div class="pricing">
+                                <p>Service Fee</p>
+                                <p>US$17.55</p>
+                            </div>
+                            <div class="pricing">
+                                <p>VAT</p>
+                                <p>US$17</p>
+                            </div>
+                            <div class="pricing total">
+                                <p>You'll pay</p>
+                                <p>US${{ handlePrice }}</p>
+                            </div>
+                            <div class="pricing">
+                                <p class="bold">Total Delivery Time</p>
+                                <p>7 Days</p>
+                            </div>
+                            <button @click="handlePurchase" class="continue-btn">Confirm And Pay</button>
                         </div>
-                        <div class="pricing">
-                            <p>VAT</p>
-                            <p>US$17</p>
-                        </div>
-                        <div class="pricing total">
-                            <p>Total</p>
-                            <p>US${{ handlePrice }}</p>
-                        </div>
-                        <div class="pricing">
-                            <p class="bold">Delivery Time</p>
-                            <p>7 Days</p>
-                        </div>
-                        <button @click="handlePurchase" class="continue-btn">Confirm And Pay</button>
                     </section>
                 </section>
             </section>

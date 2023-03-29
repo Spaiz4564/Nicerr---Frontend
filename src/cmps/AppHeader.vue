@@ -23,23 +23,28 @@
         </div>
         <div class="goTo">
           <RouterLink to="/gig">Explore</RouterLink>
-          <a @click="goToSellerSignup">Become a Seller</a>
+          <div v-if="!seller" class="flex">
+            <a @click="goToSellerSignup">Become a Seller</a>
+          </div>
           <a v-if="!loggedinUser" @click.stop="toggleSignInModal">Sign In</a>
-          <a class="join" v-if="!loggedinUser" @click.stop="toggleJoinModal">Join</a>
+          <a class="join" v-if="!loggedinUser" @click.stop="toggleJoinModal"
+            >Join</a
+          >
           <div class="modal" v-if="loggedinUser">
-          <img
-            class="user-img"
-            :src="loggedinUser.imgUrl"
-            alt="user-img"
-            @click.stop="toggleUserModal" />
-          <div class="user-modal" v-if="modalOpen">
-            <a @click="goToProfile">Profile</a>
-            <a @click="logout">Logout</a>
+            <img
+              class="user-img"
+              :src="loggedinUser.imgUrl"
+              alt="user-img"
+              @click.stop="toggleUserModal" />
+            <div
+              v-clickOutsideDirective="closeUserMenu"
+              class="user-modal"
+              v-if="modalOpen">
+              <a @click="goToProfile">Profile</a>
+              <a @click="logout">Logout</a>
+            </div>
           </div>
         </div>
-        </div>
-        
-        
       </nav>
     </header>
     <NavSuggestions
@@ -68,12 +73,17 @@ export default {
       categories: gigService.getMarketCategories(),
       modalOpen: false,
       modalSignIsOpen: false,
-      backdrop: document.querySelector('.backdrop')
+      backdrop: document.querySelector('.backdrop'),
     }
   },
   computed: {
     loggedinUser() {
+      console.log('loggedinUser', this.$store.getters.loggedinUser)
       return this.$store.getters.loggedinUser
+    },
+    seller() {
+      if (!this.loggedinUser) return false
+      return this.loggedinUser.isSeller
     },
   },
   methods: {
@@ -116,7 +126,10 @@ export default {
     toggleJoinModal() {
       this.modalSignIsOpen = !this.modalSignIsOpen
       this.$emit('backdrop', this.modalSignIsOpen, 'join')
-    }
+    },
+    closeUserMenu() {
+      this.modalOpen = false
+    },
   },
   watch: {
     $route(to) {
@@ -126,7 +139,7 @@ export default {
   },
   created() {
     window.addEventListener('scroll', this.handleScroll)
-    if(this.backdrop) {
+    if (this.backdrop) {
       this.backdrop.addEventListener('click', this.toggleSignInModal)
     }
     this.handleScroll()

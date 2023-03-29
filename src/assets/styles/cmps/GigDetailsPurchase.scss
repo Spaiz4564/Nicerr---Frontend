@@ -32,22 +32,22 @@
     }
 
     .info {
-       width: 430px;
+        width: 430px;
         padding: $padding;
         border-bottom: 0.5px $clr02 solid;
         border: 0.2px solid rgb(229 222 222 / 48%);
     }
 
-    .options {
+    .details-options {
         height: auto;
         gap: 15px;
-        margin: em(8px);
+        margin: em(8px) 0px;
 
         color: $clr02;
 
         b.delivery,
         .revisions {
-            padding: 0 5px;
+            padding: 0 12px;
         }
 
         span {

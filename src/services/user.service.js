@@ -8,6 +8,7 @@ import {
 } from './socket.service'
 import { showSuccessMsg } from './event-bus.service'
 import { storageService } from './async-storage.service'
+import { utilService } from './util.service'
 
 const STORAGE_KEY_LOGGEDIN_USER = 'loggedinUser'
 
@@ -49,6 +50,7 @@ function getEmptyUser() {
       'https://cdn.pixabay.com/photo/2020/07/01/12/58/icon-5359553_1280.png',
     score: 0,
     isSeller: false,
+    level: 0,
   }
 }
 
@@ -126,6 +128,9 @@ function setLoggedInUser(user) {
     fullname: user.fullname,
     imgUrl: user.imgUrl,
     location: user.location,
+    isSeller: user.isSeller,
+    rate: utilService.getRandomIntInclusive(1.5, 5),
+    level: utilService.getRandomIntInclusive(1, 5),
   }
   sessionStorage.setItem(STORAGE_KEY_LOGGEDIN_USER, JSON.stringify(userToSave))
   return userToSave
