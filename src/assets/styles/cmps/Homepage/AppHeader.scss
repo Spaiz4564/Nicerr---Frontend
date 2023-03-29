@@ -44,11 +44,19 @@
         color: black !important;
       }
     }
+
+
+    .orders-modal{
+      background-color: pink;
+    }
+
+
   }
   display: flex;
   gap: 23px;
   align-items: center;
 }
+
 
 .logo {
   &:after {

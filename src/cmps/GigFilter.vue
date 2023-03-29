@@ -33,12 +33,12 @@
         <div @click.stop class="inputs">
           <div>
             <p class="bold">MIN.</p>
-            <input v-model.number="filterBy.minPrice" />
+            <input placeholder="Any" v-model.number="filterBy.minPrice" />
             <i>$</i>
           </div>
           <div>
             <p class="bold">MAX.</p>
-            <input v-model.number="filterBy.maxPrice" />
+            <input placeholder="Any" v-model.number="filterBy.maxPrice" />
             <i>$</i>
           </div>
         </div>

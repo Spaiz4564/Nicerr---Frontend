@@ -23,6 +23,7 @@
         </div>
         <div class="goTo">
           <RouterLink to="/gig">Explore</RouterLink>
+          <a @click.stop="toggleUserModal" v-if="loggedinUser">Orders</a>
           <div v-if="!seller" class="flex">
             <a @click="goToSellerSignup">Become a Seller</a>
           </div>
@@ -36,6 +37,17 @@
               :src="loggedinUser.imgUrl"
               alt="user-img"
               @click.stop="toggleUserModal" />
+
+              <!-- <div
+              v-clickOutsideDirective="closeUserMenu"
+              class="orders-modal"
+              v-if="modalOpen">
+              <ul>
+                <li>hello</li>
+                <li>hello</li>
+                <li>hello</li>
+              </ul>
+            </div> -->
             <div
               v-clickOutsideDirective="closeUserMenu"
               class="user-modal"
