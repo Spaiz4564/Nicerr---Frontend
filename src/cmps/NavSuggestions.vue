@@ -8,9 +8,9 @@
     ]">
     <div class="suggestions main-layout">
       <ul>
-        <li
-          @click="filterCategory(category.name)"
-          v-for="category in categories">
+        <li ref="category"
+          @click="filterCategory(category.name, index)"
+          v-for="(category , index) in categories">
           {{ category.title }}
         </li>
       </ul>
@@ -29,7 +29,8 @@ export default {
     }
   },
   methods: {
-    filterCategory(categoryId) {
+    filterCategory(categoryId, index) {
+      this.$store.dispatch({ type: 'updateCategory', category: this.$refs.category[index].innerText })
       this.$router.push(`/gig?categoryId=${categoryId}`)
     },
   },

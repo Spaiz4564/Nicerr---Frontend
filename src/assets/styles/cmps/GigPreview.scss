@@ -75,7 +75,6 @@
   .seller-info {
     display: flex;
     flex-direction: column;
-    align-items: center;
     gap: em(7px);
     .seller-name {
       color: $clr1;
@@ -97,6 +96,7 @@
   display: flex;
   align-items: center;
   gap: 0.2rem;
+  padding-bottom: 3px;
   margin-top: 0.5em;
 }
 
@@ -206,7 +206,7 @@
   svg {
     width: em(20px);
     height: em(17px);
-    fill: $clr2;
+    fill: $clr12;
     stroke: $clr2;
     stroke-width: 1;
     transition: all 0.3s;

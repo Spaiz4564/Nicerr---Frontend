@@ -37,9 +37,10 @@
         <div class="header-suggestions">
           <span>Popular:</span>
           <ul>
-            <li
-              v-for="category in popularCategories"
-              @click="filterCategory(category.toLocaleLowerCase())">
+            <li ref="category"
+            v-for="(category, index) in popularCategories"
+              @click="filterCategory(category.toLocaleLowerCase(), index)">
+      
               {{ category }}
             </li>
           </ul>
@@ -103,8 +104,8 @@ export default {
     imgUrl(img) {
       return new URL(img, import.meta.url).href
     },
-    filterCategory(categoryId) {
-      console.log(categoryId)
+    filterCategory(categoryId, index) {
+      this.$store.dispatch({ type: 'updateCategory', category: this.$refs.category[index].innerText })
       this.$router.push({ path: '/gig', query: { categoryId } })
     },
     filterByTitle() {

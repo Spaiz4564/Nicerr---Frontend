@@ -49,13 +49,17 @@
 .icon-arrow {
   display: flex;
   svg {
-    fill: black;
+    path{
+
+      fill: $clr01;
+    }
     height: em(15px);
     width: em(18px);
     position: inherit;
   }
 }
 .clear-budget {
+  font-weight: bold;
   color: $clr2;
 }
 
@@ -80,6 +84,7 @@
 }
 
 .budget-dropdown {
+ 
   z-index: 100;
   font-family: Macan-Regular;
   position: absolute;
@@ -101,6 +106,10 @@
   justify-content: space-between;
   padding: 15px 24px;
   input {
+    &::placeholder{
+      font-weight: bold;
+      font-family: 'Macan-bold';
+    }
     max-width: 120px;
     height: 40px;
     border-radius: 4px;
@@ -127,9 +136,7 @@
   button {
     background-color: $clr1;
     font-weight: 700;
-    height: 30px;
-    width: 65px;
-    padding: 4px 12px;
+    padding: 17px 29px;
     border-radius: 4px;
     border: 0;
     color: #fff;
@@ -154,6 +161,11 @@
 }
 
 .sort {
+  svg{
+   path{
+    fill: $clr1 ;
+   }
+  }
   display: flex;
   align-items: center;
   .el-input__inner {
@@ -188,6 +200,8 @@
       width: 7em;
     }
     .el-input__wrapper {
+      gap: 5px;
+      padding: 0px 0px 0px 5px;
       box-shadow: none;
     }
   }

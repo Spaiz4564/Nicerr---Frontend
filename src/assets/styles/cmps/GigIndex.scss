@@ -1,6 +1,6 @@
 .gig-index {
   grid-column: 2;
-  margin-top: 60px;
+  margin-top: 25px;
 }
 
 .add-gigs-container {
@@ -8,4 +8,9 @@
   flex-direction: column;
   grid-column: 2;
   margin-top: 60px;
+}
+
+.selected-category{
+  color: $clr1;
+  margin-bottom: 10px;
 }
