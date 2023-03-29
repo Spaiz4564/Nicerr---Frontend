@@ -48,20 +48,17 @@
 
       <div class="seller-profile-gigs">
         <h4>Active Gigs</h4>
-        <div class="gigs-container-seller">
-          <div class="add-gig-container">
+        <div class="gigs-container">
+          <ul class="gigs-list-seller">
+            <div class="add-gig-container">
             <div class="flex column align-center">
               <span @click="addGig" class="add-gig-btn">+</span>
               <p>Create a new Gig</p>
             </div>
           </div>
-          <ul class="gigs-list-seller">
             <li v-for="gig in gigs">
               <GigPreview :gig="gig" :is="'gig-preview-seller'" />
-              <div class="gig-seller-btns">
-                <button @click="editGig(gig._id)" class="btn">Edit</button>
-                <button @click="removeGig(gig._id)" class="btn">Remove</button>
-              </div>
+            
             </li>
           </ul>
         </div>
@@ -104,15 +101,7 @@
         console.log('add gig')
         this.$router.push('/edit')
       },
-      editGig(gigId) {
-        console.log('editGig', gigId)
-        this.$router.push(`/edit/${gigId}`)
-      },
-      removeGig(gigId) {
-        console.log('removeGig', gigId)
-        this.$store.dispatch({ type: 'removeGig', gigId })
-        this.loadGigsByOwner()
-      },
+     
       getSvg(iconName) {
       return svgService.getSvg(iconName)
     },

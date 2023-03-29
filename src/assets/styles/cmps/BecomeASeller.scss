@@ -1,5 +1,13 @@
 .seller-signup {
   grid-column: 2;
+  .txt-header {
+    font-size: 2rem;
+    font-weight: 600;
+    color: #333;
+    margin-top: em(20px);
+    display: flex;
+    justify-content: center;
+  }
 }
 
 .seller-signup-inputs {
@@ -41,4 +49,37 @@
       border: 1px solid #333;
     }
   }
+  .img-upload-seller {
+    display: flex;
+    align-items: center;
+  }
+  .txt-upload {
+    display: flex;
+    align-items: center;
+    font-size: 1.2rem;
+    font-weight: 600;
+    color: #333;
+  }
+}
+
+.upload-cmp {
+  display: grid;
+  grid-column: 2;
+  .upload-preview {
+    display: flex;
+    input {
+      display: none;
+    }
+    img {
+      width: 10em;
+      height: 10em;
+      border-radius: 50%;
+    }
+  }
+}
+
+.img-become {
+  width: 10em;
+  height: 10em;
+  border-radius: 50%;
 }

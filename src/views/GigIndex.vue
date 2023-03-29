@@ -50,16 +50,19 @@ export default {
 
       options: [
         {
-          value: 'name',
-          label: 'Name',
+          value: 'level',
+          label: 'Level Seller',
         },
         {
           value: 'price',
-          label: 'Price',
+          label: 'Lowest Price',
+        },
+        {
+          value: 'rate',
+          label: 'Highest Rated',
         },
       ],
-      sortBy: 'name',
-      desc: 1,
+      sortBy: 'rate',
     }
   },
   computed: {
@@ -98,8 +101,6 @@ export default {
     setSort(sortBy) {
       console.log(sortBy)
       this.sortBy = sortBy
-      console.log(this.sortBy)
-      this.desc *= -1
       this.loadGigs()
     },
     setFilter(filterBy) {

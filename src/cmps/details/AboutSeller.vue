@@ -3,9 +3,9 @@
     <h2>About The Seller</h2>
     <section class="seller-preview flex">
       <div class="img-container">
-        <img :src=gig.owner.imgUrl alt="">
+        <img :src="gig.owner.imgUrl" alt="" />
       </div>
-      <section class="info-details flex ">
+      <section class="info-details flex">
         <section class="line">
           <p class="user-name">{{ gig.owner.fullname }}</p>
           <div class="online-indicator">
@@ -17,7 +17,7 @@
         </section>
         <p class="seller-level">Level 3 Seller</p>
         <section>
-          <ul class="ul-rate clean-list  flex  align-center ">
+          <ul class="ul-rate clean-list flex align-center">
             <li>
               <span className="check gold" v-html="getSvg('starGold')"></span>
             </li>
@@ -62,12 +62,16 @@
         </ul>
         <div class="seller-desc">
           <p>
-            I am a professional graphics designer from Canada. Designing is not only my job, it's my
-            Passion.</p>
-          <p> All I need from you is a rough sketch of your idea. Then you can just relax and see the
-            magic happening.</p>
-          <p class="end"> Not only you'll get stunning and professional designs, but also you'll have top
-            class custome
+            I am a professional graphics designer from Canada. Designing is not
+            only my job, it's my Passion.
+          </p>
+          <p>
+            All I need from you is a rough sketch of your idea. Then you can
+            just relax and see the magic happening.
+          </p>
+          <p class="end">
+            Not only you'll get stunning and professional designs, but also
+            you'll have top class custome
           </p>
         </div>
       </section>
@@ -90,7 +94,7 @@ export default {
     },
   },
   computed: {},
-  created() { },
+  created() {},
   components: {},
 }
 </script>

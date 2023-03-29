@@ -6,7 +6,8 @@ import {
 } from '../services/socket.service'
 
 // var localLoggedinUser = null
-// if (sessionStorage.user) localLoggedinUser = JSON.parse(sessionStorage.user || null)
+// if (sessionStorage.user)
+// localLoggedinUser = JSON.parse(sessionStorage.user || null)
 
 export const userStore = {
   state: {
@@ -25,6 +26,10 @@ export const userStore = {
     watchedUser({ watchedUser }) {
       return watchedUser
     },
+    seller({ users }) {
+      //if the loggedInuser is a seller
+      return users.filter((user) => user.isSeller)
+    },
   },
 
   rootGetters: {
@@ -35,7 +40,6 @@ export const userStore = {
 
   mutations: {
     setLoggedInUser(state, { user }) {
-      // Yaron: needed this workaround as for score not reactive from birth
       state.loggedinUser = user ? { ...user } : null
     },
     setWatchedUser(state, { user }) {
