@@ -11,6 +11,7 @@ import BecomeASeller from './views/BecomeASeller.vue'
 import SellerProfile from './views/SellerProfile.vue'
 import Login from './views/Login.vue'
 import GigEdit from './views/GigEdit.vue'
+import DashBoard from './views/DashBoard.vue'
 
 const routes = [
   {
@@ -67,6 +68,11 @@ const routes = [
     name: 'SellerProfile',
     path: '/seller/profile/:id',
     component: SellerProfile,
+  },
+  {
+    name: 'Dashboard',
+    path: '/seller/dashboard/:id',
+    component: DashBoard,
   },
 ]
 

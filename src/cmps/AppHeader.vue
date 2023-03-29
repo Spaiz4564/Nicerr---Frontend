@@ -135,6 +135,7 @@
       },
       goToDashboard() {
         console.log('dashboard')
+        this.$router.push(`/seller/dashboard/${this.loggedinUser._id}`)
       },
       filterCategory(categoryId) {
         this.$router.push(`/gig/${categoryId}`)
