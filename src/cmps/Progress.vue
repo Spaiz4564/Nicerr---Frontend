@@ -20,7 +20,7 @@
   const percentage = ref(20)
 
   const customColors = [
-    { txt: 'Response Rate', color: '#1dbf73', percentage: 95 },
+    { txt: 'Response Rate', color: '#1dbf73', percentage: 78 },
     { txt: 'Orders Completed', color: '#1dbf73', percentage: 29 },
     { txt: 'Delivered on Time', color: '#1dbf73', percentage: 95 },
   ]
