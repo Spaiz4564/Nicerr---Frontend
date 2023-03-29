@@ -5,14 +5,14 @@
             <span>270 reviews for this Gig</span>
             <div class="flex">
                 <div className="review-star icon" v-html="getSvg('fiveStarsEmpty')"></div>
-                <p>5</p>
+                <p>4.8</p>
             </div>
         </div>
         <section class="breakdown-progress flex">
             <section class="progress-bar">
                 <ul class="clean-list flex column">
                     <li class="flex align-center">
-                        <span class="key">5 Stars</span>
+                        <span class="key">4.8 Stars</span>
                         <progress max="270" value="243"></progress>
                         <section class="progress-container flex align-center">
                             <span class="star-num"> (243) </span>
