@@ -103,12 +103,9 @@
   padding: 18px 18px 0px 18px;
   .table-entity {
     .el-input__wrapper.is-focus {
-      box-shadow: none !important;
+      box-shadow: 0 0 0 1px var(--el-input-border-color,var(--el-border-color)) inset !important;
     }
-    .el-input.is-focus {
-      box-shadow: none !important;
-    }
-
+    
     .el-input__inner {
       color: white;
       // &::placeholder{
@@ -167,22 +164,40 @@
 .completed {
   .el-input__wrapper {
     background-color: $clr-main;
+    input{
+      &::placeholder{
+        color: white !important;
+      }
+    }
   }
 }
 
 .rejected {
   .el-input__wrapper {
     background-color: #c43333;
+    input{
+      &::placeholder{
+        color: white !important;
+      }
+    }
   }
 }
 .in-progress {
   .el-input__wrapper {
     background-color: #ffbe5b;
+    input{
+      &::placeholder{
+        color: white !important;
+      }
+    }
   }
 }
 .pending {
   .el-input__wrapper {
-    background-color: gray;
+    background-color: white;
+    input{
+      color: --el-input-border-color,var(--el-border-color) !important;
+    }
   }
 }
 

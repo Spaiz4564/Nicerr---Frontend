@@ -22,21 +22,12 @@
           <a class="join" v-if="!loggedinUser" @click.stop="toggleJoinModal">Join</a>
           <div class="modal" v-if="loggedinUser">
             <img class="user-img" :src="loggedinUser.imgUrl" alt="user-img" @click.stop="toggleUserModal" />
-            <!-- <div
-              v-clickOutsideDirective="closeUserMenu"
-              class="orders-modal"
-              v-if="modalOpen">
-              <ul>
-                <li>hello</li>
-                <li>hello</li>
-                <li>hello</li>
-              </ul>
-            </div> -->
+
             <div v-clickOutsideDirective="closeUserMenu" class="user-modal" v-if="modalOpen">
               <div class="modal-tip"></div>
-              <a @click="goToProfile">Profile</a>
-              <a v-if="loggedinUser.isSeller" @click="goToDashboard">Dashboard</a>
-              <a @click="logout">Logout</a>
+              <a @click="goToProfile(); closeUserMenu()">Profile</a>
+              <a v-if="loggedinUser.isSeller" @click="goToDashboard(); closeUserMenu()">Dashboard</a>
+              <a @click="logout(); closeUserMenu()">Logout</a>
             </div>
           </div>
           <div class="order-modal" v-if="orderModalOpen">
@@ -140,6 +131,7 @@ export default {
       this.$router.push(`/seller/profile/${this.loggedinUser._id}`)
     },
     goToDashboard() {
+      this.$router.push(`/seller/dashboard/${this.loggedinUser._id}`)
       console.log('dashboard')
     },
     filterCategory(categoryId) {
