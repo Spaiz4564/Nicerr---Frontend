@@ -14,7 +14,7 @@
         </div>
         <Reviews :gig="gig" />
       </div>
-      <div class="gig-purchase" v-if="gig">
+      <div @notLoggedInUser="this.$emit('notLoggedInUser')" class="gig-purchase" v-if="gig">
         <div class="info">
           <section class="header">
             <h3 class="flex space-between align-center">

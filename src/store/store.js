@@ -12,8 +12,18 @@ export const store = Vuex.createStore({
     gigStore,
     reviewStore,
     ordersStore,
+    modalOpen: false,
+  },
+  getters: {
+    changeModal(state) {
+      return (state.modalOpen = !state.modalOpen);
+    },
   },
   state: {},
   mutations: {},
-  actions: {},
+  actions: {
+    changeModalOpen(context) {
+      context.commit({ type: "changeModal" });
+    },
+  },
 });

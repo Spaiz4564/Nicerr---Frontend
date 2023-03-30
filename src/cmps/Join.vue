@@ -8,15 +8,9 @@
         </div>
         <ImgUploader @uploaded="imgUrl" @image="handleImage" />
       </div>
-      <input
-        type="text"
-        v-model="userToEdit.fullname"
-        placeholder="Full name" />
+      <input type="text" v-model="userToEdit.fullname" placeholder="Full name" />
       <input type="text" v-model="userToEdit.username" placeholder="Username" />
-      <input
-        type="password"
-        v-model="userToEdit.password"
-        placeholder="Password" />
+      <input type="password" v-model="userToEdit.password" placeholder="Password" />
       <button>Continue</button>
     </form>
   </div>
@@ -48,6 +42,7 @@ export default {
           type: 'signup',
           user: { ...this.userToEdit, isSeller: false },
         })
+
       else
         await this.$store.dispatch({
           type: 'updateUsers',
@@ -75,7 +70,6 @@ export default {
       this.userToEdit = userService.getEmptyUser()
     }
   },
-
   components: {
     ImgUploader,
   },

@@ -14,11 +14,11 @@
         </div>
         <div class="goTo">
           <RouterLink to="/gig">Explore</RouterLink>
-          <a @click.stop="toggleUserModal" v-if="loggedinUser">Orders</a>
+          <a @click.stop="toggleOrderModal" v-if="loggedinUser">Orders</a>
           <div v-if="!seller" class="flex">
             <a @click="goToSellerSignup">Become a Seller</a>
           </div>
-          <a v-if="!loggedinUser" @click.stop="toggleOrderModal">Sign In</a>
+          <a v-if="!loggedinUser" @click.stop="toggleSignInModal">Sign In</a>
           <a class="join" v-if="!loggedinUser" @click.stop="toggleJoinModal">Join</a>
           <div class="modal" v-if="loggedinUser">
             <img class="user-img" :src="loggedinUser.imgUrl" alt="user-img" @click.stop="toggleUserModal" />
@@ -82,7 +82,7 @@ export default {
       isSuggestions: false,
       isPurchase: false,
       categories: gigService.getMarketCategories(),
-      modalOpen: false,
+      modalOpen: this.changeModal(),
       modalSignIsOpen: false,
       orderModalOpen: false,
       backdrop: document.querySelector('.backdrop'),
@@ -102,13 +102,14 @@ export default {
     orders() {
       console.log('hi')
       return this.$store.getters.orders
-
-    }
-
+    },
   },
   methods: {
     getSvg(iconName) {
       return svgService.getSvg(iconName)
+    },
+    changeModal() {
+      return this.$store.getters.changeModalOpen
     },
     async loadOrders() {
       try {
@@ -157,6 +158,9 @@ export default {
     toggleJoinModal() {
       this.modalSignIsOpen = !this.modalSignIsOpen
       this.$emit('backdrop', this.modalSignIsOpen, 'join')
+    },
+    toggleOrderModal() {
+      this.orderModalOpen = !this.orderModalOpen
     },
     closeUserMenu() {
       this.modalOpen = false

@@ -100,6 +100,9 @@
             </section>
         </section>
     </section>
+    <div v-if="openSignUp">
+        <Join />
+    </div>
 </template>
 
 <script>
@@ -108,13 +111,15 @@ import { svgService } from '../services/svg.service'
 import { gigService } from '../services/gig.service.local'
 import { pushScopeId } from 'vue'
 import { ordersService } from '../services/order.service'
+import Join from '../cmps/Join.vue'
 
 export default {
     props: [],
     name: '',
     data() {
         return {
-            gig: null
+            gig: null,
+            openSignUp: false
         }
     },
     methods: {
@@ -122,22 +127,38 @@ export default {
             return svgService.getSvg(iconName)
         },
         handlePurchase() {
-            ordersService.save(this.gig)
+            if (this.loggedinUser) {
+                this.$store.dispatch({ type: 'addOrders', order: this.gig })
+            } else {
+                this.openSignUp = true
+
+            }
+
+
         }
     },
     computed: {
         handlePrice() {
             return this.gig.price + 34.55
+        },
+        loggedinUser() {
+            return this.$store.getters.loggedinUser
+
         }
     },
-    created() {
+    async created() {
         const { id } = this.$route.params
         gigService.getById(id).then(gig => {
             this.gig = gig
         })
+
+        const loggedinUser = this.$store.getters.loggedinUser
+        console.log(loggedinUser)
+
+
     },
     components: {
-
+        Join,
     },
 }
 </script>

@@ -6,10 +6,10 @@ export function getActionRemoveOrders(ordersId) {
     ordersId,
   };
 }
-export function getActionAddOrders(orders) {
+export function getActionAddOrders(order) {
   return {
     type: "addOrders",
-    orders,
+    order,
   };
 }
 export function getActionUpdateOrders(orders) {
@@ -29,13 +29,6 @@ export function getActionAddOrdersMsg(ordersId) {
 export const ordersStore = {
   state: {
     orders: [],
-    filterBy: {
-      minPrice: 0,
-      maxPrice: 1000,
-      title: "",
-      categoryId: "",
-    },
-    selectedCategory: null,
   },
   getters: {
     orders({ orders }) {
@@ -46,14 +39,12 @@ export const ordersStore = {
         return orders.find((orders) => orders._id === ordersId);
       };
     },
-
     ordersByOwner({ orders }) {
       return (ownerId) => {
         console.log("ordersByOwner", ownerId);
         return orders.filter((orders) => orders.owner._id === ownerId);
       };
     },
-
     filterBy({ filterBy }) {
       return filterBy;
     },
@@ -81,7 +72,6 @@ export const ordersStore = {
       if (idx !== -1) state.orders.splice(idx, 1, orders);
       else state.orders.push(orders);
     },
-
     updateOrders(state, { orders }) {
       const idx = state.orders.findIndex((c) => c._id === orders._id);
       state.orders.splice(idx, 1, orders);
@@ -100,13 +90,15 @@ export const ordersStore = {
     },
   },
   actions: {
-    async addOrders(context, { orders }) {
+    async addOrders(context, { order }) {
+      console.log("order added");
       try {
-        orders = await ordersService.save(orders);
-        context.commit(getActionAddOrders(orders));
-        return orders;
+        order = await ordersService.save(order);
+        context.commit(getActionAddOrders(order));
+        return order;
       } catch (err) {
         console.log("ordersStore: Error in addOrders", err);
+        this.$store.getters.changeModalOpen;
         throw err;
       }
     },

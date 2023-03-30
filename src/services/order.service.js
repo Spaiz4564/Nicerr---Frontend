@@ -38,7 +38,7 @@ async function save(order) {
   var savedOrder;
   const loggedInUser = userService.getLoggedInUser();
   if (!loggedInUser) {
-    return;
+    throw new Error(`Purchase failed, cannot find logged in user: ${order}`);
   } else {
     order.status = "pending";
     order.boughtAt = Date.now();
