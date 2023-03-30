@@ -32,21 +32,58 @@
             >Join</a
           >
           <div class="modal" v-if="loggedinUser">
+            <div class="order-modal" v-if="orderModalOpen">
+              <div class="modal-tip"></div>
+              <ul class="clean-list">
+                <li
+                  v-for="order in orders"
+                  class="order-detail flex align-center">
+                  <div class="img-container">
+                    <img :src="order.owner.imgUrl" alt="" />
+                  </div>
+                  <div class="desc">
+                    <p>{{ order.title }}</p>
+                    <div class="order flex">
+                      <p class="name">by {{ order.owner.fullname }}</p>
+                      <p>{{ order.status || 'Pending' }}</p>
+                    </div>
+                  </div>
+                </li>
+              </ul>
+            </div>
             <img
               class="user-img"
               :src="loggedinUser.imgUrl"
               alt="user-img"
               @click.stop="toggleUserModal" />
+
             <div
               v-clickOutsideDirective="closeUserMenu"
               class="user-modal"
               v-if="modalOpen">
               <div class="modal-tip"></div>
-              <a @click="goToProfile">Profile</a>
-              <a v-if="loggedinUser.isSeller" @click="goToDashboard"
+              <a
+                @click="
+                  goToProfile()
+                  closeUserMenu()
+                "
+                >Profile</a
+              >
+              <a
+                v-if="loggedinUser.isSeller"
+                @click="
+                  goToDashboard()
+                  closeUserMenu()
+                "
                 >Dashboard</a
               >
-              <a @click="logout">Logout</a>
+              <a
+                @click="
+                  logout()
+                  closeUserMenu()
+                "
+                >Logout</a
+              >
             </div>
           </div>
         </div>

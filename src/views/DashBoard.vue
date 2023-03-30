@@ -23,9 +23,12 @@
     <div class="seller-orders">
       <h2>Earnings</h2>
       <div class="income-order-dashboard flex">
-        <div v-for="item in dashboardItems" class="dashboard-item flex column">
+        <div
+          v-for="(item, i) in dashboardItems"
+          class="dashboard-item flex column"
+        >
           <span>{{ item.title }}</span>
-          <h3>{{ item.value }}</h3>
+          <h3>{{ income(i) }}</h3>
         </div>
       </div>
       <h2>Manage Orders</h2>
@@ -101,10 +104,10 @@
     data() {
       return {
         dashboardItems: [
-          { title: 'Annual Revenue', value: this.total},
-          { title: 'Monthly Revenue', value: this.total},
-          { title: 'Completed Orders', value: 5 },
-          { title: 'Pending Orders', value: 2 },
+          { title: 'Annual Revenue' },
+          { title: 'Monthly Revenue' },
+          { title: 'Completed Orders' },
+          { title: 'Pending Orders' },
         ],
         orders: null,
       }
@@ -116,7 +119,6 @@
         return `${date.getDate()}.${date.getMonth() + 1}.${date.getFullYear()}`
       },
       async setStatus(status, orderId) {
-        this.income()
         const order = await ordersService.getById(orderId)
         order.status = status
         const orderUi = this.orders.find(order => order._id === orderId)
@@ -128,16 +130,20 @@
         this.orders = await ordersService.query({ ownerId: owner._id })
       },
 
-      income() {
-        setTimeout(() => {
-          const total = this.orders
-            .filter(order => order.status === 'completed')
-            .reduce((acc, curr) => (acc += curr.price), 0)
-          console.log(total)
-          this.dashboardItems[0].value = total
-          this.dashboardItems[1].value = total
-          return total
-        }, 500);
+      income(i) {
+        if (this.orders) {
+          if (i < 2) {
+           return this.orders
+              .filter(order => order.status === 'completed')
+              .reduce((acc, curr) => (acc += curr.price), 0)
+           
+          } else if (i === 2) {
+            return this.orders.filter(order=> order.status === 'completed').length
+            return 4
+          } else {
+            return this.orders.filter(order=> order.status === 'pending').length
+          }
+        }
       },
     },
     computed: {
@@ -153,7 +159,6 @@
 
     created() {
       this.loadOrdersByOwner()
-      this.income()
     },
   }
 </script>

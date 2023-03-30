@@ -29,6 +29,20 @@
     z-index: 20;
     position: relative;
 
+    .order-modal{
+      .modal-tip {
+        position: absolute;
+        background-color: #fff;
+        width: 15px;
+        height: 15px;
+        right: 10px;
+        top: -8px;
+        transform: rotate(45deg);
+        border-top: 1px solid #dadbdd;
+        border-left: 1px solid #dadbdd;
+      }
+    }
+
     .user-modal {
       margin-top: 10px;
 
@@ -283,14 +297,14 @@
 }
 
 .order-modal {
-  position: relative;
+  position: absolute;
   z-index: 200;
   max-width: em(480px);
   max-height: em(669px);
   background-color: #fff;
   border-radius: 5px;
-  top: 50px;
-  right: 300px;
+  top: em(62px);
+  right: em(55px);
 
   border: 1px solid $clr9;
   font-size: 14px;
@@ -303,7 +317,6 @@
     width: 60px;
     margin-right: em(20px);
   }
-
 }
 
 .order-detail {
