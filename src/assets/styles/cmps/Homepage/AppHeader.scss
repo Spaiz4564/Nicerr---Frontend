@@ -283,22 +283,26 @@
 }
 
 .order-modal {
-  display: none;
-  width: 420px;
+  max-width: em(480px);
+  max-height: em(669px);
   position: absolute;
   background-color: #fff;
+  border-radius: 5px;
   top: 50px;
   right: 300px;
   z-index: 2000;
-  border: 1px solid black;
+  border: 1px solid $clr9;
   font-size: 14px;
   padding: 14px;
   color: $clr4;
+  overflow: scroll;
+  overflow-x: hidden;
 
   .img-container {
     width: 60px;
     margin-right: em(20px);
   }
+
 }
 
 .order-detail {

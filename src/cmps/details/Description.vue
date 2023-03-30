@@ -47,7 +47,7 @@
                     <li>compatibility,</li>
                     <li>PST to HTML,</li>
                     <li id="AboutSeller">
-                        >Performance</li>
+                        Performance</li>
                 </ul>
             </li>
         </ul>

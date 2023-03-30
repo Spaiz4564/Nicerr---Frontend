@@ -75,7 +75,7 @@ export default {
       categories: gigService.getMarketCategories(),
       modalOpen: false,
       modalSignIsOpen: false,
-      orderModalOpen: true,
+      orderModalOpen: false,
       backdrop: document.querySelector('.backdrop'),
     }
   },

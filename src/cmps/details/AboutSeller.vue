@@ -1,6 +1,6 @@
 <template>
   <section class="about-seller" v-if="gig">
-    <h2>About The Seller</h2>
+    <h2>About the seller</h2>
     <section class="seller-preview flex">
       <div class="img-container">
         <img :src="gig.owner.imgUrl" alt="" />
@@ -55,6 +55,7 @@
             you'll have top class custome
           </p>
         </div>
+        <div id="Reviews"></div>
       </section>
     </section>
   </section>
