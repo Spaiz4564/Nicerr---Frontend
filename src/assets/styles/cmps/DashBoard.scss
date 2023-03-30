@@ -102,6 +102,7 @@
   border: 1px solid #dadbdd;
   padding: 18px 18px 0px 18px;
   .table-entity {
+    height: 80px;
     .el-input__wrapper.is-focus {
       box-shadow: 0 0 0 1px var(--el-input-border-color,var(--el-border-color)) inset !important;
     }
@@ -133,10 +134,14 @@
     padding: 16px 0px;
     border-top: 1px solid #dadbdd;
     .buyer {
+      p{
+        min-width: 100px;
+      }
       gap: 15%;
       align-items: center;
       min-width: 100px;
       img {
+        aspect-ratio: 1;
         border-radius: 50%;
         max-width: 35px;
         max-height: 35px;
@@ -212,6 +217,12 @@
   padding: 30px 0;
 
   .dashboard-item {
+    h3{
+      font-family: Macan-Regular;
+      font-size: 28px;
+      font-weight: 300;
+      color: #565454;
+    }
     border-right: 2px solid #efeff0;
     height: 100%;
     display: flex;

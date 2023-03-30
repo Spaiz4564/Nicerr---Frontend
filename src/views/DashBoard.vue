@@ -22,7 +22,6 @@
     </div>
     <div class="seller-orders">
       <h2>Earnings</h2>
-      <!-- {{ getOrders}} -->
       <div class="income-order-dashboard flex">
         <div v-for="item in dashboardItems" class="dashboard-item flex column">
           <span>{{ item.title }}</span>
@@ -46,7 +45,7 @@
           <span class="gig">I will write you an attractive instagram bio</span>
           <span class="date">21.3.2023</span>
           <span class="total">US$50</span>
-          <Status/>
+          <Status />
         </div>
         <div class="table-entity flex">
           <div class="buyer flex">
@@ -59,7 +58,7 @@
           >
           <span class="date">29.3.2023</span>
           <span class="total">US$33</span>
-          <Status/>
+          <Status />
         </div>
         <div class="table-entity flex">
           <div class="buyer flex">
@@ -72,9 +71,9 @@
           >
           <span class="date">21.2.2023</span>
           <span class="total">US$67</span>
-          <Status/>
+          <Status />
         </div>
-        <div class="table-entity flex" v-for="(order,i) in orders">
+        <div class="table-entity flex" v-for="(order, i) in orders">
           <div class="buyer flex">
             <img :src="order.buyer.imgUrl" alt="" />
             <p>{{ order.buyer.fullname }}</p>
@@ -82,7 +81,11 @@
           <span class="gig">{{ order.title }}</span>
           <span class="date">{{ makeDate(order.boughtAt) }}</span>
           <span class="total">US${{ order.price }}</span>
-          <Status :status="order.status" :class="order.status" @status="setStatus($event, order._id)" />
+          <Status
+            :status="order.status"
+            :class="order.status"
+            @status="setStatus($event, order._id)"
+          />
         </div>
       </div>
     </div>
@@ -90,7 +93,7 @@
 </template>
 
 <script>
-import Progress from '../cmps/Progress.vue'
+  import Progress from '../cmps/Progress.vue'
   import Status from '../cmps/Status.vue'
   import { ordersService } from '../services/order.service'
   export default {
@@ -98,12 +101,12 @@ import Progress from '../cmps/Progress.vue'
     data() {
       return {
         dashboardItems: [
-          { title: 'Annual Revenue', value: '$335' },
-          { title: 'Monthly Revenue', value: '$335' },
+          { title: 'Annual Revenue', value: this.total},
+          { title: 'Monthly Revenue', value: this.total},
           { title: 'Completed Orders', value: 5 },
           { title: 'Pending Orders', value: 2 },
         ],
-        orders: null
+        orders: null,
       }
     },
 
@@ -113,31 +116,44 @@ import Progress from '../cmps/Progress.vue'
         return `${date.getDate()}.${date.getMonth() + 1}.${date.getFullYear()}`
       },
       async setStatus(status, orderId) {
+        this.income()
         const order = await ordersService.getById(orderId)
         order.status = status
-        const classOrder = this.orders.find(order=> order._id === orderId)
-        classOrder.status = status
+        const orderUi = this.orders.find(order => order._id === orderId)
+        orderUi.status = status
         ordersService.saveOrder(order)
       },
       async loadOrdersByOwner() {
-      const owner = userService.getLoggedinUser()
-      this.orders = await ordersService.query({ ownerId: owner._id })
-    },
-  
+        const owner = userService.getLoggedinUser()
+        this.orders = await ordersService.query({ ownerId: owner._id })
+      },
+
+      income() {
+        setTimeout(() => {
+          const total = this.orders
+            .filter(order => order.status === 'completed')
+            .reduce((acc, curr) => (acc += curr.price), 0)
+          console.log(total)
+          this.dashboardItems[0].value = total
+          this.dashboardItems[1].value = total
+          return total
+        }, 500);
+      },
     },
     computed: {
       user() {
         return userService.getLoggedinUser()
       },
     },
+
     components: {
       Progress,
       Status,
     },
 
     created() {
-     this.loadOrdersByOwner()
-
+      this.loadOrdersByOwner()
+      this.income()
     },
   }
 </script>
