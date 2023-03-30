@@ -1,6 +1,6 @@
  const clickOutsideDirective = {
     mounted(el, { value: cb }) {
-        console.log(el)
+        // console.log(el)
       el.clickOutside = ({ clientX, clientY }) => {
         const { left, top, width, height } = el.getBoundingClientRect()
         if (
@@ -12,9 +12,9 @@
           )
         ) {
           cb()
-          console.log('outside')
+          // console.log('outside')
         } else {
-          console.log('inside')
+          // console.log('inside')
         }
       }
       setTimeout(() => {

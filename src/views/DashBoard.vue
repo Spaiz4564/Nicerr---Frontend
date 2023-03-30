@@ -79,7 +79,7 @@
         <div class="table-entity flex" v-for="(order, i) in orders">
           <div class="buyer flex">
             <img :src="order.buyer.imgUrl" alt="" />
-            <p>{{ order.buyer.fullname }}</p>
+            <p>{{ order.buyer.username }}</p>
           </div>
           <span class="gig">{{ order.title }}</span>
           <span class="date">{{ makeDate(order.boughtAt) }}</span>
@@ -134,14 +134,14 @@
         if (this.orders) {
           if (i < 2) {
            return this.orders
-              .filter(order => order.status === 'completed')
+              .filter(order => order.status === 'Completed')
               .reduce((acc, curr) => (acc += curr.price), 0)
            
           } else if (i === 2) {
-            return this.orders.filter(order=> order.status === 'completed').length
+            return this.orders.filter(order=> order.status === 'Completed').length
             return 4
           } else {
-            return this.orders.filter(order=> order.status === 'pending').length
+            return this.orders.filter(order=> order.status === 'Pending').length
           }
         }
       },

@@ -33,7 +33,7 @@ const orders = [
       "name": "Design Logo",
       "price": 20
     },
-    "status": "pending"
+    "status": "Pending"
   }
 ]
 

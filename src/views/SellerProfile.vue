@@ -1,6 +1,8 @@
 <template>
   <section class="seller-profile main-layout full" v-if="owner">
-    <div class="seller-profile-container">
+    <div
+      class="seller-profile-container flex"
+      :class="!owner.isSeller ? 'gigs-not-seller' : ''">
       <div class="seller">
         <div class="user-info">
           <div class="seller-profile-info">
@@ -43,7 +45,7 @@
         </div>
       </div>
 
-      <div class="seller-profile-gigs">
+      <div v-if="owner.isSeller" class="seller-profile-gigs">
         <h4>Active Gigs</h4>
         <div class="gigs-container">
           <ul class="gigs-list-seller">

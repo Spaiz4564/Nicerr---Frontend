@@ -32,7 +32,10 @@
             >Join</a
           >
           <div class="modal" v-if="loggedinUser">
-            <div class="order-modal" v-if="orderModalOpen">
+            <div
+              v-clickOutsideDirective="toggleOrderModal"
+              class="order-modal"
+              v-if="orderModalOpen">
               <div class="modal-tip"></div>
               <ul class="clean-list">
                 <li
@@ -62,13 +65,28 @@
               class="user-modal"
               v-if="modalOpen">
               <div class="modal-tip"></div>
-              <a @click="goToProfile(), closeUserMenu()">Profile</a>
+              <a
+                @click="
+                  goToProfile()
+                  closeUserMenu()
+                "
+                >Profile</a
+              >
               <a
                 v-if="loggedinUser.isSeller"
-                @click="goToDashboard(), closeUserMenu()"
+                @click="
+                  goToDashboard()
+                  closeUserMenu()
+                "
                 >Dashboard</a
               >
-              <a @click="logout(), closeUserMenu()">Logout</a>
+              <a
+                @click="
+                  logout()
+                  closeUserMenu()
+                "
+                >Logout</a
+              >
             </div>
           </div>
         </div>
@@ -105,6 +123,7 @@ export default {
       modalSignIsOpen: false,
       orderModalOpen: false,
       backdrop: document.querySelector('.backdrop'),
+      orders: null,
     }
   },
 
@@ -117,13 +136,18 @@ export default {
       if (!this.loggedinUser) return false
       return this.loggedinUser.isSeller
     },
-
     orders() {
-      console.log('hi')
-      return this.$store.getters.orders
+      return this.orders
     },
   },
   methods: {
+    async loadOrdersByOwner() {
+      const buyer = userService.getLoggedinUser()
+      if (buyer) {
+        this.orders = await ordersService.query({ buyerId: buyer._id })
+      }
+    },
+
     getSvg(iconName) {
       return svgService.getSvg(iconName)
     },
@@ -184,6 +208,12 @@ export default {
     closeUserMenu() {
       this.modalOpen = false
     },
+    checkIfLoggedIn() {
+      const user = this.loggedinUser
+      if (user) {
+        this.loadOrdersByOwner()
+      }
+    },
   },
   watch: {
     $route(to) {
@@ -197,7 +227,8 @@ export default {
       this.backdrop.addEventListener('click', this.toggleSignInModal)
     }
     this.handleScroll()
-    this.loadOrders()
+    this.loadOrdersByOwner()
+    this.checkIfLoggedIn()
   },
   mounted() {
     window.addEventListener('scroll', this.handleScroll)
