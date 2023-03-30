@@ -495,7 +495,7 @@
             margin-bottom: em(30px);
 
             .progress-bar {
-                min-width: 60%;
+                width: 60%;
                 gap: 0.625em;
 
                 progress {
@@ -503,9 +503,11 @@
                     position: relative;
                     display: inline-block;
                     height: 10px;
+                    width: 195px;
                     border-radius: 6px;
                     overflow: hidden;
                 }
+
 
                 progress::-webkit-progress-bar {
                     background-color: #eeeeee;
@@ -535,7 +537,7 @@
 
             .rating-bar {
                 font-family: 'Macan-Regular';
-                width: 100%;
+                width: 58%;
                 color: $clr01;
                 line-height: em(29px);
 

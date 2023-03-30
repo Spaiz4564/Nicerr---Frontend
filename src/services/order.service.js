@@ -16,7 +16,6 @@ window.cs = ordersService;
 
 async function query() {
   // return httpService.get(STORAGE_KEY, filterBy)
-
   var orders = await storageService.query(STORAGE_KEY);
   if (!orders.length) orders = _createGigs();
   //   if (filterBy.txt) {
@@ -39,7 +38,7 @@ async function save(order) {
   var savedOrder;
   const loggedInUser = userService.getLoggedInUser();
   if (!loggedInUser) {
-    return console.log("logged in user");
+    return;
   } else {
     order.status = "pending";
     order.boughtAt = Date.now();

@@ -7,12 +7,12 @@
     </div>
     <main id="OverView" class="gig-details flex">
       <div class="gig-user-info flex column">
-        <Overview id="OverView" :gig="gig" />
-        <Description id="Description" :gig="gig" />
+        <Overview :gig="gig" />
+        <Description :gig="gig" />
         <div>
           <AboutSeller :gig="gig" />
         </div>
-        <Reviews id="Reviews" :gig="gig" />
+        <Reviews :gig="gig" />
       </div>
       <div class="gig-purchase" v-if="gig">
         <div class="info">
