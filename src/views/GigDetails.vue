@@ -1,7 +1,7 @@
 <template>
   <section class="gig-details-main main-layout full" v-if="gig">
     <div class="details-nav main-layout full">
-      <ul class="details-router clean-list flex">
+      <ul class="details-router flex">
         <li v-for="route in router" class="detail-router" @click="navigateTo(`${route}`)">{{ route }} </li>
       </ul>
     </div>

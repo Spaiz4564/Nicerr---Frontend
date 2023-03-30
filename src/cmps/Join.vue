@@ -37,6 +37,7 @@ export default {
   },
   methods: {
     async saveUser() {
+      this.$emit('refreshOrders')
       if (!this.userToEdit._id)
         await this.$store.dispatch({
           type: 'signup',

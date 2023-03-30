@@ -21,18 +21,20 @@
           <a v-if="!loggedinUser" @click.stop="toggleSignInModal">Sign In</a>
           <a class="join" v-if="!loggedinUser" @click.stop="toggleJoinModal">Join</a>
           <div class="modal" v-if="loggedinUser">
-            <div class="order-modal" v-if="orderModalOpen">
+          
+            <div  v-clickOutsideDirective="toggleOrderModal"  class="order-modal" v-if="orderModalOpen">
               <div class="modal-tip"></div>
-            <ul class="clean-list">
+            <ul class="clean-list scroller">
+              <h2 class="no-orders" v-if="!orders.length">No orders to show</h2>
               <li v-for="order in orders" class="order-detail flex align-center">
                 <div class="img-container">
                   <img :src=order.owner.imgUrl alt="">
                 </div>
                 <div class="desc">
-                  <p>{{ order.title }}</p>
+                  <span>{{ order.title }}</span>
                   <div class="order flex">
-                    <p class="name">by {{ order.owner.fullname }}</p>
-                    <p> {{ order.status || 'Pending' }}</p>
+                    <p class="name">by {{ order.owner.username }}</p>
+                    <p :class="order.status"> {{ order.status || 'Pending' }}</p>
                   </div>
                 </div>
               </li>
@@ -40,14 +42,15 @@
           </div>
             <img class="user-img" :src="loggedinUser.imgUrl" alt="user-img" @click.stop="toggleUserModal" />
 
+           
             <div v-clickOutsideDirective="closeUserMenu" class="user-modal" v-if="modalOpen">
               <div class="modal-tip"></div>
               <a @click="goToProfile(); closeUserMenu()">Profile</a>
-              <a v-if="loggedinUser.isSeller" @click="goToDashboard(); closeUserMenu()">Dashboard</a>
+              <a v-if="loggedinUser.isSeller" @click="goToDashboard(),   closeUserMenu()">Dashboard</a>
               <a @click="logout(); closeUserMenu()">Logout</a>
             </div>
           </div>
-        
+         
         </div>
       </nav>
     </header>
@@ -79,6 +82,7 @@ export default {
       modalSignIsOpen: false,
       orderModalOpen: false,
       backdrop: document.querySelector('.backdrop'),
+      orders: null
     }
   },
 
@@ -91,26 +95,25 @@ export default {
       if (!this.loggedinUser) return false
       return this.loggedinUser.isSeller
     },
-
     orders() {
-      console.log('hi')
-      return this.$store.getters.orders
-    },
+      return this.orders
+    }
+  
   },
   methods: {
+    async loadOrdersByOwner() {
+        const buyer = userService.getLoggedinUser()
+        if(buyer) {
+          this.orders = await ordersService.query({ buyerId: buyer._id })
+        }
+       
+      },
+
     getSvg(iconName) {
       return svgService.getSvg(iconName)
     },
     changeModal() {
       return this.$store.getters.changeModalOpen
-    },
-    async loadOrders() {
-      try {
-        await this.$store.dispatch({ type: 'loadOrders' })
-      } catch (err) {
-        console.log(err)
-
-      }
     },
     emitFiltered() {
       //push the query to the url
@@ -159,12 +162,18 @@ export default {
     closeUserMenu() {
       this.modalOpen = false
     },
+    checkIfLoggedIn() {
+      const user = this.loggedinUser
+      if(user) {
+        this.loadOrdersByOwner()
+      }
+    }
   },
   watch: {
     $route(to) {
       this.isHome = to.path !== '/' ? false : true
       this.isPurchase = to.path.includes('purchase') ? true : false
-    },
+    }, 
   },
   created() {
     window.addEventListener('scroll', this.handleScroll)
@@ -172,7 +181,8 @@ export default {
       this.backdrop.addEventListener('click', this.toggleSignInModal)
     }
     this.handleScroll()
-    this.loadOrders()
+    this.loadOrdersByOwner()
+    this.checkIfLoggedIn()
   },
   mounted() {
     window.addEventListener('scroll', this.handleScroll)

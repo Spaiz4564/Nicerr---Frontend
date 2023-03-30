@@ -1,6 +1,6 @@
 <template>
   <section class="seller-profile main-layout full" v-if="owner">
-    <div class="seller-profile-container">
+    <div  class="seller-profile-container flex" :class="!owner.isSeller ? 'gigs-not-seller' : ''">
       <div class="seller">
         <div class="user-info">
           <div class="seller-profile-info">
@@ -43,12 +43,12 @@
         </div>
       </div>
 
-      <div class="seller-profile-gigs">
+      <div v-if="owner.isSeller" class="seller-profile-gigs">
         <h4>Active Gigs</h4>
         <div class="gigs-container">
           <ul class="gigs-list-seller">
             <div class="add-gig-container">
-              <div class="flex column align-center">
+              <div  class="flex column align-center">
                 <span @click="addGig" class="add-gig-btn">+</span>
                 <p>Create a new Gig</p>
               </div>
@@ -103,7 +103,7 @@ export default {
     },
   },
   watch: {
-    $store: {
+    gigs: {
       handler() {
         this.loadGigsByOwner()
       },

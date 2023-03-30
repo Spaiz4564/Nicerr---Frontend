@@ -25,9 +25,15 @@ async function query(
   var orders = await storageService.query(STORAGE_KEY);
 
   const { ownerId } = filterBy;
+  const { buyerId} = filterBy
+  
   if (ownerId) {
     orders = orders.filter((order) => {
       return order.owner._id === ownerId;
+    });
+  } else if(buyerId) {
+    orders = orders.filter((order) => {
+      return order.buyer._id === buyerId;
     });
   }
 
@@ -46,7 +52,7 @@ async function save(order) {
   if (!loggedInUser) {
     return console.log("logged in user");
   } else {
-    order.status = "pending";
+    order.status = "Pending";
     order.boughtAt = Date.now();
     order.buyer = loggedInUser;
     savedOrder = await storageService.post(STORAGE_KEY, order);
@@ -96,7 +102,7 @@ function _createOrder(title, images, categories, daysToDeliver, rate) {
     daysToDeliver,
     owner: utilService.getRandomOwners(),
     categories,
-    status: "pending",
+    status: "Pending",
     boughtAt: Date.now(),
     buyer: userService.getLoggedInUser(),
   };

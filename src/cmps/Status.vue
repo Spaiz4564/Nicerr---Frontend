@@ -18,19 +18,19 @@
         value: '',
         options: [
           {
-            value: 'in-progress',
+            value: 'In-progress',
             label: 'In Progress',
           },
           {
-            value: 'completed',
+            value: 'Completed',
             label: 'Completed',
           },
           {
-            value: 'rejected',
+            value: 'Rejected',
             label: 'Rejected',
           },
           {
-            value: 'pending',
+            value: 'Pending',
             label: 'Pending',
           },
         ],

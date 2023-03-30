@@ -23,7 +23,7 @@
         </div>
         <section>
           <div class="seller-info">
-            <h4 class="seller-name">{{ gig.owner.fullname }}</h4>
+            <h4 class="seller-name">{{ gig.owner.username }}</h4>
             <span class="seller-rate">Level {{ gig.owner.level }} Seller</span>
           </div>
         </section>

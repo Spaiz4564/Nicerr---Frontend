@@ -4,7 +4,7 @@
         border-bottom: 1px solid $clr10;
         position: sticky;
         top: 0;
-        z-index: 99;
+        z-index: 10;
         background-color: $clr6;
 
         .details-router {
@@ -30,7 +30,7 @@
     .gig-details {
         grid-column: 2;
 
-        flex-wrap: wrap;
+
         font-family: 'Macan-Regular';
         font-size: rem(14px);
         line-height: 140%;

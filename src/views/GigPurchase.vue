@@ -53,7 +53,7 @@
                                 <h3>basic Order</h3>
                                 <h3 class="price">US{{ gig.price }}$</h3>
                             </div>
-                            <ul class="features clean-list">
+                            <ul class="features">
                                 <li class="regular">
                                     <div className=" regular fill svg-container" v-html="getSvg('checkSign')"></div>
                                     1 concept included

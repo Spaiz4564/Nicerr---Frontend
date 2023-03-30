@@ -166,7 +166,7 @@
   }
 }
 
-.completed {
+.Completed {
   .el-input__wrapper {
     background-color: $clr-main;
     input{
@@ -177,7 +177,7 @@
   }
 }
 
-.rejected {
+.Rejected {
   .el-input__wrapper {
     background-color: #c43333;
     input{
@@ -187,7 +187,7 @@
     }
   }
 }
-.in-progress {
+.In-progress {
   .el-input__wrapper {
     background-color: #ffbe5b;
     input{
@@ -197,7 +197,7 @@
     }
   }
 }
-.pending {
+.Pending {
   .el-input__wrapper {
     background-color: white;
     input{

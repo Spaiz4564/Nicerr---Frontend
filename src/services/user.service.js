@@ -107,6 +107,7 @@ async function login(userCred) {
   }
 }
 async function signup(userCred) {
+  console.log(userCred)
   if (!userCred.imgUrl)
     userCred.imgUrl =
       "https://cdn.pixabay.com/photo/2020/07/01/12/58/icon-5359553_1280.png";
@@ -129,6 +130,7 @@ function setLoggedInUser(user) {
   const userToSave = {
     _id: user._id,
     fullname: user.fullname,
+    username: user.username,
     imgUrl: user.imgUrl,
     location: user.location,
     isSeller: user.isSeller,
@@ -148,9 +150,11 @@ async function changeScore(by) {
 }
 
 function saveLocalUser(user) {
+  console.log(user)
   user = {
     _id: user._id,
     fullname: user.fullname,
+    username: user.username,
     imgUrl: user.imgUrl,
     score: user.score,
     isSeller: user.isSeller,
