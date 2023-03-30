@@ -8,9 +8,10 @@
     ]">
     <div class="suggestions main-layout">
       <ul>
-        <li ref="category"
+        <li
+          ref="category"
           @click="filterCategory(category.name, index)"
-          v-for="(category , index) in categories">
+          v-for="(category, index) in categories">
           {{ category.title }}
         </li>
       </ul>
@@ -19,7 +20,7 @@
 </template>
 
 <script>
-import { gigService } from '../services/gig.service.local'
+import { gigService } from '../services/gig.service'
 export default {
   props: ['isHome', 'isSuggestions', 'isWhite'],
   name: 'Nav Suggestions',
@@ -30,7 +31,11 @@ export default {
   },
   methods: {
     filterCategory(categoryId, index) {
-      this.$store.dispatch({ type: 'updateCategory', category: this.$refs.category[index].innerText })
+      console.log('categoryId', categoryId)
+      this.$store.dispatch({
+        type: 'updateCategory',
+        category: this.$refs.category[index].innerText,
+      })
       this.$router.push(`/gig?categoryId=${categoryId}`)
     },
   },

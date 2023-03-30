@@ -64,7 +64,7 @@
 </template>
 
 <script>
-import { gigService } from '../services/gig.service.local'
+import { gigService } from '../services/gig.service'
 
 import { userService } from '../services/user.service'
 import GigPreviewSeller from '../cmps/GigPreviewSeller.vue'
@@ -91,6 +91,7 @@ export default {
     async loadGigsByOwner() {
       const owner = userService.getLoggedinUser()
       this.gigs = await gigService.query({ owner: owner._id })
+      console.log(this.gigs)
     },
 
     addGig() {

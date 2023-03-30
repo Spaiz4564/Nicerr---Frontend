@@ -1,64 +1,68 @@
 <template>
   <section class="main-header full">
-    <header class="main-layout" :class="[isHome ? 'headerHome' : '', isWhite ? 'homeScroll' : '']" ref="header">
+    <header
+      class="main-layout"
+      :class="[isHome ? 'headerHome' : '', isWhite ? 'homeScroll' : '']"
+      ref="header">
       <nav>
         <div class="logo-search">
           <RouterLink to="/">
             <h1 class="logo">Nicerr</h1>
           </RouterLink>
-          <form @submit.prevent="emitFiltered" v-if="!isHome || isSuggestions" class="search-bar">
-            <input class="search-input" type="text" placeholder="What service are you looking for today?"
+          <form
+            @submit.prevent="emitFiltered"
+            v-if="!isHome || isSuggestions"
+            class="search-bar">
+            <input
+              class="search-input"
+              type="text"
+              placeholder="What service are you looking for today?"
               v-model="filterBy.title" />
             <span class="icon-search" v-html="getSvg('search')"></span>
           </form>
         </div>
         <div class="goTo">
           <RouterLink to="/gig">Explore</RouterLink>
-          <a @click.stop="toggleOrderModal" v-if="loggedinUser">Orders</a>
+          <a @click.stop="toggleUserModal" v-if="loggedinUser">Orders</a>
           <div v-if="!seller" class="flex">
             <a @click="goToSellerSignup">Become a Seller</a>
           </div>
           <a v-if="!loggedinUser" @click.stop="toggleSignInModal">Sign In</a>
-          <a class="join" v-if="!loggedinUser" @click.stop="toggleJoinModal">Join</a>
+          <a class="join" v-if="!loggedinUser" @click.stop="toggleJoinModal"
+            >Join</a
+          >
           <div class="modal" v-if="loggedinUser">
-            <img class="user-img" :src="loggedinUser.imgUrl" alt="user-img" @click.stop="toggleUserModal" />
-
-            <div v-clickOutsideDirective="closeUserMenu" class="user-modal" v-if="modalOpen">
+            <img
+              class="user-img"
+              :src="loggedinUser.imgUrl"
+              alt="user-img"
+              @click.stop="toggleUserModal" />
+            <div
+              v-clickOutsideDirective="closeUserMenu"
+              class="user-modal"
+              v-if="modalOpen">
               <div class="modal-tip"></div>
-              <a @click="goToProfile(); closeUserMenu()">Profile</a>
-              <a v-if="loggedinUser.isSeller" @click="goToDashboard(); closeUserMenu()">Dashboard</a>
-              <a @click="logout(); closeUserMenu()">Logout</a>
+              <a @click="goToProfile">Profile</a>
+              <a v-if="loggedinUser.isSeller" @click="goToDashboard"
+                >Dashboard</a
+              >
+              <a @click="logout">Logout</a>
             </div>
-          </div>
-          <div class="order-modal" v-if="orderModalOpen">
-            <ul class="clean-list">
-              <li v-for="order in orders" class="order-detail flex align-center">
-                <div class="img-container">
-                  <img :src=order.owner.imgUrl alt="">
-                </div>
-                <div class="desc">
-                  <p>{{ order.title }}</p>
-                  <div class="order flex">
-                    <p class="name">by {{ order.owner.fullname }}</p>
-                    <p> {{ order.status || 'Pending' }}</p>
-                  </div>
-                </div>
-              </li>
-            </ul>
           </div>
         </div>
       </nav>
     </header>
-    <NavSuggestions :isWhite="isWhite" :isSuggestions="isSuggestions" :isHome="isHome" />
+    <NavSuggestions
+      :isWhite="isWhite"
+      :isSuggestions="isSuggestions"
+      :isHome="isHome" />
   </section>
 </template>
 <script>
 import { svgService } from '../services/svg.service'
-import { gigService } from '../services/gig.service.local'
+import { gigService } from '../services/gig.service'
 import Login from '../views/Login.vue'
 import NavSuggestions from './NavSuggestions.vue'
-import { ordersService } from '../services/order.service'
-
 export default {
   data() {
     return {
@@ -67,19 +71,16 @@ export default {
       filterBy: {
         title: '',
       },
-      order: null,
       isHome: true,
       isWhite: false,
       isSuggestions: false,
       isPurchase: false,
       categories: gigService.getMarketCategories(),
-      modalOpen: this.changeModal(),
+      modalOpen: false,
       modalSignIsOpen: false,
-      orderModalOpen: false,
       backdrop: document.querySelector('.backdrop'),
     }
   },
-
   computed: {
     loggedinUser() {
       console.log('loggedinUser', this.$store.getters.loggedinUser)
@@ -89,26 +90,10 @@ export default {
       if (!this.loggedinUser) return false
       return this.loggedinUser.isSeller
     },
-
-    orders() {
-      console.log('hi')
-      return this.$store.getters.orders
-    },
   },
   methods: {
     getSvg(iconName) {
       return svgService.getSvg(iconName)
-    },
-    changeModal() {
-      return this.$store.getters.changeModalOpen
-    },
-    async loadOrders() {
-      try {
-        await this.$store.dispatch({ type: 'loadOrders' })
-      } catch (err) {
-        console.log(err)
-
-      }
     },
     emitFiltered() {
       //push the query to the url
@@ -132,12 +117,14 @@ export default {
       this.$router.push(`/seller/profile/${this.loggedinUser._id}`)
     },
     goToDashboard() {
-      this.$router.push(`/seller/dashboard/${this.loggedinUser._id}`)
       console.log('dashboard')
     },
     filterCategory(categoryId) {
-      this.$router.push(`/gig/${categoryId}`)
-      this.$store.commit({ type: 'setFilter', filterBy: { categoryId } })
+      this.$router.push({
+        path: '/gig',
+        query: { categoryId },
+      })
+      console.log('categoryId', categoryId)
     },
     logout() {
       this.$store.dispatch({ type: 'logout' })
@@ -150,9 +137,6 @@ export default {
     toggleJoinModal() {
       this.modalSignIsOpen = !this.modalSignIsOpen
       this.$emit('backdrop', this.modalSignIsOpen, 'join')
-    },
-    toggleOrderModal() {
-      this.orderModalOpen = !this.orderModalOpen
     },
     closeUserMenu() {
       this.modalOpen = false
@@ -170,7 +154,6 @@ export default {
       this.backdrop.addEventListener('click', this.toggleSignInModal)
     }
     this.handleScroll()
-    this.loadOrders()
   },
   mounted() {
     window.addEventListener('scroll', this.handleScroll)

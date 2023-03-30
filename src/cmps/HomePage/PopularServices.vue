@@ -25,7 +25,7 @@
 <script>
 import { VueperSlides, VueperSlide } from 'vueperslides'
 import 'vueperslides/dist/vueperslides.css'
-import { gigService } from '../../services/gig.service.local'
+import { gigService } from '../../services/gig.service'
 export default {
   name: 'Popular Services',
   data() {

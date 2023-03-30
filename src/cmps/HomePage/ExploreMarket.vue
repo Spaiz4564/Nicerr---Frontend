@@ -2,9 +2,10 @@
   <section class="explore-market-section">
     <h2>Explore the marketplace</h2>
     <div class="categories-list">
-      <div ref="category"
+      <div
+        ref="category"
         class="category"
-        v-for="(category,index) in categories"
+        v-for="(category, index) in categories"
         @click="showGigsByCategory(category.name, index)"
         :key="category.name">
         <span v-html="getSvg(category.svg)"></span>
@@ -16,7 +17,7 @@
 
 <script>
 import { svgService } from '../../services/svg.service'
-import { gigService } from '../../services/gig.service.local'
+import { gigService } from '../../services/gig.service'
 export default {
   name: 'Explore Market',
   data() {
@@ -29,7 +30,10 @@ export default {
       return svgService.getSvg(iconName)
     },
     showGigsByCategory(categoryId, index) {
-      this.$store.dispatch({ type: 'updateCategory', category: this.$refs.category[index].innerText })
+      this.$store.dispatch({
+        type: 'updateCategory',
+        category: this.$refs.category[index].innerText,
+      })
       this.$router.push(`/gig?categoryId=${categoryId}`)
     },
   },

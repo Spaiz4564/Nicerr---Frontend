@@ -70,7 +70,7 @@
 <script>
 import { svgService } from '../services/svg.service'
 import { VueperSlides, VueperSlide } from 'vueperslides'
-import { gigService } from '../services/gig.service.local'
+import { gigService } from '../services/gig.service'
 import 'vueperslides/dist/vueperslides.css'
 import LongTxt from '../services/LongTxt.vue'
 export default {
