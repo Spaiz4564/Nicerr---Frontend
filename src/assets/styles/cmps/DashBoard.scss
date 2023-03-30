@@ -1,0 +1,210 @@
+.dashboard {
+  min-height: 100vh;
+  margin: 30px 40px 50px;
+}
+
+.profile-progress {
+  border-radius: 5px;
+  background-color: #fff;
+  border: 1px solid #dadbdd;
+  margin: 0 40px 60px 0;
+  padding: 30px 20px 50px;
+  max-width: 388px;
+  max-height: 400px;
+  .img-container {
+    width: 120px;
+    height: 120px;
+    img {
+      border-radius: 50%;
+    }
+  }
+}
+
+.progress {
+  .demo-progress {
+    .bar {
+      padding-bottom: 7px;
+    }
+    .flex {
+      p {
+        color: $clr3;
+        font-size: 16px;
+      }
+      padding-bottom: 5px;
+    }
+    .el-progress {
+      span {
+        display: none;
+      }
+      display: block;
+    }
+    b {
+      color: $clr3;
+      font-size: 16px;
+    }
+  }
+  margin-top: 30px;
+}
+
+.profile {
+  justify-content: space-between;
+  .seller-desc {
+    span,
+    b {
+      max-height: 21px;
+      font-size: 16px;
+    }
+    flex-direction: column;
+    justify-content: space-between;
+    align-items: center;
+    height: 120px;
+    margin-inline-start: 20px;
+  }
+}
+
+/////////////////////////////////////////// SELLER ORDERS //////////////
+
+.seller-orders {
+  h2 {
+    margin-bottom: 30px;
+    color: $clr4;
+  }
+  width: 100%;
+}
+
+.table-header {
+  padding-bottom: 15px;
+  font-weight: 200;
+  h4 {
+    color: $clr1;
+    font-size: 16px;
+  }
+  .head-buyer {
+    min-width: 157px;
+  }
+  .head-gig {
+    width: 41.5%;
+  }
+  .head-total {
+    width: 12.7%;
+  }
+  .head-date {
+    width: 14.5%;
+  }
+  .head-status {
+    width: 5%;
+  }
+}
+
+.orders-table {
+  border-radius: 5px;
+  background-color: #fff;
+  border: 1px solid #dadbdd;
+  padding: 18px 18px 0px 18px;
+  .table-entity {
+    .el-input__wrapper.is-focus {
+      box-shadow: none !important;
+    }
+    .el-input.is-focus {
+      box-shadow: none !important;
+    }
+
+    .el-input__inner {
+      color: white;
+      // &::placeholder{
+
+      // }
+      text-align: center;
+    }
+    .el-select {
+      &:focus {
+        outline: 0;
+      }
+      text-align: center;
+      .el-input__suffix {
+        display: none;
+      }
+      svg {
+        display: none;
+      }
+      width: 160px;
+    }
+    align-items: center;
+
+    gap: 57px;
+    font-size: 16px;
+    padding: 16px 0px;
+    border-top: 1px solid #dadbdd;
+    .buyer {
+      gap: 15%;
+      align-items: center;
+      min-width: 100px;
+      img {
+        border-radius: 50%;
+        max-width: 35px;
+        max-height: 35px;
+      }
+    }
+    .gig {
+      width: 50.1%;
+    }
+
+    .status {
+      min-width: 110px;
+      display: flex;
+      justify-content: center;
+      color: #fff;
+      font-weight: 500;
+      align-items: center;
+      border-radius: 3px;
+      padding: 8px;
+      cursor: pointer;
+      font-size: 12px;
+    }
+  }
+}
+
+.completed {
+  .el-input__wrapper {
+    background-color: $clr-main;
+  }
+}
+
+.rejected {
+  .el-input__wrapper {
+    background-color: #c43333;
+  }
+}
+.in-progress {
+  .el-input__wrapper {
+    background-color: #ffbe5b;
+  }
+}
+.pending {
+  .el-input__wrapper {
+    background-color: gray;
+  }
+}
+
+.income-order-dashboard {
+  border-radius: 5px;
+  background-color: #fff;
+  border: 1px solid #dadbdd;
+  justify-content: space-evenly;
+  align-items: center;
+  height: 150px;
+  margin: 30px 30px 70px 30px;
+  padding: 30px 0;
+
+  .dashboard-item {
+    border-right: 2px solid #efeff0;
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    max-width: 252px;
+    flex: 1;
+    justify-content: space-between;
+    padding: 0 10px;
+  }
+}

@@ -213,6 +213,10 @@
   }
 }
 
+.long-txt{
+  max-width: em(300px);
+}
+
 .hover-txt {
   transition: all 0.3s;
   color: $clr-main;
