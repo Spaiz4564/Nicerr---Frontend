@@ -1,5 +1,5 @@
 <template>
-  <el-select :class="value" v-model="value" placeholder="Pending">
+  <el-select @change="setStatus" v-model="value" :placeholder="status">
     <el-option 
       v-for="item in options"
       :key="item.value"
@@ -10,12 +10,12 @@
 </template>
 
 <script lang="ts">
-  import { ref } from 'vue'
-
+ 
   export default {
+    props: ['status'],
     data() {
       return {
-        value: ref(''),
+        value: '',
         options: [
           {
             value: 'in-progress',
@@ -34,11 +34,14 @@
             label: 'Pending',
           },
         ],
+
       }
     },
     methods:{
-        wow() {
-            console.log(this.value)
+        setStatus() {
+          // console.log(this.value)
+            this.$emit('status', this.value)
+            // this.$emit('backdrop', this.modalSignIsOpen, 'signIn')
         }
     }
    }
