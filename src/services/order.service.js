@@ -11,22 +11,28 @@ export const ordersService = {
   remove,
   getEmptyOrders,
   addOrdersMsg,
+  getById,
+  saveOrder,
 };
 window.cs = ordersService;
 
-async function query() {
+async function query(
+  filterBy = {
+    title: "",
+  }
+) {
   // return httpService.get(STORAGE_KEY, filterBy)
   var orders = await storageService.query(STORAGE_KEY);
-  if (!orders.length) orders = _createGigs();
-  //   if (filterBy.txt) {
-  //     const regex = new RegExp(filterBy.txt, "i");
-  //     orders = orders.filter(
-  //       (orders) => regex.test(orders.vendor) || regex.test(orders.description)
-  //     );
-  //   }
-  //   if (filterBy.price) {
-  //     orders = orders.filter((orders) => orders.price <= filterBy.price);
-  //   }
+
+  const { ownerId } = filterBy;
+  if (ownerId) {
+    orders = orders.filter((order) => {
+      return order.owner._id === ownerId;
+    });
+  }
+
+  // if (!orders.length && !ownerId) orders = _createOrders()
+
   return orders;
 }
 
@@ -38,7 +44,7 @@ async function save(order) {
   var savedOrder;
   const loggedInUser = userService.getLoggedInUser();
   if (!loggedInUser) {
-    throw new Error(`Purchase failed, cannot find logged in user: ${order}`);
+    return console.log("logged in user");
   } else {
     order.status = "pending";
     order.boughtAt = Date.now();
@@ -47,6 +53,25 @@ async function save(order) {
   }
   console.log("savedOrder");
   return savedOrder;
+}
+
+async function saveOrder(order) {
+  console.log("order", order._id);
+  var savedOrder;
+  console.log("order", order);
+  if (order._id) {
+    savedOrder = await storageService.put(STORAGE_KEY, order);
+  } else {
+    // Later, owner is set by the backend
+    order.owner = userService.getLoggedinUser();
+    // order._id = utilService.makeId()
+    savedOrder = await storageService.post(STORAGE_KEY, order);
+  }
+  return savedOrder;
+}
+
+function getById(orderId) {
+  return storageService.get(STORAGE_KEY, orderId);
 }
 
 async function addOrdersMsg(ordersId, txt) {
@@ -62,7 +87,7 @@ function getEmptyOrders() {
   };
 }
 
-function _createGig(title, images, categories, daysToDeliver, rate) {
+function _createOrder(title, images, categories, daysToDeliver, rate) {
   return {
     title,
     price: utilService.getRandomIntInclusive(5, 200),
@@ -71,12 +96,15 @@ function _createGig(title, images, categories, daysToDeliver, rate) {
     daysToDeliver,
     owner: utilService.getRandomOwners(),
     categories,
+    status: "pending",
+    boughtAt: Date.now(),
+    buyer: userService.getLoggedInUser(),
   };
 }
 
-function _createGigs() {
-  const gigs = [
-    _createGig(
+function _createOrders() {
+  const orders = [
+    _createOrder(
       "I will create soccer pitch for you so you can play soccer with your friends",
       [
         "https://res.cloudinary.com/dzcangpqd/image/upload/v1680008847/user1/img1_hc4qok.png",
@@ -91,7 +119,7 @@ function _createGigs() {
       3,
       2.5
     ),
-    _createGig(
+    _createOrder(
       "I will create logo for your company so you can be more professional",
       [
         "https://res.cloudinary.com/dzcangpqd/image/upload/v1679925741/cld-sample-5.jpg",
@@ -106,7 +134,7 @@ function _createGigs() {
       3,
       4.5
     ),
-    _createGig(
+    _createOrder(
       "I will create website for your company so you can be more professional",
       [
         "https://res.cloudinary.com/dzcangpqd/image/upload/v1679925731/samples/landscapes/landscape-panorama.jpg",
@@ -120,7 +148,7 @@ function _createGigs() {
       3,
       3.5
     ),
-    _createGig(
+    _createOrder(
       "I will create animals for your self so you can be more happy",
       [
         "https://res.cloudinary.com/dzcangpqd/image/upload/v1679925730/samples/animals/kitten-playing.gif",
@@ -135,6 +163,6 @@ function _createGigs() {
       2.5
     ),
   ];
-  storageService.postMany(STORAGE_KEY, gigs);
-  return gigs;
+  storageService.postMany(STORAGE_KEY, orders);
+  return orders;
 }

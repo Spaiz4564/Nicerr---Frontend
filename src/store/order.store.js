@@ -29,6 +29,12 @@ export function getActionAddOrdersMsg(ordersId) {
 export const ordersStore = {
   state: {
     orders: [],
+    filterBy: {
+      minPrice: 0,
+      maxPrice: 1000,
+      title: "",
+      categoryId: "",
+    },
   },
   getters: {
     orders({ orders }) {
@@ -45,21 +51,11 @@ export const ordersStore = {
         return orders.filter((orders) => orders.owner._id === ownerId);
       };
     },
-    filterBy({ filterBy }) {
-      return filterBy;
-    },
-    selectedCategory(state) {
-      return state.selectedCategory;
-    },
   },
   mutations: {
     setOrders(state, { orders }) {
       if (!orders) return;
       state.orders = orders;
-    },
-
-    updateCategory(state, { category }) {
-      state.selectedCategory = category;
     },
 
     addOrders(state, { orders }) {
@@ -151,18 +147,6 @@ export const ordersStore = {
       }
     },
 
-    async updateCategory(context, { category }) {
-      if (!category) {
-        category = null;
-      }
-      try {
-        context.commit({ type: "updateCategory", category });
-      } catch (err) {
-        console.log("Could not update category");
-        throw err;
-      }
-    },
-
     async saveOrders({ commit }, { orders }) {
       try {
         const newOrders = await ordersService.save(orders);
@@ -174,14 +158,14 @@ export const ordersStore = {
       }
     },
 
-    async loadOrderssByOwner(context, { ownerId }) {
-      console.log("loadOrderssByOwner", ownerId);
+    async loadOrdersByOwner(context, { ownerId }) {
+      console.log("loadOrdersByOwner", ownerId);
       try {
         const orders = await ordersService.query({ ownerId });
         console.log("orders", orders);
-        context.commit({ type: "setOrderss", orders });
+        context.commit({ type: "setOrders", orders });
       } catch (err) {
-        console.log("ordersStore: Error in loadOrderss", err);
+        console.log("ordersStore: Error in loadOrders", err);
         throw err;
       }
     },

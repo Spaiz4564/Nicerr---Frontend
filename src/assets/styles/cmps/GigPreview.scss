@@ -3,9 +3,10 @@
   font-family: Macan-Regular;
   border: 1px solid #e4e5e7;
   color: $clr1;
+  transition: all 0.3s;
   &:hover {
     color: $clr-main;
-    transition: all 0.3s;
+  
   }
   .gig-preview-info {
     display: flex;
