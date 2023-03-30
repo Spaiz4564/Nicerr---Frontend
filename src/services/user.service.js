@@ -3,8 +3,8 @@ import { httpService } from './http.service'
 import { store } from '../store/store'
 import {
   socketService,
-  SOCKET_EVENT_USER_UPDATED,
-  SOCKET_EMIT_USER_WATCH,
+  // SOCKET_EVENT_USER_UPDATED,
+  // SOCKET_EMIT_USER_WATCH,
 } from './socket.service'
 import { showSuccessMsg } from './event-bus.service'
 import { storageService } from './async-storage.service'
@@ -150,6 +150,7 @@ function saveLocalUser(user) {
     _id: user._id,
     username: user.username,
     imgUrl: user.imgUrl,
+    isSeller: user.isSeller,
   }
   sessionStorage.setItem(STORAGE_KEY_LOGGEDIN_USER, JSON.stringify(userToSave))
   return userToSave

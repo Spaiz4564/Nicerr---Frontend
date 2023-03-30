@@ -4,17 +4,15 @@ import { userService } from './user.service'
 export const SOCKET_EVENT_ADD_MSG = 'chat-add-msg'
 export const SOCKET_EMIT_SEND_MSG = 'chat-send-msg'
 export const SOCKET_EMIT_SET_TOPIC = 'chat-set-topic'
-export const SOCKET_EMIT_USER_WATCH = 'user-watch'
-export const SOCKET_EVENT_USER_UPDATED = 'user-updated'
-export const SOCKET_EVENT_REVIEW_ADDED = 'review-added'
-export const SOCKET_EVENT_REVIEW_ABOUT_YOU = 'review-about-you'
+export const SOCKET_EVENT_USER_IS_TYPING = 'chat-user-is-typing'
+export const SOCKET_EMIT_USER_IS_TYPING = 'chat-set-user-is-typing'
 
 const SOCKET_EMIT_LOGIN = 'set-user-socket'
 const SOCKET_EMIT_LOGOUT = 'unset-user-socket'
 
-const baseUrl = process.env.NODE_ENV === 'production' ? '' : '//localhost:3030'
-// export const socketService = createSocketService()
-export const socketService = createDummySocketService()
+const baseUrl = process.env.NODE_ENV === 'production' ? '' : '//localhost:3031'
+export const socketService = createSocketService()
+// export const socketService = createDummySocketService()
 
 // for debugging from console
 window.socketService = socketService
@@ -93,7 +91,7 @@ function createDummySocketService() {
         listener(data)
       })
     },
-    // Functions for easy hero-testing of pushed data
+    // Functions for easy testing of pushed data
     testChatMsg() {
       this.emit(SOCKET_EVENT_ADD_MSG, {
         from: 'Someone',

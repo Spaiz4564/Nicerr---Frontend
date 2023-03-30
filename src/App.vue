@@ -12,6 +12,7 @@
   <div class="main-layout">
     <AppHeader :isBackdrop="isBackdrop" @backdrop="backdrop" />
     <RouterView />
+    <UserMsg :msg="adminMsg" />
     <Footer />
     <UserMsg />
   </div>
@@ -24,12 +25,14 @@ import Footer from './cmps/Footer.vue'
 import Login from './views/Login.vue'
 import Join from './cmps/Join.vue'
 import { store } from './store/store'
+import { socketService } from './services/socket.service'
 
 export default {
   data() {
     return {
       isBackdrop: false,
       whatModal: null,
+      adminMsg: '',
     }
   },
   created() {
@@ -37,6 +40,9 @@ export default {
     const user = userService.getLoggedinUser()
     console.log(user)
     if (user) store.commit({ type: 'setLoggedInUser', user })
+  },
+  mounted() {
+    socketService.on('admin-update', this.setAdminMsg)
   },
 
   watch: {
@@ -69,7 +75,13 @@ export default {
     hey() {
       console.log('hey')
     },
+
+    setAdminMsg(msg) {
+      console.log(msg)
+      this.adminMsg = msg
+    },
   },
+
   computed: {
     user() {
       return this.$store.getters.loggedinUser

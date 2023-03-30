@@ -114,13 +114,16 @@ export default {
     removeGig(gigId) {
       console.log('removeGig', gigId)
       this.$store.dispatch({ type: 'removeGig', gigId })
-      this.loadGigsByOwner()
-    },
-    async loadGigsByOwner() {
-      const owner = userService.getLoggedinUser()
-      this.gigs = await gigService.query({ owner: owner._id })
     },
   },
+
+  watch: {
+    //if there is a change in the gigs update the store
+    gigs() {
+      this.$store.commit({ type: 'setGigs', gigs: this.gigs })
+    },
+  },
+
   components: {
     VueperSlides,
     VueperSlide,

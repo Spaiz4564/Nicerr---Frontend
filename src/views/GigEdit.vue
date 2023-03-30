@@ -64,7 +64,8 @@ export default {
   methods: {
     async saveGig() {
       await gigService.save(this.gigToAdd)
-      this.$router.push('/')
+      //push to seller page
+      this.$router.push(`/seller/profile/${this.user._id}`)
     },
   },
   components: {

@@ -103,14 +103,6 @@ export default {
       return svgService.getSvg(iconName)
     },
   },
-  watch: {
-    $store: {
-      handler() {
-        this.loadGigsByOwner()
-      },
-      deep: true,
-    },
-  },
 
   components: {
     GigPreviewSeller,

@@ -23,7 +23,7 @@
         </div>
         <div class="goTo">
           <RouterLink to="/gig">Explore</RouterLink>
-          <a @click.stop="toggleUserModal" v-if="loggedinUser">Orders</a>
+          <a @click.stop="toggleOrderModal" v-if="loggedinUser">Orders</a>
           <div v-if="!seller" class="flex">
             <a @click="goToSellerSignup">Become a Seller</a>
           </div>
@@ -62,28 +62,13 @@
               class="user-modal"
               v-if="modalOpen">
               <div class="modal-tip"></div>
-              <a
-                @click="
-                  goToProfile()
-                  closeUserMenu()
-                "
-                >Profile</a
-              >
+              <a @click="goToProfile(), closeUserMenu()">Profile</a>
               <a
                 v-if="loggedinUser.isSeller"
-                @click="
-                  goToDashboard()
-                  closeUserMenu()
-                "
+                @click="goToDashboard(), closeUserMenu()"
                 >Dashboard</a
               >
-              <a
-                @click="
-                  logout()
-                  closeUserMenu()
-                "
-                >Logout</a
-              >
+              <a @click="logout(), closeUserMenu()">Logout</a>
             </div>
           </div>
         </div>
@@ -97,9 +82,11 @@
 </template>
 <script>
 import { svgService } from '../services/svg.service'
-import { gigService } from '../services/gig.service'
+import { gigService } from '../services/gig.service.local'
 import Login from '../views/Login.vue'
 import NavSuggestions from './NavSuggestions.vue'
+import { ordersService } from '../services/order.service'
+
 export default {
   data() {
     return {
@@ -108,16 +95,19 @@ export default {
       filterBy: {
         title: '',
       },
+      order: null,
       isHome: true,
       isWhite: false,
       isSuggestions: false,
       isPurchase: false,
       categories: gigService.getMarketCategories(),
-      modalOpen: false,
+      modalOpen: this.changeModal(),
       modalSignIsOpen: false,
+      orderModalOpen: false,
       backdrop: document.querySelector('.backdrop'),
     }
   },
+
   computed: {
     loggedinUser() {
       console.log('loggedinUser', this.$store.getters.loggedinUser)
@@ -127,10 +117,25 @@ export default {
       if (!this.loggedinUser) return false
       return this.loggedinUser.isSeller
     },
+
+    orders() {
+      console.log('hi')
+      return this.$store.getters.orders
+    },
   },
   methods: {
     getSvg(iconName) {
       return svgService.getSvg(iconName)
+    },
+    changeModal() {
+      return this.$store.getters.changeModalOpen
+    },
+    async loadOrders() {
+      try {
+        await this.$store.dispatch({ type: 'loadOrders' })
+      } catch (err) {
+        console.log(err)
+      }
     },
     emitFiltered() {
       //push the query to the url
@@ -154,14 +159,12 @@ export default {
       this.$router.push(`/seller/profile/${this.loggedinUser._id}`)
     },
     goToDashboard() {
+      this.$router.push(`/seller/dashboard/${this.loggedinUser._id}`)
       console.log('dashboard')
     },
     filterCategory(categoryId) {
-      this.$router.push({
-        path: '/gig',
-        query: { categoryId },
-      })
-      console.log('categoryId', categoryId)
+      this.$router.push(`/gig/${categoryId}`)
+      this.$store.commit({ type: 'setFilter', filterBy: { categoryId } })
     },
     logout() {
       this.$store.dispatch({ type: 'logout' })
@@ -174,6 +177,9 @@ export default {
     toggleJoinModal() {
       this.modalSignIsOpen = !this.modalSignIsOpen
       this.$emit('backdrop', this.modalSignIsOpen, 'join')
+    },
+    toggleOrderModal() {
+      this.orderModalOpen = !this.orderModalOpen
     },
     closeUserMenu() {
       this.modalOpen = false
@@ -191,6 +197,7 @@ export default {
       this.backdrop.addEventListener('click', this.toggleSignInModal)
     }
     this.handleScroll()
+    this.loadOrders()
   },
   mounted() {
     window.addEventListener('scroll', this.handleScroll)

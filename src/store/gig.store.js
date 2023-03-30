@@ -181,10 +181,8 @@ export const gigStore = {
     },
 
     async loadGigsByOwner(context, { ownerId }) {
-      console.log('loadGigsByOwner', ownerId)
       try {
         const gigs = await gigService.query({ ownerId })
-        console.log('gigs', gigs)
         context.commit({ type: 'setGigs', gigs })
       } catch (err) {
         console.log('gigStore: Error in loadGigs', err)
