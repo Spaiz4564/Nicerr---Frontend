@@ -12,7 +12,7 @@
         <p class="seller-level">Level 3 Seller</p>
         <section>
           <ul class="ul-rate clean-list flex align-center">
-            <li v-for="rate in gig.rate">
+            <li v-for="rate in rates">
               <span className="check gold" v-html="getSvg('starGold')"></span>
             </li>
             <p class="rate">{{ gig.rate }}</p>
@@ -74,7 +74,11 @@ export default {
       return svgService.getSvg(iconName)
     },
   },
-  computed: {},
+  computed: {
+    rates() {
+      return Math.floor(this.gig.rate)
+    }
+  },
   created() { },
   components: {},
 }

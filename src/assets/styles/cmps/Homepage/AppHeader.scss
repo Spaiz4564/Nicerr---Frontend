@@ -9,6 +9,7 @@
     cursor: pointer;
     font-size: 16px;
   }
+
   .join {
     font-size: rem(14px);
     color: $clr-main;
@@ -16,28 +17,33 @@
     border-radius: 4px;
     padding: 5.5px 15.6px;
     border: 1px solid $clr-main;
+
     &:hover {
       background-color: $clr-main;
       color: white;
       border: 1px solid transparent;
     }
   }
+
   .modal {
     z-index: 20;
     position: relative;
+
     .user-modal {
       margin-top: 10px;
-      .modal-tip{
+
+      .modal-tip {
         position: absolute;
-    background-color: #fff;
-    width: 15px;
-    height: 15px;
-    right: 10px;
-    top: -8px;
-    transform: rotate(45deg);
-    border-top: 1px solid #dadbdd;
-    border-left: 1px solid #dadbdd;
+        background-color: #fff;
+        width: 15px;
+        height: 15px;
+        right: 10px;
+        top: -8px;
+        transform: rotate(45deg);
+        border-top: 1px solid #dadbdd;
+        border-left: 1px solid #dadbdd;
       }
+
       width: 120px;
       border-radius: 4px;
       box-shadow: rgba(0, 0, 0, 0.15) 1.95px 1.95px 2.6px;
@@ -49,10 +55,12 @@
       right: 1px;
       border: solid 1px #dadbdd;
       background-color: white;
+
       a {
         &:hover {
           color: $clr-main !important;
         }
+
         font-family: 'Macan-light';
         font-weight: 200;
         color: black !important;
@@ -63,6 +71,7 @@
       background-color: pink;
     }
   }
+
   display: flex;
   gap: 23px;
   align-items: center;
@@ -74,10 +83,13 @@
     font-size: 2.7rem;
     color: $clr-main;
   }
+
   cursor: pointer;
+
   span {
     color: $clr-main;
   }
+
   color: $clr4;
   font-size: 2rem;
   font-family: 'Macan-Bold';
@@ -95,14 +107,17 @@
   transition: all 0.3s;
   border-bottom: 1px solid #e4e5e7 !important;
   border-top: 1px solid #e4e5e7 !important;
+
   .suggestions {
     grid-column: 2 / 3;
     padding: 7px 0;
   }
+
   ul {
     grid-column: 2 / 3;
     margin: 0;
     padding: 0;
+
     li {
       position: relative;
       color: $clr02;
@@ -122,6 +137,7 @@
         z-index: 1;
       }
     }
+
     list-style: none;
     justify-content: space-between;
     display: flex;
@@ -133,6 +149,7 @@
   span {
     cursor: pointer;
   }
+
   display: flex;
   justify-content: space-between;
   align-items: center;
@@ -142,6 +159,7 @@
   border: 0;
   box-shadow: 0 0 0 0.7px #b4b4b4;
   padding-inline-start: 10px;
+
   .search-input {
     &::placeholder {
       color: $clr01;
@@ -149,6 +167,7 @@
       font-weight: 500;
       font-size: 16px;
     }
+
     width: 100%;
     height: 100%;
     outline: none;
@@ -156,6 +175,7 @@
     padding-inline-start: 5px;
     font-size: 0.875rem;
   }
+
   .icon-search {
     justify-content: center;
     align-items: center;
@@ -167,6 +187,7 @@
     height: fit-content;
     height: inherit;
     width: 8.5%;
+
     svg {
       fill: white;
       height: 16px;
@@ -184,6 +205,7 @@
 
 .headerHome {
   z-index: 80;
+
   &.nav-suggestions {
     display: none;
     background-color: transparent;
@@ -196,9 +218,11 @@
     top: 80px;
     z-index: 50;
   }
+
   border: 0;
   position: fixed;
   background-color: transparent;
+
   a {
     color: white !important;
   }
@@ -224,9 +248,11 @@
   }
 
   background-color: white;
+
   .logo {
     color: $clr4;
   }
+
   .goTo {
     a {
       color: $clr3 !important;
@@ -238,6 +264,7 @@
       border-radius: 4px;
       padding: 5px 15px;
       border: 1px solid $clr-main;
+
       &:hover {
         background-color: $clr-main;
         color: white !important;
@@ -246,10 +273,46 @@
     }
   }
 }
+
 .user-img {
   cursor: pointer;
   width: em(32px);
   height: em(32px);
   border-radius: 50%;
   object-fit: cover;
+}
+
+.order-modal {
+  width: 420px;
+  position: absolute;
+  background-color: #fff;
+  top: 50px;
+  right: 300px;
+  z-index: 2000;
+  border: 1px solid black;
+  font-size: 14px;
+  padding: 14px;
+  color: $clr4;
+
+  .img-container {
+    width: 60px;
+    margin-right: em(20px);
+  }
+}
+
+.order-detail {
+  height: 75px;
+  border-bottom: 1px solid $clr9;
+
+  .desc {
+    line-height: em(16px);
+
+    .order {
+      margin-top: em(12px);
+    }
+
+    .name {
+      color: $clr2;
+    }
+  }
 }

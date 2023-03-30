@@ -107,6 +107,7 @@
 import { svgService } from '../services/svg.service'
 import { gigService } from '../services/gig.service.local'
 import { pushScopeId } from 'vue'
+import { ordersService } from '../services/order.service'
 
 export default {
     props: [],
@@ -121,8 +122,8 @@ export default {
             return svgService.getSvg(iconName)
         },
         handlePurchase() {
-            this.$router.push(`/`)
-
+            ordersService.save(this.gig)
+            // this.$route.pus()
         }
     },
     computed: {
