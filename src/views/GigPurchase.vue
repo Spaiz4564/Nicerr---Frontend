@@ -123,7 +123,6 @@ export default {
         },
         handlePurchase() {
             ordersService.save(this.gig)
-            // this.$route.pus()
         }
     },
     computed: {

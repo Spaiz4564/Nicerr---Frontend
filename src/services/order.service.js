@@ -3,7 +3,7 @@ import { httpService } from "./http.service.js";
 import { utilService } from "./util.service.js";
 import { userService } from "./user.service.js";
 
-const STORAGE_KEY = "orders";
+const STORAGE_KEY = "order";
 
 export const ordersService = {
   query,
@@ -35,19 +35,18 @@ async function remove(orderId) {
   await storageService.remove(STORAGE_KEY, orderId);
   //   return httpService.delete(`orders/${ordersId}`);
 }
-async function save(orders) {
+async function save(order) {
   var savedOrder;
-  //   if (orders._id) {
-  //     savedOrders = await storageService.put(STORAGE_KEY, orders);
-  //     // savedOrders = await httpService.put(`orders/${orders._id}`, orders);
-  //   } else {
-  // Later, owner is set by the backend
-  // orders.owner = userService.getLoggedinUser();
-  savedOrder = await storageService.post(STORAGE_KEY, orders);
-  // savedOrders = await httpService.post("orders", orders);
-  //   }
+  const loggedInUser = userService.getLoggedInUser();
+  if (!loggedInUser) {
+    return console.log("logged in user");
+  } else {
+    order.status = "pending";
+    order.boughtAt = Date.now();
+    order.buyer = loggedInUser;
+    savedOrder = await storageService.post(STORAGE_KEY, order);
+  }
   console.log("savedOrder");
-
   return savedOrder;
 }
 
