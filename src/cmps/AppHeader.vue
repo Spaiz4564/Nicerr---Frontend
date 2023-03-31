@@ -65,28 +65,13 @@
               class="user-modal"
               v-if="modalOpen">
               <div class="modal-tip"></div>
-              <a
-                @click="
-                  goToProfile()
-                  closeUserMenu()
-                "
-                >Profile</a
-              >
+              <a @click="goToProfile(), closeUserMenu()">Profile</a>
               <a
                 v-if="loggedinUser.isSeller"
-                @click="
-                  goToDashboard()
-                  closeUserMenu()
-                "
+                @click="goToDashboard(), closeUserMenu()"
                 >Dashboard</a
               >
-              <a
-                @click="
-                  logout()
-                  closeUserMenu()
-                "
-                >Logout</a
-              >
+              <a @click="logout(), closeUserMenu()">Logout</a>
             </div>
           </div>
         </div>
@@ -135,9 +120,6 @@ export default {
     seller() {
       if (!this.loggedinUser) return false
       return this.loggedinUser.isSeller
-    },
-    orders() {
-      return this.orders
     },
   },
   methods: {

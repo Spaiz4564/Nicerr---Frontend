@@ -5,7 +5,7 @@
       :class="isBackdrop ? 'showBackdrop' : 'hideBackDrop'"
       class="backdrop full"></div>
     <div class="modal-sign" v-if="isBackdrop">
-      <Login v-clickOutsideDirective="hey" v-if="whatModal === 'signIn'" />
+      <Login v-if="whatModal === 'signIn'" />
       <Join v-clickOutsideDirective="hey" v-if="whatModal === 'join'" />
     </div>
   </section>
@@ -72,13 +72,12 @@ export default {
     closeModal() {
       this.isBackdrop = false
     },
-    hey() {
-      console.log('hey')
-    },
-
     setAdminMsg(msg) {
       console.log(msg)
       this.adminMsg = msg
+      setTimeout(() => {
+        this.adminMsg = ''
+      }, 3000)
     },
   },
 

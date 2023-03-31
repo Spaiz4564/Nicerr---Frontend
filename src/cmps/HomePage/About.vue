@@ -46,7 +46,9 @@
           </li>
         </ul>
       </div>
-      <div class="teaser-img"></div>
+      <div class="teaser-img">
+        <img src="../../assets/images/About/Video Teaser.png" alt="" />
+      </div>
     </div>
   </div>
 </template>
