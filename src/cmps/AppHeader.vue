@@ -121,6 +121,9 @@ export default {
       if (!this.loggedinUser) return false
       return this.loggedinUser.isSeller
     },
+    // orders() {
+    //   return this.orders
+    // }
   },
   methods: {
     async loadOrdersByOwner() {
