@@ -3,19 +3,19 @@
     <div class="trusted-by">
       <div class="imgs">
         <span>Trusted by:</span>
-        <img v-for="img in trustedBy" :src="imgUrl(img)"  alt="">
+        <img v-for="img in trustedBy" :src="imgUrl(img)" alt="" />
       </div>
     </div>
   </section>
 </template>
 
 <script lang="ts">
-import { gigService } from '../../services/gig.service.local';
+import { gigService } from '../../services/gig.service'
 export default {
   name: 'Trusted By',
   data() {
     return {
-      trustedBy: gigService.getTrustedBy() 
+      trustedBy: gigService.getTrustedBy(),
     }
   },
   methods: {

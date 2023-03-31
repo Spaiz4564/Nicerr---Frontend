@@ -25,14 +25,14 @@ function getRandomOwners() {
   const owners = [
     {
       _id: 'u101',
-      fullname: 'vividstore',
+      username: 'vividstore',
       imgUrl:
         'https://res.cloudinary.com/dzcangpqd/image/upload/v1680026371/7e725954-a185-416c-9d73-cae11b4ec8ed_imsvrp.webp',
       level: 4,
     },
     {
       _id: 'u102',
-      fullname: 'frederickkessie',
+      username: 'frederickkessie',
       imgUrl:
         'https://res.cloudinary.com/dzcangpqd/image/upload/v1680026375/ig7e8qcr6ozvri62f4or_zharyr.jpg',
       level: 2,
@@ -40,7 +40,7 @@ function getRandomOwners() {
     },
     {
       _id: 'u103',
-      fullname: 'winny_writer',
+      username: 'winny_writer',
       imgUrl:
         'https://res.cloudinary.com/dzcangpqd/image/upload/v1680026368/3688cc9a-f364-40dc-a53a-b5d64cf5d9a0_xbhwtc.webp',
       level: 5,
@@ -48,7 +48,7 @@ function getRandomOwners() {
     },
     {
       _id: 'u104',
-      fullname: 'rashin07', 
+      username: 'rashin07', 
       imgUrl:
         'https://res.cloudinary.com/dzcangpqd/image/upload/v1680026368/petval-2_j7jzcv.webp',
       level: 1,
@@ -56,7 +56,7 @@ function getRandomOwners() {
     },
     {
       _id: 'u105',
-      fullname: 'usamatanveerw4',
+      username: 'usamatanveerw4',
       imgUrl:
         'https://res.cloudinary.com/dzcangpqd/image/upload/v1680024290/1C0FFFF2-4EBD-4DB8-A69A-6CAC1E0FD058_rtawds.webp',
       level: 2,

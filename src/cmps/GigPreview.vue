@@ -23,7 +23,7 @@
         </div>
         <section>
           <div class="seller-info">
-            <h4 class="seller-name">{{ gig.owner.fullname }}</h4>
+            <h4 class="seller-name">{{ gig.owner.username }}</h4>
             <span class="seller-rate">Level {{ gig.owner.level }} Seller</span>
           </div>
         </section>
@@ -70,7 +70,7 @@
 <script>
 import { svgService } from '../services/svg.service'
 import { VueperSlides, VueperSlide } from 'vueperslides'
-import { gigService } from '../services/gig.service.local'
+import { gigService } from '../services/gig.service'
 import 'vueperslides/dist/vueperslides.css'
 import LongTxt from '../services/LongTxt.vue'
 export default {
@@ -114,13 +114,16 @@ export default {
     removeGig(gigId) {
       console.log('removeGig', gigId)
       this.$store.dispatch({ type: 'removeGig', gigId })
-      this.loadGigsByOwner()
-    },
-    async loadGigsByOwner() {
-      const owner = userService.getLoggedinUser()
-      this.gigs = await gigService.query({ owner: owner._id })
     },
   },
+
+  watch: {
+    //if there is a change in the gigs update the store
+    gigs() {
+      this.$store.commit({ type: 'setGigs', gigs: this.gigs })
+    },
+  },
+
   components: {
     VueperSlides,
     VueperSlide,

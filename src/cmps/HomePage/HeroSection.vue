@@ -37,10 +37,10 @@
         <div class="header-suggestions">
           <span>Popular:</span>
           <ul>
-            <li ref="category"
-            v-for="(category, index) in popularCategories"
+            <li
+              ref="category"
+              v-for="(category, index) in popularCategories"
               @click="filterCategory(category.toLocaleLowerCase(), index)">
-      
               {{ category }}
             </li>
           </ul>
@@ -51,7 +51,7 @@
 </template>
 <script>
 import { svgService } from '../../services/svg.service'
-import { gigService } from '../../services/gig.service.local'
+import { gigService } from '../../services/gig.service'
 export default {
   name: 'Hero Section',
   data() {
@@ -105,7 +105,10 @@ export default {
       return new URL(img, import.meta.url).href
     },
     filterCategory(categoryId, index) {
-      this.$store.dispatch({ type: 'updateCategory', category: this.$refs.category[index].innerText })
+      this.$store.dispatch({
+        type: 'updateCategory',
+        category: this.$refs.category[index].innerText,
+      })
       this.$router.push({ path: '/gig', query: { categoryId } })
     },
     filterByTitle() {

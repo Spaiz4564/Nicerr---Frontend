@@ -153,7 +153,6 @@
     flex-direction: column;
   }
   grid-column: 2/ 3;
-  display: flex;
   gap: 13%;
 }
 .gigs-list-seller {
@@ -162,6 +161,15 @@
 
   gap: 20px;
   padding: 0;
+}
+
+.gigs-not-seller{
+  .seller{
+    max-width: 500px;
+    width: 40%;
+  }
+  justify-content: center;
+
 }
 
 .gig-preview-seller {

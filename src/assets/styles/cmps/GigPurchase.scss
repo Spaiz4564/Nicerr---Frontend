@@ -1,4 +1,5 @@
 .app-container {
+    min-height: 100vh;
     grid-column: 2;
     font-size: rem(16px);
 
@@ -101,6 +102,7 @@
 
         .package-container {
             max-width: em(345px);
+            max-height: em(600px);
             flex: 1;
             border-radius: em(3px);
             border: 1px solid $clr9;

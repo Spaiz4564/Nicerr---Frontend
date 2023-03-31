@@ -1,13 +1,22 @@
 <template>
   <section class="main-header full">
-    <header class="main-layout" :class="[isHome ? 'headerHome' : '', isWhite ? 'homeScroll' : '']" ref="header">
+    <header
+      class="main-layout"
+      :class="[isHome ? 'headerHome' : '', isWhite ? 'homeScroll' : '']"
+      ref="header">
       <nav>
         <div class="logo-search">
           <RouterLink to="/">
             <h1 class="logo">Nicerr</h1>
           </RouterLink>
-          <form @submit.prevent="emitFiltered" v-if="!isHome || isSuggestions" class="search-bar">
-            <input class="search-input" type="text" placeholder="What service are you looking for today?"
+          <form
+            @submit.prevent="emitFiltered"
+            v-if="!isHome || isSuggestions"
+            class="search-bar">
+            <input
+              class="search-input"
+              type="text"
+              placeholder="What service are you looking for today?"
               v-model="filterBy.title" />
             <span class="icon-search" v-html="getSvg('search')"></span>
           </form>
@@ -19,36 +28,59 @@
             <a @click="goToSellerSignup">Become a Seller</a>
           </div>
           <a v-if="!loggedinUser" @click.stop="toggleSignInModal">Sign In</a>
-          <a class="join" v-if="!loggedinUser" @click.stop="toggleJoinModal">Join</a>
+          <a class="join" v-if="!loggedinUser" @click.stop="toggleJoinModal"
+            >Join</a
+          >
           <div class="modal" v-if="loggedinUser">
-            <img class="user-img" :src="loggedinUser.imgUrl" alt="user-img" @click.stop="toggleUserModal" />
-            <div v-clickOutsideDirective="closeUserMenu" class="user-modal" v-if="modalOpen">
+            <div
+              v-clickOutsideDirective="toggleOrderModal"
+              class="order-modal"
+              v-if="orderModalOpen">
               <div class="modal-tip"></div>
-              <a @click="goToProfile(); closeUserMenu()">Profile</a>
-              <a v-if="loggedinUser.isSeller" @click="goToDashboard(); closeUserMenu()">Dashboard</a>
-              <a @click="logout(); closeUserMenu()">Logout</a>
-            </div>
-          </div>
-          <div class="order-modal" v-if="orderModalOpen">
-            <ul class="clean-list">
-              <li v-for="order in orders" class="order-detail flex align-center">
-                <div class="img-container">
-                  <img :src=order.owner.imgUrl alt="">
-                </div>
-                <div class="desc">
-                  <p>{{ order.title }}</p>
-                  <div class="order flex">
-                    <p class="name">by {{ order.owner.fullname }}</p>
-                    <p> {{ order.status || 'Pending' }}</p>
+              <ul class="clean-list">
+                <li
+                  v-for="order in orders"
+                  class="order-detail flex align-center">
+                  <div class="img-container">
+                    <img :src="order.owner.imgUrl" alt="" />
                   </div>
-                </div>
-              </li>
-            </ul>
+                  <div class="desc">
+                    <p>{{ order.title }}</p>
+                    <div class="order flex">
+                      <p class="name">by {{ order.owner.fullname }}</p>
+                      <p>{{ order.status || 'Pending' }}</p>
+                    </div>
+                  </div>
+                </li>
+              </ul>
+            </div>
+            <img
+              class="user-img"
+              :src="loggedinUser.imgUrl"
+              alt="user-img"
+              @click.stop="toggleUserModal" />
+
+            <div
+              v-clickOutsideDirective="closeUserMenu"
+              class="user-modal"
+              v-if="modalOpen">
+              <div class="modal-tip"></div>
+              <a @click="goToProfile(), closeUserMenu()">Profile</a>
+              <a
+                v-if="loggedinUser.isSeller"
+                @click="goToDashboard(), closeUserMenu()"
+                >Dashboard</a
+              >
+              <a @click="logout(), closeUserMenu()">Logout</a>
+            </div>
           </div>
         </div>
       </nav>
     </header>
-    <NavSuggestions :isWhite="isWhite" :isSuggestions="isSuggestions" :isHome="isHome" />
+    <NavSuggestions
+      :isWhite="isWhite"
+      :isSuggestions="isSuggestions"
+      :isHome="isHome" />
   </section>
 </template>
 <script>
@@ -76,6 +108,7 @@ export default {
       modalSignIsOpen: false,
       orderModalOpen: false,
       backdrop: document.querySelector('.backdrop'),
+      orders: null,
     }
   },
 
@@ -88,13 +121,18 @@ export default {
       if (!this.loggedinUser) return false
       return this.loggedinUser.isSeller
     },
-
-    orders() {
-      console.log('hi')
-      return this.$store.getters.orders
-    },
+    // orders() {
+    //   return this.orders
+    // }
   },
   methods: {
+    async loadOrdersByOwner() {
+      const buyer = userService.getLoggedinUser()
+      if (buyer) {
+        this.orders = await ordersService.query({ buyerId: buyer._id })
+      }
+    },
+
     getSvg(iconName) {
       return svgService.getSvg(iconName)
     },
@@ -106,7 +144,6 @@ export default {
         await this.$store.dispatch({ type: 'loadOrders' })
       } catch (err) {
         console.log(err)
-
       }
     },
     emitFiltered() {
@@ -156,6 +193,12 @@ export default {
     closeUserMenu() {
       this.modalOpen = false
     },
+    checkIfLoggedIn() {
+      const user = this.loggedinUser
+      if (user) {
+        this.loadOrdersByOwner()
+      }
+    },
   },
   watch: {
     $route(to) {
@@ -169,7 +212,8 @@ export default {
       this.backdrop.addEventListener('click', this.toggleSignInModal)
     }
     this.handleScroll()
-    this.loadOrders()
+    this.loadOrdersByOwner()
+    this.checkIfLoggedIn()
   },
   mounted() {
     window.addEventListener('scroll', this.handleScroll)

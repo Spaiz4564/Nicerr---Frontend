@@ -1,20 +1,23 @@
 <template>
   <section class="gig-details-main main-layout full" v-if="gig">
     <div class="details-nav main-layout full">
-      <ul class="details-router clean-list flex">
-        <li v-for="route in router" class="detail-router" @click="navigateTo(`${route}`)">{{ route }} </li>
+      <ul class="details-router flex">
+        <li
+          v-for="route in router"
+          class="detail-router"
+          @click="navigateTo(`${route}`)">
+          {{ route }}
+        </li>
       </ul>
     </div>
     <main id="OverView" class="gig-details flex">
       <div class="gig-user-info flex column">
-        <Overview :gig="gig" />
-        <Description :gig="gig" />
-        <div>
-          <AboutSeller :gig="gig" />
-        </div>
-        <Reviews :gig="gig" />
+        <Overview id="OverView" :gig="gig" />
+        <Description id="Description" :gig="gig" />
+        <AboutSeller id="AboutSeller" :gig="gig" />
+        <Reviews id="Reviews" :gig="gig" />
       </div>
-      <div @notLoggedInUser="this.$emit('notLoggedInUser')" class="gig-purchase" v-if="gig">
+      <div class="gig-purchase" v-if="gig">
         <div class="info">
           <section class="header">
             <h3 class="flex space-between align-center">
@@ -24,7 +27,8 @@
               </div>
             </h3>
             <p class="gig-purchase-txt">
-              This package is great if you want to try, good quality logo with source files (PSD files)
+              This package is great if you want to try, good quality logo with
+              source files (PSD files)
             </p>
           </section>
           <article>
@@ -40,26 +44,36 @@
             </div>
             <ul class="features">
               <li class="flex align-center">
-                <span className="check fillGreen" v-html="getSvg('checkSign')"></span>
+                <span
+                  className="check fillGreen"
+                  v-html="getSvg('checkSign')"></span>
                 <p>1 concept included</p>
               </li>
               <li class="flex align-center">
-                <span className="check fill" v-html="getSvg('checkSign')"></span>
+                <span
+                  className="check fill"
+                  v-html="getSvg('checkSign')"></span>
 
                 <p>Logo transparency</p>
               </li>
               <li class="flex align-center">
-                <span className="check fillGreen" v-html="getSvg('checkSign')"></span>
+                <span
+                  className="check fillGreen"
+                  v-html="getSvg('checkSign')"></span>
 
                 <p>Vector File</p>
               </li>
               <li class="flex align-center">
-                <span className="check fill" v-html="getSvg('checkSign')"></span>
+                <span
+                  className="check fill"
+                  v-html="getSvg('checkSign')"></span>
 
                 <p>Printable file</p>
               </li>
               <li class="flex align-center">
-                <span className="check fillGreen" v-html="getSvg('checkSign')"></span>
+                <span
+                  className="check fillGreen"
+                  v-html="getSvg('checkSign')"></span>
 
                 <p>Include source file</p>
               </li>
@@ -76,28 +90,21 @@
 </template>
 
 <script>
-import { gigService } from '../services/gig.service.local'
+import { gigService } from '../services/gig.service'
 
+import AboutSeller from '../cmps/details/AboutSeller.vue'
+import Reviews from '../cmps/details/Reviews.vue'
+import Description from '../cmps/details/Description.vue'
+import Overview from '../cmps/details/Overview.vue'
 
-
-import AboutSeller from '../cmps/details/AboutSeller.vue';
-import Reviews from '../cmps/details/Reviews.vue';
-import Description from '../cmps/details/Description.vue';
-import Overview from '../cmps/details/Overview.vue';
-
-import { svgService } from '../services/svg.service';
+import { svgService } from '../services/svg.service'
 
 export default {
   name: 'Gig-Details',
   data() {
     return {
       gig: null,
-      router: [
-        "OverView",
-        "Description",
-        'AboutSeller',
-        "Reviews"
-      ]
+      router: ['OverView', 'Description', 'AboutSeller', 'Reviews'],
     }
   },
   methods: {
@@ -106,7 +113,7 @@ export default {
       this.$router.push({ hash: `${id}` })
       this.$nextTick(() => {
         const el = document.getElementById(`${id}`)
-        console.log(el);
+        console.log(el)
         if (el) {
           el.scrollIntoView((scrollY = 20))
         }
@@ -117,7 +124,8 @@ export default {
     },
     HandlePurchase(gigId) {
       this.$router.push(`/purchase/${gigId}`)
-    }, imgUrl(img) {
+    },
+    imgUrl(img) {
       return new URL(img, import.meta.url).href
     },
   },
@@ -132,7 +140,7 @@ export default {
     AboutSeller,
     Overview,
     Description,
-    Reviews
+    Reviews,
   },
 }
 </script>

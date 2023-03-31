@@ -88,7 +88,7 @@ export default {
           type: 'updateUsers',
           user: { ...this.userToEdit, isSeller: true },
         })
-      this.$router.push(`/`)
+      this.$router.push('/')
     },
     imgUrl(url) {
       console.log(url)

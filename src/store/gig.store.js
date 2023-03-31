@@ -1,4 +1,4 @@
-import { gigService } from '../services/gig.service.local'
+import { gigService } from '../services/gig.service'
 // import { gigService } from '../services/gig.service'
 
 export function getActionRemoveGig(gigId) {
@@ -36,7 +36,7 @@ export const gigStore = {
       title: '',
       categoryId: '',
     },
-    selectedCategory: null
+    selectedCategory: null,
   },
   getters: {
     gigs({ gigs }) {
@@ -50,7 +50,6 @@ export const gigStore = {
 
     gigsByOwner({ gigs }) {
       return (ownerId) => {
-        console.log('gigsByOwner', ownerId)
         return gigs.filter((gig) => gig.owner._id === ownerId)
       }
     },
@@ -60,7 +59,7 @@ export const gigStore = {
     },
     selectedCategory(state) {
       return state.selectedCategory
-    }
+    },
   },
   mutations: {
     setGigs(state, { gigs }) {
@@ -68,7 +67,7 @@ export const gigStore = {
       state.gigs = gigs
     },
 
-    updateCategory(state, {category}) {
+    updateCategory(state, { category }) {
       state.selectedCategory = category
     },
 
@@ -122,6 +121,7 @@ export const gigStore = {
     async loadGigs(context, { filterBy, sortBy }) {
       try {
         const gigs = await gigService.query(filterBy, sortBy)
+        console.log('gigs', gigs)
         context.commit({ type: 'setGigs', gigs })
       } catch (err) {
         console.log('gigStore: Error in loadGigs', err)
@@ -157,14 +157,14 @@ export const gigStore = {
       }
     },
 
-    async updateCategory(context, {category}) {
-      if(!category) {
+    async updateCategory(context, { category }) {
+      if (!category) {
         category = null
       }
-      try{
-        context.commit({type: 'updateCategory', category})
-      } catch(err) {
-        console.log("Could not update category")
+      try {
+        context.commit({ type: 'updateCategory', category })
+      } catch (err) {
+        console.log('Could not update category')
         throw err
       }
     },
@@ -181,10 +181,8 @@ export const gigStore = {
     },
 
     async loadGigsByOwner(context, { ownerId }) {
-      console.log('loadGigsByOwner', ownerId)
       try {
         const gigs = await gigService.query({ ownerId })
-        console.log('gigs', gigs)
         context.commit({ type: 'setGigs', gigs })
       } catch (err) {
         console.log('gigStore: Error in loadGigs', err)

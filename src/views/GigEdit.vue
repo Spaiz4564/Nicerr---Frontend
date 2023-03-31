@@ -39,38 +39,35 @@
 </template>
 
 <script>
-import { gigService } from '../services/gig.service.local'
+import { gigService } from '../services/gig.service'
 import ImgUploader from '../cmps/ImgUploader.vue'
 export default {
   name: ' GigEdit',
   data() {
     return {
       gigToAdd: null,
+      user: null,
     }
   },
   async created() {
+    this.user = await this.$store.dispatch({ type: 'loadUser' })
     const gigId = this.$route.params.gigId
     if (gigId) {
-      this.gigToAdd = await gigService.getById(gigId)
+      const gig = await gigService.getById(gigId)
+      this.gigToAdd = gig
     } else {
       this.gigToAdd = gigService.getEmptyGig()
-      console.log('empty', this.gigToAdd)
+      this.gigToAdd.owner = this.user
     }
+    console.log(this.gigToAdd)
   },
   methods: {
-    saveGig() {
-      if (this.gigToAdd._id) {
-        console.log('update')
-        this.$store.dispatch({ type: 'updateGig', gig: this.gigToAdd })
-      } else {
-        console.log('add')
-        this.gigToAdd.owner = this.$store.getters.loggedinUser
-        this.$store.dispatch({ type: 'addGig', gig: this.gigToAdd })
-      }
-      this.$router.push(`/seller/profile/${this.gigToAdd.owner._id}`)
+    async saveGig() {
+      await gigService.save(this.gigToAdd)
+      //push to seller page
+      this.$router.push(`/seller/profile/${this.user._id}`)
     },
   },
-
   components: {
     ImgUploader,
   },
