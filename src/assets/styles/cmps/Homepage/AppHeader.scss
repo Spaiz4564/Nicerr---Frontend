@@ -80,8 +80,6 @@
         color: black !important;
       }
     }
-
-
   }
 
   display: flex;
@@ -214,7 +212,6 @@
   left: 50%;
   translate: -50% -50%;
 }
-
 
 .logo-search {
   display: flex;
@@ -365,7 +362,6 @@
   margin: 0;
 }
 
-
 .order-detail {
   padding: 16px 16px;
 
@@ -381,7 +377,6 @@
   border-bottom: 1px solid $clr9;
 
   .desc {
-
     span {
       font-size: 14px;
       color: $clr4;
@@ -391,9 +386,6 @@
       font-size: 13px;
       color: $clr2;
     }
-
-
-
 
     .order {
       .Completed {

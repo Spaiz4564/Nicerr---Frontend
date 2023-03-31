@@ -105,12 +105,17 @@
       </section>
     </section>
   </section>
+  <div v-if="openSignUp">
+    <Join />
+  </div>
 </template>
 
 <script>
 import { svgService } from '../services/svg.service'
 import { gigService } from '../services/gig.service'
 import { pushScopeId } from 'vue'
+import { ordersService } from '../services/order.service'
+import Join from '../cmps/Join.vue'
 
 export default {
   props: [],
@@ -118,14 +123,28 @@ export default {
   data() {
     return {
       gig: null,
+      openSignUp: false,
     }
   },
   methods: {
     getSvg(iconName) {
       return svgService.getSvg(iconName)
     },
-    handlePurchase() {
-
+    async handlePurchase() {
+      const { id } = this.$route.params
+      const { _id } = this.loggedinUser
+      const order = {
+        gigId: id,
+        buyerId: _id,
+        sellerId: this.gig.owner._id,
+        price: this.gig.price,
+        status: 'pending',
+        imgUrl: this.gig.images[0],
+        title: this.gig.title,
+      }
+      console.log(order)
+      await ordersService.save(order)
+      this.$router.push(`/`)
     },
     HandleLogoClick() {
       this.$router.push(`/`)
@@ -135,14 +154,22 @@ export default {
     handlePrice() {
       return this.gig.price + 34.55
     },
+    loggedinUser() {
+      return this.$store.getters.loggedinUser
+    },
   },
-  created() {
+  async created() {
     const { id } = this.$route.params
     gigService.getById(id).then((gig) => {
       this.gig = gig
     })
+
+    const loggedinUser = this.$store.getters.loggedinUser
+    console.log(loggedinUser)
   },
-  components: {},
+  components: {
+    Join,
+  },
 }
 </script>
 

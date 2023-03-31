@@ -26,13 +26,14 @@
               <ul class="clean-list-order">
                 <li v-for="order in   orders" class="order-detail flex align-center">
                   <div class="img-container">
-                    <img :src="order.owner.imgUrl" alt="" />
+                    <img :src="order.imgUrl" alt="" />
                   </div>
                   <div class="desc">
-                    <p>{{ order.title }}</p>
+                    <span>{{ order.title }}</span>
                     <div class="order flex">
-                      <p class="name">by {{ order.owner.fullname }}</p>
-                      <p>{{ order.status || 'Pending' }}</p>
+                      <p :class="order.status">
+                        {{ order.status || 'Pending' }}
+                      </p>
                     </div>
                   </div>
                 </li>
@@ -78,7 +79,6 @@ export default {
       modalSignIsOpen: false,
       orderModalOpen: false,
       backdrop: document.querySelector('.backdrop'),
-      orders: null,
     }
   },
 
@@ -91,30 +91,16 @@ export default {
       if (!this.loggedinUser) return false
       return this.loggedinUser.isSeller
     },
-    // orders() {
-    //   return this.orders
-    // }
+    orders() {
+      return this.$store.getters.orders
+    },
   },
   methods: {
-    async loadOrdersByOwner() {
-      const buyer = userService.getLoggedinUser()
-      if (buyer) {
-        this.orders = await ordersService.query({ buyerId: buyer._id })
-      }
-    },
-
     getSvg(iconName) {
       return svgService.getSvg(iconName)
     },
     changeModal() {
       return this.$store.getters.changeModalOpen
-    },
-    async loadOrders() {
-      try {
-        await this.$store.dispatch({ type: 'loadOrders' })
-      } catch (err) {
-        console.log(err)
-      }
     },
     emitFiltered() {
       //push the query to the url
@@ -125,6 +111,13 @@ export default {
     },
     goToSellerSignup() {
       this.$router.push('/seller-signup')
+    },
+    async loadOrdersByOwner() {
+      try {
+        await this.$store.dispatch({ type: 'loadOrdersByOwner' })
+      } catch (err) {
+        console.log(err)
+      }
     },
     handleScroll() {
       const scrollY = window.scrollY
