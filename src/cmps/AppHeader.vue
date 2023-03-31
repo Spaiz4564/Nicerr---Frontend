@@ -22,7 +22,6 @@
           <a class="join" v-if="!loggedinUser" @click.stop="toggleJoinModal">Join</a>
           <div class="modal" v-if="loggedinUser">
             <img class="user-img" :src="loggedinUser.imgUrl" alt="user-img" @click.stop="toggleUserModal" />
-
             <div v-clickOutsideDirective="closeUserMenu" class="user-modal" v-if="modalOpen">
               <div class="modal-tip"></div>
               <a @click="goToProfile(); closeUserMenu()">Profile</a>

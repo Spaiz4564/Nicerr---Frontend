@@ -283,14 +283,14 @@
 }
 
 .order-modal {
-  position: relative;
-  z-index: 200;
+  position: fixed;
+  z-index: 2000;
+  top: 80px;
   max-width: em(480px);
   max-height: em(669px);
   background-color: #fff;
   border-radius: 5px;
-  top: 50px;
-  right: 300px;
+
 
   border: 1px solid $clr9;
   font-size: 14px;
