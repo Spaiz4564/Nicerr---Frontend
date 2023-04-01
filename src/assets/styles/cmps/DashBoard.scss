@@ -109,9 +109,9 @@
     
     .el-input__inner {
       color: white;
-      // &::placeholder{
-
-      // }
+      &::placeholder{
+        color: white;
+      }
       text-align: center;
     }
     .el-select {
@@ -199,9 +199,9 @@
 }
 .Pending {
   .el-input__wrapper {
-    background-color: white;
+    background-color: rgb(141, 141, 141);
     input{
-      color: --el-input-border-color,var(--el-border-color) !important;
+      color: white !important;
     }
   }
 }
