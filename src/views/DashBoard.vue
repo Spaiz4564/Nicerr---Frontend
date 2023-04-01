@@ -39,42 +39,6 @@
           <h4 class="head-total">TOTAL</h4>
           <h4 class="head-status">STATUS</h4>
         </div>
-        <div class="table-entity flex">
-          <div class="buyer flex">
-            <img src="../assets/images/About/default.png" alt="" />
-            <p>fred</p>
-          </div>
-          <span class="gig">I will write you an attractive instagram bio</span>
-          <span class="date">21.3.2023</span>
-          <span class="total">US$50</span>
-          <Status />
-        </div>
-        <div class="table-entity flex">
-          <div class="buyer flex">
-            <img src="../assets/images/About/default.png" alt="" />
-            <p>damn</p>
-          </div>
-          <span class="gig"
-            >I will do data entry, copy paste and excel data entry work for
-            you</span
-          >
-          <span class="date">29.3.2023</span>
-          <span class="total">US$33</span>
-          <Status />
-        </div>
-        <div class="table-entity flex">
-          <div class="buyer flex">
-            <img src="../assets/images/About/default.png" alt="" />
-            <p>twitch</p>
-          </div>
-          <span class="gig"
-            >I will do hyper realistic pencil sketch portrait by hand
-            drawing</span
-          >
-          <span class="date">21.2.2023</span>
-          <span class="total">US$67</span>
-          <Status />
-        </div>
         <div class="table-entity flex" v-for="(order, i) in orders">
           <div class="buyer flex">
             <img :src="order.buyer.imgUrl" alt="" />
