@@ -72,6 +72,11 @@ export const ordersStore = {
       orders.msgs.push(msg)
     },
 
+    updateOrder(state, { order }) {
+      const idx = state.orders.findIndex((o) => o._id === order._id)
+      if (idx !== -1) state.orders.splice(idx, 1, order)
+    },
+
     setFilter(state, { filterBy }) {
       state.filterBy = filterBy
     },

@@ -117,11 +117,11 @@ export default {
       return `${date.getDate()}.${date.getMonth() + 1}.${date.getFullYear()}`
     },
     async setStatus(status, orderId) {
-      const order = await ordersService.getById(orderId)
+      const order = this.orders.find((order) => order._id === orderId)
       order.status = status
       const orderUi = this.orders.find((order) => order._id === orderId)
       orderUi.status = status
-      ordersService.save(order)
+      await ordersService.save(order)
     },
     async loadOrdersByOwner() {
       const owner = userService.getLoggedinUser()
@@ -162,10 +162,9 @@ export default {
   created() {
     setTimeout(() => {
       console.log('hey', this.orders)
-    }, 1000);
+    }, 1000)
     console.log(this.$store.getters.orders)
     this.loadOrdersByOwner()
-
   },
 }
 </script>
