@@ -58,7 +58,7 @@
               v-if="orderModalOpen"
             >
               <div class="modal-tip"></div>
-              <ul class="clean-list scroller">
+              <ul class="clean-list-order">
                 <!-- <h2 class="no-orders" v-if="!orders.length">No orders to show</h2> -->
                 <li
                   v-for="order in orders"
@@ -245,6 +245,9 @@
       this.checkIfLoggedIn()
     },
     mounted() {
+      setTimeout(() => {
+        console.log(this.orders)
+      }, 1000);
       window.addEventListener('scroll', this.handleScroll)
       window.onresize = () => {
         this.windowWidth = window.innerWidth

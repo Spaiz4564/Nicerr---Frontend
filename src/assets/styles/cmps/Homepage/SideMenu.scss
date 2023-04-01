@@ -3,6 +3,9 @@
 }
 
 .side-menu {
+  summary{
+    margin-bottom: 20px;
+  }
   a {
     color: $clr1;
   }
@@ -17,6 +20,9 @@
         aspect-ratio: 1;
         border-radius: 50%;
       height: auto;
+    }
+    @include for-mobile-layout{
+      width: 35px;
     }
     width: 50px;
 
