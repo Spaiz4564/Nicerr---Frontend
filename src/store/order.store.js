@@ -39,9 +39,9 @@ export const ordersStore = {
         return orders.find((orders) => orders._id === ordersId)
       }
     },
-    ordersByOwner({ orders }) {
-      return (ownerId) => {
-        return orders.filter((orders) => orders.owner._id === ownerId)
+    ordersByLoggedInUser({ orders }) {
+      return (userId) => {
+        return orders.filter((orders) => orders.buyer._id === userId)
       }
     },
   },
@@ -50,10 +50,10 @@ export const ordersStore = {
       if (!orders) return
       state.orders = orders
     },
-
     addOrders(state, { orders }) {
       state.orders.push(orders)
     },
+
     saveOrders(state, { orders }) {
       const idx = state.orders.findIndex(
         (currOrders) => currOrders._id === orders._id
@@ -76,6 +76,15 @@ export const ordersStore = {
 
     setFilter(state, { filterBy }) {
       state.filterBy = filterBy
+    },
+
+    saveOrder(state, { order }) {
+      const idx = state.orders.findIndex((o) => o._id === order._id)
+      if (idx !== -1) {
+        state.orders.splice(idx, 1, order)
+        return
+      }
+      state.orders.unshift(order)
     },
   },
   actions: {
@@ -102,7 +111,6 @@ export const ordersStore = {
     async loadOrders(context) {
       try {
         const orders = await ordersService.query()
-        console.log(orders)
         context.commit({ type: 'setOrders', orders })
       } catch (err) {
         console.log('ordersStore: Error in loadOrders', err)
@@ -138,24 +146,23 @@ export const ordersStore = {
       }
     },
 
-    async saveOrders({ commit }, { orders }) {
+    async saveOrder(context, { order }) {
       try {
-        const newOrders = await ordersService.save(orders)
-        console.log('newOrders', newOrders)
-        commit({ type: 'saveOrders', orders: newOrders })
+        order = await ordersService.save(order)
+        context.commit({ type: 'saveOrder', order })
+        return order
       } catch (err) {
-        console.log('Could Not save orders')
+        console.log('orderStore: Error in addOrder', err)
         throw err
       }
     },
 
-    async loadOrdersByOwner(context, { ownerId }) {
+    async loadOrdersByUser(context, { userId }) {
       try {
-        const orders = await ordersService.query({ ownerId })
-        console.log('orders', orders)
+        const orders = await ordersService.query(userId)
         context.commit({ type: 'setOrders', orders })
       } catch (err) {
-        console.log('ordersStore: Error in loadOrdersByOwner', err)
+        console.log('ordersStore: Error in loadOrdersByUser', err)
         throw err
       }
     },

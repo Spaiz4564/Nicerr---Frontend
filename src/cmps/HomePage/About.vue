@@ -47,7 +47,9 @@
         </ul>
       </div>
       <div class="teaser-img">
-        <img src="../../assets/images/About/Video Teaser.png" alt="" />
+        <img
+          :src="imgUrl('../../assets/images/About/Video Teaser.png')"
+          alt="" />
       </div>
     </div>
   </div>
@@ -63,6 +65,9 @@ export default {
   methods: {
     getSvg(iconName) {
       return svgService.getSvg(iconName)
+    },
+    imgUrl(img) {
+      return new URL(img, import.meta.url).href
     },
   },
   components: {},
