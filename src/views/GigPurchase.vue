@@ -2,7 +2,7 @@
   <section class="purchase-navBar full main-layout">
     <div class=" purchase-navBar logo" @click="HandleLogoClick">Nicerr</div>
   </section>
-  <section class="app-container main-layout" v-if="gig">
+  <section class="app-container" v-if="gig">
     <section class="gig-payment flex justify-center">
       <section class="payment-container flex">
         <section class="payment-details-container">

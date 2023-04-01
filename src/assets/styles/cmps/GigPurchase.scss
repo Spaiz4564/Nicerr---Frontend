@@ -1,13 +1,19 @@
 .app-container {
-    min-height: 100vh;
     grid-column: 2;
     font-size: rem(16px);
+    display: flex;
 
     .gig-payment {
         margin: em(32px) 0px;
 
+        .payment-container {
+            @include for-tablet-layout {
+                flex-wrap: wrap;
+                margin: 0;
+            }
+        }
+
         .payment-details-container {
-            flex: 1.5;
             max-height: 420px;
             flex-wrap: wrap;
             min-width: em(350px);
@@ -27,6 +33,10 @@
                 height: 10px;
                 clip-path: circle(62% at 50% 50%);
                 margin-bottom: 6px;
+            }
+
+            @include for-tablet-layout {
+                margin-bottom: 8px;
             }
 
 
@@ -96,12 +106,16 @@
         }
 
         .package-container {
+            display: flex;
             max-width: em(345px);
             max-height: em(600px);
-            flex: 1;
             border-radius: em(3px);
             border: 1px solid $clr9;
             margin-block-end: 16px;
+
+            @include for-tablet-layout {
+                margin: 0px auto;
+            }
 
             .gig-package-payment {
                 min-width: 340px;
