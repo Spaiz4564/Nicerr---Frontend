@@ -1,5 +1,5 @@
 <template>
-  <section class="purchase-navBar main-layout">
+  <section class="purchase-navBar full main-layout">
     <div class=" purchase-navBar logo" @click="HandleLogoClick">Nicerr</div>
   </section>
   <section class="app-container main-layout" v-if="gig">
@@ -119,7 +119,7 @@ import Join from '../cmps/Join.vue'
 import { showSuccessMsg, showErrorMsg } from '../services/event-bus.service'
 
 export default {
-  props: [],
+  props: ['isBackDrop'],
   name: '',
   data() {
     return {
@@ -132,6 +132,7 @@ export default {
       return svgService.getSvg(iconName)
     },
     async handlePurchase() {
+      this.$emit('wow')
       if (this.loggedinUser) {
         const { id } = this.$route.params
         const { _id } = this.loggedinUser

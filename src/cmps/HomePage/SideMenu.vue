@@ -27,13 +27,17 @@
     <details v-if="user">
       <summary>My Orders</summary>
       <ul class="clean-list-order">
-        <li v-for="order in orders" class="order-detail flex align-center orders-mobile">
+        <li
+          v-for="order in orders"
+          class="order-detail flex align-center orders-mobile"
+        >
           <div class="img-container">
             <img :src="order.imgUrl" alt="" />
           </div>
           <div class="desc">
             <span>{{ order.title }}</span>
             <div class="order flex">
+              <p>by vividstore</p>
               <p :class="order.status">
                 {{ order.status || 'Pending' }}
               </p>
