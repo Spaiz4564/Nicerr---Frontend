@@ -35,9 +35,11 @@ window.cs = ordersService
 async function query(
   filterBy = {
     title: '',
-  }
+  },
+  userId = null
 ) {
-  const orders = await httpService.get(STORAGE_KEY, filterBy)
+  const orders = await httpService.get(STORAGE_KEY, filterBy, userId)
+
   const { orderId } = filterBy
   const { ordersByUser } = filterBy
   if (orderId) {

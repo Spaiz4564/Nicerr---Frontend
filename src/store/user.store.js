@@ -6,15 +6,20 @@ import { userService } from '../services/user.service'
 export const userStore = {
   state: {
     loggedinUser: null,
+    user: null,
     users: [],
     watchedUser: null,
   },
   getters: {
     users({ users }) {
-      console.log('userStore: users', users)
       return users
     },
     loggedinUser({ loggedinUser }) {
+      const user = userService.getLoggedInUser()
+      if (user) {
+        loggedinUser = user
+      }
+
       return loggedinUser
     },
     watchedUser({ watchedUser }) {
@@ -23,6 +28,14 @@ export const userStore = {
     seller({ users }) {
       //if the loggedInuser is a seller
       return users.filter((user) => user.isSeller)
+    },
+    buyer({ users }) {
+      //if the loggedInuser is a buyer
+      return users.filter((user) => !user.isSeller)
+    },
+
+    user({ user }) {
+      return user
     },
   },
 
