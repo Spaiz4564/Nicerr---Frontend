@@ -50,9 +50,7 @@
             <a @click="goToSellerSignup">Become a Seller</a>
           </div>
           <a v-if="!loggedinUser" @click.stop="toggleSignInModal">Sign In</a>
-          <a class="join" v-if="!loggedinUser" @click.stop="toggleJoinModal"
-            >Join</a
-          >
+          <a class="join" v-if="!loggedinUser" @click.stop="toggleJoinModal">Join</a>
           <div class="modal" v-if="loggedinUser">
             <div
               v-clickOutsideDirective="toggleOrderModal"

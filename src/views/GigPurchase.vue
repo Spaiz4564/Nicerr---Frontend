@@ -1,4 +1,7 @@
 <template>
+  <section class="purchase-navBar main-layout">
+    <div class=" purchase-navBar logo" @click="HandleLogoClick">Nicerr</div>
+  </section>
   <section class="app-container main-layout" v-if="gig">
     <section class="gig-payment flex justify-center">
       <section class="payment-container flex">
@@ -15,10 +18,7 @@
             <div class="card-info flex">
               <div class="card-container">
                 <p>Card Number</p>
-                <input
-                  class="card-num"
-                  type="text"
-                  value="4580 5926 7852 9996" />
+                <input class="card-num" type="text" value="4580 5926 7852 9996" />
               </div>
               <div class="short-input flex">
                 <div>
@@ -58,33 +58,23 @@
               </div>
               <ul class="features">
                 <li class="regular">
-                  <div
-                    className=" regular fill svg-container"
-                    v-html="getSvg('checkSign')"></div>
+                  <div className=" regular fill svg-container" v-html="getSvg('checkSign')"></div>
                   1 concept included
                 </li>
                 <li class="regular">
-                  <div
-                    className="svg-container icon regular fill"
-                    v-html="getSvg('checkSign')"></div>
+                  <div className="svg-container icon regular fill" v-html="getSvg('checkSign')"></div>
                   Logo transparency
                 </li>
                 <li class="regular">
-                  <div
-                    className="svg-container icon regular fill"
-                    v-html="getSvg('checkSign')"></div>
+                  <div className="svg-container icon regular fill" v-html="getSvg('checkSign')"></div>
                   Include 3D mockup
                 </li>
                 <li class="regular">
-                  <div
-                    className="svg-container icon regular fill"
-                    v-html="getSvg('checkSign')"></div>
+                  <div className="svg-container icon regular fill" v-html="getSvg('checkSign')"></div>
                   1 concept included
                 </li>
                 <li class="regular">
-                  <div
-                    className="svg-container icon regular fill"
-                    v-html="getSvg('checkSign')"></div>
+                  <div className="svg-container icon regular fill" v-html="getSvg('checkSign')"></div>
                   Include source file
                 </li>
               </ul>
@@ -154,7 +144,11 @@ export default {
       }
       console.log(order)
       await ordersService.save(order)
+      this.$router.push(`/`)
     },
+    HandleLogoClick() {
+      this.$router.push(`/`)
+    }
   },
   computed: {
     handlePrice() {
