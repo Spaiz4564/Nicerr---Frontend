@@ -316,6 +316,10 @@
                 padding-right: em(20px);
                 color: $clr2;
 
+                @include for-mobile-layout {
+                    padding: 0;
+                }
+
                 ul {
                     padding-bottom: em(20px);
                 }
