@@ -1,4 +1,5 @@
 import { ordersService } from '../services/order.service'
+import { userStore } from './user.store.js'
 
 export function getActionRemoveOrders(ordersId) {
   return {
@@ -32,17 +33,14 @@ export const ordersStore = {
   },
   getters: {
     orders({ orders }) {
+      console.log(orders)
       return orders
     },
-    ordersById({ orders }) {
-      return (ordersId) => {
-        return orders.find((orders) => orders._id === ordersId)
-      }
-    },
-    ordersByLoggedInUser({ orders }) {
-      return (userId) => {
-        return orders.filter((orders) => orders.buyer._id === userId)
-      }
+    ordersByUser({ orders }) {
+      console.log('ordersByUser', orders)
+      return orders.filter(
+        (order) => order.buyer._id === userStore.state.loggedinUser._id
+      )
     },
   },
   mutations: {
@@ -153,16 +151,6 @@ export const ordersStore = {
         return order
       } catch (err) {
         console.log('orderStore: Error in addOrder', err)
-        throw err
-      }
-    },
-
-    async loadOrdersByUser(context, { userId }) {
-      try {
-        const orders = await ordersService.query(userId)
-        context.commit({ type: 'setOrders', orders })
-      } catch (err) {
-        console.log('ordersStore: Error in loadOrdersByUser', err)
         throw err
       }
     },

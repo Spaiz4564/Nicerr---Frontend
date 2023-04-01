@@ -184,13 +184,15 @@
   padding-inline-start: 10px;
 
   .search-input {
+    
     &::placeholder {
+     
       color: $clr01;
       font-family: 'Macan-Regular';
       font-weight: 500;
       font-size: 16px;
       @include for-mobile-layout {
-        font-size: 14px;
+        font-size: 13px;
       }
     }
 
@@ -203,6 +205,13 @@
   }
 
   .icon-search {
+    @include for-tablet-layout {
+      width: 11.5%;
+    }
+
+    @include for-mobile-layout {
+      width: 17.5%;
+    }
     justify-content: center;
     align-items: center;
     display: flex;
@@ -222,9 +231,6 @@
   }
   @include for-tablet-layout {
     display: flex !important;
-    .icon-search {
-      width: 11.5%;
-    }
   }
   @include for-mobile-layout {
     width: 100%;
@@ -382,6 +388,10 @@
   @include for-mobile-layout {
     width: auto;
   }
+  @include for-tablet-layout {
+    width: auto;
+  }
+
   li {
     &:hover {
       background-color: #f5f5f5;
@@ -389,6 +399,10 @@
 
     cursor: pointer;
     border-bottom: 1px solid #f5f5f5;
+    @include for-tablet-layout {
+      gap: 0px;
+    }
+    gap: 12px;
   }
 
   display: flex;
@@ -400,21 +414,30 @@
   list-style-type: none;
   padding: 0;
   margin: 0;
+  .desc {
+    span {
+      font-weight: bold;
+    }
+    width: 100%;
+  }
 }
 
 .order-detail {
+  padding: 16px 16px;
   @include for-mobile-layout {
     max-width: 250px;
     padding: 16px 0px;
   }
-  padding: 16px 16px;
+  @include for-tablet-layout {
+    padding: 16px 16px 16px 0px;
+  }
 
   .img-container {
     img {
       min-width: em(80px);
       height: 100%;
     }
-
+    max-width: 54px;
     height: 54px;
   }
 
@@ -438,7 +461,17 @@
     }
 
     .order {
+      gap: 17px;
+      @include for-tablet-layout {
+        justify-content: space-between;
+        p {
+          &:first-child {
+            min-width: 120px;
+          }
+        }
+      }
       @include for-mobile-layout {
+        gap: 8px;
         justify-content: space-between;
         p {
           &:first-child {

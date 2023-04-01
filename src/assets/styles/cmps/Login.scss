@@ -46,6 +46,9 @@
     cursor: pointer;
   }
   input {
+    @include for-mobile-layout{
+      outline-color: gray
+    }
     &::placeholder {
       font-weight: 200;
       font-size: 16px;

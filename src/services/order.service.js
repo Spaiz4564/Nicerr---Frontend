@@ -35,17 +35,20 @@ window.cs = ordersService
 async function query(
   filterBy = {
     title: '',
-  }
+  },
+  userId = null
 ) {
-  const orders = await httpService.get(STORAGE_KEY, filterBy)
+  const orders = await httpService.get(STORAGE_KEY, filterBy, userId)
+
   const { orderId } = filterBy
+  const { ownerId } = filterBy
   const { ordersByUser } = filterBy
   if (orderId) {
-    return orders.filter((order) => order._id === orderId)
+    return orders.filter(order => order._id === orderId)
   }
-  if (ordersByUser) {
-    return orders.filter((order) => order.buyer._id === ordersByUser)
-  }
+ else if(ownerId) {
+  return orders.filter(order => order.seller._id === ownerId)
+ } 
 
   return orders
 }

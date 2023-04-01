@@ -21,10 +21,18 @@
       border-radius: 50%;
       height: auto;
     }
-    @include for-mobile-layout {
+
+    @include for-tablet-layout{
       width: 35px;
       margin-inline-end: 15px;
     }
+
+
+    @include for-mobile-layout {
+      width: 35px;
+      margin-inline-end: 5px;
+    }
+    
     width: 50px;
 
     margin-inline-end: 8px;

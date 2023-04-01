@@ -39,50 +39,14 @@
           <h4 class="head-total">TOTAL</h4>
           <h4 class="head-status">STATUS</h4>
         </div>
-        <div class="table-entity flex">
-          <div class="buyer flex">
-            <img src="../assets/images/About/default.png" alt="" />
-            <p>fred</p>
-          </div>
-          <span class="gig">I will write you an attractive instagram bio</span>
-          <span class="date">21.3.2023</span>
-          <span class="total">US$50</span>
-          <Status />
-        </div>
-        <div class="table-entity flex">
-          <div class="buyer flex">
-            <img src="../assets/images/About/default.png" alt="" />
-            <p>damn</p>
-          </div>
-          <span class="gig"
-            >I will do data entry, copy paste and excel data entry work for
-            you</span
-          >
-          <span class="date">29.3.2023</span>
-          <span class="total">US$33</span>
-          <Status />
-        </div>
-        <div class="table-entity flex">
-          <div class="buyer flex">
-            <img src="../assets/images/About/default.png" alt="" />
-            <p>twitch</p>
-          </div>
-          <span class="gig"
-            >I will do hyper realistic pencil sketch portrait by hand
-            drawing</span
-          >
-          <span class="date">21.2.2023</span>
-          <span class="total">US$67</span>
-          <Status />
-        </div>
         <div class="table-entity flex" v-for="(order, i) in orders">
           <div class="buyer flex">
             <img :src="order.buyer.imgUrl" alt="" />
             <p>{{ order.buyer.username }}</p>
           </div>
-          <span class="gig">{{ order.title }}</span>
-          <span class="date">{{ makeDate(order.boughtAt) }}</span>
-          <span class="total">US${{ order.price }}</span>
+          <span class="gig">{{ order.gig.name }}</span>
+          <span class="date">{{ order.date }}</span>
+          <span class="total">US${{ order.gig.price }}</span>
           <Status
             :status="order.status"
             :class="order.status"
@@ -121,7 +85,7 @@ export default {
       order.status = status
       const orderUi = this.orders.find((order) => order._id === orderId)
       orderUi.status = status
-      ordersService.saveOrder(order)
+      ordersService.save(order)
     },
     async loadOrdersByOwner() {
       const owner = userService.getLoggedinUser()
@@ -133,7 +97,7 @@ export default {
         if (i < 2) {
           return this.orders
             .filter((order) => order.status === 'Completed')
-            .reduce((acc, curr) => (acc += curr.price), 0)
+            .reduce((acc, curr) => (acc += curr.gig.price), 0)
         } else if (i === 2) {
           return this.orders.filter((order) => order.status === 'Completed')
             .length
@@ -149,6 +113,9 @@ export default {
     user() {
       return userService.getLoggedinUser()
     },
+    // orders() {
+    //   return this.$store.getters.orders
+    // }
   },
 
   components: {
@@ -157,7 +124,12 @@ export default {
   },
 
   created() {
+    setTimeout(() => {
+      console.log('hey', this.orders)
+    }, 1000);
+    console.log(this.$store.getters.orders)
     this.loadOrdersByOwner()
+
   },
 }
 </script>
