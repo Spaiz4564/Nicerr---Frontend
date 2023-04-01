@@ -52,10 +52,10 @@
           </p>
           <p class="end">
             Not only you'll get stunning and professional designs, but also
-            you'll have top class custome
+            you'll have top class customer
+          <div id="Reviews"></div>
           </p>
         </div>
-        <div id="Reviews"></div>
       </section>
     </section>
   </section>

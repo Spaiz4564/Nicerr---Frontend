@@ -1,6 +1,5 @@
 .gig-details-main {
     .details-nav {
-        padding: em(14px) 0px;
         border-bottom: 1px solid $clr10;
         position: sticky;
         top: 0;
@@ -10,20 +9,16 @@
         .details-router {
             font-family: 'Macan-Bold';
             font-size: em(12px);
+            line-height: em(62px);
             gap: em(28px);
             cursor: pointer;
 
-            .detail-router:hover {
-                &:after {
-                    background: #1dbf73;
-                    bottom: -7px;
-                    height: 3px;
-                    left: 0;
-                    position: absolute;
-                    width: 100%;
-                    z-index: 1;
+            li {
+                &.selected {
+                    box-shadow: 0 -4px #1dbf73 inset;
                 }
             }
+
         }
     }
 

@@ -13,46 +13,24 @@
     </div>
     <div class="img">
       <div class="img-container">
-        <vueper-slides
-          class="main-slide"
-          ref="vueperslides1"
-          fixed-height="472px"
-          @slide="
-            $refs.vueperslides2 &&
-              $refs.vueperslides2.goToSlide($event.currentSlide.index, {
-                emit: false,
-              })
-          "
-          :slide-ratio="1 / 4"
-          :bullets="false">
-          <vueper-slide
-            v-for="(img, i) in gig.images"
-            :key="i"
-            :image="imgUrl(img)"
+        <vueper-slides class="main-slide" ref="vueperslides1" @slide="
+          $refs.vueperslides2 &&
+          $refs.vueperslides2.goToSlide($event.currentSlide.index, {
+            emit: false,
+          })
+        " :slide-ratio="1 / 4" :bullets="false">
+          <vueper-slide v-for="(img, i) in gig.images" :key="i" :image="imgUrl(img)"
             :style="'background-color: ' + ['#ff5252']" />
         </vueper-slides>
-        <vueper-slides
-          class="thumbnails"
-          ref="vueperslides2"
-          :slide-ratio="1 / 8"
-          :dragging-distance="20"
-          @slide="
-            $refs.vueperslides1 &&
-              $refs.vueperslides1.goToSlide($event.currentSlide.index, {
-                emit: false,
-              })
-          "
-          :visible-slides="6"
-          fixed-height="60px"
-          :arrows="false"
-          :bullets="false">
-          <vueper-slide
-            v-for="(img, i) in gig.images"
-            :key="i"
-            :image="imgUrl(img)"
-            @click.native="
-              $refs.vueperslides2 && $refs.vueperslides2.goToSlide(i)
-            ">
+        <vueper-slides class="thumbnails" ref="vueperslides2" :slide-ratio="1 / 8" :dragging-distance="20" @slide="
+          $refs.vueperslides1 &&
+          $refs.vueperslides1.goToSlide($event.currentSlide.index, {
+            emit: false,
+          })
+        " :visible-slides="6" fixed-height="60px" :arrows="false" :bullets="false">
+          <vueper-slide v-for="(img, i) in gig.images" :key="i" :image="imgUrl(img)" @click.native="
+            $refs.vueperslides2 && $refs.vueperslides2.goToSlide(i)
+          ">
           </vueper-slide>
         </vueper-slides>
       </div>
@@ -65,41 +43,29 @@
       <section class="review-container">
         <section class="review-preview">
           <section class="grid">
-            <img
-              class="img"
+            <img class="img"
               src="https://res.cloudinary.com/dzcangpqd/image/upload/v1679925721/samples/people/smiling-man.jpg" />
             <section class="user-details flex align-center">
               <p>Lidor</p>
-              <img
-                class="img"
+              <img class="img"
                 src="https://res.cloudinary.com/dzcangpqd/image/upload/v1680012722/1f1ee-1f1f1_opzusm.png" />
               <p class="country">United State</p>
               <section>
                 <ul class="ul-rate clean-list flex justify-center align-center">
                   <li>
-                    <span
-                      className="check gold"
-                      v-html="getSvg('starGold')"></span>
+                    <span className="check gold" v-html="getSvg('starGold')"></span>
                   </li>
                   <li>
-                    <span
-                      className="check gold"
-                      v-html="getSvg('starGold')"></span>
+                    <span className="check gold" v-html="getSvg('starGold')"></span>
                   </li>
                   <li>
-                    <span
-                      className="check gold"
-                      v-html="getSvg('starGold')"></span>
+                    <span className="check gold" v-html="getSvg('starGold')"></span>
                   </li>
                   <li>
-                    <span
-                      className="check gold"
-                      v-html="getSvg('starGold')"></span>
+                    <span className="check gold" v-html="getSvg('starGold')"></span>
                   </li>
                   <li>
-                    <span
-                      className="check gold"
-                      v-html="getSvg('starGold')"></span>
+                    <span className="check gold" v-html="getSvg('starGold')"></span>
                   </li>
                   <p class="rate">5</p>
                 </ul>
@@ -115,6 +81,7 @@
             </section>
           </section>
         </section>
+        <div id="Description"></div>
       </section>
     </section>
   </section>
@@ -141,7 +108,7 @@ export default {
     },
   },
   computed: {},
-  created() {},
+  created() { },
   components: {
     VueperSlides,
     VueperSlide,

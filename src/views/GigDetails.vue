@@ -1,21 +1,19 @@
 <template>
   <section class="gig-details-main main-layout full" v-if="gig">
     <div class="details-nav main-layout full">
-      <ul class="details-router flex">
-        <li
-          v-for="route in router"
-          class="detail-router"
-          @click="navigateTo(`${route}`)">
+      <ul class="details-router clean-list flex">
+        <li v-for="route in router" class="detail-router" :class="[route === this.route ? 'selected' : '']"
+          @click="navigateTo(`${route}`) ; changeSelect(`${route}`)">
           {{ route }}
         </li>
       </ul>
     </div>
     <main id="OverView" class="gig-details flex">
       <div class="gig-user-info flex column">
-        <Overview id="OverView" :gig="gig" />
-        <Description id="Description" :gig="gig" />
+        <Overview id="Overview" :gig="gig" />
+        <Description :gig="gig" />
         <AboutSeller id="AboutSeller" :gig="gig" />
-        <Reviews id="Reviews" :gig="gig" />
+        <Reviews :gig="gig" />
       </div>
       <div class="gig-purchase" v-if="gig">
         <div class="info">
@@ -44,36 +42,26 @@
             </div>
             <ul class="features">
               <li class="flex align-center">
-                <span
-                  className="check fillGreen"
-                  v-html="getSvg('checkSign')"></span>
+                <span className="check fillGreen" v-html="getSvg('checkSign')"></span>
                 <p>1 concept included</p>
               </li>
               <li class="flex align-center">
-                <span
-                  className="check fill"
-                  v-html="getSvg('checkSign')"></span>
+                <span className="check fill" v-html="getSvg('checkSign')"></span>
 
                 <p>Logo transparency</p>
               </li>
               <li class="flex align-center">
-                <span
-                  className="check fillGreen"
-                  v-html="getSvg('checkSign')"></span>
+                <span className="check fillGreen" v-html="getSvg('checkSign')"></span>
 
                 <p>Vector File</p>
               </li>
               <li class="flex align-center">
-                <span
-                  className="check fill"
-                  v-html="getSvg('checkSign')"></span>
+                <span className="check fill" v-html="getSvg('checkSign')"></span>
 
                 <p>Printable file</p>
               </li>
               <li class="flex align-center">
-                <span
-                  className="check fillGreen"
-                  v-html="getSvg('checkSign')"></span>
+                <span className="check fillGreen" v-html="getSvg('checkSign')"></span>
 
                 <p>Include source file</p>
               </li>
@@ -104,7 +92,8 @@ export default {
   data() {
     return {
       gig: null,
-      router: ['OverView', 'Description', 'AboutSeller', 'Reviews'],
+      router: ['Overview', 'Description', 'Aboutseller', 'Reviews'],
+      route: 'Overview'
     }
   },
   methods: {
@@ -128,6 +117,11 @@ export default {
     imgUrl(img) {
       return new URL(img, import.meta.url).href
     },
+    changeSelect(route) {
+      console.log(this.route, route);
+      this.route = route
+    }
+
   },
   computed: {},
   created() {
