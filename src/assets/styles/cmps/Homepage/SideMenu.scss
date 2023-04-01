@@ -1,0 +1,33 @@
+.side-menu > * {
+  margin-top: 30px;
+}
+
+.side-menu {
+  a {
+    color: $clr1;
+  }
+  .user-info {
+    p {
+      color: $clr1;
+    }
+    align-items: center;
+  }
+  .img-container {
+    img {
+        aspect-ratio: 1;
+        border-radius: 50%;
+      height: auto;
+    }
+    width: 50px;
+
+    margin-inline-end: 8px;
+  }
+  flex-direction: column;
+  background-color: #fff;
+  position: fixed;
+  height: 105vh;
+  z-index: 500;
+  width: 270px;
+  box-shadow: 20px 0 20px 800px #33323287;
+  padding-inline-start: 20px;
+}

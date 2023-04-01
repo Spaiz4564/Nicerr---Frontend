@@ -4,10 +4,10 @@
     <div class="services">
       <vueper-slides
         class="no-shadow"
-        :visible-slides="5"
+        :visible-slides="10"
         slide-multiple
         :gap="3"
-        :slide-ratio="1 / 4"
+        :slide-ratio="1 / 5"
         :dragging-distance="200"
         :breakpoints="{ 800: { visibleSlides: 2, slideMultiple: 2 } }">
         <vueper-slide

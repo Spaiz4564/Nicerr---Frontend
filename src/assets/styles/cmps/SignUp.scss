@@ -1,5 +1,9 @@
 .signup-form {
+  @include for-mobile-layout{
+    width: auto;
+  }
   .img-upload {
+    text-align: center;
     position: relative;
 
     input {
@@ -13,6 +17,10 @@
   }
 
   img {
+    @include for-mobile-layout{
+      max-width: 135px;
+      max-height: 135px;
+    }
     aspect-ratio: 1;
     border-radius: 50%;
     max-width: 150px;

@@ -57,6 +57,7 @@ export default {
   data() {
     return {
       backgrounds: gigService.getHeroBackgrounds(),
+      windowWidth: window.innerWidth,
       heroInterval: null,
       popularCategories: [
         'Website Design',
@@ -119,9 +120,17 @@ export default {
   unmounted() {
     clearInterval(this.heroInterval)
   },
+  
+  mounted() {
+    window.onresize = () => {
+        this.windowWidth = window.innerWidth
+      }
+  },
 
   created() {
-    this.handleHeroGallery()
+   if(this.windowWidth > 400) {
+     this.handleHeroGallery()
+   }
   },
 }
 </script>

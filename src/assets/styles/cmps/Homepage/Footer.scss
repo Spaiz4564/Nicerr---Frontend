@@ -1,8 +1,25 @@
 .app-footer {
+  @include for-tablet-layout{
+    height: 144px;
+
+  }
   grid-column: 1 / -1;
   border-top: 1px solid #e4e5e7;
   height: 87px;
   .footer-container {
+    @include for-tablet-layout{
+      flex-direction: column;
+      .title{
+        gap: 10px;
+        flex-direction: column;
+        h1{
+          width: 100%;
+          text-align: center;
+        }
+      }
+      justify-content: center;
+      gap: 10px;
+    }
     display: flex;
     align-items: center;
     grid-column: 2 / 3;

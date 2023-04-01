@@ -18,6 +18,12 @@
   }
 }
 
+@mixin for-tablet-layout {
+  @media (max-width: calc($tablet-breakpoint + 40px)) {
+    @content;
+  }
+}
+
 @mixin for-wide-layout {
   @media (max-width: calc($normal-breakpoint + 40px)) {
     @content;

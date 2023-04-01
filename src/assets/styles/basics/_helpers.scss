@@ -83,6 +83,14 @@
       1fr
     );
 
+    @include for-tablet-layout {
+      grid-template-columns: minmax(32px, 1fr) minmax(auto, 768px) minmax(32px, 1fr);
+    }
+
+    @include for-mobile-layout{
+      grid-template-columns: minmax(24px, 1fr) minmax(auto, 330px) minmax(24px, 1fr);
+    }
+
   > *:not(.full) {
     grid-column: 2;
   }
@@ -90,6 +98,10 @@
   .full {
     grid-column: 1 / -1;
   }
+}
+
+.hidden{
+  display: none !important;
 }
 
 //svg helpers
