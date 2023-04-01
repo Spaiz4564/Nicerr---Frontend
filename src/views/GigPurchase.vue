@@ -158,6 +158,7 @@ export default {
             img: this.gig.images[0],
           },
           status: 'Pending',
+          date: new Date().toLocaleDateString(),
         }
         this.$store.dispatch({ type: 'saveOrder', order: { ...order } })
         setTimeout(() => {

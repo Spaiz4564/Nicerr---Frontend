@@ -53,7 +53,7 @@
             <div
               v-clickOutsideDirective="toggleOrderModal"
               class="order-modal"
-              v-if="orderModalOpen">
+              v-if="loggedinUser && orderModalOpen">
               <div class="modal-tip"></div>
               <ul class="clean-list-order">
                 <li
@@ -130,13 +130,11 @@ export default {
       orderModalOpen: false,
       backdrop: document.querySelector('.backdrop'),
       windowWidth: null,
-      order: null,
     }
   },
 
   computed: {
     loggedinUser() {
-      console.log('loggedinUser', this.$store.getters.loggedinUser)
       return this.$store.getters.loggedinUser
     },
     seller() {
@@ -144,8 +142,7 @@ export default {
       return this.loggedinUser.isSeller
     },
     orders() {
-      //we need to render only the orders by the loggedin user
-      return this.$store.getters.ordersByLoggedInUser
+      return this.$store.getters.ordersByUser
     },
     screenWidth() {
       return window.innerWidth
@@ -166,14 +163,6 @@ export default {
     },
     goToSellerSignup() {
       this.$router.push('/seller-signup')
-    },
-    async loadOrdersByUser() {
-      if (!this.loggedinUser) return
-      const orders = await ordersService.query({
-        ordersByUser: this.loggedinUser._id,
-      })
-      console.log('orders', orders)
-      return orders
     },
     handleScroll() {
       const scrollY = window.scrollY
@@ -221,6 +210,10 @@ export default {
         this.$store.dispatch({ type: 'loadUser', user })
       }
     },
+    async loadOrders() {
+      const orders = await ordersService.query()
+      this.$store.commit({ type: 'setOrders', orders })
+    },
   },
   watch: {
     $route(to) {
@@ -236,6 +229,7 @@ export default {
       this.backdrop.addEventListener('click', this.toggleSignInModal)
     }
     this.handleScroll()
+    this.loadOrders()
     this.checkIfLoggedIn()
   },
   mounted() {

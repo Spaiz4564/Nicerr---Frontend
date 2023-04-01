@@ -162,7 +162,7 @@ export default {
         const el = document.getElementById(`${id}`)
         console.log(el)
         if (el) {
-          el.scrollIntoView((scrollY = 20))
+          el.scrollIntoView()
         }
       })
     },
