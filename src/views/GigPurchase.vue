@@ -3,8 +3,8 @@
     <div class=" purchase-navBar logo" @click="HandleLogoClick">Nicerr</div>
   </section>
   <section class="app-container" v-if="gig">
-    <section class="gig-payment flex justify-center">
-      <section class="payment-container flex">
+    <section class="gig-payment">
+      <section class="payment-container">
         <section class="payment-details-container">
           <h2 class="title-purchase">Payment Options</h2>
           <section class="credit-selection flex">

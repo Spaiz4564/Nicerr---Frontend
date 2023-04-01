@@ -75,6 +75,7 @@
 
         .img-container {
             padding-bottom: 60px;
+
         }
 
         .thumbnails {
@@ -347,6 +348,10 @@
             width: 110px;
             margin-right: em(15px);
 
+            @include for-mobile-layout {
+                margin: auto;
+            }
+
 
 
             img {
@@ -361,6 +366,11 @@
             line-height: 1.25em;
             padding-block-end: 0.3125em;
 
+            @include for-mobile-layout {
+                ul {
+                    justify-content: center;
+                }
+            }
 
             p {
                 padding-block-end: 5px;
@@ -371,6 +381,10 @@
             .line {
                 display: flex;
                 gap: em(5px);
+
+                @include for-mobile-layout {
+                    justify-content: center;
+                }
 
                 .user-name {
                     font-family: 'Macan-Bold';
@@ -594,7 +608,7 @@
                 }
 
                 @include for-tablet-layout {
-                    line-height: 18px;
+                    line-height: 25px;
                 }
 
                 .main-title {
@@ -649,6 +663,10 @@
 
             .review-header {
                 align-items: center;
+
+                @include for-mobile-layout {
+                    justify-content: center;
+                }
 
                 .user-profile-image {
                     display: flex;
