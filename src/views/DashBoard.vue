@@ -80,9 +80,9 @@
             <img :src="order.buyer.imgUrl" alt="" />
             <p>{{ order.buyer.username }}</p>
           </div>
-          <span class="gig">{{ order.title }}</span>
+          <span class="gig">{{ order.gig.name }}</span>
           <span class="date">{{ makeDate(order.boughtAt) }}</span>
-          <span class="total">US${{ order.price }}</span>
+          <span class="total">US${{ order.gig.price }}</span>
           <Status
             :status="order.status"
             :class="order.status"
@@ -121,7 +121,7 @@ export default {
       order.status = status
       const orderUi = this.orders.find((order) => order._id === orderId)
       orderUi.status = status
-      ordersService.saveOrder(order)
+      ordersService.save(order)
     },
     async loadOrdersByOwner() {
       const owner = userService.getLoggedinUser()
@@ -149,6 +149,9 @@ export default {
     user() {
       return userService.getLoggedinUser()
     },
+    // orders() {
+    //   return this.$store.getters.orders
+    // }
   },
 
   components: {
@@ -157,7 +160,12 @@ export default {
   },
 
   created() {
+    setTimeout(() => {
+      console.log('hey', this.orders)
+    }, 1000);
+    console.log(this.$store.getters.orders)
     this.loadOrdersByOwner()
+
   },
 }
 </script>
