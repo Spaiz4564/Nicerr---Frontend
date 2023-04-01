@@ -13,6 +13,12 @@
 
     }
 
+    @include for-mobile-layout {
+        .seller-preview {
+            flex-direction: column;
+        }
+    }
+
     .title {
         font-size: 1.75rem;
         padding-block-end: 0.5714285714em;
@@ -745,4 +751,5 @@
             }
         }
     }
+
 }

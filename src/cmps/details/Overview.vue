@@ -3,12 +3,16 @@
     <p class="title">{{ gig.title }}</p>
     <div class="info-img flex align-center">
       <img class="logo" :src="gig.owner.imgUrl" alt="" />
-      <p class="name">{{ gig.owner.fullname }}</p>
-      <p>Level {{ gig.owner.level }} Seller</p>
-      <div class="rate flex align-center">
-        <div className="icon" v-html="getSvg('fiveStarsEmpty')"></div>
-        <p class="info-rate">5</p>
-        <p>(154)</p>
+      <div class="seller-preview flex">
+        <div class="text">
+          <p class="name">{{ gig.owner.fullname }}</p>
+          <p>Level {{ gig.owner.level }} Seller</p>
+        </div>
+        <div class="rate flex align-center">
+          <div className="icon" v-html="getSvg('fiveStarsEmpty')"></div>
+          <p class="info-rate">5</p>
+          <p>(154)</p>
+        </div>
       </div>
     </div>
     <div class="img">
