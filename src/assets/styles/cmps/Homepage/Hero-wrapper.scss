@@ -8,28 +8,35 @@
   place-content: center;
 }
 
-
-
-.hero-background{
- .desc{
-  span{
-    display: flex;
-    align-items: flex-start;
+.hero-background {
+  @include for-mobile-layout{
+    &:nth-child(2) {
+      opacity: 1;
+    }
   }
-  .artist-info{
-    gap: 5px;
+ 
+  .desc {
+    @include for-mobile-layout {
+      display: none;
+    }
+    span {
+      display: flex;
+      align-items: flex-start;
+    }
+    .artist-info {
+      gap: 5px;
+      display: flex;
+    }
+    font-size: 16px;
+    color: white;
     display: flex;
+    letter-spacing: 0.1px;
+    flex-direction: column;
+    position: absolute;
+    right: 13.2%;
+    bottom: 30px;
+    gap: 4px;
   }
-  font-size: 16px;
-  color: white;
-  display: flex;
-  letter-spacing: 0.1px;
-  flex-direction: column;
-  position: absolute;
-  right: 13.2%;
-  bottom:30px;
-  gap: 4px;
- }
   transition: all 1s linear;
   opacity: 0;
   width: 100%;
@@ -37,12 +44,19 @@
   position: absolute;
 }
 
-.hero-background:first-child{
+.hero-background:first-child {
+  @include for-mobile-layout{
+    opacity: 0;
+
+  }
   opacity: 1;
 }
 
-.showOpacity{
-opacity: 1;
+.showOpacity {
+  @include for-mobile-layout{
+    opacity: 0;
+  }
+  opacity: 1;
 }
 
 .hero-container {
@@ -51,9 +65,17 @@ opacity: 1;
   .hero {
     max-width: 650px;
     h1 {
+      @include for-wide-layout {
+        font-size: 41px;
+        margin-top: 20px;
+      }
+      @include for-mobile-layout {
+        font-size: 40px;
+        max-width: 360px;
+      }
       font-family: 'Macan-Bold';
-      letter-spacing: 0.50px;
-      line-height: 57px;
+      letter-spacing: 0.5px;
+      line-height: 50px;
       color: white;
       font-size: 47px;
       span {
@@ -66,6 +88,12 @@ opacity: 1;
 }
 
 .header-suggestions {
+  @include for-mobile-layout {
+    flex-direction: column;
+    span{
+      align-self: flex-start;
+    }
+  }
   display: flex;
   align-items: center;
   gap: 12px;
@@ -74,6 +102,10 @@ opacity: 1;
     font-size: 14px;
   }
   ul {
+    @include for-mobile-layout {
+      flex-wrap: wrap;
+      justify-content: flex-start;
+    }
     li {
       cursor: pointer;
       font-size: 14px;
@@ -113,6 +145,9 @@ opacity: 1;
     display: flex;
 
     button {
+      @include for-mobile-layout {
+        padding: 5px 10px;
+      }
       color: white;
       padding: 5px 24px;
       margin: 0;
@@ -126,22 +161,20 @@ opacity: 1;
 
   .search {
     align-items: center;
-      svg {
-        fill: $clr01;
-        display: flex;
-        align-items: center;
-        justify-content: center;
-        background-color: #fff;
-      }
-    
+    svg {
+      fill: $clr01;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      background-color: #fff;
+    }
+
     .icon {
       padding: 0px 12px 0px 16px;
     }
     display: flex;
     width: 100%;
   }
-
-
 
   input {
     &::placeholder {

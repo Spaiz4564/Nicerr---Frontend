@@ -1,7 +1,13 @@
 .about-section {
 .about{
+  @include for-wide-layout{
+flex-direction: column;
+img{
+  width: 100%;
+}
+  }
   gap: 30px;
-  padding: 96px 0px;
+  padding: 96px 0px 0px 0px;
   display: flex;
   grid-column: 2/ 3;
 }
@@ -53,6 +59,23 @@
       line-height: 120%;
       color: $clr4;
     }
+    @include for-wide-layout{
+     max-width: none;
+     h2{
+      width: 800px;
+     }
+        }
+        @include for-tablet-layout{
+          h2{
+            width: 640px;
+          }
+        }
+        @include for-mobile-layout{
+          h2{
+
+            width: auto;
+          }
+        }
     max-width: 47%;
     padding-right: 11%;
   }

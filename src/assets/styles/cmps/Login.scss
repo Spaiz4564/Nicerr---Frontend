@@ -1,4 +1,7 @@
 .container-about {
+  @include for-mobile-layout{
+    max-width: 320px;
+  }
   h3 {
     margin-bottom: 30px;
   }
@@ -14,6 +17,9 @@
   border-radius: 4px;
 }
 .login-form {
+  @include for-mobile-layout{
+    width: auto;
+  }
   h3 {
     color: $clr4;
     font-size: 22px;
