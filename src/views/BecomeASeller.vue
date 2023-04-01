@@ -14,7 +14,6 @@
               type="text"
               name="full-name"
               v-model="userToEdit.fullname"
-              placeholder="Fullname"
             />
             <div class="flex column">
               <label class="label" for="username">username</label>
@@ -25,15 +24,16 @@
               class="input"
               name="username"
               v-model="userToEdit.username"
-              placeholder="Type your display name "
             />
-            <label class="label" for="password">Password</label>
+            <div class="flex column">
+              <label class="label" for="password">Password</label>
+              <p>Type your password</p>
+            </div>
             <input
               type="password"
               class="input"
               name="password"
               v-model="userToEdit.password"
-              placeholder="Password"
             />
             <div class="flex column">
               <h2 class="txt-upload">Profile picture</h2>
@@ -42,19 +42,20 @@
                 who they’ll be working with.
               </p>
             </div>
-            <div class="img-upload-container" :class="[img ? 'clear' : '']">
-              <img
-                class="img-become"
-                src="../assets/images/About/default.png"
-                alt=""
-              />
-              <div class="upload-cmp">
-                <div class="img-upload-seller"></div>
-                <ImgUploader @uploaded="imgUrl" @image="handleImage" />
+            <div class="img-upload">
+              <div :class="[img ? 'clear' : '']">
+                <img src="../assets/images/About/default.png" alt="" />
               </div>
+              <ImgUploader @uploaded="imgUrl" @image="handleImage" />
+            </div>
+            <div class="flex column">
+              <label class="label" for="location">Description</label>
+              <p>
+                Share a bit about your work experience, cool projects you’ve
+                completed, and your area of expertise.
+              </p>
             </div>
 
-            <label class="label" for="location">Description</label>
             <textarea
               v-model="userToEdit.description"
               name=""
@@ -62,16 +63,20 @@
               cols="30"
               rows="10"
             ></textarea>
-
-            <label class="label" for="location">Enter your country</label>
+            <div class="flex column">
+              <label class="label" for="location">Country</label>
+              <p>Where are you from?</p>
+            </div>
             <input
               class="input"
               v-model="userToEdit.location"
               type="text"
               name="location"
-              placeholder="Country"
             />
 
+            <RouterLink to="/"
+              ><button class="button-back">Back</button></RouterLink
+            >
             <button class="btn-sign">Continue</button>
           </div>
         </form>

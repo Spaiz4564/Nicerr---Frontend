@@ -72,6 +72,7 @@ import { userService } from '../services/user.service'
 import GigPreviewSeller from '../cmps/GigPreviewSeller.vue'
 import GigPreview from '../cmps/GigPreview.vue'
 import { svgService } from '../services/svg.service'
+import ImgUploader from '../cmps/ImgUploader.vue'
 
 export default {
   name: 'SellerProfile',
@@ -109,6 +110,7 @@ export default {
   components: {
     GigPreviewSeller,
     GigPreview,
+    ImgUploader
   },
 }
 </script>

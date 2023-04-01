@@ -116,8 +116,8 @@ async function signup(user) {
   }
 }
 async function logout() {
-  // sessionStorage.removeItem(STORAGE_KEY_LOGGEDIN_USER)
-  // socketService.logout()
+  sessionStorage.removeItem(STORAGE_KEY_LOGGEDIN_USER)
+  socketService.logout()
   return await httpService.post('auth/logout')
 }
 
@@ -147,6 +147,7 @@ async function changeScore(by) {
 
 function saveLocalUser(user) {
   const userToSave = {
+    fullname: user.fullname,
     _id: user._id,
     username: user.username,
     imgUrl: user.imgUrl,

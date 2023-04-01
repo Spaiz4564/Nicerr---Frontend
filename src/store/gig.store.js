@@ -37,20 +37,21 @@ export const gigStore = {
       categoryId: '',
     },
     selectedCategory: null,
+    resultsFor: null,
   },
   getters: {
     gigs({ gigs }) {
       return gigs
     },
     gigById({ gigs }) {
-      return (gigId) => {
-        return gigs.find((gig) => gig._id === gigId)
+      return gigId => {
+        return gigs.find(gig => gig._id === gigId)
       }
     },
 
     gigsByOwner({ gigs }) {
-      return (ownerId) => {
-        return gigs.filter((gig) => gig.owner._id === ownerId)
+      return ownerId => {
+        return gigs.filter(gig => gig.owner._id === ownerId)
       }
     },
 
@@ -59,6 +60,9 @@ export const gigStore = {
     },
     selectedCategory(state) {
       return state.selectedCategory
+    },
+    resultsFor(state) {
+      return state.resultsFor
     },
   },
   mutations: {
@@ -71,24 +75,30 @@ export const gigStore = {
       state.selectedCategory = category
     },
 
+    updateResultsFor(state, { resultsFor}) {
+     
+      console.log(resultsFor)
+      state.resultsFor = resultsFor ? resultsFor : false
+    },
+
     addGig(state, { gig }) {
       state.gigs.push(gig)
     },
     saveGig(state, { gig }) {
-      const idx = state.gigs.findIndex((currGig) => currGig._id === gig._id)
+      const idx = state.gigs.findIndex(currGig => currGig._id === gig._id)
       if (idx !== -1) state.gigs.splice(idx, 1, gig)
       else state.gigs.push(gig)
     },
 
     updateGig(state, { gig }) {
-      const idx = state.gigs.findIndex((c) => c._id === gig._id)
+      const idx = state.gigs.findIndex(c => c._id === gig._id)
       state.gigs.splice(idx, 1, gig)
     },
     removeGig(state, { gigId }) {
-      state.gigs = state.gigs.filter((gig) => gig._id !== gigId)
+      state.gigs = state.gigs.filter(gig => gig._id !== gigId)
     },
     addGigMsg(state, { gigId, msg }) {
-      const gig = state.gigs.find((gig) => gig._id === gigId)
+      const gig = state.gigs.find(gig => gig._id === gigId)
       if (!gig.msgs) gig.msgs = []
       gig.msgs.push(msg)
     },

@@ -1,4 +1,12 @@
 .seller-profile-img {
+  position: relative;
+  .img-uploader{
+    input{
+      display: none;
+    }
+    top: 1px;
+    position: absolute;
+  }
   img {
     border-radius: 50%;
   }
@@ -16,9 +24,6 @@
   background-color: white;
 }
 
-// .gigs-container{
-
-// }
 
 .seller-profile-gigs {
   width: 100%;
@@ -36,6 +41,12 @@
 }
 
 .add-gig-container {
+  @include for-mobile-layout{
+    width: 200px;
+    height: 200px;
+    margin: auto;
+    min-height: auto;
+  }
   p {
     color: $clr4;
     font-size: 16px;
@@ -61,6 +72,11 @@
 }
 
 .seller {
+  @include for-mobile-layout{
+    min-width: auto;
+    max-width: auto;
+    width: 100%;
+  }
   min-width: 398px;
   max-width: 398px;
   width: 28%;
@@ -109,6 +125,9 @@
 }
 
 .seller-profile-container {
+  @include for-mobile-layout{
+    flex-direction: column;
+  }
   .user-info {
     height: 363px;
     border: 1px solid $clr9;
@@ -153,9 +172,15 @@
     flex-direction: column;
   }
   grid-column: 2/ 3;
+  @include for-wide-layout{
+    gap: 2%;
+  }
   gap: 13%;
 }
 .gigs-list-seller {
+  @include for-wide-layout{
+    grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+  }
   display: grid;
   grid-template-columns: repeat(auto-fill, minmax(230px, 1fr));
 
@@ -165,6 +190,9 @@
 
 .gigs-not-seller{
   .seller{
+    @include for-mobile-layout{
+      width: auto;
+    }
     max-width: 500px;
     width: 40%;
   }

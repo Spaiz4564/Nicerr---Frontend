@@ -1,6 +1,8 @@
 <template>
   <section class="gig-index main-layout full">
     <h1 v-if="category" class="selected-category">{{ category }}</h1>
+    <h1 v-if="resultsFor" class="selected-category">Results for "{{ resultsFor }}"</h1>
+   
     <GigFilter @filtered="setFilter" />
     <div class="sort-container flex">
       <span>{{ gigsLength }} services available</span>
@@ -73,6 +75,9 @@ export default {
     category() {
       return this.$store.getters.selectedCategory
     },
+    resultsFor() {
+      return this.$store.getters.resultsFor
+    },
     gigs() {
       return this.$store.getters.gigs
     },
@@ -129,6 +134,7 @@ export default {
   },
   unmounted() {
     this.$store.dispatch({ type: 'updateCategory', category: false })
+    this.$store.commit({ type: 'updateResultsFor', resultsFor: false })
   },
 }
 </script>

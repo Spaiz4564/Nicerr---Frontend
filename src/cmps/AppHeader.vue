@@ -1,7 +1,5 @@
 <template>
   <section class="main-header full" :class="[isPurchase ? 'hidden' : '']">
-    
-    
     <SideMenu
       @goToProfile="goToProfile"
       @goToDashboard="goToDashboard"
@@ -33,6 +31,7 @@
             class="search-bar"
           >
             <input
+              ref="resultsFor"
               class="search-input"
               type="text"
               placeholder="What service are you looking for today?"
@@ -52,7 +51,9 @@
             <a @click="goToSellerSignup">Become a Seller</a>
           </div>
           <a v-if="!loggedinUser" @click.stop="toggleSignInModal">Sign In</a>
-          <a class="join" v-if="!loggedinUser" @click.stop="toggleJoinModal">Join</a>
+          <a class="join" v-if="!loggedinUser" @click.stop="toggleJoinModal"
+            >Join</a
+          >
           <div class="modal" v-if="loggedinUser">
             <div
               v-clickOutsideDirective="toggleOrderModal"
@@ -72,7 +73,7 @@
                   <div class="desc">
                     <span>{{ order.title }}</span>
                     <div class="order flex">
-                    <p>By itsguy</p>
+                      <p>By itsguy</p>
                       <p :class="order.status">
                         {{ order.status || 'Pending' }}
                       </p>
@@ -168,6 +169,12 @@
         return this.$store.getters.changeModalOpen
       },
       emitFiltered() {
+        const results = this.$refs.resultsFor.value
+        this.$store.commit({
+          type: 'updateResultsFor',
+          resultsFor:  results ,
+        })
+
         this.$router.push({
           path: '/gig',
           query: { title: this.filterBy.title },
@@ -205,6 +212,7 @@
         this.$store.commit({ type: 'setFilter', filterBy: { categoryId } })
       },
       logout() {
+        console.log('logging out')
         this.closeUserMenu()
         this.$store.dispatch({ type: 'logout' })
         this.$router.push('/')
@@ -250,9 +258,9 @@
     mounted() {
       setTimeout(() => {
         console.log(this.orders)
-      }, 1000);
+      }, 1000)
       window.addEventListener('scroll', this.handleScroll)
-      window.onresize = () => {  
+      window.onresize = () => {
         this.windowWidth = window.innerWidth
       }
     },

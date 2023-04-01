@@ -12,11 +12,15 @@
   }
 }
 
-
-.seller-signup-container{
-
+.seller-signup-container {
+  @include for-tablet-layout{
+    width: 660px;
+  }
+  @include for-mobile-layout{
+    width: 286px;
+  }
   width: 770px;
-  margin:auto
+  margin: auto;
 }
 
 .seller-signup-form {
@@ -26,10 +30,15 @@
 }
 
 .seller-signup-inputs {
-
-  .flex{
+  @include for-mobile-layout{
+    display: block;
+  }
+  .flex {
+    @include for-mobile-layout{
+      margin-bottom: 12px;
+    }
     width: 200px;
-    p{
+    p {
       font-size: 14px;
       margin-top: 5px;
     }
@@ -44,7 +53,9 @@
     color: #333;
   }
   .input {
-
+    @include for-mobile-layout{
+      margin-bottom: 40px;
+    }
     width: 100%;
     font-family: Macan-Regular;
     height: 3rem;
@@ -59,15 +70,14 @@
     }
   }
 
-  // .input-desc{
-  //   height: 200px;
-  // }
 
   .btn-sign {
+    @include for-mobile-layout{
+      position: absolute;
+    }
     height: 45px;
-    width: 50%;
     border-radius: 4px;
-    font-family: "Macan-Regular";
+    font-family: 'Macan-Regular';
     font-size: 1rem;
     padding: 15px 24px;
     transition: 0.15s ease-in-out;
@@ -91,12 +101,13 @@
   }
 }
 
-.img-upload-container{
+.img-upload-container {
   cursor: pointer;
   max-width: 160px;
   position: relative;
 
-  label{
+  label {
+    text-align: left;
     cursor: pointer;
     height: 135px;
     width: 135px;
@@ -125,10 +136,94 @@
   }
 }
 
-
+.img-upload {
+  label {
+    @include for-mobile-layout{
+      margin: 10px 41px;
+    }
+    text-align: left;
+    margin: 10px 5px;
+    cursor: pointer;
+  }
+  max-width: 200px;
+  text-align: center;
+  img {
+    max-width: 150px !important;
+    max-height: 150px;
+    border-radius: 50%;
+  }
+  input {
+    display: none;
+    cursor: pointer;
+  }
+}
 
 .img-become {
   width: 150px;
   height: 150px;
   border-radius: 50%;
+}
+
+.button-back {
+  @include for-mobile-layout{
+    width: 48%;
+    margin-right: 10px;
+  }
+  background-color: #fafbfc;
+  border: 1px solid rgba(27, 31, 35, 0.15);
+  border-radius: 6px;
+  width: 65%;
+  box-shadow: rgba(27, 31, 35, 0.04) 0 1px 0,
+    rgba(255, 255, 255, 0.25) 0 1px 0 inset;
+  box-sizing: border-box;
+  color: #24292e;
+  cursor: pointer;
+  display: inline-block;
+  font-family: -apple-system, system-ui, 'Segoe UI', Helvetica, Arial,
+    sans-serif, 'Apple Color Emoji', 'Segoe UI Emoji';
+  font-size: 16px;
+  height: 45px;
+  font-weight: 500;
+  line-height: 20px;
+  list-style: none;
+  padding: 6px 16px;
+  position: relative;
+  transition: background-color 0.2s cubic-bezier(0.3, 0, 0.5, 1);
+  user-select: none;
+  -webkit-user-select: none;
+  touch-action: manipulation;
+  vertical-align: middle;
+  white-space: nowrap;
+  word-wrap: break-word;
+}
+
+.button-4:hover {
+  background-color: #f3f4f6;
+  text-decoration: none;
+  transition-duration: 0.1s;
+}
+
+.button-4:disabled {
+  background-color: #fafbfc;
+  border-color: rgba(27, 31, 35, 0.15);
+  color: #959da5;
+  cursor: default;
+}
+
+.button-4:active {
+  background-color: #edeff2;
+  box-shadow: rgba(225, 228, 232, 0.2) 0 1px 0 inset;
+  transition: none 0s;
+}
+
+.button-4:focus {
+  outline: 1px transparent;
+}
+
+.button-4:before {
+  display: none;
+}
+
+.button-4:-webkit-details-marker {
+  display: none;
 }
