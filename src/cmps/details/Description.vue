@@ -45,9 +45,8 @@
                 <ul class="clean-list flex column">
                     <li>Cross Browser,</li>
                     <li>compatibility,</li>
-                    <li>PST to HTML,</li>
-                    <li id="AboutSeller">
-                        Performance</li>
+                    <li id="Aboutseller">PST to HTML,</li>
+                    <li>Performance</li>
                 </ul>
             </li>
         </ul>

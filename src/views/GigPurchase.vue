@@ -116,6 +116,7 @@ import { gigService } from '../services/gig.service'
 import { pushScopeId } from 'vue'
 import { ordersService } from '../services/order.service'
 import Join from '../cmps/Join.vue'
+import { showSuccessMsg, showErrorMsg } from '../services/event-bus.service'
 
 export default {
   props: [],
@@ -131,20 +132,26 @@ export default {
       return svgService.getSvg(iconName)
     },
     async handlePurchase() {
-      const { id } = this.$route.params
-      const { _id } = this.loggedinUser
-      const order = {
-        gigId: id,
-        buyerId: _id,
-        sellerId: this.gig.owner._id,
-        price: this.gig.price,
-        status: 'pending',
-        imgUrl: this.gig.images[0],
-        title: this.gig.title,
+      if (this.loggedinUser) {
+        const { id } = this.$route.params
+        const { _id } = this.loggedinUser
+        const order = {
+          gigId: id,
+          buyerId: _id,
+          sellerId: this.gig.owner._id,
+          price: this.gig.price,
+          status: 'pending',
+          imgUrl: this.gig.images[0],
+          title: this.gig.title,
+        }
+        console.log(order)
+        await ordersService.save(order)
+        showSuccessMsg({ txt: 'Ordered Gig', type: 'success' })
+        this.$router.push(`/`)
+      } else {
+        showErrorMsg({ txt: 'Unlogged in User', type: 'error' })
+        this.openSignUp = true
       }
-      console.log(order)
-      await ordersService.save(order)
-      this.$router.push(`/`)
     },
     HandleLogoClick() {
       this.$router.push(`/`)
@@ -163,7 +170,6 @@ export default {
     gigService.getById(id).then((gig) => {
       this.gig = gig
     })
-
     const loggedinUser = this.$store.getters.loggedinUser
     console.log(loggedinUser)
   },
