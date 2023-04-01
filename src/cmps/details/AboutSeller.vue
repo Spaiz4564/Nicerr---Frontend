@@ -8,8 +8,8 @@
       <section class="info-details flex">
         <section class="line">
           <p class="user-name">{{ gig.owner.fullname }}</p>
+          <p class="seller-level">Level 3 Seller</p>
         </section>
-        <p class="seller-level">Level 3 Seller</p>
         <section>
           <ul class="ul-rate clean-list flex align-center">
             <li v-for="rate in rates">
