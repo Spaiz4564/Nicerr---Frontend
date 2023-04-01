@@ -3,28 +3,40 @@
   padding: 25px;
   grid-column: 2;
   .txt-header {
-    margin: 30px auto;
+    margin-bottom: 30px;
     font-size: 2rem;
     font-weight: 600;
     color: #333;
     display: flex;
-    justify-content: center;
+    justify-content: flex-start;
   }
 }
 
-.seller-signup-form {
-  padding: 25px;
+
+.seller-signup-container{
+
   width: 770px;
-  margin: auto;
+  margin:auto
+}
+
+.seller-signup-form {
+  border: 1px solid $clr9;
+  padding: 25px;
   background-color: white;
 }
 
 .seller-signup-inputs {
+
+  .flex{
+    width: 200px;
+    p{
+      font-size: 14px;
+      margin-top: 5px;
+    }
+  }
   display: grid;
-  grid-template-columns: 230px 1fr;
+  grid-template-columns: 200px 1fr;
   grid-gap: 2rem;
-  margin-top: em(50px);
-  // justify-items: center;
   .label {
     max-width: 200px;
     font-size: 1.2rem;
@@ -32,9 +44,10 @@
     color: #333;
   }
   .input {
+
     width: 100%;
     font-family: Macan-Regular;
-    height: 2.5rem;
+    height: 3rem;
     border: 1px solid #ccc;
     border-radius: 5px;
     padding: 0 0.5rem;
@@ -45,6 +58,11 @@
       border: 1px solid #333;
     }
   }
+
+  // .input-desc{
+  //   height: 200px;
+  // }
+
   .btn-sign {
     height: 45px;
     width: 50%;
@@ -73,21 +91,41 @@
   }
 }
 
-.upload-cmp {
-  display: grid;
-  grid-column: 2;
-  .upload-preview {
-    display: flex;
-    input {
-      display: none;
-    }
-    img {
-      width: 10em;
-      height: 10em;
-      border-radius: 50%;
+.img-upload-container{
+  cursor: pointer;
+  max-width: 160px;
+  position: relative;
+
+  label{
+    cursor: pointer;
+    height: 135px;
+    width: 135px;
+    border-radius: 50%;
+    position: absolute;
+    top: -43px;
+  }
+  .upload-cmp {
+    position: absolute;
+    top: 39px;
+    left: 7px;
+    opacity: 0;
+    display: grid;
+    grid-column: 2;
+    .upload-preview {
+      display: flex;
+      input {
+        display: none;
+      }
+      img {
+        width: 10em;
+        height: 10em;
+        border-radius: 50%;
+      }
     }
   }
 }
+
+
 
 .img-become {
   width: 150px;

@@ -1,9 +1,9 @@
 .goTo {
-  @include for-tablet-layout{
+  @include for-tablet-layout {
     display: none;
- a{
-  color: $clr1 !important;
- }
+    a {
+      color: $clr1 !important;
+    }
   }
   a {
     font-family: 'Macan-semi-Bold';
@@ -94,8 +94,6 @@
 }
 
 .logo {
- 
-
   &:after {
     content: '.';
     font-size: 2.7rem;
@@ -122,10 +120,10 @@
 }
 
 .nav-suggestions {
-  @include for-tablet-layout{
+  @include for-tablet-layout {
     display: none;
   }
-  
+
   transition: all 0.3s;
   border-bottom: 1px solid #e4e5e7 !important;
   border-top: 1px solid #e4e5e7 !important;
@@ -145,7 +143,7 @@
       color: $clr02;
       cursor: pointer;
       font-size: 16px;
-      @include for-wide-layout{
+      @include for-wide-layout {
         font-size: 11px;
       }
     }
@@ -171,7 +169,6 @@
 }
 
 .search-bar {
-
   span {
     cursor: pointer;
   }
@@ -192,7 +189,7 @@
       font-family: 'Macan-Regular';
       font-weight: 500;
       font-size: 16px;
-      @include for-mobile-layout{
+      @include for-mobile-layout {
         font-size: 14px;
       }
     }
@@ -223,13 +220,13 @@
       width: 16px;
     }
   }
-  @include for-tablet-layout{
+  @include for-tablet-layout {
     display: flex !important;
-    .icon-search{
+    .icon-search {
       width: 11.5%;
     }
   }
-  @include for-mobile-layout{
+  @include for-mobile-layout {
     width: 100%;
   }
 }
@@ -242,10 +239,10 @@
 }
 
 .logo-search {
-  @include for-tablet-layout{
+  @include for-tablet-layout {
     justify-content: center;
     flex-direction: column;
-   }
+  }
   display: flex;
   align-items: center;
   width: 100%;
@@ -282,10 +279,10 @@
   }
 
   .logo {
-    @include for-tablet-layout{
+    @include for-tablet-layout {
       color: $clr4;
       font-size: 2.2rem;
-     }
+    }
     color: white;
   }
 }
@@ -298,7 +295,7 @@
 
 .homeScroll {
   &.nav-suggestions {
-    @include for-tablet-layout{
+    @include for-tablet-layout {
       display: none !important;
     }
     display: block;
@@ -307,12 +304,10 @@
   background-color: white;
 
   .logo {
-    
     color: $clr4;
   }
 
   .goTo {
-  
     a {
       color: $clr3 !important;
     }
@@ -384,7 +379,7 @@
 }
 
 .clean-list-order {
-  @include for-mobile-layout{
+  @include for-mobile-layout {
     width: auto;
   }
   li {
@@ -408,19 +403,14 @@
 }
 
 .order-detail {
-  
-  
- 
-  @include for-mobile-layout{
+  @include for-mobile-layout {
     max-width: 250px;
     padding: 16px 0px;
   }
   padding: 16px 16px;
 
   .img-container {
-   
     img {
-      
       min-width: em(80px);
       height: 100%;
     }
@@ -431,7 +421,12 @@
   border-bottom: 1px solid $clr9;
 
   .desc {
-
+    @include for-mobile-layout {
+      padding: 0px 8px;
+      max-width: em(170px);
+      font-family: 'Macan-bold';
+      line-height: 19px;
+    }
     span {
       font-size: 14px;
       color: $clr4;
@@ -443,6 +438,14 @@
     }
 
     .order {
+      @include for-mobile-layout {
+        justify-content: space-between;
+        p {
+          &:first-child {
+            min-width: 120px;
+          }
+        }
+      }
       .Completed {
         color: $clr-main;
       }
@@ -510,14 +513,14 @@
   }
 }
 
-.menu-icon{
+.menu-icon {
   display: none;
-  @include for-tablet-layout{
-  display: block;
+  @include for-tablet-layout {
+    display: block;
   }
   top: 13px;
   position: absolute;
-  .line{
+  .line {
     width: 24px;
     height: 3px;
     background-color: #2a2727b7;
@@ -526,8 +529,7 @@
   }
 }
 
-.orders-mobile{
-  
+.orders-mobile {
   width: auto;
   .img-container {
     img {

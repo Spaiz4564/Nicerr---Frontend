@@ -3,7 +3,7 @@
 }
 
 .side-menu {
-  summary{
+  summary {
     margin-bottom: 20px;
   }
   a {
@@ -17,12 +17,13 @@
   }
   .img-container {
     img {
-        aspect-ratio: 1;
-        border-radius: 50%;
+      aspect-ratio: 1;
+      border-radius: 50%;
       height: auto;
     }
-    @include for-mobile-layout{
+    @include for-mobile-layout {
       width: 35px;
+      margin-inline-end: 15px;
     }
     width: 50px;
 
@@ -35,5 +36,6 @@
   z-index: 500;
   width: 270px;
   box-shadow: 20px 0 20px 800px #33323287;
+
   padding-inline-start: 20px;
 }

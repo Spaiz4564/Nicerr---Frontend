@@ -1,5 +1,7 @@
 <template>
-  <section class="main-header full">
+  <section class="main-header full" :class="[isPurchase ? 'hidden' : '']">
+    
+    
     <SideMenu
       @goToProfile="goToProfile"
       @goToDashboard="goToDashboard"
@@ -70,6 +72,7 @@
                   <div class="desc">
                     <span>{{ order.title }}</span>
                     <div class="order flex">
+                    <p>By itsguy</p>
                       <p :class="order.status">
                         {{ order.status || 'Pending' }}
                       </p>
@@ -249,7 +252,7 @@
         console.log(this.orders)
       }, 1000);
       window.addEventListener('scroll', this.handleScroll)
-      window.onresize = () => {
+      window.onresize = () => {  
         this.windowWidth = window.innerWidth
       }
     },
