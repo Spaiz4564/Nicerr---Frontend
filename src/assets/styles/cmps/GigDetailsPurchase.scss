@@ -5,10 +5,15 @@
     max-width: 460px;
     height: 525px;
     top: 40px;
-    right: em(30px);
+    left: em(30px);
     margin-bottom: em(20px);
     gap: em(25px);
     flex: 1;
+
+    @include for-mobile-layout {
+        display: none;
+    }
+
 
     .header {
         line-height: em(21px);
@@ -29,25 +34,38 @@
             word-break: keep-all;
             margin: auto 0px;
         }
+
     }
 
     .info {
         max-width: 430px;
-        padding: $padding;
+        padding: 2em 1.5em;
         border-bottom: 0.5px $clr02 solid;
         border: 0.2px solid $clr9;
+
     }
 
     .details-options {
-        height: auto;
-        gap: 15px;
+        gap: em(15px);
         margin: em(8px) 0px;
+        font-size: em(14px);
 
         color: $clr02;
 
+
+        @include for-tablet-layout {
+            gap: 0px;
+        }
+
+
         b.delivery,
         .revisions {
-            padding: 0 12px;
+            padding: 0 em(12px);
+
+            @include for-wide-layout {
+                padding: 0 em(2px);
+            }
+
         }
 
         span {
@@ -113,8 +131,11 @@
             position: relative;
             align-items: center;
             fill: $clr6;
-            left: 30%;
+            left: 20%;
 
+            @include for-tablet-layout {
+                left: 15%;
+            }
         }
     }
 
@@ -158,6 +179,15 @@
             font-size: em(20px);
             font-weight: 500;
             border: 0;
+        }
+    }
+
+    &.narrow {
+        display: none;
+
+        @include for-mobile-layout {
+            display: block;
+            position: inherit;
         }
     }
 

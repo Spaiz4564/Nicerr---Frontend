@@ -1,4 +1,6 @@
 .gig-details-main {
+
+
     .details-nav {
         border-bottom: 1px solid $clr10;
         position: sticky;
@@ -25,7 +27,6 @@
     .gig-details {
         grid-column: 2;
 
-
         font-family: 'Macan-Regular';
         font-size: rem(14px);
         line-height: 140%;
@@ -34,7 +35,13 @@
         color: $clr1;
 
         margin-block-start: em(32px);
+
+        @include for-mobile-layout {
+            flex-wrap: wrap;
+        }
     }
+
+
 }
 
 .type-tag {

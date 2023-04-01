@@ -9,6 +9,8 @@
     @include for-wide-layout {
         margin: 0;
         margin-inline-end: 5.5%;
+        flex: 2;
+
     }
 
     .title {
@@ -236,6 +238,10 @@
         .publish {
             font-size: em(16px);
             color: #95979d;
+        }
+
+        @include for-mobile-layout {
+            display: none;
         }
 
     }
@@ -497,17 +503,35 @@
         }
 
         .breakdown-progress {
+
             font-family: 'Macan-bold';
             font-size: em(13px);
             margin-bottom: em(30px);
+
+            @include for-mobile-layout {
+                flex-direction: column;
+            }
+
+
 
             .progress-bar {
                 width: 60%;
                 gap: 0.625em;
 
+                @include for-mobile-layout {
+                    width: 100%;
+                    margin-bottom: 8px;
+                }
+
+                @include for-tablet-layout {
+                    gap: 0px;
+                }
+
                 @include for-wide-layout {
                     min-width: 65%;
                 }
+
+
 
                 progress {
                     margin-right: 8px;
@@ -517,6 +541,10 @@
                     width: 195px;
                     border-radius: 6px;
                     overflow: hidden;
+
+                    @include for-tablet-layout {
+                        width: 150px;
+                    }
                 }
 
 
@@ -538,6 +566,8 @@
             .progress-container {
                 line-height: 10px;
 
+
+
                 .star-num {
                     color: $clr13;
                     font-family: 'Macan-Regular';
@@ -548,9 +578,18 @@
 
             .rating-bar {
                 font-family: 'Macan-Regular';
-                width: 58%;
+                width: 50%;
                 color: $clr01;
                 line-height: em(29px);
+                flex: 1;
+
+                @include for-mobile-layout {
+                    width: 100%;
+                }
+
+                @include for-tablet-layout {
+                    line-height: 18px;
+                }
 
                 .main-title {
                     padding-bottom: em(10px);

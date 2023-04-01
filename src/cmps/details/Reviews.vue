@@ -4,9 +4,7 @@
     <div class="review-star flex">
       <span>270 reviews for this Gig</span>
       <div class="flex">
-        <div
-          className="review-star icon"
-          v-html="getSvg('fiveStarsEmpty')"></div>
+        <div className="review-star icon" v-html="getSvg('fiveStarsEmpty')"></div>
         <p>4.8</p>
       </div>
     </div>
@@ -115,13 +113,9 @@
               </div>
               <div class="helpful flex align-center">
                 <span>Helpful?</span>
-                <div
-                  className="icon thumbsUp"
-                  v-html="getSvg('thumbsUp')"></div>
+                <div className="icon thumbsUp" v-html="getSvg('thumbsUp')"></div>
                 <span>Yes</span>
-                <div
-                  className="icon thumbsDown"
-                  v-html="getSvg('thumbsDown')"></div>
+                <div className="icon thumbsDown" v-html="getSvg('thumbsDown')"></div>
                 <span>No</span>
               </div>
             </section>
@@ -151,7 +145,7 @@ export default {
     },
   },
   computed: {},
-  created() {},
+  created() { },
   components: {
     LongTxt,
   },
