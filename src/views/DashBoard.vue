@@ -81,7 +81,7 @@
             <p>{{ order.buyer.username }}</p>
           </div>
           <span class="gig">{{ order.gig.name }}</span>
-          <span class="date">{{ makeDate(order.boughtAt) }}</span>
+          <span class="date">{{ order.date }}</span>
           <span class="total">US${{ order.gig.price }}</span>
           <Status
             :status="order.status"
