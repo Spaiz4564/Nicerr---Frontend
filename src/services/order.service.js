@@ -2,6 +2,23 @@
 import { httpService } from './http.service.js'
 import { utilService } from './util.service.js'
 import { userService } from './user.service.js'
+// import { socketService } from './socket.service.js'
+// import { store } from '../store/store.js'
+// ;(() => {
+//   setTimeout(() => {
+//     socketService.on('new-order-seller', (order) => {
+//       store.commit({ type: 'saveOrder', order })
+//     })
+
+//     socketService.on('new-order-buyer', (order) => {
+//       store.commit({ type: 'saveOrder', order })
+//     })
+
+//     socketService.on('order-changed-status', (order) => {
+//       store.commit({ type: 'saveOrder', order })
+//     })
+//   }, 0)
+// })()
 
 const STORAGE_KEY = 'order'
 
@@ -12,7 +29,6 @@ export const ordersService = {
   getEmptyOrders,
   addOrdersMsg,
   getById,
-  saveOrder,
 }
 window.cs = ordersService
 
@@ -23,8 +39,12 @@ async function query(
 ) {
   const orders = await httpService.get(STORAGE_KEY, filterBy)
   const { orderId } = filterBy
+  const { ordersByUser } = filterBy
   if (orderId) {
     return orders.filter((order) => order._id === orderId)
+  }
+  if (ordersByUser) {
+    return orders.filter((order) => order.buyer._id === ordersByUser)
   }
 
   return orders
@@ -35,25 +55,18 @@ async function remove(orderId) {
   return httpService.delete(`order/${orderId}`)
 }
 async function save(order) {
-  if (order._id) {
-    return httpService.put(`order/${order._id}`, order)
-  } else {
-    return httpService.post(`order`, order)
-  }
-}
-
-async function saveOrder(order) {
-  console.log('order', order._id)
   var savedOrder
-  console.log('order', order)
   if (order._id) {
-    savedOrder = await httpService.put(STORAGE_KEY, order)
+    // savedOrder = await storageService.put(ORDER_STORAGE_KEY, order)
+    savedOrder = await httpService.put(`order/${order._id}`, order)
   } else {
-    savedOrder = await httpService.post(STORAGE_KEY, order)
+    // Later, owner is set by the backend
+    order.buyer = await userService.getLoggedInUser()
+    // savedOrder = await storageService.post(ORDER_STORAGE_KEY, order)
+    savedOrder = await httpService.post(`order`, order)
   }
   return savedOrder
 }
-
 function getById(orderId) {
   return httpService.get(STORAGE_KEY, orderId)
 }

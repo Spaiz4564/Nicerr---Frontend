@@ -1,6 +1,6 @@
 <template>
   <section class="purchase-navBar full main-layout">
-    <div class=" purchase-navBar logo" @click="HandleLogoClick">Nicerr</div>
+    <div class="purchase-navBar logo" @click="HandleLogoClick">Nicerr</div>
   </section>
   <section class="app-container main-layout" v-if="gig">
     <section class="gig-payment flex justify-center">
@@ -18,7 +18,10 @@
             <div class="card-info flex">
               <div class="card-container">
                 <p>Card Number</p>
-                <input class="card-num" type="text" value="4580 5926 7852 9996" />
+                <input
+                  class="card-num"
+                  type="text"
+                  value="4580 5926 7852 9996" />
               </div>
               <div class="short-input flex">
                 <div>
@@ -58,23 +61,33 @@
               </div>
               <ul class="features">
                 <li class="regular">
-                  <div className=" regular fill svg-container" v-html="getSvg('checkSign')"></div>
+                  <div
+                    className=" regular fill svg-container"
+                    v-html="getSvg('checkSign')"></div>
                   1 concept included
                 </li>
                 <li class="regular">
-                  <div className="svg-container icon regular fill" v-html="getSvg('checkSign')"></div>
+                  <div
+                    className="svg-container icon regular fill"
+                    v-html="getSvg('checkSign')"></div>
                   Logo transparency
                 </li>
                 <li class="regular">
-                  <div className="svg-container icon regular fill" v-html="getSvg('checkSign')"></div>
+                  <div
+                    className="svg-container icon regular fill"
+                    v-html="getSvg('checkSign')"></div>
                   Include 3D mockup
                 </li>
                 <li class="regular">
-                  <div className="svg-container icon regular fill" v-html="getSvg('checkSign')"></div>
+                  <div
+                    className="svg-container icon regular fill"
+                    v-html="getSvg('checkSign')"></div>
                   1 concept included
                 </li>
                 <li class="regular">
-                  <div className="svg-container icon regular fill" v-html="getSvg('checkSign')"></div>
+                  <div
+                    className="svg-container icon regular fill"
+                    v-html="getSvg('checkSign')"></div>
                   Include source file
                 </li>
               </ul>
@@ -117,6 +130,7 @@ import { pushScopeId } from 'vue'
 import { ordersService } from '../services/order.service'
 import Join from '../cmps/Join.vue'
 import { showSuccessMsg, showErrorMsg } from '../services/event-bus.service'
+import { socketService } from '../services/socket.service'
 
 export default {
   props: ['isBackDrop'],
@@ -134,21 +148,23 @@ export default {
     async handlePurchase() {
       this.$emit('wow')
       if (this.loggedinUser) {
-        const { id } = this.$route.params
-        const { _id } = this.loggedinUser
         const order = {
-          gigId: id,
-          buyerId: _id,
-          sellerId: this.gig.owner._id,
-          price: this.gig.price,
-          status: 'pending',
-          imgUrl: this.gig.images[0],
-          title: this.gig.title,
+          buyer: this.loggedinUser,
+          seller: this.gig.owner,
+          gig: {
+            _id: this.gig._id,
+            name: this.gig.title,
+            price: this.gig.price,
+            img: this.gig.images[0],
+          },
+          status: 'Pending',
         }
-        console.log(order)
-        await ordersService.save(order)
-        showSuccessMsg({ txt: 'Ordered Gig', type: 'success' })
-        this.$router.push(`/`)
+        this.$store.dispatch({ type: 'saveOrder', order: { ...order } })
+        setTimeout(() => {
+          this.$router.push('/')
+        }, 500)
+        socketService.emit('gig-ordered', this.gig)
+        console.log('order', order)
       } else {
         showErrorMsg({ txt: 'Unlogged in User', type: 'error' })
         this.openSignUp = true
@@ -156,7 +172,7 @@ export default {
     },
     HandleLogoClick() {
       this.$router.push(`/`)
-    }
+    },
   },
   computed: {
     handlePrice() {

@@ -42,7 +42,7 @@ async function ajax(endpoint, method = 'GET', data = null) {
       sessionStorage.clear()
       window.location.assign('/')
       // Depends on routing startegy - hash or history
-      window.location.assign('/#/login')
+      // window.location.assign('/#/login')
       // window.location.assign('/login')
       // router.push('/login')
     }
