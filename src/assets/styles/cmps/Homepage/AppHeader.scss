@@ -184,9 +184,7 @@
   padding-inline-start: 10px;
 
   .search-input {
-    
     &::placeholder {
-     
       color: $clr01;
       font-family: 'Macan-Regular';
       font-weight: 500;
@@ -569,7 +567,22 @@
       min-width: 2em;
       height: 100%;
     }
-
-    // height: 54px;
   }
+}
+
+.notification-orders {
+  position: relative;
+  .dot {
+    position: absolute;
+    top: -3px;
+    left: 54px;
+    width: 10px;
+    height: 10px;
+    background-color: #ff0000;
+    border-radius: 50%;
+  }
+}
+
+.home-page-order {
+  padding-bottom: em(2px);
 }

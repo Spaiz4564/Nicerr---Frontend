@@ -83,34 +83,24 @@
         return `${date.getDate()}.${date.getMonth() + 1}.${date.getFullYear()}`
       },
       async setStatus(status, orderId) {
-        const order = await ordersService.getById(orderId)
+        const order = this.orders.find(order => order._id === orderId)
         order.status = status
         const orderUi = this.orders.find(order => order._id === orderId)
         orderUi.status = status
-        ordersService.save(order)
+        await ordersService.save(order)
+        socketService.emit('order-change-status', order.buyer)
       },
       async loadOrdersByOwner() {
         const owner = userService.getLoggedinUser()
         this.orders = await ordersService.query({ ownerId: owner._id })
-        return this.orders
-      },
-
-      calculatePercentage(num1, num2) {
-        console.log(num1, num2)
-        if (num1 === 0 || num2 === 0) {
-          return 0
-        }
-
-        const percentage = (num1 / num2) * 100
-        return percentage.toFixed(2)
       },
 
       income(i) {
         if (this.orders) {
           if (i < 2) {
-            return `$${this.orders
+            return this.orders
               .filter(order => order.status === 'Completed')
-              .reduce((acc, curr) => (acc += curr.gig.price), 0)}`
+              .reduce((acc, curr) => (acc += curr.gig.price), 0)
           } else if (i === 2) {
             return this.orders.filter(order => order.status === 'Completed')
               .length
@@ -121,32 +111,57 @@
           }
         }
       },
-    },
-    computed: {
-      user() {
-        return userService.getLoggedinUser()
-      },
-      async ordersCompleted() {
-        const owner = userService.getLoggedinUser()
-        const orders = await ordersService.query({ ownerId: owner._id })
-        const ordersLength = orders
-          .filter(order => order.status === 'Completed')
-          .reduce((acc, curr) => (acc += curr.gig.price), 0).length
 
-        return this.calculatePercentage(completed, ordersLength)
-      },
-    },
+      methods: {
+        makeDate(timeStamp) {
+          const date = new Date(timeStamp)
+          return `${date.getDate()}.${
+            date.getMonth() + 1
+          }.${date.getFullYear()}`
+        },
+        async setStatus(status, orderId) {
+          const order = await ordersService.getById(orderId)
+          order.status = status
+          const orderUi = this.orders.find(order => order._id === orderId)
+          orderUi.status = status
+          ordersService.save(order)
+        },
+        async loadOrdersByOwner() {
+          const owner = userService.getLoggedinUser()
+          this.orders = await ordersService.query({ ownerId: owner._id })
+          return this.orders
+        },
 
-    components: {
-      Progress,
-      Status,
+        calculatePercentage(num1, num2) {
+          console.log(num1, num2)
+          if (num1 === 0 || num2 === 0) {
+            return 0
+          }
+
+          const percentage = (num1 / num2) * 100
+          return percentage.toFixed(2)
+        },
+
+        income(i) {
+          if (this.orders) {
+            if (i < 2) {
+              return `$${this.orders
+                .filter(order => order.status === 'Completed')
+                .reduce((acc, curr) => (acc += curr.gig.price), 0)}`
+            } else if (i === 2) {
+              return this.orders.filter(order => order.status === 'Completed')
+                .length
+              return 4
+            } else {
+              return this.orders.filter(order => order.status === 'Pending')
+                .length
+            }
+          }
+        },
+      },
     },
 
     created() {
-      setTimeout(() => {
-        console.log('hey', this.orders)
-      }, 1000)
-      console.log(this.$store.getters.orders)
       this.loadOrdersByOwner()
     },
   }

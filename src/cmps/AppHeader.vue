@@ -41,9 +41,20 @@
         </div>
         <div class="goTo">
           <RouterLink to="/gig">Explore</RouterLink>
-          <a @click.stop="toggleOrderModal" v-if="loggedinUser">Orders</a>
+
           <div v-if="!seller" class="flex">
             <a @click="goToSellerSignup">Become a Seller</a>
+          </div>
+          <div class="home-page-order">
+            <span v-if="isActiveNotification" class="notification-orders">
+              <span class="dot"></span>
+            </span>
+            <a
+              @click.stop="toggleOrderModal"
+              v-if="loggedinUser"
+              @click="closeActiveOrders()"
+              >Orders</a
+            >
           </div>
           <a v-if="!loggedinUser" @click.stop="toggleSignInModal">Sign In</a>
           <a class="join" v-if="!loggedinUser" @click.stop="toggleJoinModal"
@@ -55,6 +66,7 @@
               class="order-modal"
               v-if="loggedinUser && orderModalOpen">
               <div class="modal-tip"></div>
+
               <ul class="clean-list-order">
                 <li
                   v-for="order in orders"
@@ -109,9 +121,11 @@ import NavSuggestions from './NavSuggestions.vue'
 import { ordersService } from '../services/order.service'
 import NavVuper from '../cmps/NavVuper.vue'
 import SideMenu from '../cmps/HomePage/SideMenu.vue'
-
 export default {
   name: 'AppHeader',
+  props: {
+    isActiveNotification: Boolean,
+  },
   data() {
     return {
       showSideMenu: false,
@@ -213,6 +227,9 @@ export default {
     async loadOrders() {
       const orders = await ordersService.query()
       this.$store.commit({ type: 'setOrders', orders })
+    },
+    closeActiveOrders() {
+      this.$emit('closeActiveOrders')
     },
   },
   watch: {

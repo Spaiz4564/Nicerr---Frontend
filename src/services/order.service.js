@@ -44,11 +44,10 @@ async function query(
   const { ownerId } = filterBy
   const { ordersByUser } = filterBy
   if (orderId) {
-    return orders.filter(order => order._id === orderId)
+    return orders.filter((order) => order._id === orderId)
+  } else if (ownerId) {
+    return orders.filter((order) => order.seller._id === ownerId)
   }
- else if(ownerId) {
-  return orders.filter(order => order.seller._id === ownerId)
- } 
 
   return orders
 }
@@ -60,7 +59,6 @@ async function remove(orderId) {
 async function save(order) {
   var savedOrder
   if (order._id) {
-    // savedOrder = await storageService.put(ORDER_STORAGE_KEY, order)
     savedOrder = await httpService.put(`order/${order._id}`, order)
   } else {
     // Later, owner is set by the backend

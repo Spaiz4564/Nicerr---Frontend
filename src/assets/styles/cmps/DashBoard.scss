@@ -104,12 +104,13 @@
   .table-entity {
     height: 80px;
     .el-input__wrapper.is-focus {
-      box-shadow: 0 0 0 1px var(--el-input-border-color,var(--el-border-color)) inset !important;
+      box-shadow: 0 0 0 1px var(--el-input-border-color, var(--el-border-color))
+        inset !important;
     }
-    
+
     .el-input__inner {
       color: white;
-      &::placeholder{
+      &::placeholder {
         color: white;
       }
       text-align: center;
@@ -125,7 +126,7 @@
       svg {
         display: none;
       }
-      width: 160px;
+      max-width: em(120px);
     }
     align-items: center;
 
@@ -134,7 +135,7 @@
     padding: 16px 0px;
     border-top: 1px solid #dadbdd;
     .buyer {
-      p{
+      p {
         min-width: 100px;
       }
       gap: 15%;
@@ -169,8 +170,8 @@
 .Completed {
   .el-input__wrapper {
     background-color: $clr-main;
-    input{
-      &::placeholder{
+    input {
+      &::placeholder {
         color: white !important;
       }
     }
@@ -180,8 +181,8 @@
 .Rejected {
   .el-input__wrapper {
     background-color: #c43333;
-    input{
-      &::placeholder{
+    input {
+      &::placeholder {
         color: white !important;
       }
     }
@@ -190,8 +191,8 @@
 .In-progress {
   .el-input__wrapper {
     background-color: #ffbe5b;
-    input{
-      &::placeholder{
+    input {
+      &::placeholder {
         color: white !important;
       }
     }
@@ -200,7 +201,7 @@
 .Pending {
   .el-input__wrapper {
     background-color: rgb(141, 141, 141);
-    input{
+    input {
       color: white !important;
     }
   }
@@ -217,7 +218,7 @@
   padding: 30px 0;
 
   .dashboard-item {
-    h3{
+    h3 {
       font-family: Macan-Regular;
       font-size: 28px;
       font-weight: 300;
