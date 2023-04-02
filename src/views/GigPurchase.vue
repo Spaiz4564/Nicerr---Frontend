@@ -8,7 +8,6 @@
         <section class="payment-details-container">
           <h2 class="title-purchase">Payment Options</h2>
           <section class="credit-selection flex">
-            <input class="checkbox" type="checkbox" />
             <div>Credit & Debit Cards</div>
             <div class="visa">
               <div className="icon" v-html="getSvg('visa')"></div>
@@ -18,10 +17,7 @@
             <div class="card-info flex">
               <div class="card-container">
                 <p>Card Number</p>
-                <input
-                  class="card-num"
-                  type="text"
-                  value="4580 5926 7852 9996" />
+                <input class="card-num" type="text" value="4580 5926 7852 9996" />
               </div>
               <div class="short-input flex">
                 <div>
@@ -51,7 +47,7 @@
             <div class="main-header">
               <section class="header flex space-between">
                 <div class="img-container">
-                  <img :src="gig.owner.imgUrl" alt="" />
+                  <img :src="gig.images[0]" alt="" />
                 </div>
                 <p class="title">{{ gig.title }}</p>
               </section>
@@ -61,33 +57,23 @@
               </div>
               <ul class="features">
                 <li class="regular">
-                  <div
-                    className=" regular fill svg-container"
-                    v-html="getSvg('checkSign')"></div>
+                  <div className=" regular fill svg-container" v-html="getSvg('checkSign')"></div>
                   1 concept included
                 </li>
                 <li class="regular">
-                  <div
-                    className="svg-container icon regular fill"
-                    v-html="getSvg('checkSign')"></div>
+                  <div className="svg-container icon regular fill" v-html="getSvg('checkSign')"></div>
                   Logo transparency
                 </li>
                 <li class="regular">
-                  <div
-                    className="svg-container icon regular fill"
-                    v-html="getSvg('checkSign')"></div>
+                  <div className="svg-container icon regular fill" v-html="getSvg('checkSign')"></div>
                   Include 3D mockup
                 </li>
                 <li class="regular">
-                  <div
-                    className="svg-container icon regular fill"
-                    v-html="getSvg('checkSign')"></div>
+                  <div className="svg-container icon regular fill" v-html="getSvg('checkSign')"></div>
                   1 concept included
                 </li>
                 <li class="regular">
-                  <div
-                    className="svg-container icon regular fill"
-                    v-html="getSvg('checkSign')"></div>
+                  <div className="svg-container icon regular fill" v-html="getSvg('checkSign')"></div>
                   Include source file
                 </li>
               </ul>

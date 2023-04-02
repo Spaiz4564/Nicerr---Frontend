@@ -1,7 +1,6 @@
 .app-container {
     font-size: em(14px);
 
-
     @include for-mobile-layout {
         display: block;
 
@@ -15,8 +14,11 @@
 
 
         @include for-mobile-layout {
-            margin: em(12px) 0px;
-            margin-left: em(14px);
+            margin: 0.75em 0px;
+            margin-left: 0.875em;
+            height: 200vh;
+            font-size: 18px;
+
         }
 
         .payment-container {
@@ -37,7 +39,9 @@
             color: $clr2;
 
 
-            @include for-mobile-layout {}
+            @include for-mobile-layout {
+                min-width: 318px;
+            }
 
 
             h2 {
@@ -148,6 +152,7 @@
             .name-input {
                 width: em(240px);
                 margin-inline-end: em(50px);
+
             }
 
             @include for-mobile-layout {
@@ -157,7 +162,7 @@
 
         .package-container {
             display: flex;
-            max-width: em(345px);
+            max-width: em(350px);
             max-height: em(600px);
             border-radius: em(3px);
             border: 1px solid $clr9;
@@ -195,19 +200,21 @@
             }
 
             .title {
-                font-size: 2em;
+                font-size: 1em;
                 font-family: 'Macan-Regular';
                 font-weight: 700;
                 color: $clr4;
                 color: $clr02;
 
-
+                @include for-mobile-layout {
+                    font-size: 14px;
+                }
 
             }
 
             .img-container {
-                width: em(100px);
-                height: em(100px);
+                width: em(110px);
+                height: em(60px);
                 margin-right: em(20px);
 
                 img {
@@ -316,6 +323,7 @@
                 background-color: $clr-main;
             }
 
+            position: relative;
             border: 1px solid transparent;
             border-radius: 0.25em;
             font-size: 1rem;

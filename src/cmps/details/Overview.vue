@@ -6,7 +6,7 @@
       <div class="seller-preview flex">
         <div class="text">
           <p class="name">{{ gig.owner.fullname }}</p>
-          <p>Level {{ gig.owner.level }} Seller</p>
+          <p>Level {{ gig.owner.level || 5 }} Seller</p>
         </div>
         <div class="rate flex align-center">
           <div className="icon" v-html="getSvg('fiveStarsEmpty')"></div>

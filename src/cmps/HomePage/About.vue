@@ -47,9 +47,7 @@
         </ul>
       </div>
       <div class="teaser-img">
-        <img
-          :src="imgUrl('../../assets/images/About/Video Teaser.png')"
-          alt="" />
+        <img src="https://res.cloudinary.com/dzcangpqd/image/upload/v1680452124/Video_Teaser_bnavmc.png" alt="" />
       </div>
     </div>
   </div>
