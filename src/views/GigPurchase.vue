@@ -8,7 +8,6 @@
         <section class="payment-details-container">
           <h2 class="title-purchase">Payment Options</h2>
           <section class="credit-selection flex">
-            <input class="checkbox" type="checkbox" />
             <div>Credit & Debit Cards</div>
             <div class="visa">
               <div className="icon" v-html="getSvg('visa')"></div>
