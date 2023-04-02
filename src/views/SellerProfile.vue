@@ -16,7 +16,7 @@
                   <div className="icon" v-html="getSvg('location')"></div>
                   <h4>Country</h4>
                 </div>
-                <span>Israel</span>
+                <span>USA</span>
               </div>
 
               <div class="details">
@@ -32,8 +32,9 @@
         <div class="desc-container">
           <div class="desc">
             <h4>Description</h4>
-            <p>
-              Hello, this is {{ owner.fullname }}, stand up for vividstore,I am
+            <p v-if="owner.description">{{ owner.description}}</p>
+            <p v-else>
+              Hello, this is {{ owner.fullname }}, I am
               a young and enthusiastic graphic artist and realistic pencil
               sketch artist. I am certified as graphic designer from George
               Washington University, USA. I have almost 11 years experience in
@@ -87,7 +88,9 @@ export default {
   },
   computed: {
     owner() {
-      return userService.getLoggedinUser()
+      const owner = userService.getLoggedinUser()
+      console.log(owner)
+      return owner
     },
   },
   methods: {
