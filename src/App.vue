@@ -96,7 +96,7 @@ export default {
       this.adminMsg = msg
       setTimeout(() => {
         this.adminMsg = ''
-      }, 10000)
+      }, 400000)
     },
     closeActiveOrders() {
       this.isActiveNotification = false
