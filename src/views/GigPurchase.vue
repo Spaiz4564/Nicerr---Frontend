@@ -167,7 +167,6 @@ export default {
         socketService.emit('gig-ordered', this.gig)
         console.log('order', order)
       } else {
-        showErrorMsg({ txt: 'Unlogged in User', type: 'error' })
         this.openSignUp = true
       }
     },

@@ -86,6 +86,7 @@ export default {
       const orderUi = this.orders.find((order) => order._id === orderId)
       orderUi.status = status
       await ordersService.save(order)
+      socketService.emit('order-change-status', order.buyer)
     },
     async loadOrdersByOwner() {
       const owner = userService.getLoggedinUser()
@@ -113,9 +114,6 @@ export default {
     user() {
       return userService.getLoggedinUser()
     },
-    // orders() {
-    //   return this.$store.getters.orders
-    // }
   },
 
   components: {
@@ -124,10 +122,6 @@ export default {
   },
 
   created() {
-    setTimeout(() => {
-      console.log('hey', this.orders)
-    }, 1000)
-    console.log(this.$store.getters.orders)
     this.loadOrdersByOwner()
   },
 }

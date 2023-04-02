@@ -10,7 +10,11 @@
     </div>
   </section>
   <div class="main-layout">
-    <AppHeader :isBackdrop="isBackdrop" @backdrop="backdrop" />
+    <AppHeader
+      :isBackdrop="isBackdrop"
+      @backdrop="backdrop"
+      :isActiveNotification="isActiveNotification"
+      @closeActiveOrders="closeActiveOrders" />
     <RouterView />
     <UserMsg :msg="adminMsg" />
     <Footer />
@@ -33,6 +37,7 @@ export default {
       isBackdrop: false,
       whatModal: null,
       adminMsg: '',
+      isActiveNotification: false,
     }
   },
   created() {
@@ -43,6 +48,12 @@ export default {
     socketService.on('user-ordered-gig', (msg) => {
       console.log('user-ordered-gig', msg)
       this.setAdminMsg(msg)
+    })
+    socketService.on('order-status-changed', (msg) => {
+      console.log('order-status-changed', msg)
+      this.setAdminMsg(msg)
+      this.isActiveNotification = true
+      this.$store.dispatch({ type: 'loadOrders' })
     })
   },
   mounted() {
@@ -77,11 +88,13 @@ export default {
       this.isBackdrop = false
     },
     setAdminMsg(msg) {
-      console.log(msg)
       this.adminMsg = msg
       setTimeout(() => {
         this.adminMsg = ''
       }, 10000)
+    },
+    closeActiveOrders() {
+      this.isActiveNotification = false
     },
   },
 
