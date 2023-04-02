@@ -38,7 +38,7 @@
         <div class="gig-rating">
           <span class="icon-star gold" v-html="getSvg('starGold')"></span>
           <p class="gig-preview-rate">
-            {{ gig.rate }}<span class="total-rates">{{ totalRates }} </span>
+            {{ gig.rate }}<span class="total-rates">{{ gig.totalRates }} </span>
           </p>
         </div>
       </div>
@@ -88,11 +88,6 @@ export default {
       isFav: false,
       hoverTxt: false,
     }
-  },
-  computed: {
-    totalRates() {
-      return '(355)'
-    },
   },
   methods: {
     addToFav() {
