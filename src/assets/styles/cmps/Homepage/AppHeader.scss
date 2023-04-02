@@ -471,7 +471,6 @@
       @include for-mobile-layout {
         gap: 8px;
         justify-content: space-between;
-    
       }
       .Completed {
         color: $clr-main;
@@ -499,21 +498,21 @@
 // }
 
 .user-msg {
-  .column{
-    @include for-mobile-layout{
+  .column {
+    @include for-mobile-layout {
       margin-left: 25px;
     }
     align-items: baseline;
     margin-left: 40px;
   }
-  .msg-tick{
+  .msg-tick {
     position: absolute;
     top: 56%;
     left: 9%;
-    transform: translate(-50%,-50%);
+    transform: translate(-50%, -50%);
     fill: #1dbf73;
   }
- 
+
   position: fixed;
   display: flex;
   flex-grow: 1;
@@ -533,7 +532,7 @@
   box-shadow: 0 0 10px 0 rgba(0, 0, 0, 0.2);
   transition: all 0.3s ease;
 
-  @include for-mobile-layout{
+  @include for-mobile-layout {
     top: 154px;
     right: 57px;
     height: 61px;
@@ -543,8 +542,6 @@
     max-height: none;
     max-width: none;
   }
-
-
 
   .line {
     position: absolute;
@@ -603,7 +600,7 @@
 .notification-orders {
   position: relative;
   .dot {
-    @include for-mobile-layout{
+    @include for-mobile-layout {
       left: 27px;
     }
     position: absolute;

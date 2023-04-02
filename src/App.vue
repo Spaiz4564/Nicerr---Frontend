@@ -56,14 +56,13 @@ export default {
       this.isActiveProfile = true
     })
     socketService.on('order-status-changed', (msg) => {
-      console.log('order-status-changed', msg)
       this.setAdminMsg(msg)
       this.isActiveNotification = true
       this.$store.dispatch({ type: 'loadOrders' })
     })
 
-    socketService.on('user-msg', (msg) => {
-      showUserMsg(msg)
+    socketService.on('gig-viewed', (msg) => {
+      this.setAdminMsg(msg)
     })
   },
   mounted() {
@@ -103,7 +102,7 @@ export default {
       this.adminMsg = msg
       setTimeout(() => {
         this.adminMsg = ''
-      }, 4000)
+      }, 400000)
     },
     closeActiveOrders() {
       this.isActiveNotification = false

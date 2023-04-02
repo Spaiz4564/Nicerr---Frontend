@@ -32,5 +32,3 @@ socket.on('gig-ordered', async (gig) => {
     )
   return
 })
-
-//back to front

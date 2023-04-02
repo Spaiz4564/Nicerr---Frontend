@@ -6,6 +6,7 @@ export const SOCKET_EMIT_SEND_MSG = 'chat-send-msg'
 export const SOCKET_EMIT_SET_TOPIC = 'chat-set-topic'
 export const SOCKET_EVENT_USER_IS_TYPING = 'chat-user-is-typing'
 export const SOCKET_EMIT_USER_IS_TYPING = 'chat-set-user-is-typing'
+export const SOCKET_EMIT_USER_WATCHING_GIG = 'gig-viewed'
 
 const SOCKET_EMIT_LOGIN = 'set-user-socket'
 const SOCKET_EMIT_LOGOUT = 'unset-user-socket'

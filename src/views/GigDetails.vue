@@ -166,7 +166,10 @@ import Reviews from '../cmps/details/Reviews.vue'
 import Description from '../cmps/details/Description.vue'
 import Overview from '../cmps/details/Overview.vue'
 import { svgService } from '../services/svg.service'
-import { socketService } from '../services/socket.service'
+import {
+  socketService,
+  SOCKET_EMIT_USER_WATCHING_GIG,
+} from '../services/socket.service'
 
 export default {
   name: 'Gig-Details',
@@ -207,15 +210,13 @@ export default {
       return this.$store.getters.loggedinUser
     },
   },
-  created() {
+  async created() {
     const { id } = this.$route.params
-    gigService.getById(id).then((gig) => {
-      this.gig = gig
-    })
-    // if (this.loggedInUser._id !== this.gig.owner.id) {
-    //   socketService.emit('gig-viewed', this.gig.owner)
-    // }
+    this.gig = await gigService.getById(id)
+    if (this.loggedInUser && this.loggedInUser._id !== this.gig.owner._id)
+      socketService.emit(SOCKET_EMIT_USER_WATCHING_GIG, this.gig.owner)
   },
+
   components: {
     AboutSeller,
     Overview,
