@@ -5,7 +5,7 @@
     class="side-menu flex column"
   >
     <div v-if="user" class="user-info flex">
-      <div class="img-container flex">
+      <div class="img-container top flex">
         <img :src="user.imgUrl" alt="" />
       </div>
       <p>{{ user.username }}</p>
@@ -32,12 +32,12 @@
           class="order-detail flex align-center orders-mobile"
         >
           <div class="img-container">
-            <img :src="order.imgUrl" alt="" />
+            <img :src="order.gig.img" alt="" />
           </div>
           <div class="desc">
-            <span>{{ order.title }}</span>
+            <span>{{ order.gig.name }}</span>
             <div class="order flex">
-              <p>by vividstore</p>
+              <p>by {{ order.buyer.username }}</p>
               <p :class="order.status">
                 {{ order.status || 'Pending' }}
               </p>
@@ -74,8 +74,8 @@
         }
       },
       orders() {
-        return this.$store.getters.orders
-      },
+      return this.$store.getters.ordersByUser
+    },
 
       user() {
         return this.$store.getters.loggedinUser
@@ -83,5 +83,10 @@
     },
 
     components: {},
+    created() {
+      setTimeout(() => {
+        console.log(this.orders)
+      }, 1000);
+    }
   }
 </script>

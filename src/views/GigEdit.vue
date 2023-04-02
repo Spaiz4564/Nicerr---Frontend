@@ -15,7 +15,7 @@
             <h3>Description</h3>
             <p>ABriefly Describe Your Gig</p>
           </span>
-          <textarea
+          <textarea v-model="gigToAdd.description"
             placeholder="Lorem Ipsum is simply dummy text of the printing and typesetting industry...."></textarea>
         </label>
       </div>
@@ -25,7 +25,7 @@
             <h3>Category</h3>
             <p>Choose the category most suitable for your Gig.</p>
           </span>
-          <select name="Graphic and Design">
+          <select name="Graphic and Design" v-model="gigToAdd.category">
             <option value="Graphics & Design">Graphics & Design</option>
             <option value="Digital Marketing">Digital Marketing</option>
             <option value="Writing & Translation">Writing & Translation</option>
@@ -43,7 +43,7 @@
             <h3>Days To Make</h3>
             <p>Days it will take you on average to finish this gig</p>
           </span>
-          <select name="Graphic and Design">
+          <select name="Graphic and Design" v-model="gigToAdd.daysToDeliver">
             <option value="1">1</option>
             <option value="2">2</option>
             <option value="3">3</option>
@@ -58,7 +58,7 @@
             <h3>Price</h3>
             <p>Price you're offering for this gig</p>
           </span>
-          <input type="number" name="" id=""></label>
+          <input type="number" name="" id="" v-model="gigToAdd.price"></label>
       </div>
       <div class="images flex column">
         <span>
@@ -75,7 +75,7 @@
     </form>
     <div class="btns flex space-between">
       <button class="cancel-btn">Cancel</button>
-      <button class="save-btn">Save</button>
+      <button @click="saveGig" class="save-btn">Save</button>
     </div>
   </section>
 </template>
@@ -87,7 +87,7 @@ export default {
   name: ' GigEdit',
   data() {
     return {
-      gigToAdd: null,
+      gigToAdd: {},
       user: null,
     }
   },
