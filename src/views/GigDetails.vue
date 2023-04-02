@@ -142,7 +142,6 @@ import AboutSeller from '../cmps/details/AboutSeller.vue'
 import Reviews from '../cmps/details/Reviews.vue'
 import Description from '../cmps/details/Description.vue'
 import Overview from '../cmps/details/Overview.vue'
-
 import { svgService } from '../services/svg.service'
 
 export default {
@@ -156,7 +155,6 @@ export default {
   },
   methods: {
     navigateTo(id) {
-      console.log(id)
       this.$router.push({ hash: `${id}` })
       this.$nextTick(() => {
         const el = document.getElementById(`${id}`)
