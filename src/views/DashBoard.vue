@@ -86,7 +86,7 @@ export default {
       const orderUi = this.findById(orderId)
       orderUi.status = status
       await ordersService.save(order)
-      // socketService.emit('order-change-status', order.buyer)
+      socketService.emit('order-status-changed', order.buyer)
     },
     async loadOrdersByOwner() {
       const owner = userService.getLoggedinUser()

@@ -57,6 +57,7 @@ export default {
     })
     socketService.on('order-status-changed', (msg) => {
       this.setAdminMsg(msg)
+      console.log('order-status-changed')
       this.isActiveNotification = true
       this.$store.dispatch({ type: 'loadOrders' })
     })
@@ -102,7 +103,7 @@ export default {
       this.adminMsg = msg
       setTimeout(() => {
         this.adminMsg = ''
-      }, 400000)
+      }, 3000)
     },
     closeActiveOrders() {
       this.isActiveNotification = false
