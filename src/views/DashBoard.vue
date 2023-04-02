@@ -17,7 +17,7 @@
         </div>
       </div>
       <div class="progress">
-        <Progress />
+        <Progress :ordersCompleted="ordersCompleted" />
       </div>
     </div>
     <div class="seller-orders">
@@ -25,7 +25,8 @@
       <div class="income-order-dashboard flex">
         <div
           v-for="(item, i) in dashboardItems"
-          class="dashboard-item flex column">
+          class="dashboard-item flex column"
+        >
           <span>{{ item.title }}</span>
           <h3>{{ income(i) }}</h3>
         </div>
@@ -50,7 +51,8 @@
           <Status
             :status="order.status"
             :class="order.status"
-            @status="setStatus($event, order._id)" />
+            @status="setStatus($event, order._id)"
+          />
         </div>
       </div>
     </div>
@@ -58,78 +60,94 @@
 </template>
 
 <script>
-import Progress from '../cmps/Progress.vue'
-import Status from '../cmps/Status.vue'
-import { ordersService } from '../services/order.service'
-export default {
-  name: 'Dashboard',
-  data() {
-    return {
-      dashboardItems: [
-        { title: 'Annual Revenue' },
-        { title: 'Monthly Revenue' },
-        { title: 'Completed Orders' },
-        { title: 'Pending Orders' },
-      ],
-      orders: null,
-    }
-  },
-
-  methods: {
-    makeDate(timeStamp) {
-      const date = new Date(timeStamp)
-      return `${date.getDate()}.${date.getMonth() + 1}.${date.getFullYear()}`
-    },
-    async setStatus(status, orderId) {
-      const order = await ordersService.getById(orderId)
-      order.status = status
-      const orderUi = this.orders.find((order) => order._id === orderId)
-      orderUi.status = status
-      ordersService.save(order)
-    },
-    async loadOrdersByOwner() {
-      const owner = userService.getLoggedinUser()
-      this.orders = await ordersService.query({ ownerId: owner._id })
-    },
-
-    income(i) {
-      if (this.orders) {
-        if (i < 2) {
-          return this.orders
-            .filter((order) => order.status === 'Completed')
-            .reduce((acc, curr) => (acc += curr.gig.price), 0)
-        } else if (i === 2) {
-          return this.orders.filter((order) => order.status === 'Completed')
-            .length
-          return 4
-        } else {
-          return this.orders.filter((order) => order.status === 'Pending')
-            .length
-        }
+  import Progress from '../cmps/Progress.vue'
+  import Status from '../cmps/Status.vue'
+  import { ordersService } from '../services/order.service'
+  export default {
+    name: 'Dashboard',
+    data() {
+      return {
+        dashboardItems: [
+          { title: 'Annual Revenue' },
+          { title: 'Monthly Revenue' },
+          { title: 'Completed Orders' },
+          { title: 'Pending Orders' },
+        ],
+        orders: null,
       }
     },
-  },
-  computed: {
-    user() {
-      return userService.getLoggedinUser()
+
+    methods: {
+      makeDate(timeStamp) {
+        const date = new Date(timeStamp)
+        return `${date.getDate()}.${date.getMonth() + 1}.${date.getFullYear()}`
+      },
+      async setStatus(status, orderId) {
+        const order = await ordersService.getById(orderId)
+        order.status = status
+        const orderUi = this.orders.find(order => order._id === orderId)
+        orderUi.status = status
+        ordersService.save(order)
+      },
+      async loadOrdersByOwner() {
+        const owner = userService.getLoggedinUser()
+        this.orders = await ordersService.query({ ownerId: owner._id })
+        return this.orders
+      },
+
+      calculatePercentage(num1, num2) {
+        console.log(num1, num2)
+        if (num1 === 0 || num2 === 0) {
+          return 0
+        }
+
+        const percentage = (num1 / num2) * 100
+        return percentage.toFixed(2)
+      },
+
+      income(i) {
+        if (this.orders) {
+          if (i < 2) {
+            return `$${this.orders
+              .filter(order => order.status === 'Completed')
+              .reduce((acc, curr) => (acc += curr.gig.price), 0)}`
+          } else if (i === 2) {
+            return this.orders.filter(order => order.status === 'Completed')
+              .length
+            return 4
+          } else {
+            return this.orders.filter(order => order.status === 'Pending')
+              .length
+          }
+        }
+      },
     },
-    // orders() {
-    //   return this.$store.getters.orders
-    // }
-  },
+    computed: {
+      user() {
+        return userService.getLoggedinUser()
+      },
+      async ordersCompleted() {
+        const owner = userService.getLoggedinUser()
+        const orders = await ordersService.query({ ownerId: owner._id })
+        const ordersLength = orders
+          .filter(order => order.status === 'Completed')
+          .reduce((acc, curr) => (acc += curr.gig.price), 0).length
 
-  components: {
-    Progress,
-    Status,
-  },
+        return this.calculatePercentage(completed, ordersLength)
+      },
+    },
 
-  created() {
-    setTimeout(() => {
-      console.log('hey', this.orders)
-    }, 1000);
-    console.log(this.$store.getters.orders)
-    this.loadOrdersByOwner()
+    components: {
+      Progress,
+      Status,
+    },
 
-  },
-}
+    created() {
+      setTimeout(() => {
+        console.log('hey', this.orders)
+      }, 1000)
+      console.log(this.$store.getters.orders)
+      this.loadOrdersByOwner()
+    },
+  }
 </script>

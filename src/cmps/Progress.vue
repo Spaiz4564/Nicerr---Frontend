@@ -14,16 +14,25 @@
   </div>
 </template>
 
-<script lang="ts" setup>
-  import { ref } from 'vue'
-
-  const percentage = ref(20)
-
-  const customColors = [
-    { txt: 'Response Rate', color: '#1dbf73', percentage: 78 },
-    { txt: 'Orders Completed', color: '#1dbf73', percentage: 29 },
-    { txt: 'Delivered on Time', color: '#1dbf73', percentage: 95 },
-  ]
+<script lang="ts">
+  export default {
+    props: ['ordersCompleted'],
+    data() {
+      return {
+        customColors: [
+          { txt: 'Response Rate', color: '#1dbf73', percentage: 78 },
+          { txt: 'Orders Completed', color: '#1dbf73', percentage: 29 },
+          { txt: 'Delivered on Time', color: '#1dbf73', percentage: 95 },
+        ],
+      }
+    },
+    created() {
+      setTimeout(() => {
+        
+        console.log(this.ordersCompleted)
+      }, 1000);
+    }
+  }
 </script>
 <style scoped>
   .demo-progress .el-progress--line {
