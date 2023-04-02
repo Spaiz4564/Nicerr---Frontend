@@ -1,5 +1,6 @@
 <template>
   <section>
+    <UserMsgEvent />
     <div
       @click="closeModal"
       :class="isBackdrop ? 'showBackdrop' : 'hideBackDrop'"
@@ -33,6 +34,7 @@ import Join from './cmps/Join.vue'
 import { store } from './store/store'
 import { socketService } from './services/socket.service'
 import { showSuccessMsg, showUserMsg } from './services/event-bus.service'
+import UserMsgEvent from './cmps/UserMsgEvent.vue'
 
 export default {
   data() {
@@ -45,10 +47,10 @@ export default {
     }
   },
   created() {
-    console.log('Vue App created')
     this.$store.dispatch({ type: 'loadGigs' })
     const user = userService.getLoggedinUser()
     if (user) store.commit({ type: 'setLoggedInUser', user })
+
     socketService.on('user-ordered-gig', (msg) => {
       this.setAdminMsg(msg)
       this.isActiveProfile = true
@@ -58,6 +60,10 @@ export default {
       this.setAdminMsg(msg)
       this.isActiveNotification = true
       this.$store.dispatch({ type: 'loadOrders' })
+    })
+
+    socketService.on('user-msg', (msg) => {
+      showUserMsg(msg)
     })
   },
   mounted() {
@@ -82,6 +88,7 @@ export default {
     UserMsg,
     Footer,
     showUserMsg,
+    UserMsgEvent,
   },
   methods: {
     backdrop(isOpen, whichModal) {
@@ -96,7 +103,7 @@ export default {
       this.adminMsg = msg
       setTimeout(() => {
         this.adminMsg = ''
-      }, 400000)
+      }, 4000)
     },
     closeActiveOrders() {
       this.isActiveNotification = false

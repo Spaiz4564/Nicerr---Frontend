@@ -2,8 +2,11 @@
   <section class="gig-details-main main-layout full" v-if="gig">
     <div class="details-nav main-layout full">
       <ul class="details-router clean-list flex">
-        <li v-for="route in router" class="detail-router" :class="[route === this.route ? 'selected' : '']"
-          @click="navigateTo(`${route}`) ; changeSelect(`${route}`)">
+        <li
+          v-for="route in router"
+          class="detail-router"
+          :class="[route === this.route ? 'selected' : '']"
+          @click="navigateTo(`${route}`), changeSelect(`${route}`)">
           {{ route }}
         </li>
       </ul>
@@ -38,26 +41,36 @@
               </div>
               <ul class="features">
                 <li class="flex align-center">
-                  <span className="check fillGreen" v-html="getSvg('checkSign')"></span>
+                  <span
+                    className="check fillGreen"
+                    v-html="getSvg('checkSign')"></span>
                   <p>1 concept included</p>
                 </li>
                 <li class="flex align-center">
-                  <span className="check fill" v-html="getSvg('checkSign')"></span>
+                  <span
+                    className="check fill"
+                    v-html="getSvg('checkSign')"></span>
 
                   <p>Logo transparency</p>
                 </li>
                 <li class="flex align-center">
-                  <span className="check fillGreen" v-html="getSvg('checkSign')"></span>
+                  <span
+                    className="check fillGreen"
+                    v-html="getSvg('checkSign')"></span>
 
                   <p>Vector File</p>
                 </li>
                 <li class="flex align-center">
-                  <span className="check fill" v-html="getSvg('checkSign')"></span>
+                  <span
+                    className="check fill"
+                    v-html="getSvg('checkSign')"></span>
 
                   <p>Printable file</p>
                 </li>
                 <li class="flex align-center">
-                  <span className="check fillGreen" v-html="getSvg('checkSign')"></span>
+                  <span
+                    className="check fillGreen"
+                    v-html="getSvg('checkSign')"></span>
 
                   <p>Include source file</p>
                 </li>
@@ -100,26 +113,36 @@
             </div>
             <ul class="features">
               <li class="flex align-center">
-                <span className="check fillGreen" v-html="getSvg('checkSign')"></span>
+                <span
+                  className="check fillGreen"
+                  v-html="getSvg('checkSign')"></span>
                 <p>1 concept included</p>
               </li>
               <li class="flex align-center">
-                <span className="check fill" v-html="getSvg('checkSign')"></span>
+                <span
+                  className="check fill"
+                  v-html="getSvg('checkSign')"></span>
 
                 <p>Logo transparency</p>
               </li>
               <li class="flex align-center">
-                <span className="check fillGreen" v-html="getSvg('checkSign')"></span>
+                <span
+                  className="check fillGreen"
+                  v-html="getSvg('checkSign')"></span>
 
                 <p>Vector File</p>
               </li>
               <li class="flex align-center">
-                <span className="check fill" v-html="getSvg('checkSign')"></span>
+                <span
+                  className="check fill"
+                  v-html="getSvg('checkSign')"></span>
 
                 <p>Printable file</p>
               </li>
               <li class="flex align-center">
-                <span className="check fillGreen" v-html="getSvg('checkSign')"></span>
+                <span
+                  className="check fillGreen"
+                  v-html="getSvg('checkSign')"></span>
 
                 <p>Include source file</p>
               </li>
@@ -143,6 +166,7 @@ import Reviews from '../cmps/details/Reviews.vue'
 import Description from '../cmps/details/Description.vue'
 import Overview from '../cmps/details/Overview.vue'
 import { svgService } from '../services/svg.service'
+import { socketService } from '../services/socket.service'
 
 export default {
   name: 'Gig-Details',
@@ -150,7 +174,7 @@ export default {
     return {
       gig: null,
       router: ['Overview', 'Description', 'Aboutseller', 'Reviews'],
-      route: 'Overview'
+      route: 'Overview',
     }
   },
   methods: {
@@ -174,17 +198,23 @@ export default {
       return new URL(img, import.meta.url).href
     },
     changeSelect(route) {
-      console.log(this.route, route);
+      console.log(this.route, route)
       this.route = route
-    }
-
+    },
   },
-  computed: {},
+  computed: {
+    loggedInUser() {
+      return this.$store.getters.loggedinUser
+    },
+  },
   created() {
     const { id } = this.$route.params
     gigService.getById(id).then((gig) => {
       this.gig = gig
     })
+    // if (this.loggedInUser._id !== this.gig.owner.id) {
+    //   socketService.emit('gig-viewed', this.gig.owner)
+    // }
   },
   components: {
     AboutSeller,

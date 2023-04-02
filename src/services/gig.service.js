@@ -166,34 +166,34 @@ function getReviews() {
 function getHeroBackgrounds() {
   const backgrounds = [
     {
-      img: '../../assets/images/Hero-section/Valentina.png',
+      img: 'https://res.cloudinary.com/dzcangpqd/image/upload/v1680449385/Valentina_kyge3j.png',
       name: 'Valentina',
       desc: 'AI Artist',
       isFiveStars: true,
     },
     {
-      img: '../../assets/images/Hero-section/Andrea.png',
+      img: 'https://res.cloudinary.com/dzcangpqd/image/upload/v1680449384/Andrea_bfg2b9.png',
       name: 'Andrea',
       desc: 'Fashion Designer',
     },
     {
-      img: '../../assets/images/Hero-section/Moon.png',
+      img: 'https://res.cloudinary.com/dzcangpqd/image/upload/v1680449384/Moon_hfbyv0.png',
       name: 'Moon',
       desc: 'Marketing Expert',
       isFiveStars: true,
     },
     {
-      img: '../../assets/images/Hero-section/Ritika.png',
+      img: 'https://res.cloudinary.com/dzcangpqd/image/upload/v1680449384/Ritika_wh6ybe.png',
       name: 'Ritika',
       desc: 'Shoemaker and Designer',
     },
     {
-      img: '../../assets/images/Hero-section/Zach.png',
+      img: 'https://res.cloudinary.com/dzcangpqd/image/upload/v1680449384/Zach_tqg6jf.png',
       name: 'Zach',
       desc: 'Bar Owner',
     },
     {
-      img: '../../assets/images/Hero-section/Gabriella.png',
+      img: 'https://res.cloudinary.com/dzcangpqd/image/upload/v1680449384/Gabriella_cw6gqe.png',
       name: 'Gabrielle',
       desc: 'Video Editor',
       isFiveStars: true,
@@ -204,11 +204,11 @@ function getHeroBackgrounds() {
 
 function getTrustedBy() {
   const trustedBy = [
-    '../../assets/images/trusted by/Meta.png',
-    '../../assets/images/trusted by/Google.png',
-    '../../assets/images/trusted by/Netflix.png',
-    '../../assets/images/trusted by/PG.png',
-    '../../assets/images/trusted by/Paypal.png',
+    'https://res.cloudinary.com/dzcangpqd/image/upload/v1680453868/Meta_yma7ta.png',
+    'https://res.cloudinary.com/dzcangpqd/image/upload/v1680453868/Google_pqvivw.png',
+    'https://res.cloudinary.com/dzcangpqd/image/upload/v1680453868/Netflix_nqisvl.png',
+    'https://res.cloudinary.com/dzcangpqd/image/upload/v1680453868/PG_z4z4mo.png',
+    'https://res.cloudinary.com/dzcangpqd/image/upload/v1680453868/Paypal_st8ymy.png',
   ]
   return trustedBy
 }
@@ -217,61 +217,61 @@ function getPopularServices() {
     {
       desc: 'Add talent to AI',
       title: `AI Artists`,
-      img: '../../assets/images/Services/AI-artists.png',
+      img: 'https://res.cloudinary.com/dzcangpqd/image/upload/v1680451876/AI-artists_mrd0xg.png',
       link: '/#/gig?categoryId=ai+services',
     },
     {
       desc: 'Build your brand',
       title: 'Logo Design',
-      img: '../../assets/images/Services/Logo design.png',
+      img: 'https://res.cloudinary.com/dzcangpqd/image/upload/v1680451877/Logo_design_beni2s.png',
       link: '/#/gig?categoryId=logo+design',
     },
     {
       desc: 'Customize your site',
       title: 'WordPress',
-      img: '../../assets/images/Services/WordPress.png',
+      img: 'https://res.cloudinary.com/dzcangpqd/image/upload/v1680451876/WordPress_rj1zdx.png',
       link: '/#/gig?categoryId=wordpress',
     },
     {
       desc: 'Share your message',
       title: 'Voice Over',
-      img: '../../assets/images/Services/Voice Over.png',
+      img: 'https://res.cloudinary.com/dzcangpqd/image/upload/v1680451876/Voice_Over_z6wddg.png',
       link: '/#/gig?categoryId=voice+over',
     },
     {
       desc: 'Engage your audience',
       title: 'Video Explainer',
-      img: '../../assets/images/Services/Video Explainer.png',
+      img: 'https://res.cloudinary.com/dzcangpqd/image/upload/v1680451876/Video_Explainer_apknks.png',
       link: '/#/gig?categoryId=video+explainer',
     },
     {
       desc: 'Reach more customers',
       title: 'Social Media',
-      img: '../../assets/images/Services/Social Media.png',
+      img: 'https://res.cloudinary.com/dzcangpqd/image/upload/v1680451877/Social_Media_nbdqra.png',
       link: '/#/gig?categoryId=social+media',
     },
     {
       desc: 'Unlock growth online',
       title: 'SEO',
-      img: '../../assets/images/Services/SEO.png',
+      img: 'https://res.cloudinary.com/dzcangpqd/image/upload/v1680451877/SEO_khi36a.png',
       link: '/#/gig?categoryId=seo',
     },
     {
       desc: 'Color your dreams',
       title: 'Illustrations',
-      img: '../../assets/images/Services/illustration.png',
+      img: 'https://res.cloudinary.com/dzcangpqd/image/upload/v1680451877/Illustration_cnkoqu.png',
       link: '/#/gig?categoryId=illustrations',
     },
     {
       desc: 'Go global',
       title: 'Translation',
-      img: '../../assets/images/Services/Translation.png',
+      img: 'https://res.cloudinary.com/dzcangpqd/image/upload/v1680451876/Translation_xbuy9h.png',
       link: '/#/gig?categoryId=translation',
     },
     {
       desc: 'Learn your business',
       title: 'Data Entry',
-      img: '../../assets/images/Services/Data Entry.png',
+      img: 'https://res.cloudinary.com/dzcangpqd/image/upload/v1680451877/Data_Entry_dzzil9.png',
       link: '/#/gig?categoryId=data+entry',
     },
   ]

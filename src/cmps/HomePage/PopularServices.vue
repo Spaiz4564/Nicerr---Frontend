@@ -38,7 +38,7 @@ export default {
       return new URL(img, import.meta.url).href
     },
     goToService(service) {
-      this.$router.push(`/gig/${service.id}`)
+      this.$router.push({ path: service.link, query: { service: service } })
     },
   },
   computed: {},

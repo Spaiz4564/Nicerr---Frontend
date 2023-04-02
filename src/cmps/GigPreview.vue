@@ -72,7 +72,7 @@ import { svgService } from '../services/svg.service'
 import { VueperSlides, VueperSlide } from 'vueperslides'
 import { gigService } from '../services/gig.service'
 import 'vueperslides/dist/vueperslides.css'
-import LongTxt from '../services/LongTxt.vue'
+import LongTxt from './LongTxt.vue'
 export default {
   name: 'GigPreview',
 

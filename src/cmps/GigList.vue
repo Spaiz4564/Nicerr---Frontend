@@ -8,13 +8,17 @@
 
 <script>
 import GigPreview from './GigPreview.vue'
+import ExploreMarket from './HomePage/ExploreMarket.vue'
 export default {
   name: 'GigList',
+
   props: {
     gigs: Array,
+    filterCategory: Array,
   },
   components: {
     GigPreview,
+    ExploreMarket,
   },
 
   methods: {
