@@ -14,7 +14,10 @@
 
 
 
-        @include for-mobile-layout {}
+        @include for-mobile-layout {
+            margin: em(12px) 0px;
+            margin-left: em(14px);
+        }
 
         .payment-container {
             display: flex;

@@ -7,14 +7,22 @@
       @signIn="toggleSignInModal"
       @join="toggleJoinModal"
       @closeMenu="showSideMenu = !showSideMenu"
-      :showSideMenu="showSideMenu" />
+      :showSideMenu="showSideMenu"
+      :isActiveNotification="isActiveNotification"
+      @closeActiveOrders="closeActiveOrders" />
 
     <header
       class="main-layout"
       :class="[isHome ? 'headerHome' : '', isWhite ? 'homeScroll' : '']"
       ref="header">
       <nav>
-        <div @click="showSideMenu = !showSideMenu" class="menu-icon">
+        <div
+          @click="showSideMenu = !showSideMenu"
+          class="menu-icon"
+          @click.stop="closeActiveOrders()">
+          <span v-if="isActiveNotification" class="notification-orders">
+            <span class="dot"></span>
+          </span>
           <div class="line"></div>
           <div class="line"></div>
           <div class="line"></div>
@@ -86,11 +94,17 @@
                 </li>
               </ul>
             </div>
-            <img
-              class="user-img"
-              :src="loggedinUser.imgUrl"
-              alt="user-img"
-              @click.stop="toggleUserModal" />
+            <div class="home-page-order">
+              <span v-if="isActiveProfile" class="notification-orders-img">
+                <span class="dot"></span>
+              </span>
+              <img
+                class="user-img"
+                :src="loggedinUser.imgUrl"
+                alt="user-img"
+                @click.stop="toggleUserModal"
+                @click="closeActiveProfile()" />
+            </div>
 
             <div
               v-clickOutsideDirective="closeUserMenu"
@@ -126,6 +140,7 @@ export default {
   name: 'AppHeader',
   props: {
     isActiveNotification: Boolean,
+    isActiveProfile: Boolean,
   },
   data() {
     return {
@@ -231,6 +246,9 @@ export default {
     },
     closeActiveOrders() {
       this.$emit('closeActiveOrders')
+    },
+    closeActiveProfile() {
+      this.$emit('closeActiveProfile')
     },
   },
   watch: {

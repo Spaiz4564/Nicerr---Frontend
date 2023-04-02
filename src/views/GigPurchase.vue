@@ -164,7 +164,7 @@ export default {
           this.$router.push('/')
         }, 500)
         socketService.emit('gig-ordered', this.gig)
-        console.log('order', order)
+        showSuccessMsg('Order placed successfully')
       } else {
         this.openSignUp = true
       }

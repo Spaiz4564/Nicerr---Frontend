@@ -14,7 +14,9 @@
       :isBackdrop="isBackdrop"
       @backdrop="backdrop"
       :isActiveNotification="isActiveNotification"
-      @closeActiveOrders="closeActiveOrders" />
+      :isActiveProfile="isActiveProfile"
+      @closeActiveOrders="closeActiveOrders"
+      @closeActiveProfile="closeActiveProfile" />
     <RouterView />
     <UserMsg :msg="adminMsg" />
     <Footer />
@@ -30,6 +32,7 @@ import Login from './views/Login.vue'
 import Join from './cmps/Join.vue'
 import { store } from './store/store'
 import { socketService } from './services/socket.service'
+import { showSuccessMsg, showUserMsg } from './services/event-bus.service'
 
 export default {
   data() {
@@ -38,6 +41,7 @@ export default {
       whatModal: null,
       adminMsg: '',
       isActiveNotification: false,
+      isActiveProfile: false,
     }
   },
   created() {
@@ -46,8 +50,8 @@ export default {
     const user = userService.getLoggedinUser()
     if (user) store.commit({ type: 'setLoggedInUser', user })
     socketService.on('user-ordered-gig', (msg) => {
-      console.log('user-ordered-gig', msg)
       this.setAdminMsg(msg)
+      this.isActiveProfile = true
     })
     socketService.on('order-status-changed', (msg) => {
       console.log('order-status-changed', msg)
@@ -77,6 +81,7 @@ export default {
     AppHeader,
     UserMsg,
     Footer,
+    showUserMsg,
   },
   methods: {
     backdrop(isOpen, whichModal) {
@@ -95,6 +100,9 @@ export default {
     },
     closeActiveOrders() {
       this.isActiveNotification = false
+    },
+    closeActiveProfile() {
+      this.isActiveProfile = false
     },
   },
 

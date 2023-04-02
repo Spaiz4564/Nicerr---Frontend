@@ -2,8 +2,7 @@
   <div
     v-if="showSideMenu"
     v-clickOutsideDirective="closeMenu"
-    class="side-menu flex column"
-  >
+    class="side-menu flex column">
     <div v-if="user" class="user-info flex">
       <div class="img-container top flex">
         <img :src="user.imgUrl" alt="" />
@@ -25,12 +24,14 @@
     >
     <a v-if="user" @click="this.$emit('logout')">Logout</a>
     <details v-if="user">
+      <span v-if="isActiveNotification" class="notification-orders">
+        <span class="dot"></span>
+      </span>
       <summary>My Orders</summary>
       <ul class="clean-list-order">
         <li
           v-for="order in orders"
-          class="order-detail flex align-center orders-mobile"
-        >
+          class="order-detail flex align-center orders-mobile">
           <div class="img-container">
             <img :src="order.gig.img" alt="" />
           </div>
@@ -50,43 +51,38 @@
 </template>
 
 <script>
-  import { gigService } from '../../services/gig.service'
-  export default {
-    props: ['showSideMenu'],
-    name: 'Popular Services',
-    data() {
-      return {}
+import { gigService } from '../../services/gig.service'
+export default {
+  props: ['showSideMenu'],
+  name: 'Popular Services',
+  data() {
+    return {}
+  },
+  methods: {
+    closeMenu() {
+      this.$emit('closeMenu')
     },
-    methods: {
-      closeMenu() {
-        this.$emit('closeMenu')
-      },
-      goToSellerSignup() {
-        this.$router.push('/seller-signup')
-        this.closeMenu()
-      },
+    goToSellerSignup() {
+      this.$router.push('/seller-signup')
+      this.closeMenu()
     },
-    computed: {
-      seller() {
-        // if (!this.user) return false
-        if (this.user) {
-          return this.user.isSeller
-        }
-      },
-      orders() {
-      return this.$store.getters.ordersByUser
+  },
+  computed: {
+    seller() {
+      // if (!this.user) return false
+      if (this.user) {
+        return this.user.isSeller
+      }
     },
-
-      user() {
-        return this.$store.getters.loggedinUser
-      },
+    orders() {
+      return this.$store.getters.orders
     },
 
-    components: {},
-    created() {
-      setTimeout(() => {
-        console.log(this.orders)
-      }, 1000);
-    }
-  }
+    user() {
+      return this.$store.getters.loggedinUser
+    },
+  },
+
+  components: {},
+}
 </script>
