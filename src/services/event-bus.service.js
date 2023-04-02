@@ -1,30 +1,27 @@
-export const SHOW_MSG = 'show-msg'
-
-function createEventEmitter() {
-    const listenersMap = {}
-    return {
-        on(evName, listener){
-            listenersMap[evName] = (listenersMap[evName])? [...listenersMap[evName], listener] : [listener]
-            return ()=>{
-                listenersMap[evName] = listenersMap[evName].filter(func => func !== listener)
-            }
-        },
-        emit(evName, data) {
-            if (!listenersMap[evName]) return
-            listenersMap[evName].forEach(listener => listener(data))
-        }
-    }
+function on(eventName, listener) {
+  const callListener = ({ detail }) => {
+    listener(detail)
+  }
+  window.addEventListener(eventName, callListener)
+  // Returning the unsubscribe function:
+  return () => {
+    window.removeEventListener(eventName, callListener)
+  }
 }
 
-export const eventBus = createEventEmitter()
+function emit(eventName, data) {
+  window.dispatchEvent(new CustomEvent(eventName, { detail: data }))
+}
+
+export const eventBusService = { on, emit }
 
 export function showUserMsg(msg) {
-    eventBus.emit('show-msg', msg)
+  eventBusService.emit('show-msg', msg)
 }
 
 export function showSuccessMsg(txt) {
-    showUserMsg({txt, type: 'success'})
+  showUserMsg({ txt, type: 'success' })
 }
 export function showErrorMsg(txt) {
-    showUserMsg({txt, type: 'error'})
+  showUserMsg({ txt, type: 'error' })
 }

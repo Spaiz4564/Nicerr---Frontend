@@ -152,6 +152,7 @@ function saveLocalUser(user) {
     username: user.username,
     imgUrl: user.imgUrl,
     isSeller: user.isSeller,
+    level: utilService.getRandomIntInclusive(1.5, 3.5),
   }
   sessionStorage.setItem(STORAGE_KEY_LOGGEDIN_USER, JSON.stringify(userToSave))
   return userToSave

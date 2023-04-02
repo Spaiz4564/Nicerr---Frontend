@@ -33,11 +33,9 @@ export const ordersStore = {
   },
   getters: {
     orders({ orders }) {
-      console.log(orders)
       return orders
     },
     ordersByUser({ orders }) {
-      console.log('ordersByUser', orders)
       return orders.filter(
         (order) => order.buyer._id === userStore.state.loggedinUser._id
       )

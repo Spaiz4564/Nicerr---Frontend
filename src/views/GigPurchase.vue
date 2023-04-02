@@ -129,8 +129,8 @@ import { gigService } from '../services/gig.service'
 import { pushScopeId } from 'vue'
 import { ordersService } from '../services/order.service'
 import Join from '../cmps/Join.vue'
-import { showSuccessMsg, showErrorMsg } from '../services/event-bus.service'
 import { socketService } from '../services/socket.service'
+import { eventBusService } from '../services/event-bus.service'
 
 export default {
   props: ['isBackDrop'],
@@ -146,7 +146,6 @@ export default {
       return svgService.getSvg(iconName)
     },
     async handlePurchase() {
-      this.$emit('wow')
       if (this.loggedinUser) {
         const order = {
           buyer: this.loggedinUser,
@@ -165,7 +164,12 @@ export default {
           this.$router.push('/')
         }, 500)
         socketService.emit('gig-ordered', this.gig)
-        showSuccessMsg('Order placed successfully')
+        setTimeout(() => {
+          eventBusService.emit('show-msg', {
+            txt: 'Your Order Is Being Processed',
+            type: 'success',
+          })
+        }, 1500)
       } else {
         this.openSignUp = true
       }

@@ -81,16 +81,19 @@ export default {
       return `${date.getDate()}.${date.getMonth() + 1}.${date.getFullYear()}`
     },
     async setStatus(status, orderId) {
-      const order = this.orders.find((order) => order._id === orderId)
+      const order = this.findById(orderId)
       order.status = status
-      const orderUi = this.orders.find((order) => order._id === orderId)
+      const orderUi = this.findById(orderId)
       orderUi.status = status
       await ordersService.save(order)
-      socketService.emit('order-change-status', order.buyer)
+      // socketService.emit('order-change-status', order.buyer)
     },
     async loadOrdersByOwner() {
       const owner = userService.getLoggedinUser()
       this.orders = await ordersService.query({ ownerId: owner._id })
+    },
+    findById(orderId) {
+      return this.orders.find((order) => order._id === orderId)
     },
 
     income(i) {
