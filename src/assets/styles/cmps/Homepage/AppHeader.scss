@@ -583,6 +583,18 @@
   }
 }
 
+.notification-orders-img {
+  position: relative;
+  .dot {
+    position: absolute;
+    left: 35px;
+    width: 10px;
+    height: 10px;
+    background-color: #ff0000;
+    border-radius: 50%;
+  }
+}
+
 .home-page-order {
   padding-bottom: em(2px);
 }
