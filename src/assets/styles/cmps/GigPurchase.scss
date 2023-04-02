@@ -1,7 +1,6 @@
 .app-container {
     font-size: em(14px);
 
-
     @include for-mobile-layout {
         display: block;
 

@@ -8,7 +8,6 @@
         <section class="payment-details-container">
           <h2 class="title-purchase">Payment Options</h2>
           <section class="credit-selection flex">
-            <input class="checkbox" type="checkbox" />
             <div>Credit & Debit Cards</div>
             <div class="visa">
               <div className="icon" v-html="getSvg('visa')"></div>
@@ -48,7 +47,7 @@
             <div class="main-header">
               <section class="header flex space-between">
                 <div class="img-container">
-                  <img :src="gig.owner.imgUrl" alt="" />
+                  <img :src="gig.images[0]" alt="" />
                 </div>
                 <p class="title">{{ gig.title }}</p>
               </section>
