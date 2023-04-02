@@ -1,343 +1,360 @@
 .app-container {
-    font-size: em(14px);
+  font-size: em(14px);
+
+  @include for-mobile-layout {
+    display: block;
+  }
+
+  .gig-payment {
+    min-height: 100vh;
+    margin: em(40px) 0px;
 
     @include for-mobile-layout {
-        display: block;
-
+      margin: 0.75em 0px;
+      font-size: 18px;
     }
 
+    .payment-container {
+        @include for-tablet-layout{
+            gap: 70px;
+        }
+      display: flex;
+      justify-content: space-between;
 
-    .gig-payment {
-        min-height: 100vh;
-        margin: em(32px) 5px;
+      @include for-tablet-layout {
+        flex-direction: column;
+        margin: 0;
+      }
+    }
 
+    .payment-details-container {
+        @include for-tablet-layout{
+            width: auto;
+        }
 
+@include for-mobile-layout{
+    height: auto;
+}
+
+      height: 388px;
+      width: 58%;
+      flex-wrap: wrap;
+      border: 1px solid $clr9;
+      border-radius: 0.1875em;
+      border: 1px solid #efeff0;
+      background-color: $clr11;
+      color: $clr2;
+
+      @include for-mobile-layout {
+        min-width: 318px;
+      }
+
+      h2 {
+        font-size: 16px;
+        color: $clr4;
+      }
+
+      .title-purchase {
+        display: flex;
+        padding: 1.2em;
 
         @include for-mobile-layout {
-            margin: 0.75em 0px;
-            margin-left: 0.875em;
-            height: 200vh;
-            font-size: 18px;
-
+          padding: 1em;
         }
-
-        .payment-container {
-            display: flex;
-            justify-content: space-evenly;
-
-            @include for-tablet-layout {
-                flex-direction: column;
-                margin: 0;
-            }
-        }
-
-        .payment-details-container {
-            flex-wrap: wrap;
-            border: 1px solid $clr9;
-            border-radius: 0.1875em;
-            background-color: $clr11;
-            color: $clr2;
-
-
-            @include for-mobile-layout {
-                min-width: 318px;
-            }
-
-
-            h2 {
-                justify-content: center;
-            }
-
-
-            .title-purchase {
-                display: flex;
-                padding: 1.2em;
-
-
-                @include for-mobile-layout {
-                    padding: 1em;
-                }
-            }
-
-
-
-            .checkbox {
-                width: 10px;
-                height: 10px;
-                clip-path: circle(62% at 50% 50%);
-                margin-bottom: 6px;
-            }
-
-            @include for-tablet-layout {
-                margin-bottom: 8px;
-            }
-
-
-
-        }
-
-        .credit-selection {
-            background-color: $clr6;
-            height: em(50px);
-            padding-inline-start: em(24px);
-            align-items: center;
-            font-size: em(16px);
-
-
-            .visa {
-                width: 100px;
-                height: 50px;
-
-                .icon {
-                    width: 100%;
-                    height: 100%;
-                }
-            }
-        }
-
-        .payment-option {
-
-            font-size: em(14px);
-
-            padding: 2.2em em(55px);
-
-            @include for-mobile-layout {
-                padding: 2.5em 1em;
-            }
-
-            .card-info {
-                margin-bottom: em(56px);
-
-                .card-num {
-                    display: flex;
-                    margin-inline-end: 50px;
-                    min-width: 240px;
-                    flex: 1;
-
-
-                }
-
-                @include for-mobile-layout {
-                    flex-direction: column;
-                }
-
-            }
-
-            p {
-                font-family: 'Macan-Bold';
-                font-size: em(16px);
-                margin-bottom: em(13px);
-            }
-
-            input {
-                height: em(40px);
-                border-radius: em(3px);
-                border: 1px solid $clr9;
-                padding-inline-start: em(15px);
-                font-size: em(18px);
-                color: $clr3;
-            }
-
-            .short {
-                max-width: 110px;
-                margin-inline-end: 20px;
-            }
-
-            .name-inputs {
-                @include for-mobile-layout {
-                    flex-direction: column;
-                }
-            }
-
-            .name-input {
-                width: em(240px);
-                margin-inline-end: em(50px);
-
-            }
-
-            @include for-mobile-layout {
-                margin-bottom: 20px;
-            }
-        }
-
-        .package-container {
-            display: flex;
-            max-width: em(350px);
-            max-height: em(600px);
-            border-radius: em(3px);
-            border: 1px solid $clr9;
-            margin-block-end: 16px;
-
-            @include for-tablet-layout {
-                margin: 0px auto;
-            }
-
-            .gig-package-payment {
-                min-width: 340px;
-
-                @include for-mobile-layout {
-                    width: fit-content;
-                    min-width: 318px;
-                }
-
-            }
-        }
-
-        .main-header {
-            padding: 1em 1.5em;
-            background-color: $clr11;
-            border-bottom: 0.5px solid #dadbdd70;
-
-        }
-
-        .header {
-            margin-block-end: 18px;
-            min-height: 48px;
-            border-bottom: 1px solid $clr9;
-
-            @include for-mobile-layout {
-                height: fit-content;
-            }
-
-            .title {
-                font-size: 1em;
-                font-family: 'Macan-Regular';
-                font-weight: 700;
-                color: $clr4;
-                color: $clr02;
-
-                @include for-mobile-layout {
-                    font-size: 14px;
-                }
-
-            }
-
-            .img-container {
-                width: em(110px);
-                height: em(60px);
-                margin-right: em(20px);
-
-                img {
-                    width: 100%;
-                    border-radius: 5px;
-                }
-            }
-
-            @include for-mobile-layout {
-                justify-content: center;
-            }
-        }
-
-        .footer-purchase {
-            padding: 1em 1.5em;
-
-
-        }
-
-        .promo {
-            border-bottom: 0.5px solid #dadbdd70;
-            padding: em(21px);
-
-            p {
-                font-size: em(14px);
-                color: $clr4;
-                color: $clr3;
-            }
-
-        }
-
-        .seller-h3 {
-            margin-bottom: 8px;
-
-            @include for-mobile-layout {
-                justify-content: space-evenly;
-            }
-        }
-
-        .price {
-            font-size: 1rem;
-            line-height: 1.5em;
-            color: $clr4;
-        }
-
-        .features {
-
-            li {
-                display: flex;
-                align-items: center;
-                font-size: em(15px);
-                color: $clr02;
-                line-height: em(33px);
-            }
-
-        }
-
-        .regular {
-            font-family: 'Macan-Regular';
-
-            .svg-container {
-                width: 16px;
-                height: 16px;
-                margin-inline-end: 10px;
-
-            }
-
-            &.fill {
-                fill: $clr-review-star;
-                margin-bottom: 9px;
-            }
-
-        }
-
-        .pricing {
-            // margin-top: em(16px);
-            display: flex;
-            justify-content: space-between;
-            color: #62646a;
-
-            p {
-                font-size: 1rem;
-                margin-block-end: 10px;
-                line-height: 120%;
-                font-weight: 500;
-                margin-bottom: 20px;
-            }
-
-            &.total {
-                border-top: 1px solid $clr9;
-                padding-top: em(15px);
-                color: $clr4;
-
-                p {
-                    font-weight: 700;
-                }
-            }
-
-        }
-
-        .continue-btn {
-            background-color: $clr1;
-            color: $clr6;
-
-            &:hover {
-                background-color: $clr-main;
-            }
-
-            position: relative;
-            border: 1px solid transparent;
-            border-radius: 0.25em;
-            font-size: 1rem;
-            font-weight: 600;
-            font-family: inherit;
-            line-height: 100%;
-            padding: 0.75em 1.5em;
-            position: relative;
-            text-align: center;
-            width: 100%;
-            transition: 70ms cubic-bezier(.75, 0, .25, 1);
-            cursor: pointer;
-
-        }
-
+      }
+
+      .checkbox {
+        width: 10px;
+        height: 10px;
+        clip-path: circle(62% at 50% 50%);
+        margin-bottom: 6px;
+      }
+
+      @include for-tablet-layout {
+        margin-bottom: 8px;
+      }
     }
+
+    .credit-selection {
+      .credits {
+        color: $clr4;
+      }
+      box-shadow: rgba(0, 4, 4, 0.16) 0px 0.5px 1px;
+      background-color: $clr6;
+      height: em(64px);
+      padding-inline-start: em(24px);
+      align-items: center;
+      font-size: em(16px);
+
+      .visa {
+        width: 100px;
+        height: 50px;
+
+        .icon {
+          width: 100%;
+          height: 100%;
+        }
+      }
+    }
+
+    .payment-option {
+      font-size: em(14px);
+
+      padding: 2.2em em(55px);
+
+      @include for-mobile-layout {
+        padding: 2.5em 1em;
+      }
+
+      .card-info {
+        margin-bottom: em(56px);
+
+        .card-num {
+            @include for-mobile-layout{
+                margin-bottom: 40px;
+            }
+          display: flex;
+          margin-inline-end: 50px;
+          min-width: 240px;
+          flex: 1;
+        }
+
+        @include for-mobile-layout {
+          flex-direction: column;
+        }
+      }
+
+      p {
+        font-family: 'Macan-Bold';
+        font-size: em(16px);
+        margin-bottom: em(13px);
+      }
+
+      input {
+        height: em(40px);
+        border-radius: em(3px);
+        border: 1px solid $clr9;
+        padding-inline-start: em(15px);
+        font-size: em(18px);
+        color: $clr3;
+      }
+
+      .short {
+        max-width: 110px;
+        margin-inline-end: 20px;
+      }
+
+      .name-inputs {
+        @include for-mobile-layout {
+          flex-direction: column;
+        }
+      }
+
+      .name-input {
+        width: em(240px);
+        margin-inline-end: em(50px);
+      }
+
+      @include for-mobile-layout {
+        margin-bottom: 20px;
+      }
+    }
+
+    .package-container {
+      display: flex;
+    //   max-width: em(350px);
+    //   max-height: em(600px);
+      border-radius: em(3px);
+      border: 1px solid $clr9;
+      // margin-block-end: 16px;
+      margin: 0px 100px;
+
+      @include for-tablet-layout {
+        margin: 0px auto;
+      }
+
+      .gig-package-payment {
+        width: 360px;
+
+        @include for-mobile-layout {
+          width: fit-content;
+          min-width: 318px;
+        }
+      }
+    }
+
+    .main-header {
+      padding: 1em 1.5em;
+      background-color: $clr11;
+      border-bottom: 0.5px solid #dadbdd70;
+    }
+
+    .header {
+        align-items: center;
+        padding-bottom: 12px;
+      margin-block-end: 18px;
+      min-height: 48px;
+      border-bottom: 1px solid $clr9;
+
+      @include for-mobile-layout {
+        height: fit-content;
+      }
+
+      .title {
+        font-size: 0.82em;
+        font-family: 'Macan-Regular';
+        font-weight: 700;
+        color: $clr4;
+        color: $clr02;
+
+        @include for-mobile-layout {
+          font-size: 14px;
+        }
+      }
+
+      .img-container {
+        width: em(110px);
+        height: em(60px);
+        margin-right: em(20px);
+
+        img {
+          width: 100%;
+          border-radius: 5px;
+          min-width: 80px;
+        }
+      }
+
+      @include for-mobile-layout {
+        justify-content: center;
+      }
+    }
+
+    .footer-purchase {
+      padding: 1em 1.5em;
+    }
+
+    .promo {
+      border-bottom: 0.5px solid #dadbdd70;
+      padding: em(21px);
+
+      p {
+        font-size: em(14px);
+        color: $clr4;
+        color: $clr3;
+      }
+    }
+
+    .seller-h3 {
+      margin-bottom: 8px;
+      h3 {
+        color: $clr02;
+        font-size: 16px;
+      }
+
+     
+    }
+
+    .price {
+      font-size: 1rem;
+      line-height: 1.5em;
+      color: $clr4;
+    }
+
+    .features {
+      padding: 0;
+
+      li {
+        display: flex;
+        align-items: center;
+        font-size: em(15px);
+        color: $clr02;
+        line-height: em(33px);
+      }
+    }
+
+    .regular {
+        margin-bottom: 6px;
+      font-family: 'Macan-Regular';
+
+      .svg-container {
+        width: 16px;
+        height: 16px;
+        margin-inline-end: 10px;
+      }
+
+      &.fill {
+        fill: $clr-review-star;
+        margin-bottom: 9px;
+      }
+    }
+
+    .pricing {
+      // margin-top: em(16px);
+      display: flex;
+      justify-content: space-between;
+      color: #62646a;
+
+      p {
+        font-size: 1rem;
+        margin-block-end: 10px;
+        line-height: 120%;
+        font-weight: 500;
+        margin-bottom: 20px;
+      }
+
+      &.total {
+        border-top: 1px solid $clr9;
+        padding-top: em(15px);
+        color: $clr4;
+
+        p {
+          font-weight: 700;
+        }
+      }
+    }
+
+    .continue-btn {
+      background-color: $clr1;
+      color: $clr6;
+
+      &:hover {
+        background-color: $clr-main;
+      }
+
+      position: relative;
+      border: 1px solid transparent;
+      border-radius: 0.25em;
+      font-size: 1rem;
+      font-weight: 600;
+      font-family: inherit;
+      line-height: 100%;
+      padding: 0.75em 1.5em;
+      position: relative;
+      text-align: center;
+      width: 100%;
+      transition: 70ms cubic-bezier(0.75, 0, 0.25, 1);
+      cursor: pointer;
+    }
+  }
+}
+
+.purchase-navBar {
+  border-bottom: 1px solid #e4e5e7;
+}
+
+.card-container,
+.name-inputs,
+.short-input {
+  p {
+    color: $clr02;
+  }
+}
+
+.paypal{
+ background-color: white;
+    height: 63px;
+    align-items: center;
+    padding: 0px 50px;
+    box-shadow: rgba(0, 4, 4, 0.16) 0px 0.5px 1px;
+ 
 }
