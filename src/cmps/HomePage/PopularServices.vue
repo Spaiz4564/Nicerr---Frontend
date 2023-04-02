@@ -4,7 +4,7 @@
     <div class="services">
       <vueper-slides
         class="no-shadow"
-        :visible-slides="10"
+        :visible-slides="5"
         slide-multiple
         :gap="3"
         :slide-ratio="1 / 5"

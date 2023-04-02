@@ -1,6 +1,6 @@
 <template>
   <section class="purchase-navBar full main-layout">
-    <div class="purchase-navBar logo" @click="HandleLogoClick">Nicerr</div>
+    <div class="logo" @click="HandleLogoClick">Nicerr</div>
   </section>
   <section class="app-container" v-if="gig">
     <section class="gig-payment">
@@ -8,7 +8,7 @@
         <section class="payment-details-container">
           <h2 class="title-purchase">Payment Options</h2>
           <section class="credit-selection flex">
-            <div>Credit & Debit Cards</div>
+            <div class="credits">Credit & Debit Cards</div>
             <div class="visa">
               <div className="icon" v-html="getSvg('visa')"></div>
             </div>
@@ -17,7 +17,11 @@
             <div class="card-info flex">
               <div class="card-container">
                 <p>Card Number</p>
-                <input class="card-num" type="text" value="4580 5926 7852 9996" />
+                <input
+                  class="card-num"
+                  type="text"
+                  value="4580 5926 7852 9996"
+                />
               </div>
               <div class="short-input flex">
                 <div>
@@ -41,6 +45,11 @@
               </div>
             </div>
           </section>
+          <div
+            class="icon flex paypal"
+            v-html="getSvg('Paypal')"
+          ></div>
+
         </section>
         <section class="package-container">
           <section class="gig-package-payment">
@@ -57,23 +66,38 @@
               </div>
               <ul class="features">
                 <li class="regular">
-                  <div className=" regular fill svg-container" v-html="getSvg('checkSign')"></div>
+                  <div
+                    className=" regular fill svg-container"
+                    v-html="getSvg('checkSign')"
+                  ></div>
                   1 concept included
                 </li>
                 <li class="regular">
-                  <div className="svg-container icon regular fill" v-html="getSvg('checkSign')"></div>
+                  <div
+                    className="svg-container icon regular fill"
+                    v-html="getSvg('checkSign')"
+                  ></div>
                   Logo transparency
                 </li>
                 <li class="regular">
-                  <div className="svg-container icon regular fill" v-html="getSvg('checkSign')"></div>
+                  <div
+                    className="svg-container icon regular fill"
+                    v-html="getSvg('checkSign')"
+                  ></div>
                   Include 3D mockup
                 </li>
                 <li class="regular">
-                  <div className="svg-container icon regular fill" v-html="getSvg('checkSign')"></div>
+                  <div
+                    className="svg-container icon regular fill"
+                    v-html="getSvg('checkSign')"
+                  ></div>
                   1 concept included
                 </li>
                 <li class="regular">
-                  <div className="svg-container icon regular fill" v-html="getSvg('checkSign')"></div>
+                  <div
+                    className="svg-container icon regular fill"
+                    v-html="getSvg('checkSign')"
+                  ></div>
                   Include source file
                 </li>
               </ul>
@@ -96,7 +120,7 @@
                 <p>7 Days</p>
               </div>
               <button @click="handlePurchase" class="continue-btn">
-                Confirm And Pay
+                Confirm & Pay
               </button>
             </div>
           </section>
@@ -110,80 +134,76 @@
 </template>
 
 <script>
-import { svgService } from '../services/svg.service'
-import { gigService } from '../services/gig.service'
-import { pushScopeId } from 'vue'
-import { ordersService } from '../services/order.service'
-import Join from '../cmps/Join.vue'
-import { socketService } from '../services/socket.service'
-import { eventBusService } from '../services/event-bus.service'
+  import { svgService } from '../services/svg.service'
+  import { gigService } from '../services/gig.service'
+  import { pushScopeId } from 'vue'
+  import { ordersService } from '../services/order.service'
+  import Join from '../cmps/Join.vue'
+  import { showSuccessMsg, showErrorMsg } from '../services/event-bus.service'
+  import { socketService } from '../services/socket.service'
 
-export default {
-  props: ['isBackDrop'],
-  name: '',
-  data() {
-    return {
-      gig: null,
-      openSignUp: false,
-    }
-  },
-  methods: {
-    getSvg(iconName) {
-      return svgService.getSvg(iconName)
-    },
-    async handlePurchase() {
-      if (this.loggedinUser) {
-        const order = {
-          buyer: this.loggedinUser,
-          seller: this.gig.owner,
-          gig: {
-            _id: this.gig._id,
-            name: this.gig.title,
-            price: this.gig.price,
-            img: this.gig.images[0],
-          },
-          status: 'Pending',
-          date: new Date().toLocaleDateString(),
-        }
-        this.$store.dispatch({ type: 'saveOrder', order: { ...order } })
-        setTimeout(() => {
-          this.$router.push('/')
-        }, 500)
-        socketService.emit('gig-ordered', this.gig)
-        setTimeout(() => {
-          eventBusService.emit('show-msg', {
-            txt: 'Your Order Is Being Processed',
-            type: 'success',
-          })
-        }, 1500)
-      } else {
-        this.openSignUp = true
+  export default {
+    props: ['isBackDrop'],
+    name: '',
+    data() {
+      return {
+        gig: null,
+        openSignUp: false,
       }
     },
-    HandleLogoClick() {
-      this.$router.push(`/`)
+    methods: {
+      getSvg(iconName) {
+        return svgService.getSvg(iconName)
+      },
+      async handlePurchase() {
+        this.$emit('wow')
+        if (this.loggedinUser) {
+          const order = {
+            buyer: this.loggedinUser,
+            seller: this.gig.owner,
+            gig: {
+              _id: this.gig._id,
+              name: this.gig.title,
+              price: this.gig.price,
+              img: this.gig.images[0],
+            },
+            status: 'Pending',
+            date: new Date().toLocaleDateString(),
+          }
+          this.$store.dispatch({ type: 'saveOrder', order: { ...order } })
+          setTimeout(() => {
+            this.$router.push('/')
+          }, 500)
+          socketService.emit('gig-ordered', this.gig)
+          showSuccessMsg('Order placed successfully')
+        } else {
+          this.openSignUp = true
+        }
+      },
+      HandleLogoClick() {
+        this.$router.push(`/`)
+      },
     },
-  },
-  computed: {
-    handlePrice() {
-      return this.gig.price + 34.55
+    computed: {
+      handlePrice() {
+        return this.gig.price + 34.55
+      },
+      loggedinUser() {
+        return this.$store.getters.loggedinUser
+      },
     },
-    loggedinUser() {
-      return this.$store.getters.loggedinUser
+    async created() {
+      const { id } = this.$route.params
+      gigService.getById(id).then(gig => {
+        this.gig = gig
+      })
+      const loggedinUser = this.$store.getters.loggedinUser
+      console.log(loggedinUser)
     },
-  },
-  async created() {
-    const { id } = this.$route.params
-    gigService.getById(id).then((gig) => {
-      this.gig = gig
-    })
-    const loggedinUser = this.$store.getters.loggedinUser
-    console.log(loggedinUser)
-  },
-  components: {
-    Join,
-  },
-}
+    components: {
+      Join,
+    },
+  }
 </script>
 
 <style></style>
