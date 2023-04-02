@@ -2,8 +2,11 @@
   margin-top: 30px;
 }
 
+
+
 .side-menu {
   summary {
+    color: $clr4;
     margin-bottom: 20px;
   }
   a {
@@ -24,6 +27,8 @@
 
     @include for-tablet-layout{
       width: 35px;
+     
+      
       margin-inline-end: 15px;
     }
 
@@ -46,4 +51,9 @@
   box-shadow: 20px 0 20px 800px #33323287;
 
   padding-inline-start: 20px;
+}
+
+.top{
+  width: 50px !important;
+  margin-right: 10px !important;
 }

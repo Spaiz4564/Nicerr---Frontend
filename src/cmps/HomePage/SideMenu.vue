@@ -4,7 +4,7 @@
     v-clickOutsideDirective="closeMenu"
     class="side-menu flex column">
     <div v-if="user" class="user-info flex">
-      <div class="img-container flex">
+      <div class="img-container top flex">
         <img :src="user.imgUrl" alt="" />
       </div>
       <p>{{ user.username }}</p>
@@ -33,12 +33,12 @@
           v-for="order in orders"
           class="order-detail flex align-center orders-mobile">
           <div class="img-container">
-            <img :src="order.imgUrl" alt="" />
+            <img :src="order.gig.img" alt="" />
           </div>
           <div class="desc">
-            <span>{{ order.title }}</span>
+            <span>{{ order.gig.name }}</span>
             <div class="order flex">
-              <p>by vividstore</p>
+              <p>by {{ order.buyer.username }}</p>
               <p :class="order.status">
                 {{ order.status || 'Pending' }}
               </p>
@@ -53,12 +53,8 @@
 <script>
 import { gigService } from '../../services/gig.service'
 export default {
-  props: {
-    showSideMenu: Boolean,
-    isActiveNotification: Boolean,
-  },
+  props: ['showSideMenu'],
   name: 'Popular Services',
-
   data() {
     return {}
   },

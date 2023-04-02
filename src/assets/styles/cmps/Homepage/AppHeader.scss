@@ -464,18 +464,14 @@
         justify-content: space-between;
         p {
           &:first-child {
-            min-width: 120px;
+            min-width: 80px;
           }
         }
       }
       @include for-mobile-layout {
         gap: 8px;
         justify-content: space-between;
-        p {
-          &:first-child {
-            min-width: 120px;
-          }
-        }
+    
       }
       .Completed {
         color: $clr-main;

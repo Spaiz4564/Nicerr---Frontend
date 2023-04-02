@@ -85,6 +85,7 @@
                   <div class="desc">
                     <span>{{ order.gig.name }}</span>
                     <div class="order flex">
+                      <p>by {{ order.seller .username }}</p>
                       <p :class="order.status">
                         {{ order.status || 'Pending' }}
                       </p>
