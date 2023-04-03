@@ -7,7 +7,8 @@
           <span
             :class="isBudgetOpen ? 'rotate' : ''"
             class="icon-arrow"
-            v-html="getSvg('arrowDown')"></span>
+            v-html="getSvg('arrowDown')"
+          ></span>
         </div>
       </div>
       <div class="days-deliver">
@@ -16,12 +17,14 @@
           class="m-2"
           placeholder="Delivery Time"
           size="large"
-          @change="filterBudget">
+          @change="filterBudget"
+        >
           <el-option
             v-for="item in options"
             :key="item.value"
             :label="item.label"
-            :value="item.value" />
+            :value="item.value"
+          />
         </el-select>
       </div>
 
@@ -29,7 +32,8 @@
         @submit.prevent="filterBudget"
         v-if="budgetOpen"
         class="budget-dropdown"
-        v-clickOutsideDirective="hey">
+        v-clickOutsideDirective="closefilter"
+      >
         <div @click.stop class="inputs">
           <div>
             <p class="bold">MIN.</p>
@@ -44,89 +48,89 @@
         </div>
         <div @click.stop class="buttons-budget">
           <div class="clear-budget" @click.stop="clearBudget()">Clear All</div>
-          <button>Apply</button>
+          <button @click="closefilter">Apply</button>
         </div>
       </form>
     </div>
   </section>
 </template>
 <script>
-import { svgService } from '../services/svg.service'
-export default {
-  name: 'GigFilter',
-  emits: ['filtered'],
-  data() {
-    return {
-      filterBy: {
-        minPrice: null,
-        maxPrice: null,
-        daysToDeliver: null,
-      },
-      isBudgetOpen: false,
-      isBoxShadow: false,
-      options: [
-        {
-          value: '1',
-          label: 'Express 24H',
+  import { svgService } from '../services/svg.service'
+  export default {
+    name: 'GigFilter',
+    emits: ['filtered'],
+    data() {
+      return {
+        filterBy: {
+          minPrice: null,
+          maxPrice: null,
+          daysToDeliver: null,
         },
-        {
-          value: '3',
-          label: 'Up to 3 days',
-        },
-        {
-          value: '7',
-          label: 'Up to 7 days',
-        },
-        {
-          value: 'any',
-          label: 'Anytime',
-        },
-      ],
-    }
-  },
-  methods: {
-    filterBudget() {
-      this.$emit('filtered', { ...this.filterBy })
-    },
-    toggleBudget() {
-      this.isBudgetOpen = !this.isBudgetOpen
-    },
-    clearBudget() {
-      this.filterBy.minPrice = null
-      this.filterBy.maxPrice = null
-      this.filterBudget()
-    },
-    getSvg(iconName) {
-      return svgService.getSvg(iconName)
-    },
-    handleScroll() {
-      const scrollY = window.scrollY
-      if (scrollY > 180) {
-        this.isBoxShadow = true
-      } else {
-        this.isBoxShadow = false
+        isBudgetOpen: false,
+        isBoxShadow: false,
+        options: [
+          {
+            value: '1',
+            label: 'Express 24H',
+          },
+          {
+            value: '3',
+            label: 'Up to 3 days',
+          },
+          {
+            value: '7',
+            label: 'Up to 7 days',
+          },
+          {
+            value: 'any',
+            label: 'Anytime',
+          },
+        ],
       }
     },
-    hey() {
-      this.isBudgetOpen = false
+    methods: {
+      filterBudget() {
+        this.$emit('filtered', { ...this.filterBy })
+      },
+      toggleBudget() {
+        this.isBudgetOpen = !this.isBudgetOpen
+      },
+      clearBudget() {
+        this.filterBy.minPrice = null
+        this.filterBy.maxPrice = null
+        this.filterBudget()
+      },
+      getSvg(iconName) {
+        return svgService.getSvg(iconName)
+      },
+      handleScroll() {
+        const scrollY = window.scrollY
+        if (scrollY > 180) {
+          this.isBoxShadow = true
+        } else {
+          this.isBoxShadow = false
+        }
+      },
+      closefilter() {
+        setTimeout(() => (this.isBudgetOpen = false), 200)
+      },
     },
-  },
-  computed: {
-    budgetOpen() {
-      return this.isBudgetOpen
+    computed: {
+      budgetOpen() {
+        return this.isBudgetOpen
+      },
     },
-  },
 
-  created() {
-    window.addEventListener('scroll', this.handleScroll)
-    this.handleScroll()
-  },
-  mounted() {
-    window.addEventListener('scroll', this.handleScroll)
-  },
+    created() {
+      window.addEventListener('scroll', this.handleScroll)
+      this.handleScroll()
+    },
+    mounted() {
+      window.addEventListener('scroll', this.handleScroll)
+    },
 
-  beforeDestroy() {
-    window.removeEventListener('scroll', this.handleScroll)
-  },
-}
+    beforeDestroy() {
+      window.removeEventListener('scroll', this.handleScroll)
+    },
+  }
 </script>

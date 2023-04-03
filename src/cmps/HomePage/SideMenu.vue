@@ -24,7 +24,7 @@
     >
     <a v-if="user" @click="this.$emit('logout')">Logout</a>
     <details v-if="user">
-      <span v-if="isActiveNotification" class="notification-orders">
+      <span class="notification-orders">
         <span class="dot"></span>
       </span>
       <summary>My Orders</summary>

@@ -20,24 +20,6 @@ export default {
       return svgService.getSvg(iconName)
     },
   },
-  computed: {
-    // msgPartTwo() {
-    // console.log(this.msg)
-    //   if (this.msg) {
-    //     if(this.msg.status === 'status') {
-    //       return ` Hey ${this.msg.username}\n Your order's status has been changed.`
-    //     } else if(this.msg.status === 'order-processed') {
-    //       return "Your order is being processed. stay tuned."
-    //     } else if (this.msg.status === 'watching-gig') {
-    //       return "A user is watching your gig right now."
-    //     } else {
-    //       return "A user ordered one of your gigs right now."
-    //     }
-        
-    //   }
-    // },
-   
-  },
  
 }
 </script>
