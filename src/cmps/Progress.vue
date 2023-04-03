@@ -3,7 +3,7 @@
     <div class="bar" v-for="(color, i) in customColors">
       <div class="flex space-between">
         <b>{{ color.txt }}</b>
-        <p>{{ ordersCompleted }}%</p>
+        <p>{{ customColors[i].percentage }}%</p>
       </div>
 
       <el-progress
@@ -14,9 +14,9 @@
 </template>
 
 <script lang="ts">
-import { ordersService } from '../services/order.service.js'
-
 export default {
+  props: ['percentage'],
+
   data() {
     return {
       customColors: [
@@ -24,41 +24,26 @@ export default {
         {
           txt: 'Orders Completed',
           color: '#1dbf73',
-          percentage: this.ordersCompleted,
+          percentage: 55,
         },
         { txt: 'Delivered on Time', color: '#1dbf73', percentage: 95 },
       ],
-
-      ordersCompleted: 0,
     }
   },
-
-  methods: {
-    async getOrdersCompleted() {
-      const orders = await ordersService.query()
-      const ordersCompleted = orders.filter(
-        (order) => order.status === 'Completed'
-      )
-
-      this.ordersCompleted = Math.floor(
-        (ordersCompleted.length / orders.length) * 100
-      )
-    },
+  created() {
+    this.customColors[1].percentage = this.percentage
   },
 
   computed: {
-    orders() {
-      return this.$store.state.ordersByUser
+    ordersCompleted() {
+      return this.customColors[1].percentage
     },
   },
 
-  created() {
-    this.getOrdersCompleted()
-  },
-
   watch: {
-    ordersCompleted() {
-      this.customColors[1].percentage = this.ordersCompleted
+    percentage: function (newVal) {
+      this.$emit('percentage', newVal)
+      this.customColors[1].percentage = newVal
     },
   },
 }
