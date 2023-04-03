@@ -98,6 +98,7 @@ export default {
     '$route.query': {
       handler() {
         const query = this.$route.query
+        console.log(query)
         if (query) {
           this.filterBy = query
         }
