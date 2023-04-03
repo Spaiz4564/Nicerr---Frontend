@@ -30,7 +30,9 @@ export default {
       return svgService.getSvg(iconName)
     },
     showGigsByCategory(categoryId) {
-      this.$router.push(`/gig?categoryId=${categoryId}`)
+      this.$router.push({ path: '/gig', query: { categoryId } })
+
+      this.$store.dispatch(type: 'updateCategory', categoryId)
     },
   },
 }
