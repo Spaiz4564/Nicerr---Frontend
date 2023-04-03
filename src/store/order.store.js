@@ -36,9 +36,8 @@ export const ordersStore = {
       return orders
     },
     ordersByUser({ orders }) {
-      return orders.filter(order => {
-        console.log(order)
-        return order.buyer._id === userStore.state.loggedinUser._id
+      return orders.filter((order) => {
+        return order.byUserId._id === userStore.state.user._id
       })
     },
   },
@@ -53,27 +52,31 @@ export const ordersStore = {
 
     saveOrders(state, { orders }) {
       const idx = state.orders.findIndex(
-        currOrders => currOrders._id === orders._id
+        (currOrders) => currOrders._id === orders._id
       )
       if (idx !== -1) state.orders.splice(idx, 1, orders)
       else state.orders.push(orders)
     },
     updateOrders(state, { orders }) {
-      const idx = state.orders.findIndex(c => c._id === orders._id)
+      const idx = state.orders.findIndex((c) => c._id === orders._id)
       state.orders.splice(idx, 1, orders)
     },
     removeOrders(state, { ordersId }) {
-      state.orders = state.orders.filter(orders => orders._id !== ordersId)
+      state.orders = state.orders.filter((orders) => orders._id !== ordersId)
     },
     addOrdersMsg(state, { ordersId, msg }) {
-      const orders = state.orders.find(orders => orders._id === ordersId)
+      const orders = state.orders.find((orders) => orders._id === ordersId)
       if (!orders.msgs) orders.msgs = []
       orders.msgs.push(msg)
     },
 
     updateOrder(state, { order }) {
-      const idx = state.orders.findIndex(o => o._id === order._id)
-      if (idx !== -1) state.orders.splice(idx, 1, order)
+      const idx = state.orders.findIndex((o) => o._id === order._id)
+      if (idx !== -1) {
+        state.orders.splice(idx, 1, order)
+        return
+      }
+      state.orders.unshift(order)
     },
 
     setFilter(state, { filterBy }) {
@@ -81,7 +84,7 @@ export const ordersStore = {
     },
 
     saveOrder(state, { order }) {
-      const idx = state.orders.findIndex(o => o._id === order._id)
+      const idx = state.orders.findIndex((o) => o._id === order._id)
       if (idx !== -1) {
         state.orders.splice(idx, 1, order)
         return
@@ -155,6 +158,15 @@ export const ordersStore = {
         return order
       } catch (err) {
         console.log('orderStore: Error in addOrder', err)
+        throw err
+      }
+    },
+
+    async updateUserOrders(context, { order }) {
+      try {
+        context.commit({ type: 'updateOrder', order })
+      } catch (err) {
+        console.log('orderStore: Error in updateUserOrders', err)
         throw err
       }
     },
