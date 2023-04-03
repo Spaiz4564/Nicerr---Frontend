@@ -120,11 +120,11 @@ export default {
 
     ordersCompleted() {
       if (this.orders) {
-        return (
+        return Math.round(
           (this.orders.filter((order) => order.status === 'Completed').length /
             this.orders.length) *
-          100
-        )
+            100
+        )``
       }
     },
   },

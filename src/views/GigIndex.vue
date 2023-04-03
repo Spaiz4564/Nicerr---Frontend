@@ -108,7 +108,6 @@ export default {
   },
   methods: {
     setSort(sortBy) {
-      console.log(sortBy)
       this.sortBy = sortBy
       this.loadGigs()
     },
