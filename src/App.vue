@@ -1,6 +1,6 @@
 <template>
   <section>
-    <UserMsgEvent />
+    <!-- <UserMsgEvent /> -->
     <div
       @click="closeModal"
       :class="isBackdrop ? 'showBackdrop' : 'hideBackDrop'"

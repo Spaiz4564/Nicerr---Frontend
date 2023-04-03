@@ -17,7 +17,7 @@
         </div>
       </div>
       <div class="progress">
-        <Progress />
+        <Progress :percentage="ordersCompleted" />
       </div>
     </div>
     <div class="seller-orders">
@@ -63,6 +63,7 @@ import Status from '../cmps/Status.vue'
 import { ordersService } from '../services/order.service'
 export default {
   name: 'Dashboard',
+
   data() {
     return {
       dashboardItems: [
@@ -95,7 +96,6 @@ export default {
     findById(orderId) {
       return this.orders.find((order) => order._id === orderId)
     },
-
     income(i) {
       if (this.orders) {
         if (i < 2) {
@@ -116,6 +116,16 @@ export default {
   computed: {
     user() {
       return userService.getLoggedinUser()
+    },
+
+    ordersCompleted() {
+      if (this.orders) {
+        return (
+          (this.orders.filter((order) => order.status === 'Completed').length /
+            this.orders.length) *
+          100
+        )
+      }
     },
   },
 

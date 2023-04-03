@@ -28,6 +28,7 @@ export const ordersService = {
   remove,
   addOrdersMsg,
   getById,
+  getOrdersCompleted,
 }
 window.cs = ordersService
 
@@ -74,4 +75,9 @@ function getById(orderId) {
 async function addOrdersMsg(ordersId, txt) {
   const savedMsg = await httpService.post(`order/${ordersId}/msg`, { txt })
   return savedMsg
+}
+
+async function getOrdersCompleted() {
+  const orders = await httpService.get(STORAGE_KEY)
+  return orders.filter((order) => order.status === 'Completed')
 }

@@ -1,4 +1,16 @@
-//FRONTEND//
+//USER WATCHING PROFILE
+// socketService.emit(SOCKET_EMIT_USER_WATCHING_GIG, this.gig.owner)
+// socket.on('gig-watching', async (user) => {
+//   const toSocket = await _getUserSocket(user._id)
+//   if (toSocket)
+//     toSocket.emit(
+//       'gig-watching',
+//       `${user.username}! A user is watching your gig right now.`
+//     )
+//   return
+// })
+
+//FRONTEND-GIG PURCHASE//
 async function handlePurchase() {
   this.$store.dispatch({ type: 'saveOrder', order: { ...order } })
   socketService.emit('gig-ordered-seller', this.gig)
@@ -8,7 +20,7 @@ async function handlePurchase() {
   })
 }
 
-//BACKEND//
+//BACKEND - SAVE GIG IN DATABASE//
 
 async function add(order) {
   try {
@@ -23,6 +35,7 @@ async function add(order) {
   }
 }
 
+//EMIT SOCKET//
 socket.on('gig-ordered', async (gig) => {
   const toSocket = await _getUserSocket(gig.owner._id)
   if (toSocket)

@@ -38,7 +38,8 @@
         <div class="gig-rating">
           <span class="icon-star gold" v-html="getSvg('starGold')"></span>
           <p class="gig-preview-rate">
-            {{ gig.rate }}<span class="total-rates">{{ gig.totalRates }} </span>
+            {{ gig.rate
+            }}<span class="total-rates">({{ gig.totalRates }}) </span>
           </p>
         </div>
       </div>
