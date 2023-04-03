@@ -31,7 +31,6 @@
         return svgService.getSvg(iconName)
       },
       showGigsByCategory(categoryId, index) {
-        console.log('categoryId', categoryId)
       this.$store.dispatch({
         type: 'updateCategory',
         category: this.$refs.category[index].innerText,

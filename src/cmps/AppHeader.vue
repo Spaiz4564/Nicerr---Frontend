@@ -187,6 +187,7 @@ export default {
       return this.$store.getters.changeModalOpen
     },
     emitFiltered() {
+      this.$store.commit({type: 'updateResultsFor', resultsFor: this.$refs.resultsFor.value})
       this.$router.push({
         path: '/gig',
         query: { title: this.filterBy.title },

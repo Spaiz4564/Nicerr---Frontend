@@ -76,6 +76,7 @@ export const gigStore = {
     },
 
     updateResultsFor(state, { resultsFor }) {
+      console.log(resultsFor)
       state.resultsFor = resultsFor ? resultsFor : false
     },
 
