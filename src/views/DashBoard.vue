@@ -124,7 +124,7 @@ export default {
           (this.orders.filter((order) => order.status === 'Completed').length /
             this.orders.length) *
             100
-        )``
+        )
       }
     },
   },
