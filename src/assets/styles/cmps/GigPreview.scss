@@ -226,6 +226,11 @@
   display: none;
 }
 
-.seller-img {
-  aspect-ratio: 1 !important;
+@media (max-width: 768px) {
+  .seller-img {
+    img {
+      width: 100%;
+      aspect-ratio: 1/1;
+    }
+  }
 }
