@@ -215,7 +215,7 @@ export default {
     this.gig = await gigService.getById(id)
     if (this.loggedInUser && this.loggedInUser._id !== this.gig.owner._id)
       setTimeout(() => {
-        socketService.emit(SOCKET_EMIT_USER_WATCHING_GIG, this.gig.owner)
+        socketService.emit(SOCKET_EMIT_USER_WATCHING_GIG, this.gig)
       }, 32000)
   },
 
