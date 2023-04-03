@@ -114,8 +114,8 @@ export default {
     },
     setFilter(filterBy) {
       this.filterBy = filterBy
-      console.log('filterBy', filterBy)
-      this.$router.push({ path: '/gig', query: { ...filterBy } })
+      const query = this.$route.query
+      this.$router.push({ path: '/gig', query: { ...query, ...filterBy } })
     },
 
     async loadGigs() {

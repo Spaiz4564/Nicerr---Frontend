@@ -61,7 +61,6 @@ export default {
         minPrice: null,
         maxPrice: null,
         daysToDeliver: null,
-        categoryId: null,
       },
       isBudgetOpen: false,
       isBoxShadow: false,

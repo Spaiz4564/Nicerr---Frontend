@@ -99,9 +99,9 @@ export default {
     income(i) {
       if (this.orders) {
         if (i < 2) {
-          return this.orders
+          return `$${this.orders
             .filter((order) => order.status === 'Completed')
-            .reduce((acc, curr) => (acc += curr.gig.price), 0)
+            .reduce((acc, curr) => (acc += curr.gig.price), 0)}`
         } else if (i === 2) {
           return this.orders.filter((order) => order.status === 'Completed')
             .length
