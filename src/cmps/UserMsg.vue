@@ -2,8 +2,7 @@
   <div v-show="msg" class="user-msg">
     <div class="msg-tick" v-html="getSvg('checkMark')"></div>
     <div class="flex column">
-      <span>{{ msg }}</span>
-      <!-- <span>{{ msgPartTwo }}</span> -->
+    <p>{{ msg }}</p>
     </div>
 
     <span class="close-btn" @click="msg = ''">x</span>
@@ -22,13 +21,23 @@ export default {
     },
   },
   computed: {
-    msgPartTwo() {
-      if (this.msg) {
-        return this.msg.includes('Hey')
-          ? "Your order's status has been changed."
-          : ''
-      }
-    },
+    // msgPartTwo() {
+    // console.log(this.msg)
+    //   if (this.msg) {
+    //     if(this.msg.status === 'status') {
+    //       return ` Hey ${this.msg.username}\n Your order's status has been changed.`
+    //     } else if(this.msg.status === 'order-processed') {
+    //       return "Your order is being processed. stay tuned."
+    //     } else if (this.msg.status === 'watching-gig') {
+    //       return "A user is watching your gig right now."
+    //     } else {
+    //       return "A user ordered one of your gigs right now."
+    //     }
+        
+    //   }
+    // },
+   
   },
+ 
 }
 </script>
