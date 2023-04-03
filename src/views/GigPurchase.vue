@@ -20,8 +20,7 @@
                 <input
                   class="card-num"
                   type="text"
-                  value="4580 5926 7852 9996"
-                />
+                  value="4580 5926 7852 9996" />
               </div>
               <div class="short-input flex">
                 <div>
@@ -45,11 +44,7 @@
               </div>
             </div>
           </section>
-          <div
-            class="icon flex paypal"
-            v-html="getSvg('Paypal')"
-          ></div>
-
+          <div class="icon flex paypal" v-html="getSvg('Paypal')"></div>
         </section>
         <section class="package-container">
           <section class="gig-package-payment">
@@ -68,36 +63,31 @@
                 <li class="regular">
                   <div
                     className=" regular fill svg-container"
-                    v-html="getSvg('checkSign')"
-                  ></div>
+                    v-html="getSvg('checkSign')"></div>
                   1 concept included
                 </li>
                 <li class="regular">
                   <div
                     className="svg-container icon regular fill"
-                    v-html="getSvg('checkSign')"
-                  ></div>
+                    v-html="getSvg('checkSign')"></div>
                   Logo transparency
                 </li>
                 <li class="regular">
                   <div
                     className="svg-container icon regular fill"
-                    v-html="getSvg('checkSign')"
-                  ></div>
+                    v-html="getSvg('checkSign')"></div>
                   Include 3D mockup
                 </li>
                 <li class="regular">
                   <div
                     className="svg-container icon regular fill"
-                    v-html="getSvg('checkSign')"
-                  ></div>
+                    v-html="getSvg('checkSign')"></div>
                   1 concept included
                 </li>
                 <li class="regular">
                   <div
                     className="svg-container icon regular fill"
-                    v-html="getSvg('checkSign')"
-                  ></div>
+                    v-html="getSvg('checkSign')"></div>
                   Include source file
                 </li>
               </ul>
@@ -134,76 +124,77 @@
 </template>
 
 <script>
-  import { svgService } from '../services/svg.service'
-  import { gigService } from '../services/gig.service'
-  import { pushScopeId } from 'vue'
-  import { ordersService } from '../services/order.service'
-  import Join from '../cmps/Join.vue'
-  import { showSuccessMsg, showErrorMsg } from '../services/event-bus.service'
-  import { socketService } from '../services/socket.service'
+import { svgService } from '../services/svg.service'
+import { gigService } from '../services/gig.service'
+import { pushScopeId } from 'vue'
+import { ordersService } from '../services/order.service'
+import Join from '../cmps/Join.vue'
+import {
+  socketService,
+  SOCKET_EMIT_USER_GIG_APPROVED,
+} from '../services/socket.service'
 
-  export default {
-    props: ['isBackDrop'],
-    name: '',
-    data() {
-      return {
-        gig: null,
-        openSignUp: false,
+export default {
+  props: ['isBackDrop'],
+  name: '',
+  data() {
+    return {
+      gig: null,
+      openSignUp: false,
+    }
+  },
+  methods: {
+    getSvg(iconName) {
+      return svgService.getSvg(iconName)
+    },
+    async handlePurchase() {
+      this.$emit('wow')
+      if (this.loggedinUser) {
+        const order = {
+          buyer: this.loggedinUser,
+          seller: this.gig.owner,
+          gig: {
+            _id: this.gig._id,
+            name: this.gig.title,
+            price: this.gig.price,
+            img: this.gig.images[0],
+          },
+          status: 'Pending',
+          date: new Date().toLocaleDateString(),
+        }
+        this.$store.dispatch({ type: 'saveOrder', order: { ...order } })
+        setTimeout(() => {
+          this.$router.push('/')
+        }, 500)
+        socketService.emit(SOCKET_EMIT_USER_GIG_APPROVED, order)
+      } else {
+        this.openSignUp = true
       }
     },
-    methods: {
-      getSvg(iconName) {
-        return svgService.getSvg(iconName)
-      },
-      async handlePurchase() {
-        this.$emit('wow')
-        if (this.loggedinUser) {
-          const order = {
-            buyer: this.loggedinUser,
-            seller: this.gig.owner,
-            gig: {
-              _id: this.gig._id,
-              name: this.gig.title,
-              price: this.gig.price,
-              img: this.gig.images[0],
-            },
-            status: 'Pending',
-            date: new Date().toLocaleDateString(),
-          }
-          this.$store.dispatch({ type: 'saveOrder', order: { ...order } })
-          setTimeout(() => {
-            this.$router.push('/')
-          }, 500)
-          socketService.emit('gig-ordered', this.gig)
-          showSuccessMsg('Order placed successfully')
-        } else {
-          this.openSignUp = true
-        }
-      },
-      HandleLogoClick() {
-        this.$router.push(`/`)
-      },
+    HandleLogoClick() {
+      this.$router.push(`/`)
     },
-    computed: {
-      handlePrice() {
-        return this.gig.price + 34.55
-      },
-      loggedinUser() {
-        return this.$store.getters.loggedinUser
-      },
+  },
+  computed: {
+    handlePrice() {
+      return this.gig.price + 34.55
     },
-    async created() {
-      const { id } = this.$route.params
-      gigService.getById(id).then(gig => {
-        this.gig = gig
-      })
-      const loggedinUser = this.$store.getters.loggedinUser
-      console.log(loggedinUser)
+    loggedinUser() {
+      return this.$store.getters.loggedinUser
     },
-    components: {
-      Join,
-    },
-  }
+  },
+  async created() {
+    const { id } = this.$route.params
+    gigService.getById(id).then((gig) => {
+      this.gig = gig
+    })
+    const loggedinUser = this.$store.getters.loggedinUser
+    console.log(loggedinUser)
+  },
+  components: {
+    Join,
+  },
+}
 </script>
 
 <style></style>

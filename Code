@@ -1,27 +1,26 @@
-//USER WATCHING PROFILE
-// socketService.emit(SOCKET_EMIT_USER_WATCHING_GIG, this.gig.owner)
-// socket.on('gig-watching', async (user) => {
-//   const toSocket = await _getUserSocket(user._id)
-//   if (toSocket)
-//     toSocket.emit(
-//       'gig-watching',
-//       `${user.username}! A user is watching your gig right now.`
-//     )
-//   return
-// })
+//USER WATCHING PROFILE//
+//FRONTEND//
+socketService.emit(SOCKET_EMIT_USER_WATCHING_GIG, this.gig.owner)
+
+//BACKEND//
+socket.on('gig-watching', async (user) => {
+  const toSocket = await _getUserSocket(user._id)
+  if (toSocket)
+    toSocket.emit(
+      'gig-watching',
+      `${user.username}! A user is watching your gig right now.`
+    )
+  return
+})
 
 //FRONTEND-GIG PURCHASE//
 async function handlePurchase() {
   this.$store.dispatch({ type: 'saveOrder', order: { ...order } })
   socketService.emit('gig-ordered-seller', this.gig)
-  eventBusService.emit('show-msg', {
-    txt: 'Your Order Is Being Processed',
-    type: 'success',
-  })
+  showSuccessMsg(msg)
 }
 
 //BACKEND - SAVE GIG IN DATABASE//
-
 async function add(order) {
   try {
     let collection = await dbService.getCollection('order')

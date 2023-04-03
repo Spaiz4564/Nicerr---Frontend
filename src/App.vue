@@ -1,6 +1,5 @@
 <template>
   <section>
-    <!-- <UserMsgEvent /> -->
     <div
       @click="closeModal"
       :class="isBackdrop ? 'showBackdrop' : 'hideBackDrop'"
@@ -34,7 +33,6 @@ import Join from './cmps/Join.vue'
 import { store } from './store/store'
 import { socketService } from './services/socket.service'
 import { showSuccessMsg, showUserMsg } from './services/event-bus.service'
-import UserMsgEvent from './cmps/UserMsgEvent.vue'
 
 export default {
   data() {
@@ -65,6 +63,10 @@ export default {
     socketService.on('gig-viewed', (msg) => {
       this.setAdminMsg(msg)
     })
+
+    socketService.on('gig-ordered', (msg) => {
+      this.setAdminMsg(msg)
+    })
   },
   mounted() {
     socketService.on('admin-update', this.setAdminMsg)
@@ -88,7 +90,6 @@ export default {
     UserMsg,
     Footer,
     showUserMsg,
-    UserMsgEvent,
   },
   methods: {
     backdrop(isOpen, whichModal) {

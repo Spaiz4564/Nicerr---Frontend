@@ -36,8 +36,9 @@ export const ordersStore = {
       return orders
     },
     ordersByUser({ orders }) {
+      if (!orders) return []
       return orders.filter((order) => {
-        return order.byUserId._id === userStore.state.user._id
+        return order.buyer._id === userStore.state.loggedinUser._id
       })
     },
   },
