@@ -48,7 +48,7 @@
         </div>
         <div @click.stop class="buttons-budget">
           <div class="clear-budget" @click.stop="clearBudget()">Clear All</div>
-          <button @click="closefilter">Apply</button>
+          <button>Apply</button>
         </div>
       </form>
     </div>
@@ -90,6 +90,7 @@
     },
     methods: {
       filterBudget() {
+        this.closefilter()
         this.$emit('filtered', { ...this.filterBy })
       },
       toggleBudget() {
@@ -112,7 +113,7 @@
         }
       },
       closefilter() {
-        setTimeout(() => (this.isBudgetOpen = false), 200)
+        setTimeout(() => (this.isBudgetOpen = false), 10)
       },
     },
     computed: {
