@@ -498,6 +498,12 @@
 // }
 
 .user-msg {
+  p{
+    word-break: break-word;
+    word-wrap: break-word;
+    white-space: pre-line;
+    text-align: left;
+  }
   .column {
     @include for-mobile-layout {
       margin-left: 25px;

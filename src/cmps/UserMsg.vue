@@ -2,8 +2,7 @@
   <div v-show="msg" class="user-msg">
     <div class="msg-tick" v-html="getSvg('checkMark')"></div>
     <div class="flex column">
-      <span>{{ msg }}</span>
-      <!-- <span>{{ msgPartTwo }}</span> -->
+    <p>{{ msg }}</p>
     </div>
 
     <span class="close-btn" @click="msg = ''">x</span>
@@ -21,14 +20,6 @@ export default {
       return svgService.getSvg(iconName)
     },
   },
-  computed: {
-    msgPartTwo() {
-      if (this.msg) {
-        return this.msg.includes('Hey')
-          ? "Your order's status has been changed."
-          : ''
-      }
-    },
-  },
+ 
 }
 </script>

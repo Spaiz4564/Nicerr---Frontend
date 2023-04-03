@@ -2,7 +2,8 @@
   <section class="seller-profile main-layout full" v-if="owner">
     <div
       class="seller-profile-container flex"
-      :class="!owner.isSeller ? 'gigs-not-seller' : ''">
+      :class="!owner.isSeller ? 'gigs-not-seller' : ''"
+    >
       <div class="seller">
         <div class="user-info">
           <div class="seller-profile-info">
@@ -16,7 +17,7 @@
                   <div className="icon" v-html="getSvg('location')"></div>
                   <h4>Country</h4>
                 </div>
-                <span>USA</span>
+                <span>England</span>
               </div>
 
               <div class="details">
@@ -32,15 +33,16 @@
         <div class="desc-container">
           <div class="desc">
             <h4>Description</h4>
-            <p v-if="owner.description">{{ owner.description}}</p>
+            <p v-if="owner.description">{{ owner.description }}</p>
             <p v-else>
-              Hello, this is {{ owner.fullname }}, I am
-              a young and enthusiastic graphic artist and realistic pencil
-              sketch artist. I am certified as graphic designer from George
-              Washington University, USA. I have almost 11 years experience in
-              this field since my university life. I really love to work with
-              Adobe Illustrator, Adobe Photoshop, and so on as a full time
-              online freelancer. And also passionate about sketching. Thank you.
+              Hey i'm Guy from London, I'm a self-taught artist and I've
+              been drawing since I was a child. I developed my potential ever
+              since and right now I am working freelance as a Designer /
+              Illustrator. My catch phrase is an art style that is Bold,
+              Expressive and Eye-catchy. I want my designs to influence my
+              clients to be bold with their passions, to be what they believe
+              they are and be reminded by the symbols that creates impact to
+              them.
             </p>
           </div>
         </div>
@@ -67,53 +69,53 @@
 </template>
 
 <script>
-import { gigService } from '../services/gig.service'
+  import { gigService } from '../services/gig.service'
 
-import { userService } from '../services/user.service'
-import GigPreviewSeller from '../cmps/GigPreviewSeller.vue'
-import GigPreview from '../cmps/GigPreview.vue'
-import { svgService } from '../services/svg.service'
-import ImgUploader from '../cmps/ImgUploader.vue'
+  import { userService } from '../services/user.service'
+  import GigPreviewSeller from '../cmps/GigPreviewSeller.vue'
+  import GigPreview from '../cmps/GigPreview.vue'
+  import { svgService } from '../services/svg.service'
+  import ImgUploader from '../cmps/ImgUploader.vue'
 
-export default {
-  name: 'SellerProfile',
-  data() {
-    return {
-      gigToAdd: null,
-      gigs: null,
-    }
-  },
-  created() {
-    this.loadGigsByOwner()
-  },
-  computed: {
-    owner() {
-      const owner = userService.getLoggedinUser()
-      console.log(owner)
-      return owner
+  export default {
+    name: 'SellerProfile',
+    data() {
+      return {
+        gigToAdd: null,
+        gigs: null,
+      }
     },
-  },
-  methods: {
-    async loadGigsByOwner() {
-      const owner = userService.getLoggedinUser()
-      this.gigs = await gigService.query({ owner: owner._id })
-      console.log(this.gigs)
+    created() {
+      this.loadGigsByOwner()
+    },
+    computed: {
+      owner() {
+        const owner = userService.getLoggedinUser()
+        console.log(owner)
+        return owner
+      },
+    },
+    methods: {
+      async loadGigsByOwner() {
+        const owner = userService.getLoggedinUser()
+        this.gigs = await gigService.query({ owner: owner._id })
+        console.log(this.gigs)
+      },
+
+      addGig() {
+        console.log('add gig')
+        this.$router.push('/edit')
+      },
+
+      getSvg(iconName) {
+        return svgService.getSvg(iconName)
+      },
     },
 
-    addGig() {
-      console.log('add gig')
-      this.$router.push('/edit')
+    components: {
+      GigPreviewSeller,
+      GigPreview,
+      ImgUploader,
     },
-
-    getSvg(iconName) {
-      return svgService.getSvg(iconName)
-    },
-  },
-
-  components: {
-    GigPreviewSeller,
-    GigPreview,
-    ImgUploader
-  },
-}
+  }
 </script>
