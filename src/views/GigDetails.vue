@@ -216,7 +216,7 @@ export default {
     if (this.loggedInUser && this.loggedInUser._id !== this.gig.owner._id)
       setTimeout(() => {
         socketService.emit(SOCKET_EMIT_USER_WATCHING_GIG, this.gig.owner)
-      }, 30000)
+      }, 32000)
   },
 
   components: {
