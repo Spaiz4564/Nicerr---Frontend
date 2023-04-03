@@ -75,7 +75,7 @@ export default {
       }
     },
     orders() {
-      return this.$store.getters.orders
+      return this.$store.getters.ordersByUser
     },
 
     user() {

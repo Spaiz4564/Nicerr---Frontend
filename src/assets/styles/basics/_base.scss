@@ -59,14 +59,13 @@ img {
 }
 
 header {
-@include for-tablet-layout{
-  background-color: white !important;
-  height: 133px;
-  
-}
-@include for-mobile-layout{
-  width: auto;
-}
+  @include for-tablet-layout {
+    background-color: white !important;
+    height: 133px;
+  }
+  @include for-mobile-layout {
+    width: auto;
+  }
   transition: all 0.3s;
   grid-column: 1 / -1;
   height: 80px;

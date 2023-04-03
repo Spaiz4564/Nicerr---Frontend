@@ -6,7 +6,6 @@
   transition: all 0.3s;
   &:hover {
     color: $clr-main;
-  
   }
   .gig-preview-info {
     display: flex;
@@ -214,7 +213,7 @@
   }
 }
 
-.long-txt{
+.long-txt {
   max-width: em(300px);
 }
 
@@ -225,4 +224,8 @@
 
 .gig-seller-btns {
   display: none;
+}
+
+.seller-img {
+  aspect-ratio: 1 !important;
 }
