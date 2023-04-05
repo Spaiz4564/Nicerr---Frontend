@@ -53,7 +53,7 @@
           <div v-if="!seller" class="flex">
             <a @click="goToSellerSignup">Become a Seller</a>
           </div>
-          <div class="home-page-order">
+          <div v-if="loggedinUser" class="home-page-order">
             <span v-if="isActiveNotification" class="notification-orders">
               <span class="dot"></span>
             </span>

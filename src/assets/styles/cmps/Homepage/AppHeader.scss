@@ -634,3 +634,16 @@
 .home-page-order {
   padding-bottom: em(2px);
 }
+
+.el-empty{
+  @include for-mobile-layout{
+    .el-empty__image{
+      height: 135px;
+      margin-right: 32px;
+    }
+    .el-empty__description{
+      margin-right: 32px;
+    }
+    padding-top: 10px;
+  }
+}

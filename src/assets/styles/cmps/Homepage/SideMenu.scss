@@ -4,7 +4,13 @@
 
 
 
+
 .side-menu {
+  transition: 0.3s all;
+  translate: -102% -4%;
+  box-shadow: 20px 0 20px 800px #33323287;
+  opacity: 0;
+  // box-shadow: none;
   summary {
     color: $clr4;
     margin-bottom: 20px;
@@ -48,7 +54,7 @@
   height: 105vh;
   z-index: 500;
   width: 270px;
-  box-shadow: 20px 0 20px 800px #33323287;
+
 
   padding-inline-start: 20px;
 }
@@ -57,3 +63,8 @@
   width: 50px !important;
   margin-right: 10px !important;
 }
+
+.slideIn{
+  opacity: 1;
+  translate: 0% 0%;
+  }

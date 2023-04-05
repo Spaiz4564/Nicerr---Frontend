@@ -1,6 +1,6 @@
 <template>
   <div
-    v-if="showSideMenu"
+  :class="showSideMenu ? 'slideIn' : ''"
     v-clickOutsideDirective="closeMenu"
     class="side-menu flex column">
     <div v-if="user" class="user-info flex">
@@ -25,10 +25,11 @@
     <a v-if="user" @click="this.$emit('logout')">Logout</a>
     <details v-if="user">
       <span class="notification-orders">
-        <span class="dot"></span>
+        <span v-if="orders.length" class="dot"></span>
       </span>
       <summary>My Orders</summary>
       <ul class="clean-list-order">
+        <Empty v-if="!orders.length" />
         <li
           v-for="order in orders"
           class="order-detail flex align-center orders-mobile">
@@ -51,7 +52,7 @@
 </template>
 
 <script>
-import { gigService } from '../../services/gig.service'
+import Empty from '../Empty.vue'
 export default {
   props: ['showSideMenu'],
   name: 'Popular Services',
@@ -60,7 +61,10 @@ export default {
   },
   methods: {
     closeMenu() {
-      this.$emit('closeMenu')
+      if(this.showSideMenu) {
+
+        this.$emit('closeMenu')
+      }
     },
     goToSellerSignup() {
       this.$router.push('/seller-signup')
@@ -83,6 +87,8 @@ export default {
     },
   },
 
-  components: {},
+  components: {
+    Empty
+  },
 }
 </script>
