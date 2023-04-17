@@ -137,6 +137,7 @@ import { ordersService } from '../services/order.service'
 import NavVuper from '../cmps/NavVuper.vue'
 import SideMenu from '../cmps/HomePage/SideMenu.vue'
 import Empty from './Empty.vue'
+import Loader from './Loader.vue'
 export default {
   name: 'AppHeader',
   props: {
@@ -161,6 +162,7 @@ export default {
       orderModalOpen: false,
       backdrop: document.querySelector('.backdrop'),
       windowWidth: null,
+      isMovedRoute: false,
     }
   },
 
@@ -187,7 +189,10 @@ export default {
       return this.$store.getters.changeModalOpen
     },
     emitFiltered() {
-      this.$store.commit({type: 'updateResultsFor', resultsFor: this.$refs.resultsFor.value})
+      this.$store.commit({
+        type: 'updateResultsFor',
+        resultsFor: this.$refs.resultsFor.value,
+      })
       this.$router.push({
         path: '/gig',
         query: { title: this.filterBy.title },
@@ -257,6 +262,7 @@ export default {
     $route(to) {
       this.isHome = to.path !== '/' ? false : true
       this.isPurchase = to.path.includes('purchase') ? true : false
+      this.isMovedRoute = to.path.includes('gig') ? true : false
     },
   },
 
@@ -276,6 +282,6 @@ export default {
       this.windowWidth = window.innerWidth
     }
   },
-  components: { Login, NavSuggestions, NavVuper, SideMenu, Empty },
+  components: { Login, NavSuggestions, NavVuper, SideMenu, Empty, Loader },
 }
 </script>

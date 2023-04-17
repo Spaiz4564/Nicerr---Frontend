@@ -26,6 +26,8 @@
 
 <script>
 import AppHeader from './cmps/AppHeader.vue'
+import Loader from './cmps/Loader.vue'
+
 import UserMsg from './cmps/UserMsg.vue'
 import Footer from './cmps/Footer.vue'
 import Login from './views/Login.vue'
@@ -89,6 +91,8 @@ export default {
     UserMsg,
     Footer,
     showUserMsg,
+    showSuccessMsg,
+    Loader,
   },
   methods: {
     backdrop(isOpen, whichModal) {
