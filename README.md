@@ -27,6 +27,9 @@ Vue.js | Vuex | Sass | Node.js | Express.js | MongoDB | REST APIs | Postman | We
 - **Vueper Slides** library for an impressive display of all the photos, **Element Plus** library and more.
 
 ## Authors
-
+- [@SGuy-Shilon](https://github.com/Spaiz4564)
 - [@ylcN101](https://github.com/ylcN101)
+- [@Lidor-Tal]([https://github.com/ylcN101](https://github.com/Lidor-Tal))
+
+
 
