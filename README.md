@@ -8,6 +8,11 @@ Nicerr is a responsive, end-to-end application built with the latest technologie
 Vue.js | Vuex | Sass | Node.js | Express.js | MongoDB | REST APIs | Postman | Web sockets and more.
 
 ![image](https://ik.imagekit.io/tfcgjzp4c/GITHUB__1.png?updatedAt=1683489192573)
+![image](https://ik.imagekit.io/tfcgjzp4c/GTIHUB__2.png?updatedAt=1683489360029)
+![image](https://ik.imagekit.io/tfcgjzp4c/GIHUB__3.png?updatedAt=1683489386617)
+![image](https://ik.imagekit.io/tfcgjzp4c/GIHUB__4.png?updatedAt=1683489386075)
+![image](https://ik.imagekit.io/tfcgjzp4c/GITHUB__5.png?updatedAt=1683489383851)
+![image](https://ik.imagekit.io/tfcgjzp4c/GITHUB__6.png?updatedAt=1683489382977)
 
 ## Tech Stack
 
