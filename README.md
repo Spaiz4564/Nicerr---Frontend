@@ -7,6 +7,9 @@ Link to Nicerr on Render: https://nicerr.onrender.com/
 Nicerr is a responsive, end-to-end application built with the latest technologies: 
 Vue.js | Vuex | Sass | Node.js | Express.js | MongoDB | REST APIs | Postman | Web sockets and more.
 
+    <img src="https://ik.imagekit.io/tfcgjzp4c/GITHUB__1.png?updatedAt=1683489192573" alt="Logo">
+    
+
 ## Tech Stack
 
 **Client:** JavaScript(ES6), HTML5, CSS3, Sass, Vue.js, Vuex, Axios
