@@ -68,7 +68,7 @@
   align-items: center;
   gap: 0.5rem;
   .seller-img {
-    height: 30px;
+    width: rem(30px) !important;
     margin-top: em(5px);
   }
   .seller-info {
@@ -223,13 +223,4 @@
 
 .gig-seller-btns {
   display: none;
-}
-
-@media (max-width: 926px) {
-  .seller-img {
-    img {
-      width: 100%;
-      aspect-ratio: 1 !important;
-    }
-  }
 }
